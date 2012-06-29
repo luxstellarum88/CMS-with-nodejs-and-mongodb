@@ -1,0 +1,19 @@
+script
+	function boardModify(i){
+		location.href='/modify?no=' + i;
+	}
+	
+	function boardDelete(i){
+		location.href='/delete?no=' + i;	
+	}
+
+h1= title
+
+p no: #{docs.no}
+p subject: #{docs.subject}
+p name: #{docs.name}
+p memo: #{docs.memo}
+p date: #{docs.date}
+
+input( type ='button', id='modify', value='수정', onClick="boardModify(#{docs.no})")
+input( type ='button', id='delete', value='제거', onClick="boardDelete(#{docs.no})")

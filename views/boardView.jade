@@ -1,0 +1,29 @@
+script	
+	function boardWrite(){
+		location.href="/write";
+	}
+
+	function gotoPage(i){
+		location.href='/board?page=' + i;
+	}
+
+	function gotoIdView(i){
+		location.href='/board/' + i;	
+	}
+
+h1= title
+
+-for(var i=docs.length-(NowPage-1)*5; i>=docs.length-(NowPage*5)+1; i--)
+	-if(docs[i-1]){
+		a(herf='#', style="color:black;", onClick="gotoIdView(#{docs[i-1].no})") #{i}, #{docs[i-1].subject}, #{docs[i-1].name}	
+		br
+		br
+	-}
+
+-for(var i=0; 0<docs.length-(i*5); i++)	
+	a(herf='#', onClick="gotoPage(#{i+1})") [#{i+1}] 
+
+br
+br
+input( type ='button', id='write', value='write', onClick="boardWrite()")
+

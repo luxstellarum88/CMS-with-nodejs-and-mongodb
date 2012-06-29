@@ -1,0 +1,46 @@
+h1= title
+
+form(method='post', action='/update')
+	table
+		tr
+			td Id
+			td #{docs.no}
+			
+		tr
+			td Subject
+			td 
+				input(
+					type='textbox'
+					,id = 'subjectForm'
+					,name = 'subjectForm'
+					,value = docs.subject
+				)
+
+		tr
+			td Name
+			td #{docs.name}
+			td
+				input(
+					type='hidden'
+					,id = 'nameForm'
+					,name = 'nameForm'
+					,value = docs.name
+				)
+
+			
+		tr
+			td Memo
+			td
+				input(
+					type='textbox'
+					,id = 'memoForm'
+					,name = 'memoForm'
+					,value = docs.memo
+				)
+						
+	input(
+		type = 'submit'
+		,id = 'modifyButton'
+		,name = 'modifyButton'
+		,value = '수정'
+	)
