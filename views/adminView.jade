@@ -10,6 +10,10 @@ script
 	function gotoIdView(i){
 		location.href='/board/' + i;	
 	}
+	
+	function userlistView(){
+		location.href='/admin/userlists';
+	}
 
 h1= title
 
@@ -29,3 +33,4 @@ br
 br
 input( type ='button', id='write', value='write', onClick="boardWrite()")
 
+input( type ='button', id='userlist', value='유저 리스트', onClick="userlistView()")

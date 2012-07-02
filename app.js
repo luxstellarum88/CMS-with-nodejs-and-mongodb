@@ -6,36 +6,26 @@
 var express = require('express')
   , routes = require('./routes');
 
-var app = module.exports = express.createServer();
 
 // Session
-var SessionMemory = require('./node_modules/express/node_modules/connect/lib/middleware/session/memory');
+var SessionMemory = require('connect-redis')(express);
+var app = module.exports = express.createServer();
+
 
 // Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
  
-  app.dynamicHelpers(
-  	{
-  		session: function(req, res){
-  			return req.session;
-  		}
-  	}
-  );
- 
   app.use(express.bodyParser());
+  app.use(express.cookieParser());  
+  app.use(express.session({
+  	secret: 'key',
+  	store: new SessionMemory
+  }));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  
-  app.use(express.cookieParser());
-  app.use(express.session({
-  	secret: 'key',
-  	store: new SessionMemory( {
-  		reapInterval: 60000 * 10
-  	}) 
-  }));
 });
 
 app.configure('development', function(){
@@ -49,19 +39,41 @@ app.configure('production', function(){
 
 // sessions check
 function requiresLogin(req, res, next){
-	if(req.session){
+	console.log('requiresLogin : ' + req.session.user_id);
+
+	if(req.session.user_id){
+		console.log('session ok');
 		next();
 	}
 	else{
-		res.redirect('/sessions/new?redir=' + req.url);
+		console.log('session no..');
+		res.redirect('/');
 	}
 }
 
+function requiresAdminLogin(req, res, next){
+	console.log('requiresLogin : ' + req.session.user_id);
 
+	if(req.session.user_id == 'adminid'){
+		console.log('session ok');
+		next();
+	}
+	else{
+		console.log('session no..');
+		res.redirect('/');
+	}
+}
 // Routes
 
 app.get('/', routes.index);
-app.get('/board', routes.boardView);
+
+app.get('/admin', routes.admin);
+app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
+
+app.post('/join', routes.join);
+app.post('/makeAccount', routes.makeaccount);
+
+app.get('/board', requiresLogin ,routes.boardView);
 app.get('/board/:id', routes.boardIdView);
 
 app.get('/write', routes.write);
@@ -74,6 +86,7 @@ app.get('/delete', routes.boardDelete);
 
 app.get('/sessions/new', routes.sessionNew);
 app.post('/sessions', routes.session);
+
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

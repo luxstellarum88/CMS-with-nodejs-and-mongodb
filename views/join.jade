@@ -1,0 +1,33 @@
+
+form(method='post', action='/makeAccount')
+	label ID
+		input(
+			type = 'textbox'
+			,name = 'idForm'
+			,id = 'idForm'			
+		)
+	br
+		
+	label	Password
+		input(
+			type = 'password'
+			,name = 'pwForm'
+			,id = 'pwForm'
+		)
+
+	br	
+	
+	label	Name
+		input(
+			type = 'textbox'
+			,name = 'nameForm'
+			,id = 'nameForm'
+		)
+	br
+	
+	input(
+		type = 'submit'
+		,name = 'loginButton'
+		,id = 'loginButton'
+		,value = '회원가입'
+	)
