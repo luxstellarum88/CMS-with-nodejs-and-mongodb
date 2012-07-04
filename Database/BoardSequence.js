@@ -22,7 +22,7 @@ exports.boardSeqNumber = function(callback){
 		}
 		else{
 			console.log('number not find');			
-			callback(number);			
+			callback(1);			
 		}
 	});	
 }

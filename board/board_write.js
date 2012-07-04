@@ -13,7 +13,11 @@ exports.insertBoard = function(req, res){
 
 	dbSeqModel.boardSeqNumber(function(number){
 		boardModel.no = number;
+<<<<<<< HEAD
+		boardModel.Id = req.session.user.Id;
+=======
 		boardModel.Id = req.session.user_id;
+>>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 		boardModel.subject = board.subject;
 		boardModel.name = board.name;
 		boardModel.memo = board.memo;

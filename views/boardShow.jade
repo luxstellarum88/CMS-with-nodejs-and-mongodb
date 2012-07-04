@@ -9,12 +9,49 @@ script
 
 h1= title
 
+<<<<<<< HEAD
+table
+	tr
+		td.content.title #{board.subject}
+		td.content.user(width='200', align='right') #{board.name}
+	tr
+		td.content #{board.no}
+		td.content #{board.date}
+	tr
+		td.content(colspan='2') #{board.memo}		
+	tr
+		td.content(colspan='2', align='right')
+			input( type ='button', id='modify', value='수정', onClick="boardModify(#{board.no})")
+			input( type ='button', id='delete', value='제거', onClick="boardDelete(#{board.no})")
+=======
 p no: #{docs.no}
 p Id: #{docs.Id}
 p subject: #{docs.subject}
 p name: #{docs.name}
 p memo: #{docs.memo}
 p date: #{docs.date}
+>>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 
-input( type ='button', id='modify', value='수정', onClick="boardModify(#{docs.no})")
-input( type ='button', id='delete', value='제거', onClick="boardDelete(#{docs.no})")
+
+-for(var i=0; i<comm.length; i++)
+	-if(comm[i])
+		p #{comm[i].Id} : #{comm[i].comment}
+
+
+br
+form(method='post', action='/comment_write')
+	table
+		tr
+			td	
+				p Comment : 
+			td	
+				input(type='textbox', id='commentForm', name='commentForm')	
+			td	
+				input(type='hidden', id='boardNoForm', name='boardNoForm', value=board.no)
+			td	
+				p password : 
+			td	
+				input(type='password', id='passwordForm', name='passwordForm')
+		tr
+			td	
+				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')	

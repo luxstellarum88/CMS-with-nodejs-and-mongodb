@@ -2,7 +2,26 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
+}
+.content{
+	background:#ffffff;
+	padding:7px;
+	font-size:12px;
+	font-family:gulim;
+	color:#333;
+}
+.title{
+	font-size: 1.5em;
+}
+.user{
+	color:#3074a5
+}
+table{
+	width:760px;
+	border:0px;
+	padding:0px;
+	border-spacing:1px;
+	background-color:#9fb2b2;
 }

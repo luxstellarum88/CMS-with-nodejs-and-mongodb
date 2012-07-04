@@ -3,12 +3,12 @@ h1= title
 form(method='post', action='/update')
 	table
 		tr
-			td Id
-			td #{docs.no}
+			td.content Id
+			td.content #{docs.no}
 			
 		tr
-			td Subject
-			td 
+			td.content Subject
+			td.content
 				input(
 					type='textbox'
 					,id = 'subjectForm'
@@ -17,26 +17,18 @@ form(method='post', action='/update')
 				)
 
 		tr
-			td Name
-			td #{docs.name}
-			td
+			td.content Name
+			td.content #{docs.name}
 				input(
 					type='hidden'
 					,id = 'nameForm'
 					,name = 'nameForm'
 					,value = docs.name
 				)
-
-			
 		tr
-			td Memo
-			td
-				input(
-					type='textbox'
-					,id = 'memoForm'
-					,name = 'memoForm'
-					,value = docs.memo
-				)
+			td.content Memo
+			td.content
+				textarea(name='memo', id='memo') #{docs.memo}
 						
 	input(
 		type = 'submit'

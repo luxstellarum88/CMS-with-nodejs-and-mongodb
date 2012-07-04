@@ -1,13 +1,18 @@
 h1= title
 form(action='/board_write', method='POST')
-	p
-		label subject:
-		input(type='text', name='subject', id='subject')
-	p
-		label name:
-		input(type='text', name='name', id='name')
-	p
-		label memo:
-		input(type='text', name='memo', id='memo')
-	p
-		input(type='submit');
+	table
+		tr
+			td.content Subject
+			td.content 
+				input(type='text', name='subject', id='subject')
+		tr
+			td.content Name
+			td.content 
+				input(type='text', name='name', id='name')
+		tr
+			td.content Memo
+			td.content 
+				textarea(name='memo', id='memo')
+		tr
+			td.content(colspan='2') 
+				input(type='submit')

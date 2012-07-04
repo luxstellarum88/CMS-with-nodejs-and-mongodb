@@ -15,6 +15,31 @@ h1= title
 
 p #{sessionId} 님이 로그인 하셨습니다.
 
+<<<<<<< HEAD
+div(style='width:760px;')
+	table
+		tr
+			th.content No
+			th.content Name
+			th.content User
+			th.content Date
+			-for(var i=docs.length-(NowPage-1)*5; i>=docs.length-(NowPage*5)+1; i--)
+				-if(docs[i-1]){
+					tr
+						td.content #{i}
+						td.content
+							a(herf='#', style="color:black;", onClick="gotoIdView(#{docs[i-1].no})") #{docs[i-1].subject}	
+						td.content #{docs[i-1].name}
+						td.content #{docs[i-1].date}
+				-}
+	
+	-for(var i=0; 0<docs.length-(i*5); i++)	
+		center
+			a(herf='#', onClick="gotoPage(#{i+1})") [#{i+1}]
+	input( type ='button', id='write', value='write', onClick="boardWrite()")
+
+
+=======
 -for(var i=docs.length-(NowPage-1)*5; i>=docs.length-(NowPage*5)+1; i--)
 	-if(docs[i-1]){
 		a(herf='#', style="color:black;", onClick="gotoIdView(#{docs[i-1].no})") #{i}, #{docs[i-1].subject}, #{docs[i-1].name}	
@@ -28,4 +53,5 @@ p #{sessionId} 님이 로그인 하셨습니다.
 br
 br
 input( type ='button', id='write', value='write', onClick="boardWrite()")
+>>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 
