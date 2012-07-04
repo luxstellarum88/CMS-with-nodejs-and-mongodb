@@ -11,10 +11,7 @@ exports.insertUser = function(req, res){
 	useridentity.Id = user.idForm;
 	useridentity.password = user.pwForm;
 	useridentity.name = user.nameForm;
-<<<<<<< HEAD
 	useridentity.email = user.emailForm;
-=======
->>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 	useridentity.role = 'Guest';
 	
 	useridentity.save(function(err){

@@ -9,7 +9,6 @@ script
 
 h1= title
 
-<<<<<<< HEAD
 table
 	tr
 		td.content.title #{board.subject}
@@ -23,14 +22,6 @@ table
 		td.content(colspan='2', align='right')
 			input( type ='button', id='modify', value='수정', onClick="boardModify(#{board.no})")
 			input( type ='button', id='delete', value='제거', onClick="boardDelete(#{board.no})")
-=======
-p no: #{docs.no}
-p Id: #{docs.Id}
-p subject: #{docs.subject}
-p name: #{docs.name}
-p memo: #{docs.memo}
-p date: #{docs.date}
->>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 
 
 -for(var i=0; i<comm.length; i++)

@@ -21,10 +21,7 @@ app.configure(function(){
   app.use(express.cookieParser());  
   app.use(express.session({
   	secret: 'key',
-<<<<<<< HEAD
   	maxAge : new Date(Date.now() + 3600000), //1hours (session's life time) _ (JH/120703) 
-=======
->>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
   	store: new SessionMemory
   }));
   app.use(express.methodOverride());
@@ -43,15 +40,9 @@ app.configure('production', function(){
 
 // sessions check
 function requiresLogin(req, res, next){
-<<<<<<< HEAD
 	console.log('requiresLogin : ' + req.session.user.Id);
 
 	if(req.session.user){
-=======
-	console.log('requiresLogin : ' + req.session.user_id);
-
-	if(req.session.user_id){
->>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 		console.log('session ok');
 		next();
 	}
@@ -62,15 +53,9 @@ function requiresLogin(req, res, next){
 }
 
 function requiresAdminLogin(req, res, next){
-<<<<<<< HEAD
 	console.log('requiresLogin : ' + req.session.user.Id);
 
 	if(req.session.user.role == 'admin'){
-=======
-	console.log('requiresLogin : ' + req.session.user_id);
-
-	if(req.session.user_id == 'adminid'){
->>>>>>> f5151a2e677d64a5144c020bf1e155072705dd99
 		console.log('session ok');
 		next();
 	}
