@@ -1,4 +1,15 @@
-
--for(var i=0; i<result.length; i++)
-	-if(result[i])
-		p Id : #{result[i].Id}, Name : #{result[i].name}, Role : #{result[i].role}	
+form(name='userlist', method = 'post', target='user_information') 
+	div(style='width:760px;')
+		table
+			tr
+				th.content ID
+				th.content NAME
+				th.content Role
+			-for(var i=0; i<result.length; i++)
+				tr	
+					td.content 
+						a(href='#')
+							input(type='hidden', value='#{result[i].Id}') 
+							!{result[i].Id}
+					td.content #{result[i].name}
+					td.content #{result[i].role}
