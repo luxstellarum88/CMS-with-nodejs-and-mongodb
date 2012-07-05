@@ -37,3 +37,4 @@ module.exports.authenticate = function(id, password, callback){
 			callback(null);
 	});
 };
+

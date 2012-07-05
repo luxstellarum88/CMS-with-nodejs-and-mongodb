@@ -33,7 +33,7 @@ exports.insertUser = function(req, res){
 						
 					usersModel.authenticate(user.idForm, user.pwForm, function(user){			
 						if(user){
-							req.session.user_id = user.Id;
+							req.session.user = user;
 							res.redirect('/board');
 						}
 						else{
