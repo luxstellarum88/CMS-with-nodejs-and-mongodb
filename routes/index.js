@@ -83,8 +83,6 @@ exports.board_search = function(req, res){
 	var num = 1;
 	
 	//test code
-	console.log("search :" + req.body.content);
-	console.log("search :" + req.body.type);
 	
 	if(req.session.user.role == 'admin'){
 		isAdmin = true;
