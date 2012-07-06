@@ -1,6 +1,7 @@
 
 var assert = require('assert');
 
+var alert = require('../alert/alert')
 
 var users = require('../account/users');
 var userMake = require('../account/makeaccount');
@@ -9,9 +10,13 @@ var boview = require('../board/boards');
 var bowrite = require('../board/board_write');
 var boupdate = require('../board/board_update');
 var boCheck = require('../board/board_check');
+var bosearch = require('../board/board_search');
 
 var commwrite = require('../board/comment/comment_write');
 var commview = require('../board/comment/comment_view');
+
+//test code
+var alert = require('../alert/alert');
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
@@ -25,6 +30,14 @@ exports.userlistView = function(req, res){
 	users.allUser(req, res);
 }
 
+exports.user_information_view = function(req, res){
+	users.user_information(req.body.user_id, res);
+}
+
+
+exports.user_modify = function(req, res){
+	users.user_modify(req.body, res);
+}
 
 
 exports.join = function(req, res){
@@ -64,6 +77,35 @@ exports.boardView = function(req, res){
 	});
 }
 
+exports.board_search = function(req, res){	
+	var isAdmin;
+	var PageName;
+	var num = 1;
+	
+	//test code
+	console.log("search :" + req.body.content);
+	console.log("search :" + req.body.type);
+	
+	if(req.session.user.role == 'admin'){
+		isAdmin = true;
+		PageName = 'adminView';
+	}
+	else{
+		isAdmin = false;
+		PageName = 'boardView';
+	}
+	
+	bosearch.board_search(req.body, function(result) {
+		res.render(PageName, {
+			title: 'board',
+			docs: result,
+			NowPage: num,
+			sessionId: req.session.user.Id
+		});	
+	});	
+}
+
+
 exports.boardIdView = function(req, res){
 	var num = req.params.id;
 	
@@ -80,6 +122,7 @@ exports.boardIdView = function(req, res){
 
 
 exports.write = function(req, res){
+	
 	res.render('write', {
 		title: 'write'
 	})
@@ -101,8 +144,12 @@ exports.boardModify = function(req, res){
 			});	
 		}
 		else{
-			console.log('not matched');
-			res.redirect('/board');
+			alert_script = alert.makeAlert('권한이 없습니다.');
+			//res.redirect('/board');
+			res.render('alert', {
+				title : 'Error'
+				,alert : alert_script
+			});
 		}
 				
 	});

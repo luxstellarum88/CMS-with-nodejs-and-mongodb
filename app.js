@@ -70,12 +70,16 @@ app.get('/', routes.index);
 
 app.get('/admin', routes.admin);
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
+app.post('/user_information', requiresAdminLogin, routes.user_information_view);
+app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 
 app.post('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
 
 app.get('/board', requiresLogin ,routes.boardView);
 app.get('/board/:id', routes.boardIdView);
+app.post('/board_search', requiresLogin, routes.board_search);
+
 
 app.get('/write', routes.write);
 app.post('/board_write', routes.boardWrite);

@@ -38,3 +38,39 @@ module.exports.authenticate = function(id, password, callback){
 	});
 };
 
+exports.user_information = function(user_id, res) {
+	var user_model = dbModel.tossUserModel();
+	user_model.findOne({Id:user_id}, function(err, user){
+		if( user ) {
+			res.render('admin/userinformation', {
+				title : 'User_Information'
+				, info : user
+			});//end of render
+		}//end of if
+		else{
+			console.log('unexpected error');
+			res.redirect('admin/userlist');
+		}
+		
+	});//end of query
+}
+
+exports.user_modify = function(user_info, res){
+	var user_model = dbModel.tossUserModel();
+	var condition = { Id : user_info.user_id };
+	var update = { role : user_info.user_role };
+	
+	user_model.update(condition, update, null, function(err) {
+		if(!err) {
+			console.log('user info update success');
+			res.render('admin/userinformation', {
+				title : 'User_Information'
+				, info : user_info
+			});//end of render
+		}//end of if
+		else{
+			console.log('unexpected error');
+			res.redirect('admin/userlist');
+		}
+	});//end of update
+}

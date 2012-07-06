@@ -1,4 +1,4 @@
-form(name='userlist', method = 'post', target='user_information') 
+form(name = 'userlist', method = 'post', action='/user_information') 
 	div(style='width:760px;')
 		table
 			tr
@@ -8,8 +8,9 @@ form(name='userlist', method = 'post', target='user_information')
 			-for(var i=0; i<result.length; i++)
 				tr	
 					td.content 
-						a(href='#')
-							input(type='hidden', value='#{result[i].Id}') 
-							!{result[i].Id}
+						input(type='submit', 
+						name = 'user_id', 
+						id='user_id', 
+						value='#{result[i].Id}') 
 					td.content #{result[i].name}
 					td.content #{result[i].role}
