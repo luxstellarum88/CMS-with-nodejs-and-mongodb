@@ -22,6 +22,10 @@ form(method='post', action='/user_modify')
 				이름
 			td
 				!{info.name}
+		tr
+			td email
+			td
+				!{info.email}
 	input(type='submit', name='user_modify', value='수정')
 a(href='/admin/userlists')
 	input(type='button', name='gotolist', value='목록')
