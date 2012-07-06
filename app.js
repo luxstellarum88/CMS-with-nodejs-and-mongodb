@@ -70,6 +70,7 @@ app.get('/', routes.index);
 
 app.get('/admin', routes.admin);
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
+app.get('/user_information', requiresAdminLogin, routes.user_information_view);
 app.post('/user_information', requiresAdminLogin, routes.user_information_view);
 app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 

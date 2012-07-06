@@ -31,7 +31,7 @@ exports.userlistView = function(req, res){
 }
 
 exports.user_information_view = function(req, res){
-	users.user_information(req.body.user_id, res);
+	users.user_information(req.query.id, res);
 }
 
 

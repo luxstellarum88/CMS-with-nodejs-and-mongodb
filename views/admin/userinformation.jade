@@ -1,14 +1,27 @@
 form(method='post', action='/user_modify')
-	input(type='hidden', id='user_id', value='#{info.Id}')
-	!{info.Id}
-	br
-	-if(info.role == 'admin')
-		select(id='user_role')
-			option(value='Guest') Guest
-			option(value='admin', selected) admin
-	-else
-		select(name='user_role')
-			option(value='Guest', selected) Guest
-			option(value='admin') admin 
-	br
-	input(type='submit', id='user_modify', value='수정')
+	table(border=1)
+		tr
+			td ID
+			td
+				input(type='hidden', name='user_id', value='#{info.Id}')
+				!{info.Id}
+		tr
+			td
+				권한
+			td
+				-if(info.role == 'admin')
+					select(name='user_role')
+						option(value='Guest') Guest
+						option(value='admin', selected) admin
+				-else
+					select(name='user_role')
+						option(value='Guest', selected) Guest
+						option(value='admin') admin
+		tr
+			td
+				이름
+			td
+				!{info.name}
+	input(type='submit', name='user_modify', value='수정')
+a(href='/admin/userlists')
+	input(type='button', name='gotolist', value='목록')

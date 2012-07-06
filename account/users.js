@@ -59,14 +59,12 @@ exports.user_modify = function(user_info, res){
 	var user_model = dbModel.tossUserModel();
 	var condition = { Id : user_info.user_id };
 	var update = { role : user_info.user_role };
-	
+	console.log(condition);
+	console.log(update);
 	user_model.update(condition, update, null, function(err) {
 		if(!err) {
 			console.log('user info update success');
-			res.render('admin/userinformation', {
-				title : 'User_Information'
-				, info : user_info
-			});//end of render
+			res.redirect('/user_information?id='+user_info.user_id);
 		}//end of if
 		else{
 			console.log('unexpected error');
