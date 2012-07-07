@@ -18,10 +18,8 @@ exports.allUser = function(req, res){
 	})
 }
 
-
 module.exports.authenticate = function(id, password, callback){
-	var UserModel = dbModel.tossUserModel();
-	
+	var UserModel = dbModel.tossUserModel();	
 	// login, password filtering
 	
 	UserModel.findOne({Id: id}, function(err, user){
@@ -30,12 +28,14 @@ module.exports.authenticate = function(id, password, callback){
 				console.log('hello password');
 				callback(user);				
 			}
-			else
+			else{
 				callback(null);
+			}				
 		}
-		else
+		else{
 			callback(null);
-	});
+		}			
+	});//end of usermodel findOne callback
 };
 
 exports.user_information = function(user_id, res) {

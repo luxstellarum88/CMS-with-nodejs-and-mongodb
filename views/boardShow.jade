@@ -20,8 +20,8 @@ table
 		td.content(colspan='2') #{board.memo}		
 	tr
 		td.content(colspan='2', align='right')
-			input( type ='button', id='modify', value='수정', onClick="boardModify(#{board.no})")
-			input( type ='button', id='delete', value='제거', onClick="boardDelete(#{board.no})")
+			input( type ='button', id='modify', value='수정', onClick='location.href="/modify?no=#{board.no}&id=#{id}"')
+			input( type ='button', id='delete', value='제거', onClick='location.href="/delete?no=#{board.no}&id=#{id}"')
 
 
 -for(var i=0; i<comm.length; i++)

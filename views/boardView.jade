@@ -1,14 +1,6 @@
 script	
-	function boardWrite(){
-		location.href="/write";
-	}
-
 	function gotoPage(i){
 		location.href='/board?page=' + i;
-	}
-
-	function gotoIdView(i){
-		location.href='/board/' + i;	
 	}
 
 h1= title
@@ -27,7 +19,7 @@ div(style='width:760px;')
 	table
 		tr
 			th.content No
-			th.content Name
+			th.content Subject
 			th.content User
 			th.content Date
 			-for(var i=docs.length-(NowPage-1)*5; i>=docs.length-(NowPage*5)+1; i--)
@@ -35,7 +27,7 @@ div(style='width:760px;')
 					tr
 						td.content #{i}
 						td.content
-							a(herf='#', style="color:black;", onClick="gotoIdView(#{docs[i-1].no})") #{docs[i-1].subject}	
+							a(href='/board/#{docs[i-1].no}?id=#{id}') #{docs[i-1].subject}	
 						td.content #{docs[i-1].name}
 						td.content #{docs[i-1].date}
 				-}
@@ -43,7 +35,7 @@ div(style='width:760px;')
 	-for(var i=0; 0<docs.length-(i*5); i++)	
 		center
 			a(herf='#', onClick="gotoPage(#{i+1})") [#{i+1}]
-	input( type ='button', id='write', value='write', onClick="boardWrite()")
+	input( type ='button', id='write', value='write', onClick='location.href="/write?id=#{id}"')
 
 
 

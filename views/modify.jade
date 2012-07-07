@@ -3,8 +3,10 @@ h1= title
 form(method='post', action='/update')
 	table
 		tr
-			td.content Id
+			td.content No
 			td.content #{docs.no}
+				input(type='hidden', name='no', value='#{docs.no}')
+				input(type='hidden', name='id', value='#{id}')
 			
 		tr
 			td.content Subject

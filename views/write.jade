@@ -15,4 +15,5 @@ form(action='/board_write', method='POST')
 				textarea(name='memo', id='memo')
 		tr
 			td.content(colspan='2') 
+				input(type='hidden', name='id', value='#{id}')
 				input(type='submit')

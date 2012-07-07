@@ -1,0 +1,12 @@
+form(action='/admin/board_make', method='POST')
+	p
+		label(for='Id') Board Id:
+		input(type='text', name='Id', id='Id')
+	p
+		label(for='name') Board Name:
+		input(type='text', name='name', id='name')
+	p
+		label(for='pagingNumber') Board PagingNumber:
+		input(type='text', name='pagingNumber', id='pagingNumber')
+		
+	input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성')

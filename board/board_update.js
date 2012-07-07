@@ -1,26 +1,35 @@
 
 var dbModel = require('../Database/ConnectDB');
-dbModel.connectBoardDB();
+var alert = require('../alert/alert');
 
 exports.update = function(docs, res){
+	dbModel.connectBoardDB(docs.id);
 	var boardidentity = dbModel.tossBoardModel();
 	
-	var conditions = {name: docs.nameForm};
-	var updates = { 
-					$set:{ 
-						subject: docs.subjectForm, 
-						memo: docs.memoForm, 
-						date: new Date()
-					}
-				};
-	
-	boardidentity.update(conditions, updates, null, function(err){
+	var conditions = {no : docs.no};
+	var updates = { $set:{ subject : docs.subjectForm
+							,memo : docs.memoForm
+							,date : new Date() }
+					};
+				
+	boardidentity.update(conditions, { subject : docs.subjectForm }, null, function(err){
 		if(!err){
-			res.redirect('/board');
+			boardidentity.update(conditions, { memo : docs.memoForm }, null, function(err){
+				if(!err){
+					boardidentity.update(conditions, { date : new Date() }, null, function(err){
+						if(!err) {
+							res.redirect('/board?id='+docs.id);
+						}
+					});
+				}
+			});
 		}
 		else{
-			console.log('update fail');
-			res.redirect('/board');
+			var alert_script = alert.makeAlert('오류가 발생했습니다.');
+			res.render('alert', {
+				title : 'Error'
+				, alert : alert_script
+			});
 		}
-	});
+	});		
 }
