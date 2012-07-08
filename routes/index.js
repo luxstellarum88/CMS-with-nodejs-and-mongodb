@@ -56,32 +56,6 @@ exports.makeaccount = function(req, res){
 	userMake.insertUser(req, res);
 }
 
-/*
-exports.boardView = function(req, res){	
-	var num = req.query.page;
-	var PageName;
-	
-	if(!num)
-		num = 1;
-	
-	if(req.session.user.role == 'admin'){
-		PageName = 'adminView';
-	}
-	else{
-		PageName = 'boardView';
-	}
-	
-	boview.boardview(function(result){
-		res.render(PageName, {
-			title: 'board',
-			docs: result,
-			NowPage: num,
-			sessionId: req.session.user.Id
-		});	
-	});
-}
-*/
-
 //NYS start
 exports.boardView = function(req, res){	
 	var board_id = req.query.id;

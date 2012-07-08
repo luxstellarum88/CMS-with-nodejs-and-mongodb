@@ -1,8 +1,3 @@
-script	
-	function gotoPage(i){
-		location.href='/board?page=' + i;
-	}
-
 h1= title
 
 p #{sessionId} 님이 로그인 하셨습니다.
@@ -23,19 +18,18 @@ div(style='width:760px;')
 			th.content Subject
 			th.content User
 			th.content Date
-			-for(var i=docs.length-(NowPage-1)*5; i>=docs.length-(NowPage*5)+1; i--)
-				-if(docs[i-1]){
+			-for(var i=0; i<paging; i++)
+				-if(docs[i]){
 					tr
-						td.content #{i}
+						td.content #{length - ( (NowPage-1) * paging ) - i}
 						td.content
-							a(href='/board/#{docs[i-1].no}?id=#{id}') #{docs[i-1].subject}	
-						td.content #{docs[i-1].name}
-						td.content #{docs[i-1].date}
+							a(href='/board/#{docs[i].no}?id=#{id}') #{docs[i].subject}	
+						td.content #{docs[i].name}
+						td.content #{docs[i].date}
 				-}
-	
-	-for(var i=0; 0<docs.length-(i*5); i++)	
-		center
-			a(herf='#', onClick="gotoPage(#{i+1})") [#{i+1}]
-	input( type ='button', id='write', value='write', onClick='location.href="/write?id=#{id}"')
+	center	
+		-for(var i=0; i <= (length/paging) ; i++)	
+			a(href='/board?id=#{id}&page=#{i+1}') [#{i+1}]
 
-input( type ='button', id='userlist', value='유저 리스트', onClick="location.href='/admin/userlists'")
+	input( type ='button', id='write', value='write', onClick='location.href="/write?id=#{id}"')
+	input( type ='button', id='userlist', value='유저 리스트', onClick="location.href='/admin/userlists'")
