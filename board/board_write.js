@@ -12,7 +12,6 @@ exports.insertBoard = function(req, res){
 
 	dbSeqModel.getById(board.id, function(number){
 		boardModel.no = number.boardSeq;
-		//board.memo = board.memo.replace(/\r\n/g,'\<br\>');//개행 표현
 		boardModel.Id = req.session.user.Id;
 		boardModel.subject = board.subject;
 		boardModel.name = board.name;

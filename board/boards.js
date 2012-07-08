@@ -10,7 +10,7 @@ exports.boardview = function(req, res, board_id, PageName, num){
 			var board_name = option.name;
 			var pagingNumber = option.pagingNumber;
 			var skip_size = (num*pagingNumber) - pagingNumber; //add 120708 JH
-			var length;
+			var length = 0;
 			dbModel.connectBoardDB(board_id);
 			var boardModel = dbModel.tossBoardModel();
 			
