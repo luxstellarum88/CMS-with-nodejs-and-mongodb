@@ -9,6 +9,7 @@ p #{sessionId} 님이 로그인 하셨습니다.
 
 div(style='width:760px;')
 	form(method='post', action='/board_search', align='right')
+		input(type='hidden', name='id', value='#{id}')
 		select(id='type', name='type')
 			option(value='Id') 아이디
 			option(value='subject') 제목

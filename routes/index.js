@@ -111,13 +111,12 @@ exports.boardView = function(req, res){
 		boview.boardview(req, res, board_id, PageName, num);	
 	}
 }
-
 //NYS end
+
 exports.board_search = function(req, res){	
 	var PageName;
 	var num = 1;
 	
-	//test code
 	
 	if(req.session.user.role == 'admin'){
 		PageName = 'adminView';
@@ -126,14 +125,7 @@ exports.board_search = function(req, res){
 		PageName = 'boardView';
 	}
 	
-	bosearch.board_search(req.body, function(result) {
-		res.render(PageName, {
-			title: 'board',
-			docs: result,
-			NowPage: num,
-			sessionId: req.session.user.Id
-		});	
-	});	
+	bosearch.board_search(req.body, PageName, num, req, res);
 }
 
 

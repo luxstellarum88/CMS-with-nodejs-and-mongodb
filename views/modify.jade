@@ -30,7 +30,7 @@ form(method='post', action='/update')
 		tr
 			td.content Memo
 			td.content
-				textarea(name='memo', id='memo') #{docs.memo}
+				textarea(name='memoForm', value='#{docs.memo}') #{docs.memo}
 						
 	input(
 		type = 'submit'
