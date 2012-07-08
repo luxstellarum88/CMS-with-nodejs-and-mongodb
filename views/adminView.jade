@@ -1,17 +1,46 @@
+script
+	function search() {
+		location.href="/board?id=#{id}&type="+document.getElementsByName("type")[0].value
+						+"&content="+document.getElementsByName("content")[0].value;
+	}
+	function paging(page) {
+		location.href="/board?id=#{id}&type="+document.getElementsByName("type")[0].value
+						+"&content="+document.getElementsByName("content")[0].value
+						+"&page="+page;
+	}
+	
 h1= title
 
-p #{sessionId} 님이 로그인 하셨습니다.
 
+p #{sessionId} 님이 로그인 하셨습니다.
 div(style='width:760px;')
-	form(method='post', action='/board_search', align='right')
-		input(type='hidden', name='id', value='#{id}')
+	-if(type == 'name')
 		select(id='type', name='type')
 			option(value='Id') 아이디
 			option(value='subject') 제목
 			option(value='memo') 내용
+			option(value='name', selected) 이름
+	-else if(type == 'memo')
+		select(id='type', name='type')
+			option(value='Id') 아이디
+			option(value='subject') 제목
+			option(value='memo', selected) 내용
 			option(value='name') 이름
-		input(type='text', id='content', name='content')
-		input(type='submit', id='search_button', value='검색')
+	-else if(type == 'subject')
+		select(id='type', name='type')
+			option(value='Id') 아이디
+			option(value='subject', selected) 제목
+			option(value='memo') 내용
+			option(value='name') 이름
+	-else
+		select(id='type', name='type')
+			option(value='Id', selected) 아이디
+			option(value='subject') 제목
+			option(value='memo') 내용
+			option(value='name') 이름
+	input(type='text', name='content', id='content', value='#{content}')
+	input(type='button', name='search_button', onClick='javascript:search()', value='검색')
+	
 	table
 		tr
 			th.content No
@@ -21,7 +50,7 @@ div(style='width:760px;')
 			-for(var i=0; i<paging; i++)
 				-if(docs[i]){
 					tr
-						td.content #{length - ( (NowPage-1) * paging ) - i}
+						td.content #{length - ( (current_page-1) * paging ) - i}
 						td.content
 							a(href='/board/#{docs[i].no}?id=#{id}') #{docs[i].subject}	
 						td.content #{docs[i].name}
@@ -29,7 +58,7 @@ div(style='width:760px;')
 				-}
 	center	
 		-for(var i=0; i <= (length/paging) ; i++)	
-			a(href='/board?id=#{id}&page=#{i+1}') [#{i+1}]
+			a(href='#', onClick='javascript:paging(#{i+1})') [#{i+1}]
 
 	input( type ='button', id='write', value='write', onClick='location.href="/write?id=#{id}"')
 	input( type ='button', id='userlist', value='유저 리스트', onClick="location.href='/admin/userlists'")

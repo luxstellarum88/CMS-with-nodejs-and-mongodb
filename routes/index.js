@@ -56,14 +56,12 @@ exports.makeaccount = function(req, res){
 	userMake.insertUser(req, res);
 }
 
-//NYS start
 exports.boardView = function(req, res){	
 	var board_id = req.query.id;
-	var num = req.query.page;
+	var num = req.query.page || 1;
 	var PageName;
 		
 	if(!board_id){
-		console.log('hello');
 		boardOption.getBoardOption(function(result){
 			res.render('boardMain', {
 				title: 'boardMain',
@@ -71,26 +69,22 @@ exports.boardView = function(req, res){
 			});
 		});
 	}
-	else{
-		if(!num)
-			num = 1;
-	
+	else{	
 		if(req.session.user.role == 'admin'){
 			PageName = 'adminView';
 		}
 		else{
 			PageName = 'boardView';
 		}
-		console.log(board_id);	
-		boview.boardview(req, res, board_id, PageName, num);	
+		boardOption.getById(req.query.id, function(option) {
+			boview.board_view(req.query, PageName, num, req, res, option.pagingNumber);
+		});	
 	}
 }
-//NYS end
 
 exports.board_search = function(req, res){	
 	var PageName;
-	var num = 1;
-	
+	var num = req.query.page || 1;
 	
 	if(req.session.user.role == 'admin'){
 		PageName = 'adminView';
@@ -99,7 +93,9 @@ exports.board_search = function(req, res){
 		PageName = 'boardView';
 	}
 	
-	bosearch.board_search(req.body, PageName, num, req, res);
+	boardOption.getById(req.query.id, function(option) {
+		bosearch.board_search(req.query, PageName, num, req, res, option.pagingNumber);
+	});	
 }
 
 

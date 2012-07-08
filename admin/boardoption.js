@@ -7,7 +7,6 @@ exports.getBoardOption = function(callback){
 	
 	boardModel.find({}, [], function(err, docs){
 		if(!err){
-			console.log(docs);
 			callback(docs);
 		}
 		else{
@@ -21,7 +20,6 @@ exports.getById = function(board_id, callback){
 	
 	boardModel.findOne({Id: board_id}, function(err, docs){
 		if(!err){
-			console.log(docs);
 			callback(docs);
 		}
 		else{

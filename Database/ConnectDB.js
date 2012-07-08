@@ -31,15 +31,6 @@ var UserIdentityModel;
 var CommentIdentityModel;
 
 
-/*
-
-exports.connectBoardDB = function(){
-	mongoose.connect('mongodb://localhost/testboard');
-	BoardIdentityModel = mongoose.model('boards', BoardIdentitySchema);
-}
-*/
-
-
 
 //NYS start
 exports.connectBoardDB = function(id){
@@ -57,8 +48,6 @@ exports.makeBoardModel = function(){
 exports.tossBoardModel = function(){
 	return BoardIdentityModel;	
 }
-
-
 
 
 exports.connectUserDB = function(){

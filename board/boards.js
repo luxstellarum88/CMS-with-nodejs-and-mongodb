@@ -1,52 +1,98 @@
-
 var dbModel = require('../Database/ConnectDB');
+var alert = require('../alert/alert');
 var boardOption = require('../admin/boardoption');
 
-dbModel.connectBoardDB();
-
-exports.boardview = function(req, res, board_id, PageName, num){
+function display_result(result, current_page, session, page_name, board_id, res, length, type, content) {
 	boardOption.getById(board_id, function(option){ //option: board_option
 		if(option){
-			var board_name = option.name;
-			var pagingNumber = option.pagingNumber;
-			var skip_size = (num*pagingNumber) - pagingNumber; //add 120708 JH
-			var length = 0;
-			dbModel.connectBoardDB(board_id);
-			var boardModel = dbModel.tossBoardModel();
-			
-			console.log(skip_size + " " + pagingNumber);
-			
-			//counting .. number of documents
-			boardModel.find().count(function(err, docs) {
-				if(!err) {
-					length = docs;	
-				}
-				else {
-					console.log("counting error");
-				}
-			});//end of count
-			
-			boardModel.find({}).sort('date',-1).skip(skip_size).limit(pagingNumber).exec( function(err, docs) {
-				console.log("find 진입");
-				if(!err){
-					res.render(PageName, {
-						title: 'board',
-						docs: docs,
-						NowPage: num,
-						paging: pagingNumber,
-						sessionId: req.session.user.Id,
-						length : length,
-						id: board_id //and 120707 JH _ find target board
-					});
-				}
-				else{
-					console.log("not find");
-					res.redirect('/board');
-				}
+			var paging_size = option.pagingNumber;
+			res.render(page_name, {
+				title: 'board',
+				docs: result,
+				current_page: current_page,
+				paging: paging_size,
+				sessionId: session,
+				id: board_id,
+				type: type,
+				content: content,
+				length : length
 			});
+		}//end of if
+		else{
+			res.redirect('/board?id='+board_id);
 		}
-	});
+	});//end of getById
 }
+
+exports.board_view = function(search, page_name, current_page, req, res, paging_size) {
+	dbModel.connectBoardDB(search.id);
+	var board_model = dbModel.tossBoardModel();
+	var search_reg_exp = new RegExp(search.content,'i');
+	var skip_size = (current_page*paging_size) - paging_size;
+		
+	if('Id' === search.type){
+		board_model.find( { Id : search_reg_exp }).sort('date',-1).skip(skip_size).limit(paging_size).exec( function(err, docs) {
+			if(!err) {
+				board_model.find( { Id : search_reg_exp }).count(function(err, length) {
+					display_result(docs, current_page, req.session.user.Id, page_name, search.id, res, length, search.type, search.content);
+				});
+			}//end of if
+			else {
+				console.log("search error");
+			}
+		});//end of find function
+	}
+	else if('name' === search.type) {
+		board_model.find( { name : search_reg_exp }).sort('date',-1).skip(skip_size).limit(paging_size).exec( function(err, docs) {
+			if(!err) {
+				board_model.find( { name : search_reg_exp }).count(function(err, length) {
+					display_result(docs, current_page, req.session.user.Id, page_name, search.id, res, length, search.type, search.content);
+				});
+			}//end of if
+			else {
+				console.log("search error");
+			}
+		});//end of find function
+	}
+	else if('subject' === search.type) {
+		board_model.find( { subject : search_reg_exp }).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs) {
+			if(!err) {
+				board_model.find( { subject : search_reg_exp }).count(function(err, length) {
+					display_result(docs, current_page, req.session.user.Id, page_name, search.id, res, length, search.type, search.content);
+				});
+			}//end of if
+			else {
+				console.log("search error");
+			}
+		});//end of find function
+	}
+	else if('memo' === search.type) {
+		board_model.find( { memo : search_reg_exp }).sort('date',-1).skip(skip_size).limit(paging_size).exec( function(err, docs) {
+			if(!err) {
+				board_model.find( { memo : search_reg_exp }).count(function(err, length) {
+					display_result(docs, current_page, req.session.user.Id, page_name, search.id, res, length, search.type, search.content);
+				});
+			}//end of if
+			else {
+				console.log("search error");
+			}
+		});//end of find function
+	}
+	else {
+		board_model.find( {}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs) {
+			if(!err) {
+				board_model.find( {}).count(function(err, length) {
+					display_result(docs, current_page, req.session.user.Id, page_name, search.id, res, length, search.type, "");
+				});
+			}//end of if
+			else {
+				console.log("search error");
+			}
+		});//end of find function
+	}
+}
+
+
 
 exports.findById = function(no, board_id, callback){
 	dbModel.connectBoardDB(board_id);

@@ -40,10 +40,7 @@ app.configure('production', function(){
 
 // sessions check
 function requiresLogin(req, res, next){
-	console.log('requiresLogin : ' + req.session.user.Id);
-
 	if(req.session.user){
-		console.log('session ok');
 		next();
 	}
 	else{
@@ -53,10 +50,7 @@ function requiresLogin(req, res, next){
 }
 
 function requiresAdminLogin(req, res, next){
-	console.log('requiresLogin : ' + req.session.user.Id);
-
 	if(req.session.user.role == 'admin'){
-		console.log('session ok');
 		next();
 	}
 	else{
@@ -66,10 +60,7 @@ function requiresAdminLogin(req, res, next){
 }
 
 function requiresSuperUserLogin(req, res, next){
-	console.log('requiresLogin : ' + req.session.user.Id);
-
 	if(req.session.user.Id == 'superadmin' && req.session.user.password == 'tmzlak'){
-		console.log('session ok');
 		next();
 	}
 	else{
