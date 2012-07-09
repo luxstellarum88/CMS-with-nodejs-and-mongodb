@@ -1,6 +1,7 @@
 
 var usersModel = require('../account/users');
 var dbModel = require('../Database/ConnectDB');
+var alert = require('../alert/alert');
 
 dbModel.connectUserDB();
 
@@ -45,14 +46,20 @@ exports.insertUser = function(req, res){
 				});//end of save
 			}//end of if
 			else{
-				console.log('existed ID');
-				res.redirect('/');
+				var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
+				res.render('alert',{
+					title : 'error',
+					alert : alert_script
+				});
 			}
 		}); //end of userModel.count
 	}//end of if(regExpTest)
 	else {
-		console.log('not email Regular Expression');
-		res.redirect('/');
+		var alert_script = alert.makeAlert("정상적인 e-mail 주소가 아닙니다.");
+		res.render('alert',{
+			title : 'error',
+			alert : alert_script
+		});
 	}
 		
 };
