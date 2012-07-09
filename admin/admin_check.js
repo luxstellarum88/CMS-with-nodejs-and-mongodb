@@ -1,24 +1,39 @@
-var super_user_db_model = require('../Database/Connect_Admin_DB');
-super_user_db_model.connectSuperUserDB();
-
-/*add 120707. JH*/
-exports.authenticate = function(id, password, callback) {
+exports.SuperUserAuth = function(id, password, callback){
+	var dbModel = require('../Database/Connect_Admin_DB');
+	dbModel.connectSuperUserDB();
 	
-	var super_user_model = super_user_db_model.tossSuperUserModel();
+	var UserModel = dbModel.tossSuperUserModel();
 
-	super_user_model.findOne({Id : id}, function(err, user) {
+	UserModel.findOne({Id: id}, function(err, user){
 		if(user){
-			if(user.password === password) {
-				console.log('hello superuser');
+			if(user.password == password){
 				callback(user);
 			}
-			else{
+			else
 				callback(null);
-			}
-		}//end of if
-		else{
-			callback(null);
 		}
-	});//end of findOne callback func
+		else
+			callback(null);
+	});
 }
 
+
+exports.AdminAuth = function(id, password, callback){
+	var dbModel = require('../Database/ConnectDB');
+	dbModel.connectUserDB();
+
+	var UserModel = dbModel.tossUserModel();
+	
+	// login, password filtering
+	UserModel.findOne({Id: id}, function(err, user){
+		if(user){
+			if(user.password == password && user.role == 'admin'){
+				callback(user);
+			}
+			else
+				callback(null);
+		}
+		else
+			callback(null);
+	});
+};

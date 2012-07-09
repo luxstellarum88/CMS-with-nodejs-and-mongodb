@@ -13,7 +13,6 @@ exports.update = function(docs, res){
 	
 	board_model.update(conditions, updates, null, function(err){
 			if(!err){
-				console.log('error?no?');
 				res.redirect('/board?id='+docs.id);
 			}
 			else{

@@ -1,19 +1,25 @@
-
-form(action='/sessions', method='POST')
-	p
-		label(for='id') Id:
-		input(type='text', name='id', id='id')
-	p
-		label(for='password') Password:
-		input(type='password', name='password', id='password')
-		
-	input(type = 'submit', name = 'login', id = 'login', value = '로그인')
-
-
-form(method='post', action='/join')
-	input(
-		type = 'submit'
-		,name = 'joinButton'
-		,id = 'joinButton'
-		,value = '회원가입'
-	)
+table(style='width:180px !important')
+	form(action='/sessions', method='POST')
+		tr
+			td(colspan='2', align='center', style='background:#ebf2f3; padding:7px; font-size:12px; font-family:gulim; color:#5e7b7f;') Login
+		tr
+			td(width='50', align='center', bgcolor='#ffffff') ID
+			td(bgcolor='#ffffff')
+				input(type='text', name='id', id='id')
+		tr
+			td(width='50', align='center', bgcolor='#ffffff') PW
+			td(bgcolor='#ffffff')
+				input(type='password', name='password', id='password')
+		tr
+			td(colspan='2', bgcolor='#ffffff')
+				input(type = 'submit', name = 'login', id = 'login', value = '로그인')		
+	tr
+		td(colspan='2', bgcolor='#ffffff')				
+			form(method='post', action='/join')
+				input(
+					type = 'submit'
+					,name = 'joinButton'
+					,id = 'joinButton'
+					,value = '회원가입'
+				)
+	

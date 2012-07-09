@@ -28,13 +28,17 @@ exports.getById = function(board_id, callback){
 	});	
 }
 
-/*
-	add 120707 JH to control boardseqnum
-*/
 exports.boardSeqInc = function(board_id){
 	var board_model = dbModel.tossBoardOptionModel();
 	var conditions = {Id: board_id};
 	var updates = {$inc:{boardSeq:1}};
 	board_model.update(conditions, updates, null, null);
-	console.log('inc!');
+}
+
+exports.CommentSeqInc = function(board_id){
+	var boardModel = dbModel.tossBoardOptionModel();
+	
+	var conditions = {Id:board_id};
+	var updates = {$inc:{commentSeq:1}};
+	boardModel.update(conditions, updates, null, null);
 }

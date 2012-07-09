@@ -74,6 +74,11 @@ function requiresSuperUserLogin(req, res, next){
 app.get('/', routes.index);
 
 app.get('/admin', routes.admin);
+app.get('/admin/main', requiresSuperUserLogin, routes.adminView);
+app.post('/admin/main', routes.adminCheck);
+app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
+app.post('/admin/board_make', routes.makeBoard);
+
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
 
 app.get('/user_information', requiresAdminLogin, routes.user_information_view);
@@ -84,32 +89,24 @@ app.post('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
 
 app.get('/board', requiresLogin ,routes.boardView);
-app.get('/board/:no', routes.boardIdView);
-app.post('/board_search', requiresLogin, routes.board_search);
-
 
 app.get('/write', routes.write);
 app.post('/board_write', routes.boardWrite);
 
 app.get('/modify', routes.boardModify);
+app.get('/board_modify', routes.boardModify);
 app.post('/update', routes.boardUpdate);
 
 app.get('/delete', routes.boardDelete);
+app.get('/board_delete', routes.boardDelete);
 
 app.post('/comment_write', routes.commentWrite);
+app.get('/comment_delete', routes.commentDeleteForm);
+app.post('/comment_delete', routes.commentDelete);
 
 
 app.get('/sessions/new', routes.sessionNew);
 app.post('/sessions', routes.session);
-
-//NYS start
-
-app.get('/admin/main', requiresSuperUserLogin, routes.adminView);
-app.post('/admin/main', routes.adminCheck);
-app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
-app.post('/admin/board_make', routes.makeBoard);
-
-//NYS end
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

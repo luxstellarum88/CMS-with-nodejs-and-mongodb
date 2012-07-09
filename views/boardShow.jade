@@ -1,10 +1,6 @@
 script
-	function boardModify(i){
-		location.href='/modify?no=' + i;
-	}
-	
-	function boardDelete(i){
-		location.href='/delete?no=' + i;	
+	function commentDelete(commentId){
+		window.open("/comment_delete?board_id=#{board_id}&board_num=#{board.no}&comment_id="+commentId, "", "location=0, resizable=0, status=0, width=400, height=300");
 	}
 
 h1= title
@@ -14,35 +10,41 @@ table
 		td.content.title #{board.subject}
 		td.content.user(width='200', align='right') #{board.name}
 	tr
-		td.content #{board.no}
-		td.content #{board.date}
+		td.content(colspan='2',align='right') #{board.date}
 	tr
-		td.content(colspan='2') #{board.memo}		
+		td.content(colspan='2') <br><br><br><br>#{board.memo}<br><br><br><br><br>
 	tr
 		td.content(colspan='2', align='right')
-			input( type ='button', id='modify', value='수정', onClick='location.href="/modify?no=#{board.no}&id=#{id}"')
-			input( type ='button', id='delete', value='제거', onClick='location.href="/delete?no=#{board.no}&id=#{id}"')
+			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.no}'")
+			input( type ='button', id='delete', value='제거', onClick="location.href='/board_delete?id=#{board_id}&num=#{board.no}'")
 
 
--for(var i=0; i<comm.length; i++)
-	-if(comm[i])
-		p #{comm[i].Id} : #{comm[i].comment}
-
-
+table
+	-for(var i=0; i<comm.length; i++)
+		-if(i==0)
+			tr
+				td.content(colspan='3') Comment
+		-if(comm[i])
+			tr
+				td.content #{comm[i].Id}
+				td.content #{comm[i].comment}
+				td.content(width='50', align='right')
+					input(type='button', id='commentDelete', value='제거', onClick="commentDelete(#{comm[i].commId})");
 br
 form(method='post', action='/comment_write')
 	table
 		tr
-			td	
-				p Comment : 
-			td	
-				input(type='textbox', id='commentForm', name='commentForm')	
-			td	
-				input(type='hidden', id='boardNoForm', name='boardNoForm', value=board.no)
-			td	
-				p password : 
-			td	
-				input(type='password', id='passwordForm', name='passwordForm')
+			td.content User
+			td.content #{sessionId}
+			td.content Password
+			td.content
+				input(type='password', id='passwordForm', name='passwordForm')		
 		tr
-			td	
-				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')	
+			td.content Comment
+			td.content(colspan='3')
+				input(type='textbox', id='commentForm', name='commentForm')	
+				input(type='hidden', id='boardNoForm', name='boardNoForm', value=board.no)
+				input(type='hidden', id='board_id', name='board_id', value=board_id)
+		tr
+			td.content(colspan='4')
+				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')

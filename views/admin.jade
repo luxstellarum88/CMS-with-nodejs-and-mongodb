@@ -1,10 +1,15 @@
-
-form(action='/admin/main', method='POST')
-	p
-		label(for='id') Id:
-		input(type='text', name='id', id='id')
-	p
-		label(for='password') Password:
-		input(type='password', name='password', id='password')
-		
-	input(type = 'submit', name = 'login', id = 'login', value = '로그인')
+table(style='width:180px !important')
+	form(action='/admin/main', method='POST')
+		tr
+			td(colspan='2', align='center', style='background:#ebf2f3; padding:7px; font-size:12px; font-family:gulim; color:#5e7b7f;') Admin Login
+		tr
+			td(width='50', align='center', bgcolor='#ffffff') ID
+			td(bgcolor='#ffffff')
+				input(type='text', name='Id', id='Id')
+		tr
+			td(width='50', align='center', bgcolor='#ffffff') PW
+			td(bgcolor='#ffffff')
+				input(type='password', name='password', id='password')
+		tr
+			td(colspan='2', bgcolor='#ffffff')
+				input(type = 'submit', name = 'login', id = 'login', value = '로그인')

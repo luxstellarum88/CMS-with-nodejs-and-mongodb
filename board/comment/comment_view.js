@@ -1,16 +1,13 @@
 
 var dbModel = require('../../Database/ConnectDB');
 
-dbModel.connectCommentDB();
-
-exports.viewComment = function(__boardNo, callback){
+exports.viewComment = function(board_id, board_num, callback){
+	dbModel.connectCommentDB(board_id);
 	var commentModel = dbModel.tossCommentModel();
-	var commentResult = new Array;
 	
-	commentModel.find({boardNo:__boardNo}, [], function(err, docs){
+	commentModel.find({boardNo:board_num}, [], function(err, docs){
 		if(!err){
-			commentResult = docs;
-			callback(commentResult);
+			callback(docs);
 		}
 		else{
 			console.log('not find');

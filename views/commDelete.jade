@@ -1,0 +1,18 @@
+script
+	function openerReLoad(){
+		window.opener.location.href='/board?id=#{board_id}';
+	}
+
+table(style='width:200px;')
+	form(action='/comment_delete', method='POST')
+		tr
+			td(align='center', style='background:#ebf2f3;') Password
+		tr
+			td(bgcolor='#ffffff', align='center')
+				input(type='password', name='password', id='password')
+				input(type='hidden', name='board_id', id='board_id', value=board_id)
+				input(type='hidden', name='board_num', id='board_num', value=board_num)
+				input(type='hidden', name='comment_id', id='comment_id', value=comment_id)
+		tr
+			td(bgcolor='#ffffff', align='center')
+				input(type = 'submit', name = 'comment_delete', id = 'comment_delete', value = '제거', onClick="openerReLoad()")		

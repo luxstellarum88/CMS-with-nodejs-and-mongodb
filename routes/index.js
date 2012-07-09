@@ -1,11 +1,7 @@
 
-//NYS start
 var adminCheck = require('../admin/admin_check');
 var boardMake = require('../admin/makeBoard');
 var boardOption = require('../admin/boardoption');
-//NYS end
-
-var assert = require('assert');
 
 var alert = require('../alert/alert')
 
@@ -16,13 +12,10 @@ var boview = require('../board/boards');
 var bowrite = require('../board/board_write');
 var boupdate = require('../board/board_update');
 var boCheck = require('../board/board_check');
-var bosearch = require('../board/board_search');
 
 var commwrite = require('../board/comment/comment_write');
+var commDelete = require('../board/comment/comment_delete');
 var commview = require('../board/comment/comment_view');
-
-//test code
-var alert = require('../alert/alert');
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
@@ -58,8 +51,10 @@ exports.makeaccount = function(req, res){
 
 exports.boardView = function(req, res){	
 	var board_id = req.query.id;
-	var num = req.query.page || 1;
-	var PageName;
+	var board_num = req.query.num;
+	var PageNum = req.query.page || 1;
+	var type = req.query.type || "";
+	var content = req.query.content || "";
 		
 	if(!board_id){
 		boardOption.getBoardOption(function(result){
@@ -69,35 +64,31 @@ exports.boardView = function(req, res){
 			});
 		});
 	}
-	else{	
-		if(req.session.user.role == 'admin'){
-			PageName = 'adminView';
-		}
-		else{
-			PageName = 'boardView';
-		}
-		boardOption.getById(req.query.id, function(option) {
-			boview.board_view(req.query, PageName, num, req, res, option.pagingNumber);
-		});	
-	}
-}
-
-exports.board_search = function(req, res){	
-	var PageName;
-	var num = req.query.page || 1;
-	
-	if(req.session.user.role == 'admin'){
-		PageName = 'adminView';
+	else if(!board_num){
+		// /board?id=*&page=*		
+		boview.boardview(req, res, board_id, PageNum, type, content);
 	}
 	else{
-		PageName = 'boardView';
+		// /board?id=*&num=*
+		boview.findById(board_id, board_num, function(board){
+			if(board){
+				commview.viewComment(board_id, board_num, function(comm){
+					res.render('boardShow', {
+						title: 'show',
+						board_id: board_id,
+						board: board,
+						comm: comm,
+						sessionId: req.session.user.name
+					});
+				});	
+			}
+			else{
+				console.log('not find');
+				res.redirect('/board?id=' + board_id);
+			}
+		});
 	}
-	
-	boardOption.getById(req.query.id, function(option) {
-		bosearch.board_search(req.query, PageName, num, req, res, option.pagingNumber);
-	});	
 }
-
 
 exports.boardIdView = function(req, res){
 	var num = req.params.no;
@@ -144,14 +135,15 @@ exports.boardWrite = function(req, res){
 
 
 exports.boardModify = function(req, res){
-	var num = req.query.no;
+	var board_num = req.query.num;
+	var board_id = req.query.id;
 	
-	boCheck.checkId(req.session.user.Id, num, req.query.id, function(result){
+	boCheck.checkId(board_id, board_num, req.session.user, function(result){
 		if(result){
 			res.render('modify', {
 				title: 'modify',
 				docs: result,
-				id: req.query.id //add 120707 JH
+				id: board_id //add 120707 JH
 			});	
 		}
 		else{
@@ -172,12 +164,13 @@ exports.boardUpdate = function(req, res){
 
 
 exports.boardDelete = function(req, res){
-	var num = req.query.no;
+	var board_id = req.query.id;
+	var board_num = req.query.num;
 	
-	boCheck.checkId(req.session.user.Id, num, req.query.id, function(result){
+	boCheck.checkId(board_id, board_num, req.session.user, function(result){
 		if(result){
 			result.remove();
-			res.redirect('/board?id='+req.query.id);
+			res.redirect('/board?id='+board_id);
 		}
 		else{
 			alert_script = alert.makeAlert('권한이 없습니다.');
@@ -190,9 +183,39 @@ exports.boardDelete = function(req, res){
 	});
 }
 
-
 exports.commentWrite = function(req, res){
-	commwrite.writeComment(req.body, req.session.user.Id ,res);
+	commwrite.writeComment(req ,res, function(result){
+		if(result){
+			boardOption.CommentSeqInc(result['board_id']);
+			res.redirect('/board?id='+result['board_id'] + '&num='+ result['boardNo']);
+		}
+		else{
+			console.log('comment_write_fail');
+			res.redirect('back');
+		}
+	});
+}
+
+exports.commentDeleteForm = function(req, res){
+	var board_id = req.query.board_id;
+	var board_num = req.query.board_num;
+	var comment_id = req.query.comment_id;
+	
+	res.render('commDelete', {
+		title: 'commDelete',
+		board_id: board_id,
+		board_num: board_num,
+		comment_id: comment_id
+	});
+}
+
+exports.commentDelete = function(req, res){
+	var board_id = req.body.board_id;
+	var board_num = req.body.board_num;
+	var comment_id = req.body.comment_id;
+	var password = req.body.password;
+	
+	commDelete.deleteComment(board_id, board_num, comment_id, password, res);
 }
 
 
@@ -224,19 +247,27 @@ exports.adminView = function(req, res){
 }
 
 exports.adminCheck = function(req, res){
-	adminCheck.authenticate(req.body.id, req.body.password, function(user){
-		if(user){
-			console.log("admin Checked");
-			req.session.user = user;
-			
+	// SuperUser || Admin
+	var id = req.body.Id;
+	var password = req.body.password;
+	
+	adminCheck.SuperUserAuth(id, password, function(user){
+		if(user){ // SuperUser Login
+			req.session.user = user;			
 			res.redirect('/admin/main');
 		}
-		else{
-			console.log("admin Check failed");
-			res.redirect('/admin');
+		else{ // Admin Login	
+			adminCheck.AdminAuth(id, password, function(user){
+				if(user){
+					req.session.user = user;			
+					res.redirect('/admin/main');
+				}
+				else{ // Guest or login fail.
+					console.log('not find');
+					res.redirect('/admin');	
+				}
+			});
 		}
-		
-		
 	});
 }
 
@@ -264,5 +295,3 @@ exports.board_make_form = function(req, res){
 		title: 'board_make_form'
 	});
 }
-
-//NYS end

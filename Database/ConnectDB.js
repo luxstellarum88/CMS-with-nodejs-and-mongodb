@@ -34,7 +34,7 @@ var CommentIdentityModel;
 
 //NYS start
 exports.connectBoardDB = function(id){
-	var CollectionName = 'boards_' + id +'s';
+	var CollectionName = 'board_' + id +'s';
 	
 	mongoose.connect('mongodb://localhost/testboard');
 	BoardIdentityModel = mongoose.model(CollectionName, BoardIdentitySchema);
