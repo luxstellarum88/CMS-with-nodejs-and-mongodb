@@ -1,3 +1,11 @@
+script
+	function search() {
+		location.href="/admin/userlists?type="+document.getElementsByName("type")[0].value
+						+"&content="+document.getElementsByName("content")[0].value;
+	}
+
+
+
 div(style='width:760px;')
 	table
 		tr
@@ -11,3 +19,30 @@ div(style='width:760px;')
 						!{result[i].Id}
 				td.content #{result[i].name}
 				td.content #{result[i].role}
+	center
+		-for(var i=0; i < (length/paging_size); i++)
+			a(href='/admin/userlists?page=#{i+1}&type=#{type}&content=#{content}') [#{i+1}]
+				
+	div(style='text-align:center;')
+		-if(type == 'role')
+			select(id='type', name='type')
+				option(value='id') 아이디
+				option(value='name') 이름
+				option(value='role', selected) 권한
+			
+		-else if(type == 'name')
+			select(id='type', name='type')
+				option(value='id') 아이디
+				option(value='name', selected) 이름
+				option(value='role') 권한
+			
+		
+		-else
+			select(id='type', name='type')
+				option(value='id', selected) 아이디
+				option(value='name') 이름
+				option(value='role') 권한
+			
+		input(type='text', name='content', id='content', value='#{content}')	
+		input(type='button', name='search_button', onClick='javascript:search()', value='검색')
+				

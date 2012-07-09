@@ -53,6 +53,9 @@ function requiresAdminLogin(req, res, next){
 	if(req.session.user.role == 'admin'){
 		next();
 	}
+	else if(req.session.user.Id == 'superadmin'){
+		next();
+	}
 	else{
 		console.log('session no..');
 		res.redirect('/');
@@ -60,7 +63,7 @@ function requiresAdminLogin(req, res, next){
 }
 
 function requiresSuperUserLogin(req, res, next){
-	if(req.session.user.Id == 'superadmin' && req.session.user.password == 'tmzlak'){
+	if(req.session.user.Id == 'superadmin'){
 		next();
 	}
 	else{

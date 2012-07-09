@@ -235,8 +235,6 @@ exports.session = function(req, res){
 };
 
 
-//NYS start
-
 exports.adminView = function(req, res){
 	boardOption.getBoardOption(function(result){
 		res.render('admin/main', {
@@ -278,7 +276,11 @@ exports.makeBoard = function(req, res){
 
 
 exports.userlistView = function(req, res){
-	users.allUser(req, res);
+	var type = req.query.type || "";
+	var content = req.query.content || "";
+	var current_page = req.query.page || 1;
+	
+	users.allUser(type, content, current_page, res);
 }
 
 exports.boardMain = function(req, res){
