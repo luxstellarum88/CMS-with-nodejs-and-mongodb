@@ -1,6 +1,15 @@
+script	
+	//120710 JH 추가. 수정시 수정 여부 확인 스크립트	
+	function document_modify_confirm() {
+		var doc = document.getElementsByName('modify_form')[0];
+		if(confirm("정말 수정하시겠습니까?")) {
+			doc.submit();
+		}
+	}
+
 h1= title
 
-form(method='post', action='/update')
+form(method='post', name='modify_form', action = '/update')
 	table
 		tr
 			td.content No
@@ -33,8 +42,9 @@ form(method='post', action='/update')
 				textarea(name='memoForm', value='#{docs.memo}') #{docs.memo}
 						
 	input(
-		type = 'submit'
+		type = 'button'
 		,id = 'modifyButton'
 		,name = 'modifyButton'
 		,value = '수정'
+		,onClick = 'document_modify_confirm()'
 	)
