@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var SuperUserIdentitySchema = new Schema({
 	Id: String,
 	password: String,
-	name: String,
+	name: String
 });
 
 var SuperUserIdentityModel;
