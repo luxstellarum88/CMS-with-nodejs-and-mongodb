@@ -17,7 +17,7 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
- 
+  
   app.use(express.bodyParser());
   app.use(express.cookieParser());  
   app.use(express.session({
@@ -91,6 +91,7 @@ app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 
 app.post('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
+app.get('/logout', routes.logout);
 
 app.get('/board', requiresLogin ,routes.boardView);
 

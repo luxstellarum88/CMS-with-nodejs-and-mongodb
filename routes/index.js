@@ -38,6 +38,13 @@ exports.admin = function(req, res){
  	}	
 }
 
+exports.logout = function(req, res) {
+	if(req.session.user) {
+		req.session.user = "";
+		res.redirect('/');
+	}
+}
+
 
 exports.userlistView = function(req, res){
 	users.allUser(req, res);
