@@ -5,9 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes');
-
-
-
+// add test code kkkkk
 // Session
 var SessionMemory = require('connect-redis')(express);
 var app = module.exports = express.createServer();
