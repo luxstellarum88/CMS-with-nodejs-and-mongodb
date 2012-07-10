@@ -11,6 +11,8 @@ var SessionMemory = require('connect-redis')(express);
 var app = module.exports = express.createServer();
 
 
+
+// test
 // Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
