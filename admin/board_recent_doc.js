@@ -1,28 +1,22 @@
 /*
 	JH. 2012. 7. 10~
 */
+var db = require('../Database/ConnectDB');
 
-var boardoption_db_model = ('../Database/Connect_Board_DB');
-var db_model = ('../Database/ConnectDB');
-
-function find_recent_doc () {
-	boardoption_db_model.connectBaordOptionDB();
-	var board_model = boardoption_db_model.tossBoardOptionModel();
+exports.find_recent_doc = function(req, res) {
+	db.connect_board_recent_db();
+	model = db.toss_board_recent_model();
 	
-	
-	board_model.find({},['Id'], function(err, board_list){
+	model.find().sort('date',-1).exec(function(err, docs) {
 		if(!err) {
-			board_model.count({},function(err, length){
-				for( var i = 0; i < length; i++ ) {
-					db_model.connectBoardDB(board_list[i]);
-					var board = db_model.tossBoardModel();
-					
-				}//end of for
-			});//end of board_model count
-		}//end of if(!err)
-		else{
-			
-		}//end of else
-	});//end of board_model find
-
+			res.render('admin/board_recent_view', {
+				title : 'Recent Docs',
+				docs : docs,				
+			});//end of render
+		}//end of if
+		else {
+			console.log("find_recent_doc error");
+		}
+	});//end of find
+	
 }//end of function

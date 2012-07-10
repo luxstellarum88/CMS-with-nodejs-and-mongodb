@@ -2,6 +2,7 @@
 var adminCheck = require('../admin/admin_check');
 var boardMake = require('../admin/makeBoard');
 var boardOption = require('../admin/boardoption');
+var board_recent_doc = require('../admin/board_recent_doc');
 
 var alert = require('../alert/alert')
 
@@ -29,8 +30,7 @@ exports.index = function(req, res){
 
 exports.admin = function(req, res){
 	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
-	if(req.session.user.Id === 'superadmin'
-		|| req.session.user.role === 'admin') {
+	if(req.session.user.Id === 'superadmin') {
 		res.redirect('/admin/main');
 	}
 	else{
@@ -323,4 +323,8 @@ exports.board_make_form = function(req, res){
 	res.render('admin/board_make_form', {
 		title: 'board_make_form'
 	});
+}
+
+exports.board_recent_view = function(req, res) {
+	board_recent_doc.find_recent_doc (req, res);
 }

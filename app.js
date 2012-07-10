@@ -82,6 +82,8 @@ app.get('/admin/main', requiresSuperUserLogin, routes.adminView);
 app.post('/admin/main', routes.adminCheck);
 app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
 app.post('/admin/board_make', routes.makeBoard);
+app.get('/admin/board_recent_view', requiresSuperUserLogin, routes.board_recent_view);
+
 
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
 
