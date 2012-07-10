@@ -15,6 +15,14 @@ div(style='width:760px;')
 			th.content Subject
 			th.content User
 			th.content Date
+			-for(var i=0; i<notice.length; i++)
+				-if(notice[i])
+					tr
+						td.content 공지
+						td.content 
+							a(href='/admin/notice?id=#{board_id}&num=#{notice[i].no}', style="color:black;") #{notice[i].subject}
+						td.content #{notice[i].name}
+						td.content #{notice[i].date}
 			-for(var i=0; i<paging; i++)
 				-if(docs[i]){
 					tr
@@ -30,8 +38,8 @@ div(style='width:760px;')
 			a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{i+1}') [#{i+1}]
 		
 	div(style='text-align:right;')
-		input( type ='button', id='write', value='write', onClick="location.href='/write?id=#{board_id}'")
-
+		input( type ='button', id='write', value='글쓰기', onClick="location.href='/write?id=#{board_id}'")
+		input( type ='button', id='write_notice', value='Logout', onClick="location.href='/logout'")
 	div(style='text-align:center;')
 		-if(type == 'name')
 			select(id='type', name='type')

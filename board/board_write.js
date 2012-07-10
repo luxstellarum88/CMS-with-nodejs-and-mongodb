@@ -13,7 +13,7 @@ exports.insertBoard = function(req, res){
 
 	dbSeqModel.getById(board.id, function(number){
 		board_seq_num = number.boardSeq;
-		console.log(board_seq_num);
+		
 		boardModel.no = board_seq_num;
 		boardModel.Id = req.session.user.Id;
 		boardModel.subject = board.subject;
@@ -45,7 +45,6 @@ exports.insertBoard = function(req, res){
 			if(10 === number) {
 				board_recent_model.findOne().sort('date', 1).exec(function(err, docs){
 					if(!err && docs) {
-						console.log(docs.date);
 						no = docs.no;
 						board_recent_model.find({no : docs.no}).remove();
 					}

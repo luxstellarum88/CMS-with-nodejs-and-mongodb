@@ -14,8 +14,12 @@ table
 		td.content(colspan='2') <br><br><br><br>#{board.memo}<br><br><br><br><br>
 	tr
 		td.content(colspan='2', align='right')
-			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.no}'")
-			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.no}')")
+			-if(notice)
+				input( type ='button', id='modify', value='수정', onClick="location.href='/admin/notice_modify?id=#{board_id}&num=#{board.no}'")
+				input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/admin/notice_delete?id=#{board_id}&num=#{board.no}')")
+			-else
+				input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.no}'")
+				input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.no}')")
 
 
 table

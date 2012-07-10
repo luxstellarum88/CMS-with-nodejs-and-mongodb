@@ -5,6 +5,12 @@ form(action='/board_write', method='POST')
 			td.content Subject
 			td.content 
 				input(type='text', name='subject', id='subject')
+		-if('admin' === auth)
+			tr
+				td.content Notice
+				td.content
+					input(type='checkbox', name='write_type', value='notice') 
+					공지사항
 		tr
 			td.content Name
 			td.content 

@@ -17,6 +17,5 @@ exports.find_recent_doc = function(req, res) {
 		else {
 			console.log("find_recent_doc error");
 		}
-	});//end of find
-	
+	});//end of find	
 }//end of function

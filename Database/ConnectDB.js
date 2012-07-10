@@ -38,10 +38,22 @@ var board_recent_schema = new Schema({
 	no : Number
 });
 
+//공지사항용
+
+var notice_board_schema = new Schema({
+	no: Number,
+	id: String,
+	subject: String,
+	name: String,
+	memo: String,
+	date: Date
+});
+
 var BoardIdentityModel;
 var UserIdentityModel;
 var CommentIdentityModel;
 var board_recent_model;
+var notice_board_model;
 
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
@@ -100,5 +112,22 @@ exports.make_board_recent_model = function(){
 
 exports.toss_board_recent_model = function(){
 	return board_recent_model;	
+}
+
+
+//공지사항용
+exports.connect_notice_board = function(id){
+	var name = id +'_notices';
+	
+	mongoose.connect('mongodb://localhost/testboard');
+	notice_board_model = mongoose.model(name, notice_board_schema);
+}
+
+exports.make_notice_board_model = function(){
+	return new notice_board_model();
+}
+
+exports.toss_notice_board_model = function(){
+	return notice_board_model;	
 }
 
