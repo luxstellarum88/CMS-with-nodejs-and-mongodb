@@ -18,7 +18,13 @@ var commDelete = require('../board/comment/comment_delete');
 var commview = require('../board/comment/comment_view');
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
+	if(req.session.user) {
+		res.redirect('/board');
+	}
+	else{
+  		res.render('index', { title: 'Express' });
+ 	}
 };
 
 exports.admin = function(req, res){

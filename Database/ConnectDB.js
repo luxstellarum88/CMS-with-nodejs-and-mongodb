@@ -31,15 +31,12 @@ var UserIdentityModel;
 var CommentIdentityModel;
 
 
-
-//NYS start
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
 	
 	mongoose.connect('mongodb://localhost/testboard');
 	BoardIdentityModel = mongoose.model(CollectionName, BoardIdentitySchema);
 }
-//NYS end
 
 exports.makeBoardModel = function(){
 	return new BoardIdentityModel();
