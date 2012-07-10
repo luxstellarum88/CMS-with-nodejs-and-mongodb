@@ -28,7 +28,14 @@ exports.index = function(req, res){
 };
 
 exports.admin = function(req, res){
-	res.render('admin', {title: 'admin'});
+	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
+	if(req.session.user.Id === 'superadmin'
+		|| req.session.user.role === 'admin') {
+		res.redirect('/admin/main');
+	}
+	else{
+  		res.render('admin', { title: 'admin' });
+ 	}	
 }
 
 
