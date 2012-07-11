@@ -38,7 +38,10 @@ exports.admin = function(req, res){
 		else{
 	  		res.render('admin', { title: 'admin' });
 	 	}
- 	}	
+ 	}
+ 	else{
+	  		res.render('admin', { title: 'admin' });
+	 }	
 }
 
 exports.logout = function(req, res) {
