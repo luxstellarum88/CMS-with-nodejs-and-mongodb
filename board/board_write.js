@@ -42,7 +42,7 @@ exports.insertBoard = function(req, res){
 			var no = number + 1;
 			
 			//최신 글 수를 총 10개로 관리
-			if(10 === number) {
+			if(50 === number) {
 				board_recent_model.findOne().sort('date', 1).exec(function(err, docs){
 					if(!err && docs) {
 						no = docs.no;
@@ -50,7 +50,7 @@ exports.insertBoard = function(req, res){
 					}
 				});
 			}//end of if
-			console.log(board_seq_num);
+
 			make_board_recent.no = no;
 			make_board_recent.board_no = board_seq_num;
 			make_board_recent.board_id = req.body.id;

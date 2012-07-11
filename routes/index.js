@@ -214,7 +214,10 @@ exports.boardDelete = function(req, res){
 	boCheck.checkId(board_id, board_num, req.session.user, function(result){
 		if(result){
 			result.remove();
-			res.redirect('/board?id='+board_id);
+			board_recent_doc.del(board_num, function(result){
+				result.remove();
+				res.redirect('/board?id='+board_id);
+			});//end of delete_recent_doc			
 		}
 		else{
 			alert_script = alert.makeAlert('권한이 없습니다.');
