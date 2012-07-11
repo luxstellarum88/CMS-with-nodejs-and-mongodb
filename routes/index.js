@@ -30,15 +30,7 @@ exports.index = function(req, res){
 };
 
 exports.admin = function(req, res){
-	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
-	if(req.session.user) {
-		if(req.session.user.Id === 'superadmin') {
-			res.redirect('/admin/main');
-		}
-		else{
-	  		res.render('admin', { title: 'admin' });
-	 	}
- 	}	
+	res.render('admin', { title: 'admin' });
 }
 
 exports.logout = function(req, res) {
