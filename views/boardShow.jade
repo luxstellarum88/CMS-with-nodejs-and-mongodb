@@ -48,6 +48,7 @@ form(method='post', action='/comment_write')
 				input(type='textbox', id='commentForm', name='commentForm')	
 				input(type='hidden', id='boardNoForm', name='boardNoForm', value=board.no)
 				input(type='hidden', id='board_id', name='board_id', value=board_id)
+				input(type='hidden', id='notice', name='notice', value='#{notice}')
 		tr
 			td.content(colspan='4')
 				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
