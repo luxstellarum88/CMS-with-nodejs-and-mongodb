@@ -127,6 +127,6 @@ app.post('/comment_delete', routes.commentDelete);
 app.get('/sessions/new', routes.sessionNew);
 app.post('/sessions', routes.session);
 
-app.listen(3000, function(){
+app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
