@@ -19,6 +19,7 @@ exports.insertBoard = function(req, res){
 		boardModel.subject = board.subject;
 		boardModel.name = board.name;
 		boardModel.memo = board.memo;
+		boardModel.hit = 0;
 		boardModel.date = new Date();
 
 		dbSeqModel.boardSeqInc(board.id);

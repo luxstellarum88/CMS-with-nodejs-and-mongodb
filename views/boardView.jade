@@ -15,6 +15,8 @@ div(style='width:760px;')
 			th.content Subject
 			th.content User
 			th.content Date
+			th.content hit
+			
 			-for(var i=0; i<notice.length; i++)
 				-if(notice[i])
 					tr
@@ -23,6 +25,7 @@ div(style='width:760px;')
 							a(href='/admin/notice?id=#{board_id}&num=#{notice[i].no}', style="color:black;") #{notice[i].subject}
 						td.content #{notice[i].name}
 						td.content #{notice[i].date}
+						td.content #{notice[i].hit}
 			-for(var i=0; i<paging; i++)
 				-if(docs[i]){
 					tr
@@ -31,6 +34,7 @@ div(style='width:760px;')
 							a(href='/board?id=#{board_id}&num=#{docs[i].no}', style="color:black;") #{docs[i].subject}	
 						td.content #{docs[i].name}
 						td.content #{docs[i].date}
+						td.content #{docs[i].hit}
 				-}
 
 	center
