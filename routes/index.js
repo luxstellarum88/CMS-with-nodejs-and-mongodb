@@ -1,7 +1,7 @@
-
 var adminCheck = require('../admin/admin_check');
 var boardMake = require('../admin/makeBoard');
 var boardOption = require('../admin/boardoption');
+var notify = require('../admin/notify');			// e-mail, SMS..
 
 var alert = require('../alert/alert')
 
@@ -18,7 +18,7 @@ var commDelete = require('../board/comment/comment_delete');
 var commview = require('../board/comment/comment_view');
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', {title: 'Express' });
 };
 
 exports.admin = function(req, res){
@@ -289,6 +289,28 @@ exports.userlistView = function(req, res){
 	
 	users.allUser(type, content, current_page, res);
 }
+
+/* e-mail sending part
+ * called in "userlist" by the administrator
+ * by Yoon-seop
+ */
+exports.sendmailView = function(req, res){
+	res.render('admin/sendmail', {
+		title: 'Send e-mail'
+		, sender: 'operator@goorm.org'
+		, addresses: req.body.chklist
+	});
+}
+exports.sendmailAction = function(req, res){
+	notify.Sendmail(req.body.sender, req.body.address, req.body.subject, req.body.content);
+	var alert_script = alert.makeAlert('메일이 발송되었습니다.', 'admin/userlists');
+	res.render('alert', {
+		title : 'Mail Sended'
+		,alert : alert_script
+	});
+}
+
+
 
 exports.boardMain = function(req, res){
 	boardOption.getBoardOption(function(result){
