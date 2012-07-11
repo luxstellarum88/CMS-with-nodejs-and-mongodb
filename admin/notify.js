@@ -15,8 +15,8 @@ exports.Sendmail = function(sender, address, subject, content){
 	    subject : subject,
 	    body: content,
 	    authentication : "login",        // auth login is supported; anything else $
-	    username : 'roland87@skima.co.kr',
-	    password : 'totoro520'
+	    username : 'nys3909@gmail.com',
+	    password : 'nys3909'
 	    },
 	    function(err, result){
 	      if(err){ console.log(err); return;}

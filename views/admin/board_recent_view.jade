@@ -1,0 +1,22 @@
+h1= title
+
+div(style='width:760px;')
+	table
+		tr
+			th.content 번호
+			th.content 게시판 명
+			th.content 이름
+			th.content 제목
+			th.content 날짜
+			-for(var i=0; i<docs.length; i++)
+				-if(docs[i]){
+					tr
+						td.content #{i+1}
+						td.content 
+							a(href='/board?id=#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
+						td.content #{docs[i].name}	
+						td.content 
+							a(href='/board?id=#{docs[i].board_id}&num=#{docs[i].board_no}', style="color:black;") #{docs[i].subject}
+						td.content #{docs[i].date}
+				-}
+	input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')

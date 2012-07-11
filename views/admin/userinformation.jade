@@ -1,4 +1,6 @@
-form(method='post', action='/user_modify')
+script(src='/javascript/common.js')
+
+form(method='post', name='modify_form', id='modify_form', action='/user_modify')
 	table(border=1)
 		tr
 			td ID
@@ -26,6 +28,6 @@ form(method='post', action='/user_modify')
 			td email
 			td
 				!{info.email}
-	input(type='submit', name='user_modify', value='수정')
+	input(type='button', name='user_modify', value='수정', onClick='call_confirm_post("수정하시겠습니까?","modify_form")')
 a(href='/admin/userlists')
 	input(type='button', name='gotolist', value='목록')

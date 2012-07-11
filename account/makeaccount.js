@@ -12,7 +12,7 @@ exports.insertUser = function(req, res){
 	//add at 120704. JH
 	var userModel = dbModel.tossUserModel();
 	//add at 120705. JH
-	var regular_expression_email = /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+	var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z]+){1,2}$/;
 	
 	if(regular_expression_email.test(user.emailForm)) {
 		

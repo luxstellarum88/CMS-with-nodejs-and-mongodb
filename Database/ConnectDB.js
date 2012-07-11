@@ -26,20 +26,41 @@ var CommentIdentitySchema = new Schema({
 	comment: String
 });
 
+//최신글 추적을 위해 추가
+var board_recent_schema = new Schema({
+	board_id : String,
+	board_no : Number,
+	id : String,
+	subject : String,
+	content : String,
+	name : String,
+	date : Date,
+	no : Number
+});
+
+//공지사항용
+
+var notice_board_schema = new Schema({
+	no: Number,
+	id: String,
+	subject: String,
+	name: String,
+	memo: String,
+	date: Date
+});
+
 var BoardIdentityModel;
 var UserIdentityModel;
 var CommentIdentityModel;
+var board_recent_model;
+var notice_board_model;
 
-
-
-//NYS start
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
 	
 	mongoose.connect('mongodb://localhost/testboard');
 	BoardIdentityModel = mongoose.model(CollectionName, BoardIdentitySchema);
 }
-//NYS end
 
 exports.makeBoardModel = function(){
 	return new BoardIdentityModel();
@@ -77,3 +98,36 @@ exports.makeCommentModel = function(){
 exports.tossCommentModel = function(){
 	return CommentIdentityModel;	
 }
+
+
+//최신글 관리 게시판
+exports.connect_board_recent_db = function(){
+	mongoose.connect('mongodb://localhost/testboard');
+	board_recent_model = mongoose.model('board_recents', board_recent_schema);
+}
+
+exports.make_board_recent_model = function(){
+	return new board_recent_model();
+}
+
+exports.toss_board_recent_model = function(){
+	return board_recent_model;	
+}
+
+
+//공지사항용
+exports.connect_notice_board = function(id){
+	var name = id +'_notices';
+	
+	mongoose.connect('mongodb://localhost/testboard');
+	notice_board_model = mongoose.model(name, notice_board_schema);
+}
+
+exports.make_notice_board_model = function(){
+	return new notice_board_model();
+}
+
+exports.toss_notice_board_model = function(){
+	return notice_board_model;	
+}
+

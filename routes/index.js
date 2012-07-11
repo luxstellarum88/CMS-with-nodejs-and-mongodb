@@ -1,6 +1,8 @@
 var adminCheck = require('../admin/admin_check');
 var boardMake = require('../admin/makeBoard');
 var boardOption = require('../admin/boardoption');
+var board_recent_doc = require('../admin/board_recent_doc');
+var notice = require('../admin/notice_board');
 var notify = require('../admin/notify');			// e-mail, SMS..
 
 var alert = require('../alert/alert')
@@ -18,11 +20,30 @@ var commDelete = require('../board/comment/comment_delete');
 var commview = require('../board/comment/comment_view');
 
 exports.index = function(req, res){
-  res.render('index', {title: 'Express' });
+	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
+	if(req.session.user) {
+		res.redirect('/board');
+	}
+	else{
+  		res.render('index', { title: 'Express' });
+ 	}
 };
 
 exports.admin = function(req, res){
-	res.render('admin', {title: 'admin'});
+	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
+	if(req.session.user.Id === 'superadmin') {
+		res.redirect('/admin/main');
+	}
+	else{
+  		res.render('admin', { title: 'admin' });
+ 	}	
+}
+
+exports.logout = function(req, res) {
+	if(req.session.user) {
+		req.session.user = "";
+		res.redirect('/');
+	}
 }
 
 
@@ -78,7 +99,8 @@ exports.boardView = function(req, res){
 						board_id: board_id,
 						board: board,
 						comm: comm,
-						sessionId: req.session.user.name
+						sessionId: req.session.user.name,
+						notice : false
 					});
 				});	
 			}
@@ -123,14 +145,35 @@ exports.boardNumView = function(req, res){
 
 exports.write = function(req, res){
 	
+	var auth = 'guest';
+	
+	if('admin' === req.session.user.role || 'superadmin' === req.session.user.Id) {
+		auth = 'admin';
+	}
+	
 	res.render('write', {
 		title: 'write'
-		, id: req.query.id //add 120707 JH
+		, id : req.query.id
+		, auth : auth
 	})
 }
 
 exports.boardWrite = function(req, res){
-	bowrite.insertBoard(req, res);
+	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
+		if('notice' === req.body.write_type) {
+			notice.insert(req.session.user.Id, req.body, res);
+		}
+		else {
+			bowrite.insertBoard(req, res);
+		}		
+	}
+	else {
+		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		}) ;
+	}
 }
 
 
@@ -143,7 +186,8 @@ exports.boardModify = function(req, res){
 			res.render('modify', {
 				title: 'modify',
 				docs: result,
-				id: board_id //add 120707 JH
+				id: board_id, //add 120707 JH
+				notice : false
 			});	
 		}
 		else{
@@ -325,4 +369,44 @@ exports.board_make_form = function(req, res){
 	res.render('admin/board_make_form', {
 		title: 'board_make_form'
 	});
+}
+
+exports.board_recent_view = function(req, res) {
+	board_recent_doc.find_recent_doc (req, res);
+}
+
+exports.write_notice = function(req, res) {
+	res.render('admin/board_notice_write', {
+		title : 'Write Notice',
+		id : req.query.id
+	});
+}
+exports.insert_notice = function(req, res) {
+	console.log("index:"+req.session.user.Id);
+	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
+		notice.insert(req.session.user.Id, req.body, res);
+	}
+	else {
+		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		}) ;
+	}
+}
+
+exports.show_notice = function(req, res) {
+	notice.show(req.query, res, req.session.user.Id);
+}
+
+exports.notice_delete = function(req, res){
+	notice.del(req.query, req.session.user.Id, res);
+}
+
+exports.notice_modify_view = function(req, res){
+	notice.modify(req.query, req.session.user.Id, res);
+}
+
+exports.notice_update = function(req, res){
+	notice.update(req.body, req.session.user.Id, res);
 }

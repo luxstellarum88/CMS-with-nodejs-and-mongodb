@@ -5,19 +5,19 @@
 
 var express = require('express')
   , routes = require('./routes');
-//add test code in god YS's PC
+
 // Session
 var SessionMemory = require('connect-redis')(express);
 var app = module.exports = express.createServer();
 
+// alert
+var alert = require('./alert/alert');
 
-
-// test
 // Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
- 
+  
   app.use(express.bodyParser());
   app.use(express.cookieParser());  
   app.use(express.session({
@@ -58,8 +58,11 @@ function requiresAdminLogin(req, res, next){
 		next();
 	}
 	else{
-		console.log('session no..');
-		res.redirect('/');
+		var alert_script = alert.makeAlert('권한이 없습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		});
 	}
 }
 
@@ -68,8 +71,11 @@ function requiresSuperUserLogin(req, res, next){
 		next();
 	}
 	else{
-		console.log('session no..');
-		res.redirect('/admin');
+		var alert_script = alert.makeAlert('권한이 없습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		});
 	}
 }
 
@@ -82,6 +88,14 @@ app.get('/admin/main', requiresSuperUserLogin, routes.adminView);
 app.post('/admin/main', routes.adminCheck);
 app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
 app.post('/admin/board_make', routes.makeBoard);
+app.get('/admin/board_recent_view', requiresSuperUserLogin, routes.board_recent_view);
+
+app.get('/admin/write_notice', requiresAdminLogin, routes.write_notice);
+app.post('/admin/insert_notice', requiresAdminLogin, routes.insert_notice);
+app.get('/admin/notice', requiresLogin, routes.show_notice);
+app.get('/admin/notice_delete', requiresAdminLogin, routes.notice_delete);
+app.get('/admin/notice_modify', requiresAdminLogin, routes.notice_modify_view);
+app.post('/admin/notice_update', requiresAdminLogin, routes.notice_update);
 
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
 
@@ -96,6 +110,7 @@ app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 
 app.post('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
+app.get('/logout', routes.logout);
 
 app.get('/board', requiresLogin ,routes.boardView);
 

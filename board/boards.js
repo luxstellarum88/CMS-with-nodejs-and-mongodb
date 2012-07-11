@@ -1,12 +1,12 @@
-
 var dbModel = require('../Database/ConnectDB');
 var boardOption = require('../admin/boardoption');
 
-function display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content){	
+function display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 	res.render('boardView', {
 		board_id: board_id,
 		title: title,
 		docs: docs,
+		notice : notice,
 		current_page: current_page,
 		paging: paging_size,
 		length: length,
@@ -17,6 +17,18 @@ function display_result(res, board_id, title, docs, current_page, paging_size, l
 }
 
 exports.boardview = function(req, res, board_id, PageNum, type, content){
+	dbModel.connect_notice_board(board_id);
+	var notice_model = dbModel.toss_notice_board_model();
+	var notice = new Array();
+	notice_model.find().sort('date',-1).exec(function(err, docs){
+		if(!err) {
+			notice = docs;
+		}//end of if
+		else{
+			console.log('notice find error');
+		}
+	}); //end of notice find
+	
 	boardOption.getById(board_id, function(option){ //option: board_option
 		if(option){
 			dbModel.connectBoardDB(board_id);
@@ -37,7 +49,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 						boardModel.find( {Id:search_reg_exp}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								boardModel.find( {Id:search_reg_exp}).count(function(err, length){
-									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content);
+									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice);
 								});
 							}
 							else{
@@ -51,7 +63,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 						boardModel.find( {name:search_reg_exp}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								boardModel.find( {name:search_reg_exp}).count(function(err, length){
-									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, content);
+									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, content, notice);
 								});
 							}
 							else{
@@ -65,7 +77,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 						boardModel.find( {subject:search_reg_exp}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								boardModel.find( {subject:search_reg_exp}).count(function(err, length){
-									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content);
+									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice);
 								});
 							}
 							else{
@@ -79,7 +91,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 						boardModel.find( {memo:search_reg_exp}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								boardModel.find( {memo:search_reg_exp}).count(function(err, length){
-									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content);
+									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice);
 								});
 							}
 							else{
@@ -94,7 +106,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 						boardModel.find( {}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								boardModel.find( {}).count(function(err, length){
-									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, "");
+									display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, "", notice);
 								});
 							}
 							else{
@@ -110,7 +122,7 @@ exports.boardview = function(req, res, board_id, PageNum, type, content){
 				boardModel.find( {}).sort('date',-1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 					if(!err){
 						boardModel.find( {}).count(function(err, length){
-							display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, "");
+							display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, "", notice);
 						});
 					}
 					else{
