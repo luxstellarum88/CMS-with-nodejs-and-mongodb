@@ -12,13 +12,7 @@ exports.makePasswordAlert = function(context, res) {
 	eval(alert_script);
 }
 
-
-//make confirm script. post용
-exports.makeConfrim = function(context, action, res) {
-	var confirm_script = open_script;
-	confirm_script += 'if (confirm("승인 하시겠습니까?")){';
-	confirm_script += 	action;
-	confirm_script += '}else{'
-	confirm_script += 'history.go(-1);';
-	confirm_script += close_script;
+exports.AlertRedirect = function(context, url, res){
+	var alert_script = '<script type=\'text/javascript\'>alert(\'' + context + '\');document.href="' + url + '";</script>';
+	return alert_script;
 }

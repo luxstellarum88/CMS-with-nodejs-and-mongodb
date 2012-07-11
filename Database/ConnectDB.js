@@ -52,11 +52,25 @@ var notice_board_schema = new Schema({
 	hit: Number
 });
 
+//공지사항 코맨트
+
+var notice_comment_schema = new Schema({
+	boardNo: Number,
+	commId: Number,
+	Id: String,
+	name : String, //왜 comment에 누락되어있었지?
+	password: String,
+	comment: String,
+	date: Date //얜 필요없나?
+});
+
+
 var BoardIdentityModel;
 var UserIdentityModel;
 var CommentIdentityModel;
 var board_recent_model;
 var notice_board_model;
+var notice_comment_schema;
 
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
@@ -132,5 +146,21 @@ exports.make_notice_board_model = function(){
 
 exports.toss_notice_board_model = function(){
 	return notice_board_model;	
+}
+
+
+//공지사항 코멘트용
+exports.connect_notice_comment = function(id){
+	var name = id + '_notice_comments';
+	mongoose.connect('mongodb://localhost/testboard');
+	notice_comment_model = mongoose.model(name, notice_comment_schema);
+}
+
+exports.make_notice_comment_model = function(){
+	return new notice_comment_model();
+}
+
+exports.toss_notice_comment_model = function(){
+	return notice_comment_model;	
 }
 

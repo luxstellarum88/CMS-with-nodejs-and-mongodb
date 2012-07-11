@@ -33,7 +33,7 @@ exports.insert = function(session, contents, res) {
 			commit(session, doc_no, contents, res );
 		}//end of if
 		else {
-			find_model.findOne().sort('no', 1).exec(function(err, docs) {
+			find_model.findOne().sort('no', -1).exec(function(err, docs) {
 				if(!err) {
 					doc_no = docs.no+1;
 					commit(session, doc_no, contents, res );
@@ -53,7 +53,7 @@ exports.show = function(contents, res, session) {
 	var find_model = db.toss_notice_board_model();
 	
 	find_model.findOne({no : contents.num}, function(err, docs) {
-		commview.viewComment(contents.id, contents.num, function(comm){
+		commview.view_notice_comment(contents.id, contents.num, function(comm){
 			if(!err) { //comment 추가 예정
 				res.render('boardShow', {
 					title : 'Show Notice',
