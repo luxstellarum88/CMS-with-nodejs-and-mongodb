@@ -35,6 +35,16 @@ exports.boardSeqInc = function(board_id){
 	board_model.update(conditions, updates, null, null);
 }
 
+exports.hitSeqInc = function(board_id, board_num, number){
+	var dbModel2 = require('../Database/ConnectDB');
+	dbModel2.connectBoardDB(board_id);
+	var board_model = dbModel2.tossBoardModel();
+	var conditions = {no: board_num};
+	var updates = {$inc:{hit:number}};
+	board_model.update(conditions, updates, null, null);
+}
+
+
 exports.CommentSeqInc = function(board_id){
 	var boardModel = dbModel.tossBoardOptionModel();
 	

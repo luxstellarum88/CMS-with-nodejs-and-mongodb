@@ -7,7 +7,8 @@ var BoardIdentitySchema = new Schema({
 	subject: String,
 	name: String,
 	memo: String,
-	date: Date
+	date: Date,
+	hit: Number
 });
 
 var UserIdentitySchema = new Schema({
@@ -35,7 +36,8 @@ var board_recent_schema = new Schema({
 	content : String,
 	name : String,
 	date : Date,
-	no : Number
+	no : Number,
+	hit: Number
 });
 
 //공지사항용
@@ -46,7 +48,8 @@ var notice_board_schema = new Schema({
 	subject: String,
 	name: String,
 	memo: String,
-	date: Date
+	date: Date,
+	hit: Number
 });
 
 //공지사항 코맨트
