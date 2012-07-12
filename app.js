@@ -99,10 +99,11 @@ app.post('/admin/notice_update', requiresAdminLogin, routes.notice_update);
 
 app.get('/admin/userlists', requiresAdminLogin, routes.userlistView);
 
-// notify group
+// notify group (e-mail, SMS)
 app.post('/admin/sendmailView', routes.sendmailView);	// mail writing form, called from "/admin/userlists"
 app.post('/admin/sendmailAction', routes.sendmailAction);	// sending mail action, result alert page, called from "/admin/sendmailView"
-
+// Ban user by the admin
+app.get('/admin/deleteUser', requiresAdminLogin, routes.deleteUser);
 
 app.get('/user_information', requiresAdminLogin, routes.user_information_view);
 app.post('/user_information', requiresAdminLogin, routes.user_information_view);

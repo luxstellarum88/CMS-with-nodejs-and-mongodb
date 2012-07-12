@@ -14,6 +14,7 @@ div(style='width:760px;')
 				th.content ID
 				th.content NAME
 				th.content Role
+				th.content
 			-for(var i=0; i<result.length; i++)
 				tr
 					td.content
@@ -23,6 +24,9 @@ div(style='width:760px;')
 							!{result[i].Id}
 					td.content #{result[i].name}
 					td.content #{result[i].role}
+					td.content
+						a( href='/admin/deleteUser?id=#{result[i].Id}' )
+							[삭제]
 		input( type='submit', name='btnemail', value='메일보내기' )
 	center
 		-for(var i=0; i < (length/paging_size); i++)

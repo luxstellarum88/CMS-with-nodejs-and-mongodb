@@ -12,7 +12,7 @@ exports.makePasswordAlert = function(context, res) {
 	eval(alert_script);
 }
 
-exports.AlertRedirect = function(context, url, res){
-	var alert_script = '<script type=\'text/javascript\'>alert(\'' + context + '\');document.href="' + url + '";</script>';
+exports.AlertRedirect = function(context, url){
+	var alert_script = open_script + 'alert(\'' + context + '\');location.href="' + url + '";' + close_script;
 	return alert_script;
 }

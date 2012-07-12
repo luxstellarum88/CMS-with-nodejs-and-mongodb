@@ -9,6 +9,7 @@ var alert = require('../alert/alert')
 
 var users = require('../account/users');
 var userMake = require('../account/makeaccount');
+var deleteUserService = require('../admin/delete_user.js'); // Ban user
 
 var boview = require('../board/boards');
 var bowrite = require('../board/board_write');
@@ -365,13 +366,26 @@ exports.sendmailView = function(req, res){
 }
 exports.sendmailAction = function(req, res){
 	notify.Sendmail(req.body.sender, req.body.address, req.body.subject, req.body.content);
-	var alert_script = alert.makeAlert('메일이 발송되었습니다.', 'admin/userlists');
+	var alert_script = alert.AlertRedirect('메일이 발송되었습니다.', '/admin/userlists');
 	res.render('alert', {
 		title : 'Mail Sended'
 		,alert : alert_script
 	});
 }
 
+/* User Ban (delete user operation by the admin)
+ * by Yoon-seop, 12.7.12
+ */
+exports.deleteUser = function(req, res){
+	deleteUserService.deleteUser(req);
+
+	//console.log(req.query.id);
+	var alert_script = alert.AlertRedirect('회원정보가 삭제되었습니다.', '/admin/userlists');
+	res.render('alert', {
+		title : 'Result'
+		, alert : alert_script
+	});
+}
 
 
 exports.boardMain = function(req, res){
