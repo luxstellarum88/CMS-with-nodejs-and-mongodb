@@ -23,12 +23,11 @@ exports.writeComment = function(req, res, callback){
 				commentModel.name = user.name;
 				commentModel.password = comment.passwordForm;
 				commentModel.comment = comment.commentForm;
-				
+								
 				commentModel.save(function(err){
 					if(!err){
 						result['board_id'] = board_id;
-						result['boardNo'] = comment.boardNoForm;
-											
+						result['boardNo'] = comment.boardNoForm;											
 						callback(result);
 					}
 					else{
@@ -47,6 +46,7 @@ exports.writeComment = function(req, res, callback){
 	else{ //공지사항인경우
 		dbModel.connect_notice_comment(board_id);
 		var comm_no;
+				
 		find_model = dbModel.toss_notice_comment_model();
 		find_model.count(function(err, number) {
 			if(!err){

@@ -88,7 +88,8 @@ app.get('/admin/main', requiresSuperUserLogin, routes.adminView);
 app.post('/admin/main', routes.adminCheck);
 app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
 app.post('/admin/board_make', routes.makeBoard);
-app.get('/admin/board_recent_view', requiresSuperUserLogin, routes.board_recent_view);
+app.get('/admin/board_recent_view', requiresAdminLogin, routes.board_recent_view);
+app.get('/admin/recent_comment_view', requiresAdminLogin, routes.recent_comment_view);
 
 app.get('/admin/write_notice', requiresAdminLogin, routes.write_notice);
 app.post('/admin/insert_notice', requiresAdminLogin, routes.insert_notice);
