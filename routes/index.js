@@ -239,10 +239,6 @@ exports.boardDelete = function(req, res){
 exports.commentWrite = function(req, res){
 	commwrite.writeComment(req ,res, function(result){
 		if(result){
-			boardOption.CommentSeqInc(result['board_id']);
-			res.redirect('/board?id='+result['board_id'] + '&num='+ result['boardNo']);
-			boardOption.hitSeqInc(result['board_id'], result['boardNo'], -1);
-	
 			if('false'===req.body.notice) {
 				boardOption.CommentSeqInc(result['board_id']);
 				res.redirect('/board?id='+result['board_id'] + '&num='+ result['boardNo']);

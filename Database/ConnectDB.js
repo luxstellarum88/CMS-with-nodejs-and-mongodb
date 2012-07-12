@@ -66,16 +66,16 @@ var notice_comment_schema = new Schema({
 
 
 /*
-	최신 코멘트
+ *  at 2012 07 12 by JH. Recent Comment Schema
 */
 var recent_comment_schema = new Schema({
+	no: Number,
 	boardNo: Number,
-	commId: Number,
 	Id: String,
-	name : String, //왜 comment에 누락되어있었지?
+	name : String, 
 	password: String,
 	comment: String,
-	date: Date //얜 필요없나?
+	date: Date
 });
 
 
@@ -84,8 +84,7 @@ var UserIdentityModel;
 var CommentIdentityModel;
 var board_recent_model;
 var notice_board_model;
-var notice_comment_schema;
-var
+var recent_comment_model;
 
 
 exports.connectBoardDB = function(id){
@@ -180,3 +179,18 @@ exports.toss_notice_comment_model = function(){
 	return notice_comment_model;	
 }
 
+/*
+	2012 07 12 by JH. for recent_comment_board
+*/
+exports.connect_recent_comment = function(id){
+	mongoose.connect('mongodb://localhost/testboard');
+	recent_comment_model = mongoose.model('recent_comments', recent_comment_schema);
+}
+
+exports.make_recent_comment_model = function(){
+	return new recent_comment_model();
+}
+
+exports.toss_recent_comment_model = function(){
+	return recent_comment_model;	
+}
