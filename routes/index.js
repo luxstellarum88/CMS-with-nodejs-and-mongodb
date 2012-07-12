@@ -4,6 +4,7 @@ var boardOption = require('../admin/boardoption');
 var board_recent_doc = require('../admin/board_recent_doc');
 var notice = require('../admin/notice_board');
 var notify = require('../admin/notify');			// e-mail, SMS..
+var recent_comment = require('../admin/recent_comment');
 
 var alert = require('../alert/alert')
 
@@ -18,6 +19,8 @@ var boCheck = require('../board/board_check');
 var commwrite = require('../board/comment/comment_write');
 var commDelete = require('../board/comment/comment_delete');
 var commview = require('../board/comment/comment_view');
+
+var event_emmitter = require('events').EventEmitter; //event handler
 
 exports.index = function(req, res){
 	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
@@ -237,6 +240,7 @@ exports.boardDelete = function(req, res){
 }
 
 exports.commentWrite = function(req, res){
+	recent_comment.insert(req, res);
 	commwrite.writeComment(req ,res, function(result){
 		if(result){
 			if('false'===req.body.notice) {
@@ -423,4 +427,9 @@ exports.notice_modify_view = function(req, res){
 
 exports.notice_update = function(req, res){
 	notice.update(req.body, req.session.user.Id, res);
+}
+
+
+exports.recent_comment_view = function(req, res) {
+	recent_comment.view(req, res);
 }

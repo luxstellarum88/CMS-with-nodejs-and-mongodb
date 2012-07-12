@@ -71,10 +71,13 @@ var notice_comment_schema = new Schema({
 var recent_comment_schema = new Schema({
 	no: Number,
 	boardNo: Number,
+	subject : String,
+	board_id : String,
 	Id: String,
 	name : String, 
 	password: String,
 	comment: String,
+	notice: Boolean,
 	date: Date
 });
 
