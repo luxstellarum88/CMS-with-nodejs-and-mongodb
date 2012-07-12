@@ -1,6 +1,62 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/*
+	2012. 07. 13. by JH. DB구조 수정.
+*/
+
+var board_schema = new Schema({
+	board_id : String,
+	notice : Boolean,
+	index : Number,
+	user_name : String,
+	user_id : String,
+	subject : String,
+	content : String,
+	hit : Number,
+	insert_date : Date,
+	update_date : Date,
+	deleted : Boolean
+});//end of board_schema
+
+var board_list_schema = new Schema({
+	id : String,
+	name : String,
+	date : Date
+});//end of board_list_schema
+
+var comment_schema = new Schema({
+	board_id : String,
+	post_index : Number,
+	index : Number,
+	user_name : String,
+	user_id : String,
+	content : String,
+	insert_date : Date,
+	update_date : Date,
+	password : String,
+	deleted : Boolean
+});//end of comment_schema
+
+var recent_comment_model;
+
+
+exports.connectBoardDB = function(id){
+	var CollectionName = 'board_' + id +'s';
+	
+	mongoose.connect('mongodb://localhost/testboard');
+	BoardIdentityModel = mongoose.model(CollectionName, BoardIdentitySchema);
+}
+
+exports.makeBoardModel = function(){
+	return new BoardIdentityModel();
+}
+
+exports.tossBoardModel = function(){
+	return BoardIdentityModel;	
+}
+
+
 var BoardIdentitySchema = new Schema({
 	no: Number,
 	Id: String,

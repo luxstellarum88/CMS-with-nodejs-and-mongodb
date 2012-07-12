@@ -3,14 +3,14 @@ div(style='width:760px;')
 	table
 		tr
 			th.content No
-			th.content Id
+			th.content id
 			th.content Name
 				-for(var i=docs.length; i>=0; i--)
 					-if(docs[i-1]){
 						tr
 							td.content #{i}
 							td.content 
-								a(href='/board?id=' + docs[i-1].Id) #{docs[i-1].Id}
+								a(href='/board?id=' + docs[i-1].id) #{docs[i-1].id}
 							td.content #{docs[i-1].name}	
 					-}
 	input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"')

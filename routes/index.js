@@ -23,10 +23,18 @@ var commview = require('../board/comment/comment_view');
 
 var event_emmitter = require('events').EventEmitter; //event handler
 
+/*
+	2012. 07. 13. by JH
+*/
+var board_list = require('../admin/board_list');
+var board_main = require('../board/list');
+var board_view = require('../board/view');
+var board_write = require('../board/write');
+
 exports.index = function(req, res){
 	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
 	if(req.session.user) {
-		res.redirect('/board');
+		res.redirect('/board_main');
 	}
 	else{
   		res.render('index', { title: 'Express' });
@@ -47,6 +55,31 @@ exports.admin = function(req, res){
 	  		res.render('admin', { title: 'admin' });
 	 }	
 }
+
+exports.boardMain = function(req, res){
+	board_main.view(req, res);
+}//end of boardMain
+
+exports.board_make_form = function(req, res){
+	res.render('admin/board_make_form', {
+		title: 'board_make_form'
+	});
+}
+
+
+exports.boardWrite = function(req, res){
+	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
+		board_write.insert(req, res);
+	}
+	else {
+		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		}) ;
+	}
+}
+
 
 exports.logout = function(req, res) {
 	if(req.session.user) {
@@ -85,18 +118,10 @@ exports.boardView = function(req, res){
 	var PageNum = req.query.page || 1;
 	var type = req.query.type || "";
 	var content = req.query.content || "";
-		
-	if(!board_id){
-		boardOption.getBoardOption(function(result){
-			res.render('boardMain', {
-				title: 'boardMain',
-				docs: result
-			});
-		});
-	}
-	else if(!board_num){
+	
+	if(!board_num){
 		// /board?id=*&page=*		
-		boview.boardview(req, res, board_id, PageNum, type, content);
+		board_view.post(req, res);
 	}
 	else{
 		// /board?id=*&num=*
@@ -166,24 +191,6 @@ exports.write = function(req, res){
 		, id : req.query.id
 		, auth : auth
 	})
-}
-
-exports.boardWrite = function(req, res){
-	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
-		if('notice' === req.body.write_type) {
-			notice.insert(req.session.user.Id, req.body, res);
-		}
-		else {
-			bowrite.insertBoard(req, res);
-		}		
-	}
-	else {
-		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-		res.render('alert', {
-			title : 'Error',
-			alert : alert_script
-		}) ;
-	}
 }
 
 
@@ -289,7 +296,7 @@ exports.session = function(req, res){
 		if(user){
 			console.log('auth_success');
 			req.session.user = user;
-			res.redirect('/board');
+			res.redirect('/board_main');
 		}
 		else{
 			var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');
@@ -303,13 +310,8 @@ exports.session = function(req, res){
 
 
 exports.adminView = function(req, res){
-	boardOption.getBoardOption(function(result){
-		res.render('admin/main', {
-			title: 'admin_main',
-			docs: result
-		});
-	});
-}
+	board_list.view(req, res);
+}//end of adminView
 
 exports.adminCheck = function(req, res){
 	// SuperUser || Admin
@@ -384,22 +386,6 @@ exports.deleteUser = function(req, res){
 	res.render('alert', {
 		title : 'Result'
 		, alert : alert_script
-	});
-}
-
-
-exports.boardMain = function(req, res){
-	boardOption.getBoardOption(function(result){
-		res.render('boardMain', {
-			title: 'boardMain',
-			docs: result
-		});
-	});
-}
-
-exports.board_make_form = function(req, res){
-	res.render('admin/board_make_form', {
-		title: 'board_make_form'
 	});
 }
 

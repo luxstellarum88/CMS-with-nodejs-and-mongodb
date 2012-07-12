@@ -114,6 +114,7 @@ app.post('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
 app.get('/logout', routes.logout);
 
+app.get('/board_main', requiresLogin ,routes.boardMain);
 app.get('/board', requiresLogin ,routes.boardView);
 
 app.get('/write', routes.write);

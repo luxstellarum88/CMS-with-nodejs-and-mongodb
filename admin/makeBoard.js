@@ -1,24 +1,28 @@
+/*
+	2012. 7. 13. by JH
+	DB 구조 변경
+*/
 
-var dbModel = require('../Database/Connect_Board_DB');
-dbModel.connectBoardOptionDB();
+
+var db = require('../Database/board/board_list_db');
+db.connect();
 
 exports.make = function(req, res){
-	var boardModel = dbModel.makeBoardOptionModel();
-	var option = req.body;
+	var model = db.make_model();
+	var board = req.body;
 	
-	boardModel.Id = option.Id;
-	boardModel.name = option.name;
-	boardModel.pagingNumber = option.pagingNumber;
-	boardModel.boardSeq = 1;
-	boardModel.commentSeq = 1;
+	model.id = board.id;
+	model.name = board.name;
+	model.paging = board.pagingNumber;
+	model.date = new Date();
 	
-	boardModel.save(function(err){
+	model.save(function(err){
 		if(!err){
-			res.redirect('/admin/main');			
-		}
-		else{
-			console.log('board_make_fail');
 			res.redirect('/admin/main');
 		}
-	});
+		else {
+			console.log('in makeBoard.js : make fail');
+			res.redirect('/admin/main');
+		}
+	});//end of save
 }
