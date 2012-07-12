@@ -65,12 +65,28 @@ var notice_comment_schema = new Schema({
 });
 
 
+/*
+	최신 코멘트
+*/
+var recent_comment_schema = new Schema({
+	boardNo: Number,
+	commId: Number,
+	Id: String,
+	name : String, //왜 comment에 누락되어있었지?
+	password: String,
+	comment: String,
+	date: Date //얜 필요없나?
+});
+
+
 var BoardIdentityModel;
 var UserIdentityModel;
 var CommentIdentityModel;
 var board_recent_model;
 var notice_board_model;
 var notice_comment_schema;
+var
+
 
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
