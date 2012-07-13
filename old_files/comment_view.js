@@ -5,6 +5,12 @@ exports.viewComment = function(board_id, board_num, callback){
 	dbModel.connectCommentDB(board_id);
 	var commentModel = dbModel.tossCommentModel();
 	
+	var i=0;
+	while(i<10) {
+		console.log(i);
+		i++;
+	}
+	
 	commentModel.find({boardNo:board_num}, [], function(err, docs){
 		if(!err){
 			callback(docs);

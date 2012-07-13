@@ -4,11 +4,39 @@
 
 var db = require('../Database/board/board_db');
 var list_db = require('../Database/board/board_list_db');
+var comments = require('./comment/count');
+var event_emitter = require('events').EventEmitter; //event handler
+
 db.connect();
 list_db.connect();
 
 function display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
-	res.render('boardView', {
+/*
+	
+	var evt = new event_emitter();
+	var comment_counter = new Array();
+	var i = 0;
+	
+	evt.on('while', function(i){
+		comments.counter(docs[i].index, function(number){
+			comment_counter[i] = number;
+			console.log(number);
+			console.log(comment_counter[i]);
+			if(i < docs.length-1) {
+				i++;
+				evt.emit('while', i);
+			}
+		});//end of counter
+	});//end of evt.on
+	
+	evt.emit('while', i);
+	
+	console.log(comment_counter[0]);
+	console.log(comment_counter[1]);*/
+
+	
+	
+	res.render('board/view', {
 		board_id: board_id,
 		title: title,
 		docs: docs,
@@ -19,6 +47,7 @@ function display_result(res, board_id, title, docs, current_page, paging_size, l
 		sessionId: sessionId,
 		type: type,
 		content: content
+		//comment_number : comment_counter
 	});
 }//end of display_result
 
@@ -36,7 +65,7 @@ exports.post = function(req, res) {
 		notice part
 	*/
 	model.find({notice : true, deleted : false, board_id : board_id})
-		.sort('date', -1).exec(function(err, docs){
+		.sort('insert_date', -1).exec(function(err, docs){
 		if(!err) {
 			notice = docs;
 		}//end of if
@@ -69,9 +98,10 @@ exports.post = function(req, res) {
 			
 			if( 'id' === type ){
 				model.find({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id})
-					.sort('date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						if(!err){
 							model.count({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id}, function(err, length){
+								
 								display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 							});//end of count
 						}//end of if
@@ -82,7 +112,7 @@ exports.post = function(req, res) {
 			}//end of if
 			else if( 'name' === type ){
 				model.find({notice : false, deleted : false, name : search_reg_exp, board_id : board_id})
-					.sort('date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						if(!err){
 							model.count({notice : false, deleted : false, name : search_reg_exp, board_id : board_id}, function(err, length){
 								display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
@@ -95,7 +125,7 @@ exports.post = function(req, res) {
 			}//end of else if
 			else if( 'subject' === type ){
 				model.find({notice : false, deleted : false, subject : search_reg_exp, board_id : board_id})
-					.sort('date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						if(!err){
 							model.count({notice : false, deleted : false, subject : search_reg_exp, board_id : board_id}, function(err, length){
 								display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
@@ -108,7 +138,7 @@ exports.post = function(req, res) {
 			}//end of else if
 			else if( 'content' === type ){
 				model.find({notice : false, deleted : false, content : search_reg_exp, board_id : board_id})
-					.sort('date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						if(!err){
 							model.count({notice : false, deleted : false, content : search_reg_exp, board_id : board_id}, function(err, length){
 								display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
@@ -121,7 +151,7 @@ exports.post = function(req, res) {
 			}//end of else if
 			else {
 				model.find({notice : false, deleted : false, board_id : board_id})
-					.sort('date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						if(!err){
 							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
 								display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);

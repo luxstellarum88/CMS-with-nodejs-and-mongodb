@@ -120,11 +120,9 @@ app.get('/board', requiresLogin ,routes.boardView);
 app.get('/write', routes.write);
 app.post('/board_write', routes.boardWrite);
 
-app.get('/modify', routes.boardModify);
 app.get('/board_modify', routes.boardModify);
 app.post('/update', routes.boardUpdate);
 
-app.get('/delete', routes.boardDelete);
 app.get('/board_delete', routes.boardDelete);
 
 app.post('/comment_write', routes.commentWrite);

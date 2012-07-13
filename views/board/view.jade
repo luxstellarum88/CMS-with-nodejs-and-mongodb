@@ -1,0 +1,75 @@
+script
+	function search() {
+		location.href="/board?id=#{board_id}&type="+document.getElementsByName("type")[0].value
+						+"&content="+document.getElementsByName("content")[0].value;
+	}
+
+h1= title
+
+p #{sessionId} 님이 로그인 하셨습니다.
+
+div(style='width:760px;')
+	table
+		tr
+			th.content No
+			th.content Subject
+			th.content User
+			th.content Date
+			th.content hit
+			
+			-for(var i=0; i<notice.length; i++)
+				-if(notice[i])
+					tr
+						td.content 공지
+						td.content 
+							a(href='/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
+						td.content #{notice[i].user_name}
+						td.content #{notice[i].insert_date}
+						td.content #{notice[i].hit}
+			-for(var i=0; i<paging; i++)
+				-if(docs[i]){
+					tr
+						td.content #{length - ( (current_page-1) * paging ) - i}
+						td.content
+							a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}
+						td.content #{docs[i].user_name}
+						td.content #{docs[i].insert_date}
+						td.content #{docs[i].hit}
+				-}
+
+	center
+		-for(var i=0; i < (length/paging); i++)
+			a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{i+1}') [#{i+1}]
+		
+	div(style='text-align:right;')
+		input( type ='button', id='write', value='글쓰기', onClick="location.href='/write?id=#{board_id}'")
+		input( type ='button', id='write_notice', value='Logout', onClick="location.href='/logout'")
+	div(style='text-align:center;')
+		-if(type == 'name')
+			select(id='type', name='type')
+				option(value='Id') 아이디
+				option(value='subject') 제목
+				option(value='memo') 내용
+				option(value='name', selected) 이름
+		-else if(type == 'memo')
+			select(id='type', name='type')
+				option(value='Id') 아이디
+				option(value='subject') 제목
+				option(value='memo', selected) 내용
+				option(value='name') 이름
+		-else if(type == 'subject')
+			select(id='type', name='type')
+				option(value='Id') 아이디
+				option(value='subject', selected) 제목
+				option(value='memo') 내용
+				option(value='name') 이름
+		-else
+			select(id='type', name='type')
+				option(value='Id', selected) 아이디
+				option(value='subject') 제목
+				option(value='memo') 내용
+				option(value='name') 이름
+		input(type='text', name='content', id='content', value='#{content}')
+		input(type='button', name='search_button', onClick='javascript:search()', value='검색')
+
+

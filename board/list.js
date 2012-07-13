@@ -5,12 +5,12 @@
 var db = require('../Database/board/board_list_db');
 db.connect();
 
-exports.view = function(req, res) {
+exports.list = function(req, res) {
 	var model = db.get_model();
 	
 	model.find().sort('date', -1).exec(function(err, docs){
 		if(!err) {
-			res.render('boardMain', {
+			res.render('board/main', {
 				title: 'Board Main',
 				docs: docs
 			});//end of render
@@ -19,4 +19,4 @@ exports.view = function(req, res) {
 			console.log('in list.js : error');
 		}
 	});//end of find
-}//end of view
+}//end of list

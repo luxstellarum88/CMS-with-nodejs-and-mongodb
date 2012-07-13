@@ -22,18 +22,18 @@ div(style='width:760px;')
 					tr
 						td.content 공지
 						td.content 
-							a(href='/admin/notice?id=#{board_id}&num=#{notice[i].no}', style="color:black;") #{notice[i].subject}
-						td.content #{notice[i].name}
-						td.content #{notice[i].date}
+							a(href='/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
+						td.content #{notice[i].user_name}
+						td.content #{notice[i].insert_date}
 						td.content #{notice[i].hit}
 			-for(var i=0; i<paging; i++)
 				-if(docs[i]){
 					tr
 						td.content #{length - ( (current_page-1) * paging ) - i}
 						td.content
-							a(href='/board?id=#{board_id}&num=#{docs[i].no}', style="color:black;") #{docs[i].subject}	
-						td.content #{docs[i].name}
-						td.content #{docs[i].date}
+							a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}	
+						td.content #{docs[i].user_name}
+						td.content #{docs[i].insert_date}
 						td.content #{docs[i].hit}
 				-}
 

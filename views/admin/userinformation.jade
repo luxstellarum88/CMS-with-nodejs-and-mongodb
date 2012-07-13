@@ -29,5 +29,4 @@ form(method='post', name='modify_form', id='modify_form', action='/user_modify')
 			td
 				!{info.email}
 	input(type='button', name='user_modify', value='수정', onClick='call_confirm_post("수정하시겠습니까?","modify_form")')
-a(href='/admin/userlists')
-	input(type='button', name='gotolist', value='목록')
+	input(type='button', name='gotolist', value='목록', onClick='location.href="/admin/userlists"')
