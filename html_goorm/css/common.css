@@ -1,0 +1,60 @@
+body { background: url('../images/background.png') repeat-x; background-color: #779ec7; margin: 0;font-family: 'NanumGorhicWeb'; font-size: 10pt;}
+
+#top { background: black; opacity: 0.7; height: 33px; padding-top: 8px;position: relative; }
+#topMenu { width: 426px; height:25px; position: relative; left:50%; margin-top: -33px; margin-left: -30px }
+#idInputBox {  background: url('../images/idInputBox.png') no-repeat; width:167px; height:25px; border: none; padding-left: 20px; outline: none; float: left }
+#pwInputBox { background: url('../images/idInputBox.png') no-repeat; width:113px; height:25px; border: none; padding-left: 20px; outline: none; float: left; margin-left: 5px}
+#loginButton { background: url('../images/loginButton.png'); width:54px ;height:25px; float: left}
+#signUpButton { background: url('../images/signUpButton.png'); width:77px ;height:25px; float: left; margin-left: 10px}
+
+
+#mainMenu {background: url('../images/mainMenuBackground.png'); width:870px; height:52px; margin-top:30px;  position:relative; left:50%; margin-left:-435px; z-index: 1}
+#mainMenu #logo { width: 150px; height: 37px; display: block; float:left; margin-left: 28px; margin-top:6px}
+
+ul.mainmenu {float:left; height:50px; margin-top:17px; padding: 0}
+li.mainmenu {float:left; border:0; height:27px;}
+
+.mainmenu a{display:block; text-indent:-5000px; overflow:hidden}
+.mainmenu a#menu1{width:107px; height:27px; background-image:url('../images/menu/menu01.png'); margin-left: 255px;}
+.mainmenu a#menu1:hover{ background-image:url('../images/menu/menu01_h.png')}
+/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('../images/menu/menu01_select.jpg')} */
+
+.mainmenu a#menu2{width:120px; height:27px; background-image:url('../images/menu/menu02.png')}
+.mainmenu a#menu2:hover{background-image:url('../images/menu/menu02_h.png')}
+/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('../images/menu/menu02_select.jpg')} */
+
+.mainmenu a#menu3{width:82px; height:27px; background-image:url('../images/menu/menu03.png')}
+.mainmenu a#menu3:hover{background-image:url('../images/menu/menu03_h.png')}
+/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('../images/menu/menu03_select.jpg')} */
+
+.mainmenu a#menu4{width:82px; height:27px; background-image:url('../images/menu/menu04.png')}
+.mainmenu a#menu4:hover{background-image:url('../images/menu/menu04_h.png')}
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('../images/menu/menu04_select.jpg')} */
+
+
+#subMenu { height:88px; background: url('../images/subMenuBackground.png') no-repeat; position:relative; top: -82px; margin-top: 35px; background-position: center; z-index: 0}
+.submenu a{display:block; text-indent:-5000px; overflow:hidden; opacity: 0.6}
+ul.submenu {width:432px; float:left; margin-top: 66px; position: relative; left:50%; margin-left: 0; padding: 0}
+li.submenu {float:left; border : 0; height:13px; margin-right:20px; }
+
+.submenu a#menu1{width:67px; height:13px; background-image:url('../images/submenu/submenu01_01.png');}
+.submenu a#menu1:hover{background-image:url('../images/submenu/submenu01_01.png'); opacity: 1}
+/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('../images/menu/menu01_select.jpg')} */
+
+.submenu a#menu2{width:91px; height:13px; background-image:url('../images/submenu/submenu01_02.png');}
+.submenu a#menu2:hover{background-image:url('../images/submenu/submenu01_02.png'); opacity: 1}
+/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('../images/menu/menu02_select.jpg')} */
+
+.submenu a#menu3{width:115px; height:13px; background-image:url('../images/submenu/submenu01_03.png');}
+.submenu a#menu3:hover{background-image:url('../images/submenu/submenu01_03.png'); opacity: 1}
+/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('../images/menu/menu03_select.jpg')} */
+
+.submenu a#menu4{width:79px; height:13px; background-image:url('../images/submenu/submenu01_04.png');}
+.submenu a#menu4:hover{background-image:url('../images/submenu/submenu01_04.png'); opacity: 1}
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('../images/menu/menu04_select.jpg')} */
+
+
+#footer { background: black; opacity: 0.7; width: 100%; height:140px; position: relative; bottom: 0; color: #999999; font-family: 'NanumGorhicWeb'; font-size: 7pt; padding-top: 20px; margin-top:36px}
+#footer #footerContents01{width:870px; position:relative; left:50%; margin-left:-435px;}
+#footer #footerContents02{width:870px; position:relative; left:50%; margin-left:-435px; font-weight: bold; margin-top: 30px}
+#footer #footerLogo{background: url('../images/goormLogo.png'); width: 94px; height:33px; position: relative; top:-55px; left:50%; margin-left: 340px; font-weight: bold }
