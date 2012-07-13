@@ -115,7 +115,7 @@ exports.boardView = function(req, res){
 				});	
 			}
 			else{
-				console.log('not find');
+				console.log('article not found');
 				res.redirect('/board?id=' + board_id);
 			}
 		});
@@ -184,6 +184,25 @@ exports.boardWrite = function(req, res){
 			alert : alert_script
 		}) ;
 	}
+}
+
+exports.boardPreview = function(req, res){
+	var board = {subject:'', name:'', date:'', memo:'', no:0, };
+	var comm=[];
+	board.subject = req.body.subject;
+	board.name = req.body.name;
+	board.date = new Date();
+	board.memo = req.body.memo;
+	var k=-1;
+	
+	res.render('boardShow', {
+		title: '미리보기',
+		board_id: req.body.id,
+		notice : k,
+		sessionId: req.session.user.Id,
+		board: board,
+		comm: comm
+	});
 }
 
 

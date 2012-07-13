@@ -1,5 +1,19 @@
+script(src='/javascript/common.js')
+
+script(type='text/javascript')
+	function preview(){
+		OpenWindow('', 'newWin', 850, 450);
+		var frm = document.getElementById('frmwrite'); 
+		
+		frm.action = '/board_preview';
+		frm.target = 'newWin';
+		frm.submit();
+		
+		frm.action='/board_write';
+		frm.target = '_self';
+	}
 h1= title
-form(action='/board_write', method='POST')
+form(action='/board_write', method='POST')#frmwrite
 	table
 		tr
 			td.content Subject
@@ -22,4 +36,5 @@ form(action='/board_write', method='POST')
 		tr
 			td.content(colspan='2') 
 				input(type='hidden', name='id', value='#{id}')
-				input(type='submit')
+				input(type='button', onclick='javascript:preview();', value='미리보기')
+				input(type='submit', value='저장')
