@@ -1,18 +1,25 @@
 
+/*
+	2012. 7. 13. by JH
+	새 DB 구조에 맞춰 재작성
+*/
+
 var db = require('../Database/board/board_db')
+var event_emitter = require('events').EventEmitter;
+
 
 exports.insert = function(req, res) {
 	db.connect();
 	var make_model = db.make_model();
 	var find_model = db.get_model();
-	var index = 0;
+	var index = 1;
 	var write_type;
-	//if(req.body.write_type === )
+
+	find_model.findOne().sort('index', -1).exec(function(err, docs){
+		if(!err){
+			//잠적적 문제요인
+			if(docs) index = docs.index + 1;	
 	
-	find_model.count(function(err, counter) {
-		if(!err) {
-			index = counter + 1;
-			
 			make_model.board_id = req.body.id;
 			make_model.notice = req.body.write_type || false; 
 			make_model.index = index; 
@@ -35,9 +42,8 @@ exports.insert = function(req, res) {
 				res.redirect('/board?id=' + req.body.id);
 			}) ;//end of save
 		}//end of if
-		else {
-			console.log('in write.js : error(01)');
-			res.redirect('/board?id=' + req.body.id);
+		else{
+			console.log('in write.js : error(02)');
 		}
-	});//end of count
+	});//end of findOne
 }//end of insert

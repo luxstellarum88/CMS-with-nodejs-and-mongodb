@@ -1,7 +1,6 @@
 var adminCheck = require('../admin/admin_check');
 var boardMake = require('../admin/makeBoard');
-var boardOption = require('../admin/boardoption');
-var board_recent_doc = require('../admin/board_recent_doc');
+
 var notice = require('../admin/notice_board');
 var notify = require('../admin/notify');			// e-mail, SMS..
 var recent_comment = require('../admin/recent_comment');
@@ -12,16 +11,7 @@ var users = require('../account/users');
 var userMake = require('../account/makeaccount');
 var deleteUserService = require('../admin/delete_user.js'); // Ban user
 
-var boview = require('../board/boards');
-var bowrite = require('../board/board_write');
-var boupdate = require('../board/board_update');
-var boCheck = require('../board/board_check');
-
-var commwrite = require('../board/comment/comment_write');
 var commDelete = require('../board/comment/comment_delete');
-var commview = require('../board/comment/comment_view');
-
-var event_emmitter = require('events').EventEmitter; //event handler
 
 /*
 	2012. 07. 13. by JH
@@ -30,6 +20,13 @@ var board_list = require('../admin/board_list');
 var board_main = require('../board/list');
 var board_view = require('../board/view');
 var board_write = require('../board/write');
+var board_show = require('../board/show_contents');
+var board_modify = require('../board/modify');
+var board_delete = require('../board/delete');
+
+var board_recent_doc = require('../admin/board_recent_doc');
+
+var comment_write = require('../board/comment/write');
 
 exports.index = function(req, res){
 	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
@@ -57,7 +54,7 @@ exports.admin = function(req, res){
 }
 
 exports.boardMain = function(req, res){
-	board_main.view(req, res);
+	board_main.list(req, res);
 }//end of boardMain
 
 exports.board_make_form = function(req, res){
@@ -66,6 +63,19 @@ exports.board_make_form = function(req, res){
 	});
 }
 
+exports.write = function(req, res){
+	var auth = 'guest';
+	
+	if('admin' === req.session.user.role || 'superadmin' === req.session.user.Id) {
+		auth = 'admin';
+	}
+	
+	res.render('board/write', {
+		title: 'write'
+		, id : req.query.id
+		, auth : auth
+	});
+}
 
 exports.boardWrite = function(req, res){
 	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
@@ -80,6 +90,37 @@ exports.boardWrite = function(req, res){
 	}
 }
 
+exports.boardView = function(req, res){	
+	if(!req.query.num){
+		// /board?id=*&page=*		
+		board_view.post(req, res);
+	}
+	else{
+		// /board?id=*&num=*
+		board_show.contents(req, res);
+	}
+}
+
+exports.boardModify = function(req, res){
+	board_modify.show(req, res);	
+}
+
+exports.boardUpdate = function(req, res){
+	if( (""!=req.body.subject) && (""!=req.body.memoForm) ) {
+		board_modify.update(req, res);
+	}
+	else {
+		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		}) ;
+	}
+}
+
+exports.boardDelete = function(req, res){
+	board_delete.del(req, res);
+}
 
 exports.logout = function(req, res) {
 	if(req.session.user) {
@@ -88,6 +129,22 @@ exports.logout = function(req, res) {
 	}
 }
 
+exports.commentWrite = function(req, res){
+	comment_write.insert(req, res);
+}
+
+
+exports.recent_comment_view = function(req, res) {
+	recent_comment.view(req, res);
+}
+
+
+exports.board_recent_view = function(req, res) {
+	board_recent_doc.show(req, res);
+}
+
+
+//------------------------------------------------------수정완료
 
 exports.userlistView = function(req, res){
 	users.allUser(req, res);
@@ -110,41 +167,6 @@ exports.join = function(req, res){
 
 exports.makeaccount = function(req, res){
 	userMake.insertUser(req, res);
-}
-
-exports.boardView = function(req, res){	
-	var board_id = req.query.id;
-	var board_num = req.query.num;
-	var PageNum = req.query.page || 1;
-	var type = req.query.type || "";
-	var content = req.query.content || "";
-	
-	if(!board_num){
-		// /board?id=*&page=*		
-		board_view.post(req, res);
-	}
-	else{
-		// /board?id=*&num=*
-		boview.findById(board_id, board_num, function(board){
-			if(board){
-				commview.viewComment(board_id, board_num, function(comm){
-					boardOption.hitSeqInc(board_id, board_num, 1);
-					res.render('boardShow', {
-						title: 'show',
-						board_id: board_id,
-						board: board,
-						comm: comm,
-						sessionId: req.session.user.name,
-						notice : false
-					});
-				});	
-			}
-			else{
-				console.log('article not found');
-				res.redirect('/board?id=' + board_id);
-			}
-		});
-	}
 }
 
 exports.boardIdView = function(req, res){
@@ -177,128 +199,21 @@ exports.boardNumView = function(req, res){
 }
 
 
-
-exports.write = function(req, res){
-	
-	var auth = 'guest';
-	
-	if('admin' === req.session.user.role || 'superadmin' === req.session.user.Id) {
-		auth = 'admin';
-	}
-	
-	res.render('write', {
-		title: 'write'
-		, id : req.query.id
-		, auth : auth
-	})
-}
-
-exports.boardWrite = function(req, res){
-	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
-		if('notice' === req.body.write_type) {
-			notice.insert(req.session.user.Id, req.body, res);
-		}
-		else {
-			bowrite.insertBoard(req, res);
-		}		
-	}
-	else {
-		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-		res.render('alert', {
-			title : 'Error',
-			alert : alert_script
-		}) ;
-	}
-}
-
 exports.boardPreview = function(req, res){
-	var board = {subject:'', name:'', date:'', memo:'', no:0, };
+	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
 	var comm=[];
 	board.subject = req.body.subject;
-	board.name = req.body.name;
-	board.date = new Date();
-	board.memo = req.body.memo;
+	board.user_name = req.body.name;
+	board.insert_date = new Date();
+	board.content = req.body.memo;
 	var k=-1;
 	
-	res.render('boardShow', {
+	res.render('board/show', {
 		title: '미리보기',
 		board_id: req.body.id,
-		notice : k,
 		sessionId: req.session.user.Id,
 		board: board,
-		comm: comm
-	});
-}
-
-exports.boardModify = function(req, res){
-	var board_num = req.query.num;
-	var board_id = req.query.id;
-	
-	boCheck.checkId(board_id, board_num, req.session.user, function(result){
-		if(result){
-			res.render('modify', {
-				title: 'modify',
-				docs: result,
-				id: board_id, //add 120707 JH
-				notice : false
-			});	
-		}
-		else{
-			alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
-			title : 'Error'
-			,alert : alert_script
-			});
-		}
-				
-	});
-}
-
-
-exports.boardUpdate = function(req, res){
-	boupdate.update(req.body, res);
-}
-
-
-exports.boardDelete = function(req, res){
-	var board_id = req.query.id;
-	var board_num = req.query.num;
-	
-	boCheck.checkId(board_id, board_num, req.session.user, function(result){
-		if(result){
-			result.remove();
-			board_recent_doc.del(board_num, function(result){
-				result.remove();
-				res.redirect('/board?id='+board_id);
-			});//end of delete_recent_doc			
-		}
-		else{
-			alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
-			title : 'Error'
-			,alert : alert_script
-			});
-		}
-				
-	});
-}
-
-exports.commentWrite = function(req, res){
-	recent_comment.insert(req, res);
-	commwrite.writeComment(req ,res, function(result){
-		if(result){
-			if('false'===req.body.notice) {
-				boardOption.CommentSeqInc(result['board_id']);
-				res.redirect('/board?id='+result['board_id'] + '&num='+ result['boardNo']);
-			}
-			else{
-				res.redirect('/admin/notice?id='+result['board_id'] + '&num='+ result['boardNo']);
-			}
-		}
-		else{
-			console.log('comment_write_fail');
-			res.redirect('back');
-		}
+		comment: comm
 	});
 }
 
@@ -425,10 +340,6 @@ exports.deleteUser = function(req, res){
 	});
 }
 
-exports.board_recent_view = function(req, res) {
-	board_recent_doc.find_recent_doc (req, res);
-}
-
 exports.write_notice = function(req, res) {
 	res.render('admin/board_notice_write', {
 		title : 'Write Notice',
@@ -466,6 +377,3 @@ exports.notice_update = function(req, res){
 }
 
 
-exports.recent_comment_view = function(req, res) {
-	recent_comment.view(req, res);
-}

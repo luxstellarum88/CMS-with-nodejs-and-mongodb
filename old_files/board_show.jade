@@ -1,0 +1,16 @@
+script(src='/javascript/common.js')
+
+h1= title
+
+table
+	tr
+		td.content.title #{board.subject}
+		td.content.user(width='200', align='right') #{board.user_name}
+	tr
+		td.content(colspan='2',align='right') #{board.insert_date}
+	tr
+		td.content(colspan='2') #{board.content}
+	tr
+		td.content(colspan='2', align='right')
+			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.index}'")
+			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.index}')")
