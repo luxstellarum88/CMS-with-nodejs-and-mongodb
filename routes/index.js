@@ -30,6 +30,19 @@ var board_recent_doc = require('../admin/board_recent_doc');
 
 var comment_write = require('../board/comment/write');
 
+
+// HTML PAGE RENDERING
+var html_page = require('../html_manager/service');
+
+exports.html_main = function(req, res){
+	html_page.index(req, res);
+}
+
+exports.html_sub1_1 = function(req, res){
+	html_page.sub1_1(req, res);
+}
+
+
 exports.index = function(req, res){
 	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
 	if(req.session.user) {

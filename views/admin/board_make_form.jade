@@ -8,10 +8,10 @@ form(action='/admin/board_make', method='POST')
 	p
 		label(for='pagingNumber') Board PagingNumber:
 		input(type='text', name='pagingNumber', id='pagingNumber')
-	p
-		label(for='pagingNumber') Board Skin:
-		select
-			-for(var i=0; i<skins.length; i++)
-				option(value='#{skins[i]}')
-					!{skins[i]}
+	//p
+		//label(for='pagingNumber') Board Skin:
+		//select
+			//-for(var i=0; i<skins.length; i++)
+				//option(value='#{skins[i]}')
+					//!{skins[i]}
 	input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성')

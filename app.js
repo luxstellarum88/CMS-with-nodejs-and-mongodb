@@ -81,6 +81,11 @@ function requiresSuperUserLogin(req, res, next){
 
 // Routes
 
+// HTML PAGE RENDERING PART
+app.get('/main', routes.html_main);
+app.get('/sub1/sub1', routes.html_sub1_1);
+
+
 app.get('/', routes.index);
 
 app.get('/admin', routes.admin);
