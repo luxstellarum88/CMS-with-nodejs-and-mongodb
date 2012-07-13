@@ -5,7 +5,7 @@ div(style='width:760px;')
 		tr
 			th.content 번호
 			th.content 게시판 명
-			th.content 글 제목
+			th.content 글 번호
 			th.content 이름
 			th.content 내용
 			th.content 날짜
@@ -15,13 +15,10 @@ div(style='width:760px;')
 						td.content #{i+1}
 						td.content 
 							a(href='/board?id=#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
-						td.content #{docs[i].subject}	
-						td.content #{docs[i].name}
+						td.content #{docs[i].post_index}	
+						td.content #{docs[i].user_name}
 						td.content
-							-if(docs[i].notice == true) 
-								a(href='/admin/notice?id=#{docs[i].board_id}&num=#{docs[i].boardNo}', style="color:black;") #{docs[i].comment}
-							-else
-								a(href='/board?id=#{docs[i].board_id}&num=#{docs[i].boardNo}', style="color:black;") #{docs[i].comment}
-						td.content #{docs[i].date}
+							a(href='/board?id=#{docs[i].board_id}&num=#{docs[i].post_index}', style="color:black;") #{docs[i].content}
+						td.content #{docs[i].insert_date}
 				-}
 	input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')

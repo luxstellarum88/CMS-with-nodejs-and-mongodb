@@ -1,0 +1,53 @@
+script(src='/javascript/common.js')
+
+h1= title
+
+table
+	tr
+		td.content.title #{board.subject}
+		td.content.user(width='200', align='right') #{board.user_name}
+	tr
+		td.content(colspan='2',align='right') #{board.insert_date}
+	tr
+		td.content(colspan='2') #{board.content}
+	tr
+		td.content(colspan='2', align='right')
+			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.index}'")
+			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.index}')")
+
+table
+	-for(var i=0; i<comment.length; i++)
+		-if(i==0)
+			tr
+				td.content(colspan='3') Comment
+		-if(comment[i])
+			tr
+				td.content #{comment[i].user_id}
+				td.content #{comment[i].content}
+				td.content(width='50', align='right')
+					input(type='button', id='commentDelete', value='제거', onClick="");
+	tr
+		td.content(colspan='3', align = 'right')
+			-for(var i=0; i<length; i++)
+				a(href='/board?id=#{board_id}&num=#{board.index}&comm_page=#{i+1}') [#{i+1}]
+					
+br
+
+form(method='post', action='/comment_write')
+	table
+		tr
+			td.content User
+			td.content #{sessionId}
+			td.content Password
+			td.content
+				input(type='password', id='passwordForm', name='passwordForm')		
+		tr
+			td.content Comment
+			td.content(colspan='3')
+				input(type='textbox', id='commentForm', name='commentForm')	
+				input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
+				input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
+				input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
+		tr
+			td.content(colspan='4')
+				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')

@@ -1,11 +1,3 @@
-script	
-	function boardMake(){
-		location.href="/admin/board_make_form";
-	}
-	
-	
-	
-
 div(style='width:760px;')
 	table
 		tr
@@ -13,20 +5,18 @@ div(style='width:760px;')
 			th.content Id
 			th.content Name
 			th.content pagingNumber
-			th.content boardSeq
-			th.content commentSeq
+			th.content date
 			-for(var i=docs.length; i>0; i--)
 				-if(docs[i-1]){
 					tr
 						td.content #{i}
-						td.content #{docs[i-1].Id}
+						td.content #{docs[i-1].id}
 						td.content #{docs[i-1].name}
-						td.content #{docs[i-1].pagingNumber}
-						td.content #{docs[i-1].boardSeq}
-						td.content #{docs[i-1].commentSeq}
+						td.content #{docs[i-1].paging}
+						td.content #{docs[i-1].date}
 				-}
 
-input( type ='button', id='board_make_button', value='게시판 만들기', onClick="boardMake()")
+input( type ='button', id='board_make_button', value='게시판 만들기', onClick="location.href='/admin/board_make_form'")
 input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"')
 br
 input( type ='button', id='userlist_button', value='유저리스트', onClick="location.href='/admin/userlists'")
