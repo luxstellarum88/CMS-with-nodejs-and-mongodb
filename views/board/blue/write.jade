@@ -1,0 +1,40 @@
+script(src='/javascript/common.js')
+
+script(type='text/javascript')
+	function preview(){
+		OpenWindow('', 'newWin', 850, 450);
+		var frm = document.getElementById('frmwrite'); 
+		
+		frm.action = '/board_preview';
+		frm.target = 'newWin';
+		frm.submit();
+		
+		frm.action='/board_write';
+		frm.target = '_self';
+	}
+h1= title
+form(action='/board_write', method='POST')#frmwrite
+	table
+		tr
+			td.content Subject
+			td.content 
+				input(type='text', name='subject', id='subject')
+		-if('admin' === auth)
+			tr
+				td.content Notice
+				td.content
+					input(type='checkbox', name='write_type', value='notice') 
+					공지사항
+		tr
+			td.content Name
+			td.content 
+				input(type='text', name='name', id='name')
+		tr
+			td.content Memo
+			td.content 
+				textarea(name='memo', id='memo')
+		tr
+			td.content(colspan='2') 
+				input(type='hidden', name='id', value='#{id}')
+				input(type='button', onclick='javascript:preview();', value='미리보기')
+				input(type='submit', value='저장')

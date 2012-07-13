@@ -7,7 +7,8 @@ var BoardOptionIdentitySchema = new Schema({
 	name: String,
 	pagingNumber: Number,
 	boardSeq: Number,
-	commentSeq: Number
+	commentSeq: Number,
+	skin: String
 });
 
 var BoardOptionIdentityModel;

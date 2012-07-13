@@ -3,14 +3,16 @@ var boardMake = require('../admin/makeBoard');
 var boardOption = require('../admin/boardoption');
 var board_recent_doc = require('../admin/board_recent_doc');
 var notice = require('../admin/notice_board');
-var notify = require('../admin/notify');			// e-mail, SMS..
 var recent_comment = require('../admin/recent_comment');
 
 var alert = require('../alert/alert')
 
+var skin_manager = require('../skin_manager/service');
+
 var users = require('../account/users');
 var userMake = require('../account/makeaccount');
 var deleteUserService = require('../admin/delete_user.js'); // Ban user
+var notify = require('../admin/notify');			// e-mail, SMS..
 
 var boview = require('../board/boards');
 var bowrite = require('../board/board_write');
@@ -417,8 +419,12 @@ exports.boardMain = function(req, res){
 }
 
 exports.board_make_form = function(req, res){
-	res.render('admin/board_make_form', {
-		title: 'board_make_form'
+	var skinlist = new Array();
+	skin_manager.getBoardSkinList(function(skinlist){
+		res.render('admin/board_make_form', {
+			title: 'board_make_form'
+			, skins: skinlist
+		});
 	});
 }
 

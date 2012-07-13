@@ -1,0 +1,57 @@
+script(src='/javascript/common.js')
+	function commentDelete(commentId){
+		window.open("/comment_delete?board_id=#{board_id}&board_num=#{board.no}&comment_id="+commentId, "", "location=0, resizable=0, status=0, width=400, height=300");
+	}
+h1= title
+
+table
+	tr
+		td.content.title #{board.subject}
+		td.content.user(width='200', align='right') #{board.name}
+	tr
+		td.content(colspan='2',align='right') #{board.date}
+	tr
+		td.content(colspan='2') <br><br><br><br>#{board.memo}<br><br><br><br><br>
+	tr
+		td.content(colspan='2', align='right')
+			-if(notice==-1)
+				&nbsp;
+			-else if(notice)
+				input( type ='button', id='modify', value='수정', onClick="location.href='/admin/notice_modify?id=#{board_id}&num=#{board.no}'")
+				input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/admin/notice_delete?id=#{board_id}&num=#{board.no}')")
+			-else
+				input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.no}'")
+				input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.no}')")
+
+-if(notice!=-1)
+	table
+		-for(var i=0; i<comm.length; i++)
+			-if(i==0)
+				tr
+					td.content(colspan='3') Comment
+			-if(comm[i])
+				tr
+					td.content #{comm[i].Id}
+					td.content #{comm[i].comment}
+					td.content(width='50', align='right')
+						input(type='button', id='commentDelete', value='제거', onClick="commentDelete(#{comm[i].commId})");
+	br
+	form(method='post', action='/comment_write')
+		table
+			tr
+				td.content User
+				td.content #{sessionId}
+				td.content Password
+				td.content
+					input(type='password', id='passwordForm', name='passwordForm')		
+			tr
+				td.content Comment
+				td.content(colspan='3')
+					input(type='textbox', id='commentForm', name='commentForm')	
+					input(type='hidden', id='boardNoForm', name='boardNoForm', value=board.no)
+					input(type='hidden', id='board_id', name='board_id', value=board_id)
+					input(type='hidden', id='notice', name='notice', value='#{notice}')
+					input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
+			tr
+				td.content(colspan='4')
+					input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
