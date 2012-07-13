@@ -140,7 +140,7 @@ exports.boardView = function(req, res){
 				});	
 			}
 			else{
-				console.log('not find');
+				console.log('article not found');
 				res.redirect('/board?id=' + board_id);
 			}
 		});
@@ -193,6 +193,42 @@ exports.write = function(req, res){
 	})
 }
 
+exports.boardWrite = function(req, res){
+	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
+		if('notice' === req.body.write_type) {
+			notice.insert(req.session.user.Id, req.body, res);
+		}
+		else {
+			bowrite.insertBoard(req, res);
+		}		
+	}
+	else {
+		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		}) ;
+	}
+}
+
+exports.boardPreview = function(req, res){
+	var board = {subject:'', name:'', date:'', memo:'', no:0, };
+	var comm=[];
+	board.subject = req.body.subject;
+	board.name = req.body.name;
+	board.date = new Date();
+	board.memo = req.body.memo;
+	var k=-1;
+	
+	res.render('boardShow', {
+		title: '미리보기',
+		board_id: req.body.id,
+		notice : k,
+		sessionId: req.session.user.Id,
+		board: board,
+		comm: comm
+	});
+}
 
 exports.boardModify = function(req, res){
 	var board_num = req.query.num;
