@@ -21,7 +21,7 @@ div#board
 							tr
 								td.no 공지
 								td.title 
-									a(href='/admin/notice?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
+									a(href='/admin/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
 									a.replyNum [0]
 								td.author #{notice[i].user_name}
 								td.time #{notice[i].insert_date}
@@ -32,7 +32,7 @@ div#board
 								td.no #{length - ( (current_page-1) * paging ) - i}
 								td.title
 									a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}	
-									a.replyNum [0]
+									a.replyNum #{comment_number[i]}
 								td.author #{docs[i].user_name}
 								td.time #{docs[i].insert_date}
 								td.readNum #{docs[i].hit}

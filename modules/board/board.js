@@ -258,20 +258,36 @@ var self = module.exports = {
 	*/
 		
 	display_result : function(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
-		//var comments = require('./comment/count');
-		res.render('board/view', {
-			board_id: board_id,
-			title: title,
-			docs: docs,
-			notice : notice,
-			current_page: current_page,
-			paging: paging_size,
-			length: length,
-			sessionId: sessionId,
-			type: type,
-			content: content
-			//comment_number : comment_counter
-		});
+		var comment = require('../comment/comment');
+		var i = 0;
+		var evt = new event_emitter();
+		var comment_number = [];
+		
+		evt.on('comment_counting', function(evt, i){
+			if(i < docs.length) {
+				comment.counter(docs[i].index, function(result) {
+					comment_number.push({i : result});
+					evt.emit('comment_counting', evt, ++i);
+				});//end of counter			
+			}//end of if
+			else {
+				console.log(comment_number);
+				res.render('board/view', {
+					board_id: board_id,
+					title: title,
+					docs: docs,
+					notice : notice,
+					current_page: current_page,
+					paging: paging_size,
+					length: length,
+					sessionId: sessionId,
+					type: type,
+					content: content,
+					comment_number : comment_number
+				});//end of render
+			}//end of else
+		});//end of evt on
+		evt.emit('comment_counting', evt, i);		
 	},//end of display_result
 	
 	get_notice : function(req, res){
