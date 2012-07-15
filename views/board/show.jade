@@ -1,19 +1,33 @@
 script(src='/javascript/common.js')
 
+head
+	link(rel='stylesheet', type='text/css', href='../css/sub03/sub01.css')
+	link(rel='stylesheet', type='text/css', href='../css/sub03/view.css')
+	link(rel='stylesheet', type='text/css', href='../css/cloud.css')
+	
+
 h1= title
 
-table
-	tr
-		td.content.title #{board.subject}
-		td.content.user(width='200', align='right') #{board.user_name}
-	tr
-		td.content(colspan='2',align='right') #{board.insert_date}
-	tr
-		td.content(colspan='2') #{board.content}
-	tr
-		td.content(colspan='2', align='right')
+div#board
+	div#boardTop
+		div#boardTitle= title
+	div#boardMiddle
+		div#readHeader
+			div#titleWrap
+				a#title #{board.subject}
+				div#time #{board.insert_date}
+			div#information
+				div#author
+					a #{board.user_name}
+				div#readNum 조회 수 : #{board.hit}
+		div#readMiddle #{board.content}
+		div#readFooter
 			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.index}'")
 			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.index}')")
+		
+	div#boardBottom
+	
+
 
 table
 	-for(var i=0; i<comment.length; i++)
