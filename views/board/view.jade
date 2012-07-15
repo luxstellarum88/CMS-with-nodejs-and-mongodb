@@ -3,11 +3,8 @@ script
 		location.href="/board?id=#{board_id}&type="+document.getElementsByName("type")[0].value
 						+"&content="+document.getElementsByName("content")[0].value;
 	}
-head
-	link(rel='stylesheet', type='text/css', href='../css/common.css')
-	link(rel='stylesheet', type='text/css', href='../css/sub03/sub01.css')
 
-div#detail03
+div#board
 	div#boardTop
 		div#boardTitle= title
 	div#boardMiddle
@@ -24,8 +21,8 @@ div#detail03
 							tr
 								td.no 공지
 								td.title 
-									a(href='/admin/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
-									a.replyNum [0]
+									a(href='/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
+									a.replyNum [#{notice_comment_number[i]}]
 								td.author #{notice[i].user_name}
 								td.time #{notice[i].insert_date}
 								td.readNum #{notice[i].hit}
@@ -35,7 +32,7 @@ div#detail03
 								td.no #{length - ( (current_page-1) * paging ) - i}
 								td.title
 									a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}	
-									a.replyNum #{comment_number[i]}
+									a.replyNum [#{comment_number[i]}]
 								td.author #{docs[i].user_name}
 								td.time #{docs[i].insert_date}
 								td.readNum #{docs[i].hit}

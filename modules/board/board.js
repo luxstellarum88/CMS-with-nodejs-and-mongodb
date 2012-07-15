@@ -260,18 +260,31 @@ var self = module.exports = {
 	display_result : function(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
+		var j = 0;
 		var evt = new event_emitter();
-		var comment_number = [];
+		var comment_number = new Array();
+		var notice_comment_number = new Array();
+		
+		evt.on('notice_comment_counting', function(evt, j){
+			if(j < notice.length) {
+				comment.counter(notice[j].index, function(result) {
+					notice_comment_number[j] = result;
+					evt.emit('notice_comment_counting', evt, ++j);
+				});//end of counter
+			}//end of if
+			else {
+				evt.emit('comment_counting', evt, i);	
+			}
+		});//end of on
 		
 		evt.on('comment_counting', function(evt, i){
 			if(i < docs.length) {
 				comment.counter(docs[i].index, function(result) {
-					comment_number.push({i : result});
+					comment_number[i] = result;
 					evt.emit('comment_counting', evt, ++i);
 				});//end of counter			
 			}//end of if
 			else {
-				console.log(comment_number);
 				res.render('board/view', {
 					board_id: board_id,
 					title: title,
@@ -283,11 +296,12 @@ var self = module.exports = {
 					sessionId: sessionId,
 					type: type,
 					content: content,
-					comment_number : comment_number
+					comment_number : comment_number,
+					notice_comment_number : notice_comment_number 
 				});//end of render
 			}//end of else
 		});//end of evt on
-		evt.emit('comment_counting', evt, i);		
+		evt.emit('notice_comment_counting', evt, i);		
 	},//end of display_result
 	
 	get_notice : function(req, res){
