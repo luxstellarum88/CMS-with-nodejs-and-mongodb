@@ -1,38 +1,20 @@
-var adminCheck = require('../admin/admin_check');
-var boardMake = require('../admin/makeBoard');
-
-var notice = require('../admin/notice_board');
-var recent_comment = require('../admin/recent_comment');
-
-var alert = require('../alert/alert')
-
-var skin_manager = require('../skin_manager/service');
-
-var users = require('../account/users');
-var userMake = require('../account/makeaccount');
-var deleteUserService = require('../admin/delete_user.js'); // Ban user
-var notify = require('../admin/notify');			// e-mail, SMS..
-
-var commDelete = require('../board/comment/comment_delete');
-
-/*
-	2012. 07. 13. by JH
-*/
-var board_list = require('../admin/board_list');
-var board_main = require('../board/list');
-var board_view = require('../board/view');
-var board_write = require('../board/write');
-var board_show = require('../board/show_contents');
-var board_modify = require('../board/modify');
-var board_delete = require('../board/delete');
-
-var board_recent_doc = require('../admin/board_recent_doc');
-
-var comment_write = require('../board/comment/write');
-
-
+// account
+var account = require('../modules/account/account');
+// recent posts or comments
+var recent_docs = require('../modules/admin/recent_docs');
+// admin
+var admin = require('../modules/admin/admin');
+// make alert script
+var alert = require('../modules/alert/alert')
+// skin manager?!
+var skin_manager = require('../modules/skin_manager/service');
+// board
+var board = require('../modules/board/board');
+//comment
+var comment = require('../modules/comment/comment');
 // HTML PAGE RENDERING
-var html_page = require('../html_manager/service');
+var html_page = require('../modules/html_manager/service');
+
 
 exports.html_main = function(req, res){
 	html_page.index(req, res);
@@ -42,35 +24,13 @@ exports.html_sub1_1 = function(req, res){
 	html_page.sub1_1(req, res);
 }
 
-
 exports.index = function(req, res){
-	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
-	if(req.session.user) {
-		res.redirect('/board_main');
-	}
-	else{
-  		res.render('index', { title: 'Express' });
- 	}
+	account.show_index_page(req, res);
 };
 
 exports.admin = function(req, res){
-	//세션이 있을 경우 board페이지로 바로 넘어가도록 변경
-	if(req.session.user) {
-		if(req.session.user.Id === 'superadmin') {
-			res.redirect('/admin/main');
-		}
-		else{
-	  		res.render('admin', { title: 'admin' });
-	 	}
- 	}
- 	else{
-	  		res.render('admin', { title: 'admin' });
-	 }	
+	admin.show_index_page(req, res);	
 }
-
-exports.boardMain = function(req, res){
-	board_main.list(req, res);
-}//end of boardMain
 
 exports.board_make_form = function(req, res){
 	// 주석 남겨두세요 나중에 스킨 적용할때 쓸 예정 - by Yoon-seop
@@ -86,141 +46,123 @@ exports.board_make_form = function(req, res){
 	});
 }
 
-exports.write = function(req, res){
-	var auth = 'guest';
-	
-	if('admin' === req.session.user.role || 'superadmin' === req.session.user.Id) {
-		auth = 'admin';
-	}
-	
-	res.render('board/write', {
-		title: 'write'
-		, id : req.query.id
-		, auth : auth
-	});
-}
-
-exports.boardWrite = function(req, res){
-	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
-		board_write.insert(req, res);
-	}
-	else {
-		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-		res.render('alert', {
-			title : 'Error',
-			alert : alert_script
-		}) ;
-	}
-}
-
-exports.boardView = function(req, res){	
-	if(!req.query.num){
-		// /board?id=*&page=*		
-		board_view.post(req, res);
-	}
-	else{
-		// /board?id=*&num=*
-		board_show.contents(req, res);
-	}
-}
-
-exports.boardModify = function(req, res){
-	board_modify.show(req, res);	
-}
-
-exports.boardUpdate = function(req, res){
-	if( (""!=req.body.subject) && (""!=req.body.memoForm) ) {
-		board_modify.update(req, res);
-	}
-	else {
-		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-		res.render('alert', {
-			title : 'Error',
-			alert : alert_script
-		}) ;
-	}
-}
-
-exports.boardDelete = function(req, res){
-	board_delete.del(req, res);
-}
-
-exports.logout = function(req, res) {
-	if(req.session.user) {
-		req.session.user = "";
-		res.redirect('/');
-	}
-}
-
-exports.commentWrite = function(req, res){
-	comment_write.insert(req, res);
-}
-
 
 exports.recent_comment_view = function(req, res) {
-	recent_comment.view(req, res);
+	recent_docs.comment(req, res);
 }
 
 
 exports.board_recent_view = function(req, res) {
-	board_recent_doc.show(req, res);
+	recent_docs.post(req, res);
 }
 
 
-//------------------------------------------------------수정완료
 
-exports.userlistView = function(req, res){
-	users.allUser(req, res);
+exports.session = function(req, res){
+	account.session(req, res);
+}
+
+
+exports.user_list = function(req, res){
+	account.list(req, res);
+}
+
+exports.user_list_view = function(req, res){
+	account.list(req, res);
+} //이건 안쓰는듯. 
+
+exports.logout = function(req, res) {
+	account.logout(req,res);
 }
 
 exports.user_information_view = function(req, res){
-	users.user_information(req.query.id, res);
+	account.information(req.query.id, res);
 }
 
 
 exports.user_modify = function(req, res){
-	users.user_modify(req.body, res);
+	account.modify(req.body, res);
 }
 
-
 exports.join = function(req, res){
-	res.render('join', {title: 'Join'});
-};
+	account.sign_up_page(res);
+}
 
 
 exports.makeaccount = function(req, res){
-	userMake.insertUser(req, res);
+	account.insert(req, res);
 }
 
-exports.boardIdView = function(req, res){
-	var num = req.params.no;
-	
-	boview.findById(num, req.query.id, function(board){
-		commview.viewComment(num, function(comm){
-			res.render('boardShow', {
-				title: 'show',
-				board: board,
-				comm: comm,
-				id:req.query.id //add 120707 JH
-			});
-		});
-	});
+exports.admin_check = function(req, res){
+	admin.check(req, res);	
 }
 
-exports.boardNumView = function(req, res){
-	var num = req.params.id;
-	
-	boview.findById(num, function(board){
-		commview.viewComment(num, function(comm){
-			res.render('boardShow', {
-				title: 'show',
-				board: board,
-				comm: comm
-			});
-		});
-	});
+
+exports.make_board = function(req, res){
+	admin.make_board(req, res);
 }
 
+
+exports.admin_view = function(req, res){
+	admin.board_list_view(req, res);
+}
+
+/* e-mail sending part
+ * called in "userlist" by the administrator
+ * by Yoon-seop
+ */
+exports.send_mail_view = function(req, res){
+	admin.send_mail_view(req, res);
+}
+
+exports.send_mail_action = function(req, res){
+	admin.send_mail_action(req, res);
+}
+
+/* User Ban (delete user operation by the admin)
+ * by Yoon-seop, 12.7.12
+ */
+exports.delete_user = function(req, res){
+	admin.delete_user(req,res);
+}
+
+
+exports.board_list_page = function(req, res){
+	board.board_list(req, res);
+}
+
+exports.board_write_page = function(req, res){
+	board.write_page(req, res);
+}
+
+exports.board_insert = function(req, res){
+	board.check_insert_condition(req,res);
+}
+
+exports.board_contents = function(req, res){	
+	board.check_display_condition(req, res);
+}
+
+exports.board_modify_page = function(req, res){
+	board.modify_page(req, res);	
+}
+
+
+exports.board_update = function(req, res){
+	board.check_update_condition(req, res);
+}
+
+exports.board_delete = function(req, res){
+	board.del(req, res);
+}
+
+
+exports.comment_insert = function(req, res){
+	comment.insert(req, res);
+}
+
+
+//------------------------------------------------------수정완료
 
 exports.boardPreview = function(req, res){
 	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
@@ -240,6 +182,8 @@ exports.boardPreview = function(req, res){
 	});
 }
 
+
+//
 exports.commentDeleteForm = function(req, res){
 	var board_id = req.query.board_id;
 	var board_num = req.query.board_num;
@@ -260,143 +204,6 @@ exports.commentDelete = function(req, res){
 	var password = req.body.password;
 	
 	commDelete.deleteComment(board_id, board_num, comment_id, password, res);
-}
-
-
-exports.session = function(req, res){
-	users.authenticate(req.body.id, req.body.password, function(user){
-		console.log(user);
-		
-		if(user){
-			console.log('auth_success');
-			req.session.user = user;
-			res.redirect('/board_main');
-		}
-		else{
-			var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');
-			res.render('alert',{
-				title : 'error'
-				,alert : alert_script
-			});
-		}
-	});
-};
-
-
-exports.adminView = function(req, res){
-	board_list.view(req, res);
-}//end of adminView
-
-exports.adminCheck = function(req, res){
-	// SuperUser || Admin
-	var id = req.body.Id;
-	var password = req.body.password;
-	
-	adminCheck.SuperUserAuth(id, password, function(user){
-		if(user){ // SuperUser Login
-			req.session.user = user;			
-			res.redirect('/admin/main');
-		}
-		else{ // Admin Login	
-			adminCheck.AdminAuth(id, password, function(user){
-				if(user){
-					req.session.user = user;			
-					res.redirect('/admin/main');
-				}
-				else{ // Guest or login fail.
-					var alert_script = alert.makeAlert('존재하지 않는 계정입니다.')
-					res.render('alert', {
-						title : 'error',
-						alert : alert_script
-					});	
-				}
-			});
-		}
-	});
-}
-
-
-exports.makeBoard = function(req, res){
-	boardMake.make(req, res);
-}
-
-
-exports.userlistView = function(req, res){
-	var type = req.query.type || "";
-	var content = req.query.content || "";
-	var current_page = req.query.page || 1;
-	
-	users.allUser(type, content, current_page, res);
-}
-
-/* e-mail sending part
- * called in "userlist" by the administrator
- * by Yoon-seop
- */
-exports.sendmailView = function(req, res){
-	res.render('admin/sendmail', {
-		title: 'Send e-mail'
-		, sender: 'operator@goorm.org'
-		, addresses: req.body.chklist
-	});
-}
-exports.sendmailAction = function(req, res){
-	notify.Sendmail(req.body.sender, req.body.address, req.body.subject, req.body.content);
-	var alert_script = alert.AlertRedirect('메일이 발송되었습니다.', '/admin/userlists');
-	res.render('alert', {
-		title : 'Mail Sended'
-		,alert : alert_script
-	});
-}
-
-/* User Ban (delete user operation by the admin)
- * by Yoon-seop, 12.7.12
- */
-exports.deleteUser = function(req, res){
-	deleteUserService.deleteUser(req);
-
-	//console.log(req.query.id);
-	var alert_script = alert.AlertRedirect('회원정보가 삭제되었습니다.', '/admin/userlists');
-	res.render('alert', {
-		title : 'Result'
-		, alert : alert_script
-	});
-}
-
-exports.write_notice = function(req, res) {
-	res.render('admin/board_notice_write', {
-		title : 'Write Notice',
-		id : req.query.id
-	});
-}
-exports.insert_notice = function(req, res) {
-	console.log("index:"+req.session.user.Id);
-	if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
-		notice.insert(req.session.user.Id, req.body, res);
-	}
-	else {
-		var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-		res.render('alert', {
-			title : 'Error',
-			alert : alert_script
-		}) ;
-	}
-}
-
-exports.show_notice = function(req, res) {
-	notice.show(req.query, res, req.session.user.Id);
-}
-
-exports.notice_delete = function(req, res){
-	notice.del(req.query, req.session.user.Id, res);
-}
-
-exports.notice_modify_view = function(req, res){
-	notice.modify(req.query, req.session.user.Id, res);
-}
-
-exports.notice_update = function(req, res){
-	notice.update(req.body, req.session.user.Id, res);
 }
 
 

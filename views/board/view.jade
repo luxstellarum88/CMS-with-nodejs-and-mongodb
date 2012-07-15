@@ -21,20 +21,20 @@ div#board
 							tr
 								td.no 공지
 								td.title 
-									a(href='/admin/notice?id=#{board_id}&num=#{notice[i].no}', style="color:black;") #{notice[i].subject}
+									a(href='/admin/notice?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
 									a.replyNum [0]
-								td.author #{notice[i].name}
-								td.time #{notice[i].date}
+								td.author #{notice[i].user_name}
+								td.time #{notice[i].insert_date}
 								td.readNum #{notice[i].hit}
 					-for(var i=0; i<paging; i++)
 						-if(docs[i]){
 							tr
 								td.no #{length - ( (current_page-1) * paging ) - i}
 								td.title
-									a(href='/board?id=#{board_id}&num=#{docs[i].no}', style="color:black;") #{docs[i].subject}	
+									a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}	
 									a.replyNum [0]
-								td.author #{docs[i].name}
-								td.time #{docs[i].date}
+								td.author #{docs[i].user_name}
+								td.time #{docs[i].insert_date}
 								td.readNum #{docs[i].hit}
 						-}			
 		div#boardFooter
