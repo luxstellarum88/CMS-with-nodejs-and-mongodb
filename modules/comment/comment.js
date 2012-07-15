@@ -9,8 +9,6 @@ var self = module.exports = {
 		db.connect();
 		var model = db.get_model();
 		
-		console.log(condition);
-		
 		model.count({deleted : false, post_index : condition}, function(err, counter) {
 			if(!err) {
 				callback(counter);
@@ -66,6 +64,8 @@ var self = module.exports = {
 			
 		var index = 1;
 		
+		var board = require('../board/board');
+		
 		find_model.findOne().sort('index',-1).exec(function(err, docs){
 			if(!err){
 				if(docs)
@@ -89,7 +89,15 @@ var self = module.exports = {
 					else {
 						console.log('in comment/write.js : insert fail');
 					}
-					res.redirect('/board?id=' + board_id + '&num=' + post_index);
+					
+					board.increase_hit(post_index, -1, function(result){
+						if(true == result){
+							res.redirect('/board?id=' + board_id + '&num=' + post_index);	
+						}
+						else{
+							console.log('in comment.js _ insert : error');	
+						}						
+					});//end of board_increase_hit
 				});//end of save
 			}//end of if
 			else {

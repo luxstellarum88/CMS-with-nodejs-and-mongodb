@@ -39,15 +39,26 @@ div#board
 						-}			
 		div#boardFooter
 			div#pagination
-				a
+				a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=1')	
 					img(src='../images/board/button_forward.png')
 					span 처음 페이지 |
-				-for(var i=0; i < (length/paging); i++)
-					a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{i+1}') #{i+1} | 
-								
-				a
+				
+				-current_page = parseInt(current_page);
+				
+				-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
+					-if(j>0 && j< ((length/paging)+1))
+						-if(j == current_page)
+							a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{j}')
+								b #{j} 
+								|
+						-else 
+							a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{j}') #{j} |
+				-}
+				-var last = Math.ceil(length/paging);
+				a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{last}')
 					span 마지막 페이지
 					img(src='../images/board/button_backward.png')
+
 			div#search
 				-if(type == 'name')
 					select(id='type', name='type')

@@ -442,7 +442,7 @@ var self = module.exports = {
 		}
 		else{
 			// /board?id=*&num=*
-			self.increase_hit(req.query.num, function(result){
+			self.increase_hit(req.query.num, 1, function(result){
 				if(true === result) {
 					self.show_contents(req, res);
 				}
@@ -454,11 +454,11 @@ var self = module.exports = {
 		}
 	}, //end of check_display_condition
 	
-	increase_hit : function(index, callback) {
+	increase_hit : function(index, value, callback) {
 		var model = db.get_model();
 		
 		var condition = {index : index} ;
-		var update = {$inc : {hit : 1}};
+		var update = {$inc : {hit : value}};
 		var option = null;
 		
 		model.update(condition, update, option, function(err) {

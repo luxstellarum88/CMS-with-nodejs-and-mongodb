@@ -13,7 +13,7 @@ var self = module.exports = {
 		}else{
 			addresses = address;
 		}
-		console.log(addresses);
+		console.log('in admin.js _ send_mail : ' + addresses);
 		email.send({
 		    host : "smtp.gmail.com",
 		    port : "465",
@@ -112,8 +112,8 @@ var self = module.exports = {
 		var user_id = req.query.id;
 		userModel.findOne({Id: user_id}, function(err, user){
 			if(!err && user){
-				console.log(req.session.user.Id);
-				console.log(user.email);
+				console.log('in admin.js _ delete_user' + req.session.user.Id);
+				console.log('in admin.js _ delete_user' + user.email);
 				self.send_mail(
 					req.session.user.name + "@goorm.org"
 					, user.email

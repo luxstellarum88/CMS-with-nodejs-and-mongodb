@@ -35,8 +35,7 @@ form(action='/board_write', method='POST')#frmwrite
 			div#editorFooter
 				input(type='hidden', name='id', value='#{id}')
 				input(type='button', onclick='javascript:preview();', value='미리보기')
-				input(type='submit', value='저장')
 				a
-					img#submitButton(src='../images/button_submit.png')
+					img#submitButton(src='../images/button_submit.png', onClick='submit()')
 		div#boardBottom 
 				
