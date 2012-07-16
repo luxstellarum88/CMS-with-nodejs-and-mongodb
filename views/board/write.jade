@@ -12,7 +12,9 @@ script(type='text/javascript')
 		frm.action='/board_write';
 		frm.target = '_self';
 	}
-	
+	function submit(){
+		document.getElementById('frmwrite').submit();
+	}
 head
 	link(rel='stylesheet', type='text/css', href='../css/common.css')
 	link(rel='stylesheet', type='text/css', href='../css/sub03/sub01.css')
@@ -35,7 +37,7 @@ form(action='/board_write', method='POST')#frmwrite
 			div#editorFooter
 				input(type='hidden', name='id', value='#{id}')
 				input(type='button', onclick='javascript:preview();', value='미리보기')
-				a
-					img#submitButton(src='../images/button_submit.png', onClick='submit()')
+				a(href='javascript:submit();')
+					img#submitButton(src='../images/button_submit.png')
 		div#boardBottom 
 				
