@@ -67,10 +67,6 @@ exports.user_list = function(req, res){
 	account.list(req, res);
 }
 
-exports.user_list_view = function(req, res){
-	account.list(req, res);
-} //이건 안쓰는듯. 
-
 exports.logout = function(req, res) {
 	account.logout(req,res);
 }
@@ -137,6 +133,10 @@ exports.board_write_page = function(req, res){
 
 exports.board_insert = function(req, res){
 	board.check_insert_condition(req,res);
+}
+
+exports.board_post_list = function(req, res){
+	board.post_list(req,res);
 }
 
 exports.board_contents = function(req, res){	

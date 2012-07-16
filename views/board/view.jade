@@ -1,6 +1,6 @@
 script
 	function search() {
-		location.href="/board?id=#{board_id}&type="+document.getElementsByName("type")[0].value
+		location.href="/board/#{board_id}?type="+document.getElementsByName("type")[0].value
 						+"&content="+document.getElementsByName("content")[0].value;
 	}
 
@@ -21,7 +21,7 @@ div#board
 							tr
 								td.no 공지
 								td.title 
-									a(href='/board?id=#{board_id}&num=#{notice[i].index}', style="color:black;") #{notice[i].subject}
+									a(href='/board/#{board_id}/#{notice[i].index}', style="color:black;") #{notice[i].subject}
 									a.replyNum [#{notice_comment_number[i]}]
 								td.author #{notice[i].user_name}
 								td.time #{notice[i].insert_date}
@@ -31,7 +31,7 @@ div#board
 							tr
 								td.no #{length - ( (current_page-1) * paging ) - i}
 								td.title
-									a(href='/board?id=#{board_id}&num=#{docs[i].index}', style="color:black;") #{docs[i].subject}	
+									a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}	
 									a.replyNum [#{comment_number[i]}]
 								td.author #{docs[i].user_name}
 								td.time #{docs[i].insert_date}
@@ -39,7 +39,7 @@ div#board
 						-}			
 		div#boardFooter
 			div#pagination
-				a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=1')	
+				a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
 					img(src='../images/board/button_forward.png')
 					span 처음 페이지 |
 				
@@ -48,41 +48,41 @@ div#board
 				-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
 					-if(j>0 && j< ((length/paging)+1))
 						-if(j == current_page)
-							a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{j}')
+							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
 								b #{j} 
 								|
 						-else 
-							a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{j}') #{j} |
+							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j} |
 				-}
 				-var last = Math.ceil(length/paging);
-				a(href='/board?id=#{board_id}&type=#{type}&content=#{content}&page=#{last}')
+				a(href='/board?/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
 					span 마지막 페이지
 					img(src='../images/board/button_backward.png')
 
 			div#search
 				-if(type == 'name')
 					select(id='type', name='type')
-						option(value='Id') 아이디
+						option(value='id') 아이디
 						option(value='subject') 제목
-						option(value='memo') 내용
+						option(value='content') 내용
 						option(value='name', selected) 이름
 				-else if(type == 'memo')
 					select(id='type', name='type')
-						option(value='Id') 아이디
+						option(value='id') 아이디
 						option(value='subject') 제목
-						option(value='memo', selected) 내용
+						option(value='content', selected) 내용
 						option(value='name') 이름
 				-else if(type == 'subject')
 					select(id='type', name='type')
-						option(value='Id') 아이디
+						option(value='id') 아이디
 						option(value='subject', selected) 제목
-						option(value='memo') 내용
+						option(value='content') 내용
 						option(value='name') 이름
 				-else
 					select(id='type', name='type')
-						option(value='Id', selected) 아이디
+						option(value='id', selected) 아이디
 						option(value='subject') 제목
-						option(value='memo') 내용
+						option(value='content') 내용
 						option(value='name') 이름
 				input(type='text', name='content', id='content', value='#{content}')
 				a(href='javascript:search();')

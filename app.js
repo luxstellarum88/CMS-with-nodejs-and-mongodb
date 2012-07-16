@@ -116,8 +116,10 @@ app.post('/admin/sendmailAction', routes.send_mail_action);	// sending mail acti
 app.get('/admin/deleteUser', requiresAdminLogin, routes.delete_user);
 
 app.get('/write', routes.board_write_page);
+
+app.get('/board/:id/:num([0-9]+)', requiresLogin ,routes.board_contents);
+app.get('/board/:id', requiresLogin ,routes.board_post_list);
 app.post('/board_write', routes.board_insert);
-app.get('/board', requiresLogin ,routes.board_contents);
 app.get('/board_modify', routes.board_modify_page);
 app.post('/update', routes.board_update);
 app.get('/board_delete', routes.board_delete);
@@ -132,11 +134,6 @@ app.get('/comment_update', routes.comment_update);
 
 
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
-
-
-
-
-
 
 
 

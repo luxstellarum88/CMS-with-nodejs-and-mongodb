@@ -10,7 +10,7 @@ div(style='width:760px;')
 						tr
 							td.content #{i}
 							td.content 
-								a(href='/board?id=' + docs[i-1].id) #{docs[i-1].id}
+								a(href='/board/' + docs[i-1].id) #{docs[i-1].id}
 							td.content #{docs[i-1].name}	
 					-}
 	input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"')

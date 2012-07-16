@@ -231,8 +231,8 @@ var self = module.exports = {
 		var model = db.get_model();
 		var comment = require('../comment/comment'); 
 			
-		var board_id = req.query.id;
-		var board_index = req.query.num;
+		var board_id = req.params.id;
+		var board_index = req.params.num;
 		
 		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 			if(!err){
@@ -264,6 +264,8 @@ var self = module.exports = {
 		var evt = new event_emitter();
 		var comment_number = new Array();
 		var notice_comment_number = new Array();
+		
+		console.log("in board.js display : " + docs.length);
 		
 		evt.on('notice_comment_counting', function(evt, j){
 			if(j < notice.length) {
@@ -313,7 +315,7 @@ var self = module.exports = {
 		var model = db.get_model();
 		var list_model = list_db.get_model();
 		var notice = new Array();
-		var board_id = req.query.id; 
+		var board_id = req.params.id; 
 		
 		/*
 			notice part
@@ -337,7 +339,7 @@ var self = module.exports = {
 				var current_page = req.query.page || 1;
 				var type = req.query.type || "";
 				var content = req.query.content || "";
-				
+								
 				var title = board.name || "";
 				var paging_size = board.paging; 
 						
@@ -346,7 +348,8 @@ var self = module.exports = {
 				var session_id = req.session.user.Id;
 				
 				var search_reg_exp = new RegExp(content);
-								
+				
+									
 				if( 'id' === type ){
 					model.find({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id})
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
@@ -362,10 +365,10 @@ var self = module.exports = {
 					});//end of find
 				}//end of if
 				else if( 'name' === type ){
-					model.find({notice : false, deleted : false, name : search_reg_exp, board_id : board_id})
+					model.find({notice : false, deleted : false, user_name : search_reg_exp, board_id : board_id})
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
-								model.count({notice : false, deleted : false, name : search_reg_exp, board_id : board_id}, function(err, length){
+								model.count({notice : false, deleted : false, user_name : search_reg_exp, board_id : board_id}, function(err, length){
 									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
@@ -436,22 +439,14 @@ var self = module.exports = {
 	
 		
 	check_display_condition : function(req, res) {
-		if(!req.query.num){
-		// /board?id=*&page=*		
-			self.post_list(req, res);
-		}
-		else{
-			// /board?id=*&num=*
-			self.increase_hit(req.query.num, 1, function(result){
-				if(true === result) {
-					self.show_contents(req, res);
-				}
-				else{
-					console.log('increase hit error');
-				}
-			}); //end of increase_hit
-			
-		}
+		self.increase_hit(req.params.num, 1, function(result){
+			if(true === result) {
+				self.show_contents(req, res);
+			}
+			else{
+				console.log('increase hit error');
+			}
+		}); //end of increase_hit		
 	}, //end of check_display_condition
 	
 	increase_hit : function(index, value, callback) {
