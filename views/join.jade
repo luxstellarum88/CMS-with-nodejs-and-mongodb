@@ -5,6 +5,7 @@ html
     link(rel='stylesheet', type='text/css', href='css/common.css')
     link(rel='stylesheet', type='text/css', href='css/index.css')
     link(rel='stylesheet', type='text/css', href='css/cloud.css')
+    link(rel='stylesheet', type='text/css', href='css/join.css')
     link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
     link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
   body
@@ -16,59 +17,66 @@ html
     #detail02
       #boardTop
         #boardTitle 회원가입
-      #boardMiddle
-        #wrap(style='margin-left: 10px;')
-          #contents
-            form(method='post', action='/makeAccount')
-              label ID
-                input(
-                  type = 'textbox'
-                  ,name = 'idForm'
-                  ,id = 'idForm'      
-                )
-              br
-                
-              label  Password
-                input(
-                  type = 'password'
-                  ,name = 'pwForm'
-                  ,id = 'pwForm'
-                )
-            
-              br  
-            
-              label  Password Confirm
-                input(
-                  type = 'password'
-                  ,name = 'confirmForm'
-                  ,id = 'confirmForm'
-                )
-            
-              br  
-              
-              label  Name
-                input(
-                  type = 'textbox'
-                  ,name = 'nameForm'
-                  ,id = 'nameForm'
-                )
-              br
-            
-            
-              label  Email
-                input(
-                  type = 'textbox'
-                  ,name = 'emailForm'
-                  ,id = 'emailForm'
-                )
-              br
-              
-              input(
-                type = 'submit'
-                ,name = 'loginButton'
-                ,id = 'loginButton2'
-                ,value = '회원가입'
-              )
+      #boardMiddle(style='height:320px;')
+        #contents
+          form(method='post', action='/makeAccount')
+            table.info(border='1',cellspacing='0')
+              caption
+                span.c1
+                  span.c2 기본정보
+                    span.required
+                      strong *
+              tr
+                th 아이디
+                  em.require(style='color:red')   *
+                td.wide
+                  input(
+                    type = 'textbox'
+                    ,name = 'idForm'
+                    ,id = 'idForm'      
+                  )
+              tr.odd
+                th 비밀번호
+                  em.require(style='color:red')   *
+                td.wide
+                  input(
+                    type = 'password'
+                    ,name = 'pwForm'
+                    ,id = 'pwForm'      
+                  )
+               tr
+                th 비밀번호 확인
+                  em.require(style='color:red')   *
+                td.wide
+                  input(
+                    type = 'password'
+                    ,name = 'confirmForm'
+                    ,id = 'confirmForm'      
+                  )
+               tr.odd
+                th 이름
+                  em.require(style='color:red')   *
+                td.wide
+                  input(
+                    type = 'textbox'
+                    ,name = 'nameForm'
+                    ,id = 'nameForm'      
+                  )            
+               tr
+                th 이메일
+                  em.require(style='color:red')   *
+                td.wide
+                  input(
+                    type = 'textbox'
+                    ,name = 'emailForm'
+                    ,id = 'emailForm'      
+                  )                          
+            input(
+              type = 'submit'
+              ,name = 'loginButton'
+              ,id = 'loginButton2'
+              ,value = '회원가입'
+            )
       #boardBottom
     include common/footer.jade
     script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
