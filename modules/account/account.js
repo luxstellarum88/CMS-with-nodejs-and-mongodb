@@ -5,6 +5,7 @@
 
 var dbModel = require('../Database/ConnectDB');
 var alert = require('../alert/alert');
+var event_emitter = require('events').EventEmitter;
 
 dbModel.connectUserDB();
 
@@ -24,57 +25,132 @@ var self = module.exports =  {
 		res.render('join', {title: 'Join'});
 	}, //end of sign_up
 	
+	check_sign_up_condition : function(user, evt) {
+		var regular_expression_id = /(?=.*[0-9a-zA-Z]).{4,15}/;
+		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z]+){1,2}$/;
+		var regular_expression_password = /(?=.*\d)(?=.*[a-zA-Z]).{8,15}/;
+		var error_code = 0;
+		
+		if(user.idForm == "" || user.pwForm == "" || user.nameForm == "" || user.confirmForm == "" || user.emailForm == "") {
+			error_code = 1;
+			evt.emit('sign_up', error_code);
+			console.log('in account.js _ check_sign_up_condition _ if (1)');
+			
+		}//end of if
+		else if(!regular_expression_id.test(user.idForm)) {
+			error_code = 2
+			console.log('in account.js _ check_sign_up_condition _ else if (1)');
+			evt.emit('sign_up', error_code);
+			
+		}
+		else if(user.pwForm != user.confirmForm) {
+			console.log('in account.js _ check_sign_up_condition _ else if (2)');
+			error_code = 3;
+			evt.emit('sign_up', error_code);
+		}
+		else if(!regular_expression_password.test(user.pwForm)){
+			console.log('in account.js _ check_sign_up_condition _ else if (3)');
+			error_code = 4;
+			evt.emit('sign_up', error_code);
+		}
+		else if(!regular_expression_email.test(user.emailForm)) {
+			console.log('in account.js _ check_sign_up_condition _ else if (4)');
+			error_code = 5;
+			evt.emit('sign_up', error_code);
+		}
+		else {
+			console.log('in account.js _ check_sign_up_condition _ else(1)');
+			evt.emit('sign_up', error_code);
+		}
+	},
+	
 	insert : function(req, res){
 		var useridentity = dbModel.makeUserModel();
 		var user = req.body;
-		
-		//add at 120704. JH
 		var user_model = dbModel.tossUserModel();
-		//add at 120705. JH
-		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z]+){1,2}$/;
-		
-		if(regular_expression_email.test(user.emailForm)) {
+		var evt = new event_emitter();
+		var alert_script;
 			
-			user_model.count({Id:user.idForm}, function(err, docs){
+		evt.on('sign_up', function(error_code) {
+			console.log('in account.js :' +error_code);
+			switch(error_code) {
+				case 0:
+					user_model.count({Id:user.idForm}, function(err, docs){
+						if(0 === docs) {
+							useridentity.Id = user.idForm;
+							useridentity.password = user.pwForm;
+							useridentity.name = user.nameForm;
+							useridentity.email = user.emailForm;
+							useridentity.role = 'Guest';
+							
+							useridentity.save(function(err){
+								if(!err) {
+									console.log('User_inser_success');
+									self.authenticate(user.idForm, user.pwForm, function(user){			
+										if(user){
+											req.session.user = user;
+											res.redirect('/board_main');
+										}
+									});//end of authenticate
+								}								
+								else
+									res.redirect('/');
+							});//end of save
+						}//end of if
+						else{
+							var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
+							res.render('alert',{
+								title : 'error',
+								alert : alert_script
+							});
+						}
+					}); //end of userModel.count
+				break;
 				
-				console.log(docs);
-				if(0 === docs) {
-					useridentity.Id = user.idForm;
-					useridentity.password = user.pwForm;
-					useridentity.name = user.nameForm;
-					useridentity.email = user.emailForm;
-					useridentity.role = 'Guest';
-					
-					useridentity.save(function(err){
-						if(!err) {
-							console.log('User_inser_success');
-							self.authenticate(user.idForm, user.pwForm, function(user){			
-								if(user){
-									req.session.user = user;
-									res.redirect('/board_main');
-								}
-							});//end of authenticate
-						}								
-						else
-							res.redirect('/');
-					});//end of save
-				}//end of if
-				else{
-					var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
+				case 1:
+					alert_script = alert.makeAlert("빈 칸이 있습니다.");
 					res.render('alert',{
 						title : 'error',
 						alert : alert_script
 					});
-				}
-			}); //end of userModel.count
-		}//end of if(regExpTest)
-		else {
-			var alert_script = alert.makeAlert("정상적인 e-mail 주소가 아닙니다.");
-			res.render('alert',{
-				title : 'error',
-				alert : alert_script
-			});
-		}			
+				break;
+				
+				case 2:
+					alert_script = alert.makeAlert("아이디는 4~15자, 영문 및 숫자 조합으로 만들어 주시기 바랍니다.");
+					res.render('alert',{
+						title : 'error',
+						alert : alert_script
+					});
+				break;
+				
+				case 3:
+					alert_script = alert.makeAlert("비밀번호가 일치하지 않습니다.");
+					res.render('alert',{
+						title : 'error',
+						alert : alert_script
+					});
+				break;
+				
+				case 4:
+					alert_script = alert.makeAlert("비밀번호는 8~15자, 영문 및 숫자 조합으로 만들어 주시기 바랍니다.");
+					res.render('alert',{
+						title : 'error',
+						alert : alert_script
+					});
+				break;
+				
+				case 5:
+					alert_script = alert.makeAlert("유요한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
+					res.render('alert',{
+						title : 'error',
+						alert : alert_script
+					});
+				break;
+			}//end of switch						
+		});//end of evt
+		
+		self.check_sign_up_condition (user, evt);
+							
 	}, //end of insert
 	
 	

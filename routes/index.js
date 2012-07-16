@@ -161,6 +161,13 @@ exports.comment_insert = function(req, res){
 	comment.insert(req, res);
 }
 
+exports.comment_delete = function(req, res) {
+	comment.del (req, res);
+}
+
+exports.comment_update = function(req, res) {
+	comment.update(req, res);
+}
 
 //------------------------------------------------------수정완료
 

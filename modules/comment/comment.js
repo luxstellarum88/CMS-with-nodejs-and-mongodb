@@ -3,7 +3,7 @@
 */
 
 var db = require('../Database/board/comment_db');
-
+var alert = require('../alert/alert');
 var self = module.exports = {
 	counter : function(condition, callback) {
 		db.connect();
@@ -120,5 +120,100 @@ var self = module.exports = {
 				callback(false);
 			}
 		});//end of update
+	}, //end of multi_del
+	
+	del : function(req, res){
+		db.connect();
+		var find_model = db.get_model();
+		
+		var board_id = req.query.id;
+		var board_index = req.query.num;
+		var index = req.query.index;
+		
+		var user_id = req.session.user.Id;
+		
+		find_model.findOne({board_id:board_id, post_index:board_index, index:index}, function(err, docs){
+			if(!err && docs){
+				if(docs.user_id == user_id){
+					docs.remove();
+					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board?id='+board_id+'&num='+board_index);								
+					res.render('alert', {
+						title : 'Success'
+						,alert : alert_script
+					});
+				}
+				else{
+					var alert_script = alert.makeAlert('권한이 없습니다.');
+					res.render('alert', {
+						title: 'Error',
+						alert: alert_script
+					});	
+				}
+					
+			}
+			else{
+				console.log('in comment/delete.js : error(01)');
+				var alert_script = alert.makeAlert('찾지 못하였습니다.');
+					res.render('alert', {
+						title: 'Error',
+						alert: alert_script
+				});
+			}
+		});
+	},
+	
+	update : function(req, res){
+		db.connect();
+		var model = db.get_model();
+		
+		var board_id = req.query.id;
+		var post_index = req.query.num;
+		var index = req.query.index;
+		var content = req.query.content;
+		
+		var user_id = req.session.user.Id;
+		
+		var condition = {board_id:board_id, post_index:post_index, index:index};
+		var update = {content:content, update_date:new Date()};
+		
+		model.findOne({board_id:board_id, post_index:post_index, index:index}, function(err, docs){
+			if(!err){
+				if(docs.user_id == user_id){
+					model.update(condition, update, null, function(err){
+						if(!err){
+							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board?id='+board_id+'&num='+post_index);
+							res.render('alert', {
+								title : 'Success'
+								,alert : alert_script
+							});//end						
+						}
+						else{
+							var alert_script = alert.makeAlert('오류가 발생했습니다.');
+								res.render('alert', {
+								title : 'Error'
+								,alert : alert_script
+							});//end of alert						
+						}
+					});
+				}
+				else{
+					var alert_script = alert.makeAlert('권한이 없습니다.');
+					res.render('alert', {
+						title : 'Error'
+						,alert : alert_script
+					});//end of alert
+				}
+			}
+			else{
+				console.log('in comment/update.js : (01)');
+				var alert_script = alert.makeAlert('오류가 발생했습니다.');
+				res.render('alert', {
+					title : 'Error'
+					,alert : alert_script
+				});//end of alert
+			}
+		});
 	}
+
+
 }//end of modules

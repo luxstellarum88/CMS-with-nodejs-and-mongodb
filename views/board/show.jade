@@ -1,4 +1,5 @@
 script(src='/javascript/common.js')
+script(src='/javascript/comment.js')
 
 head
 	link(rel='stylesheet', type='text/css', href='../css/common.css')
@@ -28,41 +29,50 @@ div#detail03
 		
 	div#boardBottom
 	
-
-
-table
-	-for(var i=0; i<comment.length; i++)
-		-if(i==0)
-			tr
-				td.content(colspan='3') Comment
-		-if(comment[i])
-			tr
-				td.content #{comment[i].user_id}
-				td.content #{comment[i].content}
-				td.content(width='50', align='right')
-					input(type='button', id='commentDelete', value='제거', onClick="");
-	tr
-		td.content(colspan='3', align = 'right')
-			-for(var i=0; i<length; i++)
-				a(href='/board?id=#{board_id}&num=#{board.index}&comm_page=#{i+1}') [#{i+1}]
-					
 br
 
-form(method='post', action='/comment_write')
-	table
-		tr
-			td.content User
-			td.content #{sessionId}
-			td.content Password
-			td.content
-				input(type='password', id='passwordForm', name='passwordForm')		
-		tr
-			td.content Comment
-			td.content(colspan='3')
-				input(type='textbox', id='commentForm', name='commentForm')	
-				input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
-				input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
-				input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
-		tr
-			td.content(colspan='4')
-				input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
+-for(var i=0; i<comment.length; i++){
+	-if(comment[i]){
+		div('id'='c'+ i)
+			p #{comment[i].user_id}, #{comment[i].content}
+			input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete?id=#{board_id}&num=#{board.index}&index=#{comment[i].index}')");
+			input(type='button', id='comment_modify', value='수정', onClick="viewCommentModify(#{i}, '#{comment[i].content}', '#{board_id}', #{board.index}, #{comment[i].index})");
+	-}
+-}
+
+div('id'="divCommentUpd", style="display:none;")
+	form(name='updForm')
+		내용 : 
+		input(type='text', name='content')
+		input(type='hidden', name='board_id')
+		input(type='hidden', name='board_index')		
+		input(type='hidden', name='index')
+		input(type='button', value='등록', onClick="updComment()")
+		input(type='button', value='취소', onClick="cnlComment()")
+		
+-for(var i=0; i<length; i++)
+	a(href='/board?id=#{board_id}&num=#{board.index}&comm_page=#{i+1}') [#{i+1}]
+
+br
+
+-if(sessionId)
+	form(method='post', action='/comment_write')
+		table
+			tr
+				td.content User
+				td.content #{sessionId}
+				td.content Password
+				td.content
+					input(type='password', id='passwordForm', name='passwordForm')		
+			tr
+				td.content Comment
+				td.content(colspan='3')
+					input(type='textbox', id='commentForm', name='commentForm')	
+					input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
+					input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
+					input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
+			tr
+				td.content(colspan='4')
+					input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
+-else
+	p 로그인 한 사용자만 코멘트를 입력할 수 있습니다.

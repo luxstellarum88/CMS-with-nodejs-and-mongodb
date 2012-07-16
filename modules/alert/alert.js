@@ -6,12 +6,6 @@ exports.makeAlert = function(context, res) {
 	return alert_script;
 }
 
-//error -_-
-exports.makePasswordAlert = function(context, res) {
-	var alert_script = '<script type=\'text/javascript\'>alert(\'' + context + '\');window.opener.reload();window.close();</script>'
-	eval(alert_script);
-}
-
 exports.AlertRedirect = function(context, url){
 	var alert_script = open_script + 'alert(\'' + context + '\');location.href="' + url + '";' + close_script;
 	return alert_script;

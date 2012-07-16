@@ -125,6 +125,8 @@ app.get('/board_main', requiresLogin ,routes.board_list_page);
 
 app.post('/comment_write', routes.comment_insert);
 
+app.get('/comment_delete', routes.comment_delete);
+app.get('/comment_update', routes.comment_update);
 
 //--------------------------------------using
 
@@ -136,8 +138,6 @@ app.post('/board_preview', routes.boardPreview);	// preview contents in a write 
 
 
 
-app.get('/comment_delete', routes.commentDeleteForm);
-app.post('/comment_delete', routes.commentDelete);
 
 
 app.listen(8080, function(){
