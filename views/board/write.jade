@@ -3,10 +3,11 @@ html
     title
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+    link(rel='stylesheet', type='text/css', href='/css/sub03/write.css')
     link(rel='stylesheet', type='text/css', href='/css/cloud.css')
     link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
     link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+    link(rel="stylesheet", href="/lib/daumeditor-7.3.19/css/editor.css", type="text/css", charset="utf-8")
   body
     #viewport
       #world
@@ -15,10 +16,17 @@ html
     include ../common/mainMenu
     include ../common/subMenu/subMenu03.jade
 
+    script(src="/lib/daumeditor-7.3.19/js/editor_loader.js?environment=development", type="text/javascript", charset="utf-8")
+    script(type='text/javascript')
+      var default_content = '제목을 입력하세요';
+      function form_delete(){
+        if(default_content == document.tx_editor_form.subejct.value)
+          frm.value = "";
+      }
     script(type='text/javascript')
       function preview(){
         OpenWindow('', 'newWin', 850, 450);
-        var frm = document.getElementById('frmwrite'); 
+        var frm = document.getElementById('tx_editor_form'); 
     
         frm.action = '/board_preview';
         frm.target = 'newWin';
@@ -28,21 +36,18 @@ html
         frm.target = '_self';
       }
       function submit(){
-        document.getElementById('frmwrite').submit();
+        saveContent();
       }
   
-    form(action='/board_write', method='POST')#frmwrite
+    form(name="tx_editor_form", id="tx_editor_form", action="/board_write", method="post", accept-charset="utf-8")
       div#detail03
-        h1= title
         div#boardTop
           div#boardTitle= title
         div#boardMiddle
           div#editorHeader
-            input(type='text',value='제목을 입력하세요', id='subject', name='subject')
+            input(type='text',value='제목을 입력하세요', id='subject', name='subject', onFocus='form_delete()')
           div#editorMiddle
-            input(type='text', name='name', id='name')
-            br
-            textarea(name='memo', id='memo')      
+            include ../../public/lib/daumeditor-7.3.19/editor.html      
           div#editorFooter
             input(type='hidden', name='id', value='#{id}')
             input(type='button', onclick='javascript:preview();', value='미리보기')
@@ -50,4 +55,4 @@ html
               img#submitButton(src='../images/button_submit.png')
         div#boardBottom 
     include ../common/footer
-    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
+    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')    

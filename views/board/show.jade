@@ -31,7 +31,7 @@ html
             div#author
               a #{board.user_name}
             div#readNum 조회 수 : #{board.hit}
-        div#readMiddle #{board.content}
+        div#readMiddle !{board.content}
         div#readFooter
           -if(session!=-1)
             input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")

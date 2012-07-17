@@ -38,7 +38,7 @@
 #boardFooter #pagination img {width: 10px;height: 10px; margin: 0 5px}
 
 
-#boardFooter #search {width: 334px; height: 26px; margin: 0 auto;}
+#boardFooter #search {width: 370px; height: 26px; margin: 0 auto;}
 #boardFooter select {margin-left: 10px; float:left}
 #boardFooter #searchInputBox { width:200px; height:18px; border: 1px solid gray; float: left; margin-left: 10px; margin-top:2px}
 #boardFooter #searchButton {float:left; margin: -2px 0 0 10px}

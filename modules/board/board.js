@@ -40,7 +40,7 @@ var self = module.exports = {
 				make_model.user_name = req.session.user.name; 
 				make_model.user_id = req.session.user.Id; 
 				make_model.subject = req.body.subject; 
-				make_model.content = req.body.memo; 
+				make_model.content = req.body.tx_content; 
 				make_model.hit = 0;
 				make_model.insert_date = new Date();
 				make_model.update_date = new Date();
@@ -64,7 +64,10 @@ var self = module.exports = {
 		
 	
 	check_insert_condition : function(req, res) {
-		if( (""!=req.body.subject) && (""!=req.body.name) && (""!=req.body.memo) ) {
+		var subject = req.body.subject || "";
+		var memo = req.body.tx_content || "";
+		
+		if( (""!=subject) && (""!=memo) ) {
 			self.insert(req, res);
 		}
 		else {
