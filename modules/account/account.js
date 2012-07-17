@@ -169,7 +169,7 @@ var self = module.exports =  {
 	
 	list : function(req, res) {
 		var user_model = dbModel.tossUserModel();
-		var current_page = req.query.page || 1;
+		var current_page = req.params.page || 1;
 		var content = req.query.content || "";
 		var type = req.query.type || "";
 		var paging_size = 20;
@@ -259,7 +259,7 @@ var self = module.exports =  {
 			}//end of if
 			else{
 				console.log('unexpected error');
-				res.redirect('admin/userlist');
+				res.redirect('admin/userlists');
 			}
 			
 		});//end of query
@@ -269,16 +269,15 @@ var self = module.exports =  {
 		var user_model = dbModel.tossUserModel();
 		var condition = { Id : user_info.user_id };
 		var update = { role : user_info.user_role };
-		console.log(condition);
-		console.log(update);
+		
 		user_model.update(condition, update, null, function(err) {
 			if(!err) {
 				console.log('user info update success');
-				res.redirect('/user_information?id='+user_info.user_id);
+				res.redirect('/user_information/'+user_info.user_id);
 			}//end of if
 			else{
 				console.log('unexpected error');
-				res.redirect('admin/userlist');
+				res.redirect('admin/userlists/1');
 			}
 		});//end of update
 	}, //end of modify

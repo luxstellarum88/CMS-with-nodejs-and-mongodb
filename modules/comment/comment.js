@@ -24,9 +24,9 @@ var self = module.exports = {
 	list : function(req, res, callback) {
 		db.connect();
 		var model = db.get_model();
-		var post_index = req.query.num;
+		var post_index = req.params.num;
 		
-		var current_page = req.query.comm_page || 1;
+		var current_page = req.params.comm_page || 1;
 		var paging_size = 10;
 		var skip_size = (paging_size * current_page) - paging_size;
 		
@@ -92,7 +92,7 @@ var self = module.exports = {
 					
 					board.increase_hit(post_index, -1, function(result){
 						if(true == result){
-							res.redirect('/board?id=' + board_id + '&num=' + post_index);	
+							res.redirect('/board/' + board_id + '/' + post_index);	
 						}
 						else{
 							console.log('in comment.js _ insert : error');	
@@ -126,9 +126,9 @@ var self = module.exports = {
 		db.connect();
 		var find_model = db.get_model();
 		
-		var board_id = req.query.id;
-		var board_index = req.query.num;
-		var index = req.query.index;
+		var board_id = req.params.id;
+		var board_index = req.params.num;
+		var index = req.params.index;
 		
 		var user_id = req.session.user.Id;
 		
@@ -136,7 +136,7 @@ var self = module.exports = {
 			if(!err && docs){
 				if(docs.user_id == user_id){
 					docs.remove();
-					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board?id='+board_id+'&num='+board_index);								
+					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id+'/'+board_index);								
 					res.render('alert', {
 						title : 'Success'
 						,alert : alert_script
@@ -166,10 +166,10 @@ var self = module.exports = {
 		db.connect();
 		var model = db.get_model();
 		
-		var board_id = req.query.id;
-		var post_index = req.query.num;
-		var index = req.query.index;
-		var content = req.query.content;
+		var board_id = req.params.id;
+		var post_index = req.params.num;
+		var index = req.params.index;
+		var content = req.params.content;
 		
 		var user_id = req.session.user.Id;
 		
@@ -181,7 +181,7 @@ var self = module.exports = {
 				if(docs.user_id == user_id){
 					model.update(condition, update, null, function(err){
 						if(!err){
-							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board?id='+board_id+'&num='+post_index);
+							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id+'/'+post_index);
 							res.render('alert', {
 								title : 'Success'
 								,alert : alert_script

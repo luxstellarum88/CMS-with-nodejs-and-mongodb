@@ -72,7 +72,7 @@ exports.logout = function(req, res) {
 }
 
 exports.user_information_view = function(req, res){
-	account.information(req.query.id, res);
+	account.information(req.params.id, res);
 }
 
 

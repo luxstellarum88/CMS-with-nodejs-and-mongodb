@@ -17,7 +17,7 @@ var self = module.exports = {
 		
 		res.render('board/write', {
 			title: 'write'
-			, id : req.query.id
+			, id : req.params.id
 			, auth : auth
 		});
 	}, //end of write_page
@@ -52,7 +52,7 @@ var self = module.exports = {
 					else{
 						console.log('in write.js : insert fail');
 					}
-					res.redirect('/board?id=' + req.body.id);
+					res.redirect('/board/' + req.body.id);
 				}) ;//end of save
 			}//end of if
 			else{
@@ -80,8 +80,8 @@ var self = module.exports = {
 		var comment = require('../comment/comment');
 		var user_id = req.session.user.Id;
 		var user_role = req.session.user.role;
-		var board_id = req.query.id;
-		var board_index = req.query.num;
+		var board_id = req.params.id;
+		var board_index = req.params.num;
 		
 		var condition = {board_id : board_id, index : board_index};
 		var update = {deleted : true};
@@ -93,7 +93,7 @@ var self = module.exports = {
 						if(docs.user_id === user_id || 'superadmin' === user_id || 'admin' === user_role) {
 							model.update(condition, update, null, function(err){
 								if(!err) {
-									var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board?id='+board_id);
+									var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id);
 									res.render('alert', {
 										title : 'Success'
 										,alert : alert_script
@@ -155,8 +155,8 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
-		var board_id = req.query.id;
-		var board_index = req.query.num;
+		var board_id = req.params.id;
+		var board_index = req.params.num;
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if(!err) {
@@ -197,7 +197,7 @@ var self = module.exports = {
 				if(docs.user_id === user_id) {
 					model.update(condition, update, null, function(err){
 						if(!err) {
-							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board?id='+board_id);
+							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id);
 							res.render('alert', {
 								title : 'Success'
 								,alert : alert_script

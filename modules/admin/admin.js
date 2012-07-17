@@ -109,7 +109,7 @@ var self = module.exports = {
 
 		dbModel.connectUserDB();
 		var userModel = dbModel.tossUserModel();
-		var user_id = req.query.id;
+		var user_id = req.params.id;
 		userModel.findOne({Id: user_id}, function(err, user){
 			if(!err && user){
 				console.log('in admin.js _ delete_user' + req.session.user.Id);

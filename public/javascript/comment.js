@@ -19,7 +19,7 @@ function updComment(){
 	var content = document.updForm.content.value;
 
 	if(confirm("정말 수정하시겠습니까?"))
-		location.href='/comment_update?id=' + board_id + '&num=' + board_index + '&index=' + index + '&content=' + content;
+		location.href='/comment_update/' + board_id + '/' + board_index + '/' + index + '/' + content;
 	
 	hideCommentView();
 }

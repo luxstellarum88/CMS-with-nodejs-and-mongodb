@@ -24,8 +24,8 @@ div#detail03
 				div#readNum 조회 수 : #{board.hit}
 		div#readMiddle #{board.content}
 		div#readFooter
-			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify?id=#{board_id}&num=#{board.index}'")
-			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete?id=#{board_id}&num=#{board.index}')")
+			input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
+			input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 		
 	div#boardBottom
 	
@@ -35,7 +35,7 @@ br
 	-if(comment[i]){
 		div('id'='c'+ i)
 			p #{comment[i].user_id}, #{comment[i].content}
-			input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete?id=#{board_id}&num=#{board.index}&index=#{comment[i].index}')");
+			input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/#{comment[i].index}')");
 			input(type='button', id='comment_modify', value='수정', onClick="viewCommentModify(#{i}, '#{comment[i].content}', '#{board_id}', #{board.index}, #{comment[i].index})");
 	-}
 -}
@@ -51,7 +51,7 @@ div('id'="divCommentUpd", style="display:none;")
 		input(type='button', value='취소', onClick="cnlComment()")
 		
 -for(var i=0; i<length; i++)
-	a(href='/board?id=#{board_id}&num=#{board.index}&comm_page=#{i+1}') [#{i+1}]
+	a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
 
 br
 

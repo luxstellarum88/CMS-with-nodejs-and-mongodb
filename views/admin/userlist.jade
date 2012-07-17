@@ -20,17 +20,17 @@ div(style='width:760px;')
 					td.content
 						input( type='checkbox', name='chklist', value='#{result[i].email}')	
 					td.content 
-						a(href='/user_information?id=#{result[i].Id}')
+						a(href='/user_information/#{result[i].Id}')
 							!{result[i].Id}
 					td.content #{result[i].name}
 					td.content #{result[i].role}
 					td.content
-						a( href='/admin/deleteUser?id=#{result[i].Id}' )
+						a( href='/admin/deleteUser/#{result[i].Id}' )
 							[삭제]
 		input( type='submit', name='btnemail', value='메일보내기' )
 	center
 		-for(var i=0; i < (length/paging_size); i++)
-			a(href='/admin/userlists?page=#{i+1}&type=#{type}&content=#{content}') [#{i+1}]
+			a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]
 				
 	div(style='text-align:center;')
 		-if(type == 'role')

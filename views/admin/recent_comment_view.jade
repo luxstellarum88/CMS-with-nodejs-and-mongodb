@@ -14,11 +14,11 @@ div(style='width:760px;')
 					tr
 						td.content #{i+1}
 						td.content 
-							a(href='/board?id=#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
+							a(href='/board/#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
 						td.content #{docs[i].post_index}	
 						td.content #{docs[i].user_name}
 						td.content
-							a(href='/board?id=#{docs[i].board_id}&num=#{docs[i].post_index}', style="color:black;") #{docs[i].content}
+							a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
 						td.content #{docs[i].insert_date}
 				-}
 	input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')
