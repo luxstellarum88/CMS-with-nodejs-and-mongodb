@@ -1,27 +1,3 @@
-<html>
-	<head>
-		<title></title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../css/common.css">
-		<link rel="stylesheet" type="text/css" href="../css/sub01.css">
-		<link rel="stylesheet" type="text/css" href="../css/cloud.css">
-		<link href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb' rel='stylesheet' type='text/css'>
-		<link href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb' rel='stylesheet' type='text/css' />
-		
-	</head>	
-	<body>
-		<div id="viewport" >
-			<div id="world" ></div>
-		</div>
-	
-		<? include "../common/header.html" ?>
-		<? include "../common/mainMenu.html" ?>
-		<? include "../common/subMenu/subMenu01.html" ?>
-		
- 		<? include "../common/footer.html" ?>
-		
-	<script>
-	
 	(function() {
 		var lastTime = 0;
 		var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -81,7 +57,7 @@
 			var cloud = document.createElement( 'img' );
 			cloud.style.opacity = 0;
 			var r = Math.random();
-			var src = '../images/cloud.png';
+			var src = 'images/cloud.png';
 			( function( img ) { img.addEventListener( 'load', function() {
 				img.style.opacity = .8;
 			} ) } )( cloud );
@@ -168,21 +144,13 @@
 	
 	update();
 
-	</script>
-	
-	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-625393-26']);
+	_gaq.push(['_trackPageview']);
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-625393-26']);
-		_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-
-	</script>
-
-	</body>
-</html>

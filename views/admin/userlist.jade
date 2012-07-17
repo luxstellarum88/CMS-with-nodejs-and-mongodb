@@ -1,57 +1,74 @@
-script
-	function search() {
-		location.href="/admin/userlists?type="+document.getElementsByName("type")[0].value
-						+"&content="+document.getElementsByName("content")[0].value;
-	}
-
-
-
-div(style='width:760px;')
-	form( id='frmusers', action='/admin/sendmailView', method='post')
-		table
-			tr
-				th
-				th.content ID
-				th.content NAME
-				th.content Role
-				th.content
-			-for(var i=0; i<result.length; i++)
-				tr
-					td.content
-						input( type='checkbox', name='chklist', value='#{result[i].email}')	
-					td.content 
-						a(href='/user_information/#{result[i].Id}')
-							!{result[i].Id}
-					td.content #{result[i].name}
-					td.content #{result[i].role}
-					td.content
-						a( href='/admin/deleteUser/#{result[i].Id}' )
-							[삭제]
-		input( type='submit', name='btnemail', value='메일보내기' )
-	center
-		-for(var i=0; i < (length/paging_size); i++)
-			a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]
-				
-	div(style='text-align:center;')
-		-if(type == 'role')
-			select(id='type', name='type')
-				option(value='id') 아이디
-				option(value='name') 이름
-				option(value='role', selected) 권한
-			
-		-else if(type == 'name')
-			select(id='type', name='type')
-				option(value='id') 아이디
-				option(value='name', selected) 이름
-				option(value='role') 권한
-			
-		
-		-else
-			select(id='type', name='type')
-				option(value='id', selected) 아이디
-				option(value='name') 이름
-				option(value='role') 권한
-			
-		input(type='text', name='content', id='content', value='#{content}')	
-		input(type='button', name='search_button', onClick='javascript:search()', value='검색')
-				
+html
+  head
+    title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    link(rel='stylesheet', type='text/css', href='/css/common.css')
+    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+  body
+    #viewport
+      #world
+    include ../common/header.jade
+    include ../common/mainMenu.jade
+    #detail03
+      script
+        function search() {
+          location.href="/admin/userlists?type="+document.getElementsByName("type")[0].value
+                  +"&content="+document.getElementsByName("content")[0].value;
+        }
+      #boardTop
+        #boardTitle User List
+      #boardMiddle
+        #boardList
+          div(style='width:760px;')
+            form( id='frmusers', action='/admin/sendmailView', method='post')
+              table
+                tr
+                  th
+                  th.content ID
+                  th.content NAME
+                  th.content Role
+                  th.content
+                -for(var i=0; i<result.length; i++)
+                  tr
+                    td.content
+                      input( type='checkbox', name='chklist', value='#{result[i].email}')  
+                    td.content 
+                      a(href='/user_information/#{result[i].Id}')
+                        !{result[i].Id}
+                    td.content #{result[i].name}
+                    td.content #{result[i].role}
+                    td.content
+                      a( href='/admin/deleteUser/#{result[i].Id}' ) [삭제]
+              input( type='submit', name='btnemail', value='메일보내기' )
+            center
+              -for(var i=0; i < (length/paging_size); i++)
+                a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]
+                  
+            div(style='text-align:center;')
+              -if(type == 'role')
+                select(id='type', name='type')
+                  option(value='id') 아이디
+                  option(value='name') 이름
+                  option(value='role', selected) 권한
+                
+              -else if(type == 'name')
+                select(id='type', name='type')
+                  option(value='id') 아이디
+                  option(value='name', selected) 이름
+                  option(value='role') 권한
+                
+              
+              -else
+                select(id='type', name='type')
+                  option(value='id', selected) 아이디
+                  option(value='name') 이름
+                  option(value='role') 권한
+                
+              input(type='text', name='content', id='content', value='#{content}')  
+              input(type='button', name='search_button', onClick='javascript:search()', value='검색')
+      #boardBottom
+    script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+    include ../common/footer.jade

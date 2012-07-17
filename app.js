@@ -17,6 +17,9 @@ var alert = require('./modules/alert/alert');
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('view options', {
+  	layout: false
+  });
   
   app.use(express.bodyParser());
   app.use(express.cookieParser());  
@@ -85,8 +88,10 @@ function requiresSuperUserLogin(req, res, next){
 app.get('/', routes.index);
 
 // HTML PAGE RENDERING PART
-app.get('/main', routes.html_main);
-app.get('/sub1/sub1', routes.html_sub1_1);
+app.get('/sub01/sub01', routes.html_sub1_1);
+app.get('/sub01/sub02', routes.html_sub1_2);
+app.get('/sub01/sub03', routes.html_sub1_3);
+app.get('/sub01/sub04', routes.html_sub1_4);
 
 app.post('/sessions', routes.session);
 
@@ -97,7 +102,7 @@ app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 app.get('/admin/deleteUser/:id', requiresAdminLogin, routes.delete_user);
 
 
-app.post('/join', routes.join);
+app.get('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
 app.get('/logout', routes.logout);
 

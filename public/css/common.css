@@ -1,17 +1,18 @@
 body { background: url('../images/background.png') repeat-x; background-color: #779ec7; margin: 0;font-family: 'NanumGorhicWeb'; font-size: 10pt;}
 
 #top { background: black; opacity: 0.7; height: 33px; padding-top: 8px;position: relative; }
-#topMenu { width: 426px; height:25px; position: relative; left:50%; margin-top: -33px; margin-left: -30px }
+#topMenu { width: 426px; height:25px; position: absolute; left:50%; margin-top: -33px; margin-left: -30px }
+#topMenu p { text-align: right; color: white; }
 #idInputBox {  background: url('../images/idInputBox.png') no-repeat; width:167px; height:25px; border: none; padding-left: 20px; outline: none; float: left }
 #pwInputBox { background: url('../images/idInputBox.png') no-repeat; width:113px; height:25px; border: none; padding-left: 20px; outline: none; float: left; margin-left: 5px}
 #loginButton { background: url('../images/loginButton.png'); width:54px ;height:25px; float: left}
 #signUpButton { background: url('../images/signUpButton.png'); width:77px ;height:25px; float: left; margin-left: 10px}
 
 
-#mainMenu {background: url('../images/mainMenuBackground.png'); width:870px; height:52px; margin-top:30px;  position:relative; left:50%; margin-left:-435px; z-index: 1}
+#mainMenu {background: url('../images/mainMenuBackground.png'); width:870px; height:52px; margin-top:24px;  position:relative; left:50%; margin-left:-435px; z-index: 1}
 #mainMenu #logo { width: 150px; height: 37px; display: block; float:left; margin-left: 28px; margin-top:6px}
 
-ul.mainmenu {float:left; height:50px; margin-top:17px; padding: 0}
+ul.mainmenu {float:left; height:50px; margin-top:-28px; padding: 0}
 li.mainmenu {float:left; border:0; height:27px;}
 
 .mainmenu a{display:block; text-indent:-5000px; overflow:hidden}

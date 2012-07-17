@@ -12,8 +12,9 @@ var self = module.exports = {
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
 			if(!err) {
 				res.render('admin/board_recent_view', {
-					title : 'Recent Docs',
-					docs : docs,				
+					title : 'Recent Docs'
+					, docs : docs
+					, session: req.session.user				
 				});//end of render
 			}//end of if
 			else {
@@ -32,8 +33,9 @@ var self = module.exports = {
 			
 			if(!err) {
 				res.render('admin/recent_comment_view', {
-					title : 'Recent Comments',
-					docs : docs
+					title : 'Recent Comments'
+					, docs : docs
+					, session: req.session.user
 				})//end of render
 			}//end of err
 			else {

@@ -21,8 +21,11 @@ var self = module.exports =  {
 		res.redirect('/');
 	}, //end of logout
 
-	sign_up_page : function(res) {
-		res.render('join', {title: 'Join'});
+	sign_up_page : function(req, res) {
+		res.render('join', {
+			title: 'Join'
+			, session: req.session.user
+		});
 	}, //end of sign_up
 	
 	check_sign_up_condition : function(user, evt) {
@@ -89,7 +92,7 @@ var self = module.exports =  {
 									self.authenticate(user.idForm, user.pwForm, function(user){			
 										if(user){
 											req.session.user = user;
-											res.redirect('/board_main');
+											res.redirect('/');
 										}
 									});//end of authenticate
 								}								
@@ -154,9 +157,10 @@ var self = module.exports =  {
 	}, //end of insert
 	
 	
-	display_userlist : function(type, content, current_page, length, docs, paging_size, res) {
+	display_userlist : function(type, content, current_page, length, docs, paging_size, req, res) {
 		res.render('admin/userlist', {
 			title : "UserList"
+			,session: req.session.user
 			,result : docs
 			,type : type
 			,content : content
@@ -181,7 +185,7 @@ var self = module.exports =  {
 			user_model.find({role : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({role : content_reg_exp}).count(function(err, length) {
 					if(!err) {	
-						self.display_userlist(type, content, current_page, length, docs, paging_size, res);
+						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
 					else{
 						console.log("error -_-?");
@@ -193,7 +197,7 @@ var self = module.exports =  {
 			user_model.find({name : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({name : content_reg_exp}).count(function(err, length) {
 					if(!err) {	
-						self.display_userlist(type, content, current_page, length, docs, paging_size, res);
+						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
 					else{
 						console.log("error -_-?");
@@ -205,7 +209,7 @@ var self = module.exports =  {
 			user_model.find({Id : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({Id : content_reg_exp}).count(function(err, length) {
 					if(!err) {	
-						self.display_userlist(type, content, current_page, length, docs, paging_size, res);
+						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
 					else{
 						console.log("error -_-?");
@@ -217,7 +221,7 @@ var self = module.exports =  {
 			user_model.find({}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({}).count(function(err, length) {
 					if(!err) {	
-						self.display_userlist(type, content, current_page, length, docs, paging_size, res);
+						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
 					else{
 						console.log("error -_-?");
@@ -248,12 +252,13 @@ var self = module.exports =  {
 	}, //end of authenticate
 	
 	
-	information : function(user_id, res) {
+	information : function(user_id, req, res) {
 		var user_model = dbModel.tossUserModel();
 		user_model.findOne({Id:user_id}, function(err, user){
 			if( user ) {
 				res.render('admin/userinformation', {
 					title : 'User_Information'
+					, session: req.session.user
 					, info : user
 				});//end of render
 			}//end of if
@@ -289,7 +294,7 @@ var self = module.exports =  {
 			if(user){
 				console.log('auth_success');
 				req.session.user = user;
-				res.redirect('/board_main');
+				res.redirect('/');
 			}
 			else{
 				var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');
@@ -302,11 +307,14 @@ var self = module.exports =  {
 	},//end of session
 	
 	show_index_page : function (req, res) {
-		if(req.session.user) {
-			res.redirect('/board_main');
-		}
-		else{
-	  		res.render('index', { title: 'Express' });
-	 	}
+		// if(req.session.user) {
+			// res.redirect('/board_main');
+		// }
+		// else{
+  			res.render('index', {
+  				title: 'Express'
+  				, session: req.session.user
+  			});
+	 	//}
 	}//end of show_index_page
 }//end of export

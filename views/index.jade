@@ -1,24 +1,74 @@
-table(style='width:180px !important')
-	form(action='/sessions', method='POST')
-		tr
-			td(colspan='2', align='center', style='background:#ebf2f3; padding:7px; font-size:12px; font-family:gulim; color:#5e7b7f;') Login
-		tr
-			td(width='50', align='center', bgcolor='#ffffff') ID
-			td(bgcolor='#ffffff')
-				input(type='text', name='id', id='id')
-		tr
-			td(width='50', align='center', bgcolor='#ffffff') PW
-			td(bgcolor='#ffffff')
-				input(type='password', name='password', id='password')
-		tr
-			td(colspan='2', bgcolor='#ffffff')
-				input(type = 'submit', name = 'login', id = 'login', value = '로그인')		
-	tr
-		td(colspan='2', bgcolor='#ffffff')				
-			form(method='post', action='/join')
-				input(
-					type = 'submit'
-					,name = 'joinButton'
-					,id = 'joinButton'
-					,value = '회원가입'
-				)
+html
+  head
+    title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    link(rel='stylesheet', type='text/css', href='/css/common.css')
+    link(rel='stylesheet', type='text/css', href='/css/index.css')
+    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+  body
+    #viewport
+      #world
+    
+    include common/header
+    include common/mainMenu  
+    
+    #detail01
+      #detail01Text
+        #title 안녕, goorm!
+        #contents
+          | UIzard3는 웹 기반 통합 개발 환경을 제공하기 위한 오픈 소스 프로젝트입니다. 다양한 오픈 소 스 라이브러리를 기반으로 개발되었으며, 다양한 플랫폼과 웹브라우저에서 동작하는 것을 목표 로 하고 있습니다. 지원하는 개발 환경은 웹부터 모바일까지 다양하게 지원하며, 플러그인 기능 을 통해 얼마든지 확장 가능합니다. 또한 UI 작성 및 UML 작성 도구를 지원하고 실시간 협업 환경을 제공해줌으로써 개발 효율성을 극대화할 수 있다는 장점이 있습니다.
+        a(href='')
+          #getStartedButton
+      #detail01Image
+        img(src='/images/detailImage01.png')
+    #detail02
+      #boardTop
+        #boardTitle 특징
+      #boardMiddle
+        #wrap(style='margin-left: 10px;')
+          #title 자신만의 클라우드 통합 개발 환경 구축!
+          #images
+          #contents
+            | 개인 서버에 설치하거나 uizard.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+        #wrap
+          #title 다양한 플러그인 지원!
+          #images
+          #contents
+            | 다양한 프로그래밍 언어를 지원하는 플러그인 뿐만 아니라 추가적인 기능을 제공하는 다양한 플러그인을 쉽게 설치/관리할 수 있으며, 누 구든지 이러한 플러그인을 개발하고 배포할 수 있습니다.
+        #wrap
+          #title
+            | 실시간 협업을 통한 효율적인
+            br
+            | 개발!
+          #images
+          #contents
+            | 실시간 협업 서버를 제공하여, 이를 통해 원격지에 있는 다른 팀원들과 쉽게 협업할 수 있습니다. 채팅 뿐만 아니라 동시에 소스 코드를 편집하거나 UI를 디자인할 수 있습니다.
+      #boardBottom
+    #detailWrap
+      #detail03
+        #boardTop
+          #boardTitle 다운로드
+        #boardMiddle
+          #wrap
+            #title 다운로드
+            #contents
+              | MacBook Air의 놀라운 반응 속도는 flash 스토리지 중심의 설계 덕분입니다. 이렇게 설계된 MacBook Air는 기존의 다른 노트북보다 훨씬 더 가볍고 휴대성이 뛰어날 뿐만 아니라, 더욱 빠른 데이터 액세스와 언제나 즉시 켜지는 빠른 속도를 제공합니다. 최대 512GB까지 제공되는 차세대 flash 스토리지는 이전 세대 MacBook Air보다 빠르며, 5400rpm인 기존 노트북의 하드 드라이브보다 최고 4배의 속도를 제공합니다.2언제라도 MacBook Air를 열면 몇 초만에 바로 켜집니다.
+        #boardBottom
+      #detail04
+        #boardTop
+          #boardTitle.first.select 공지사항
+          #boardTitle 보도자료
+        #boardMiddle
+          div(style='margin-left: 10px; padding-top: 10px;')
+            ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
+              li 2012.07.09 Update 공지..
+              li 2012.07.09 Update 공지..
+              li 2012.07.09 Update 공지..
+              li 2012.07.09 Update 공지..
+              li 2012.07.09 Update 공지..
+        #boardBottom
+    include common/footer 
+    script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
+    

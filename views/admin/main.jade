@@ -1,24 +1,49 @@
-div(style='width:760px;')
-	table
-		tr
-			th.content No
-			th.content Id
-			th.content Name
-			th.content pagingNumber
-			th.content date
-			-for(var i=docs.length; i>0; i--)
-				-if(docs[i-1]){
-					tr
-						td.content #{i}
-						td.content #{docs[i-1].id}
-						td.content #{docs[i-1].name}
-						td.content #{docs[i-1].paging}
-						td.content #{docs[i-1].date}
-				-}
-
-input( type ='button', id='board_make_button', value='게시판 만들기', onClick="location.href='/admin/board_make_form'")
-input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"')
-br
-input( type ='button', id='userlist_button', value='유저리스트', onClick="location.href='/admin/userlists/1'")
-input( type ='button', id='board_recent_button', value='최신글보기', onClick="location.href='/admin/board_recent_view'")
-input( type ='button', id='recent_comment_button', value='최신덧글보기', onClick="location.href='/admin/recent_comment_view'")
+html
+  head
+    title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    link(rel='stylesheet', type='text/css', href='/css/common.css')
+    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+  body
+    #viewport
+      #world
+    
+    include ../common/header
+    include ../common/mainMenu  
+    #detail03
+      #boardTop
+        #boardTitle Admin
+      #boardMiddle
+        #wrap(style='margin-left: 10px;')
+          #title 관리자 메인
+          #contents
+            div(style='width:760px;')
+              table
+                tr
+                  th.content No
+                  th.content Id
+                  th.content Name
+                  th.content pagingNumber
+                  th.content date
+                  -for(var i=docs.length; i>0; i--)
+                    -if(docs[i-1]){
+                      tr
+                        td.content #{i}
+                        td.content #{docs[i-1].id}
+                        td.content #{docs[i-1].name}
+                        td.content #{docs[i-1].paging}
+                        td.content #{docs[i-1].date}
+                    -}
+            
+            input( type ='button', id='board_make_button', value='게시판 만들기', onClick="location.href='/admin/board_make_form'")
+            input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"')
+            br
+            input( type ='button', id='userlist_button', value='유저리스트', onClick="location.href='/admin/userlists/1'")
+            input( type ='button', id='board_recent_button', value='최신글보기', onClick="location.href='/admin/board_recent_view'")
+            input( type ='button', id='recent_comment_button', value='최신덧글보기', onClick="location.href='/admin/recent_comment_view'")
+      #boardBottom
+    include ../common/footer
+    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

@@ -40,6 +40,7 @@ var self = module.exports = {
 			title: 'Send e-mail'
 			, sender: 'operator@goorm.org'
 			, addresses: req.body.chklist
+			, session: req.session.user
 		});
 	}, //end of send_mail_view
 	
@@ -91,8 +92,9 @@ var self = module.exports = {
 		model.find().sort('date', -1).exec(function(err, docs){
 			if(!err) {
 				res.render('admin/main', {
-					title: 'admin main',
-					docs: docs
+					title: 'admin main'
+					, docs: docs
+					, session: req.session.user
 				});//end of render
 			}//end of if
 			else {
@@ -205,11 +207,17 @@ var self = module.exports = {
 				res.redirect('/admin/main');
 			}
 			else{
-		  		res.render('admin', { title: 'admin' });
+		  		res.render('admin', {
+		  			title: 'admin'
+		  			, session: req.session.user
+		  		});
 		 	}
 	 	}
 	 	else{
-		  		res.render('admin', { title: 'admin' });
+	  		res.render('admin', {
+	  			title: 'admin'
+	  			, session: req.session.user
+	  		});
 		 }
 	}, //end of show_index_page
 } // end of module

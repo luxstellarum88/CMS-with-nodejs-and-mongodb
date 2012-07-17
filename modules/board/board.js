@@ -19,6 +19,7 @@ var self = module.exports = {
 			title: 'write'
 			, id : req.params.id
 			, auth : auth
+			, session: req.session.user
 		});
 	}, //end of write_page
 	
@@ -136,8 +137,9 @@ var self = module.exports = {
 		model.find().sort('date', -1).exec(function(err, docs){
 			if(!err) {
 				res.render('board/main', {
-					title: 'Board Main',
-					docs: docs
+					title: 'Board Main'
+					, docs: docs
+					, session: req.session.user
 				});//end of render
 			}//end of if
 			else {
@@ -162,8 +164,9 @@ var self = module.exports = {
 			if(!err) {
 				if(docs.user_id === user_id) {
 					res.render('board/modify', {
-						title: 'Board Modify',
-						docs: docs
+						title: 'Board Modify'
+						, docs: docs
+						, session: req.session.user
 					});//end of render
 				}//end of if
 				else {
@@ -244,6 +247,7 @@ var self = module.exports = {
 						comment : comments,
 						length : length,
 						sessionId : req.session.user.Id
+						, session: req.session.user
 					});//end of render
 				});//end of comment list
 			}//end of if
@@ -257,7 +261,7 @@ var self = module.exports = {
 		2012. 07. 13. by JH
 	*/
 		
-	display_result : function(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
+	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
@@ -300,6 +304,7 @@ var self = module.exports = {
 					content: content,
 					comment_number : comment_number,
 					notice_comment_number : notice_comment_number 
+					, session: req.session.user
 				});//end of render
 			}//end of else
 		});//end of evt on
@@ -356,7 +361,7 @@ var self = module.exports = {
 							if(!err){
 								model.count({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id}, function(err, length){
 									
-									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -369,7 +374,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								model.count({notice : false, deleted : false, user_name : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -382,7 +387,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								model.count({notice : false, deleted : false, subject : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -395,7 +400,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								model.count({notice : false, deleted : false, content : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -408,7 +413,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if(!err){
 								model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
-									self.display_result(res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {

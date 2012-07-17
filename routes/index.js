@@ -12,16 +12,18 @@ var skin_manager = require('../modules/skin_manager/service');
 var board = require('../modules/board/board');
 //comment
 var comment = require('../modules/comment/comment');
-// HTML PAGE RENDERING
-var html_page = require('../modules/html_manager/service');
-
-
-exports.html_main = function(req, res){
-	html_page.index(req, res);
-}
 
 exports.html_sub1_1 = function(req, res){
-	html_page.sub1_1(req, res);
+	res.render('sub01/sub01', { title: 'sub1_1' , session: req.session.user });
+}
+exports.html_sub1_2 = function(req, res){
+	res.render('sub01/sub02', { title: 'sub1_2' , session: req.session.user });
+}
+exports.html_sub1_3 = function(req, res){
+	res.render('sub01/sub03', { title: 'sub1_3' , session: req.session.user });
+}
+exports.html_sub1_4 = function(req, res){
+	res.render('sub01/sub04', { title: 'sub1_4' , session: req.session.user });
 }
 
 exports.index = function(req, res){
@@ -43,6 +45,7 @@ exports.board_make_form = function(req, res){
 	// });
 	res.render('admin/board_make_form', {
 		title: 'board_make_form'
+		, session: req.session.user
 	});
 }
 
@@ -72,7 +75,7 @@ exports.logout = function(req, res) {
 }
 
 exports.user_information_view = function(req, res){
-	account.information(req.params.id, res);
+	account.information(req.params.id, req, res);
 }
 
 
@@ -81,7 +84,7 @@ exports.user_modify = function(req, res){
 }
 
 exports.join = function(req, res){
-	account.sign_up_page(res);
+	account.sign_up_page(req, res);
 }
 
 
@@ -182,6 +185,7 @@ exports.boardPreview = function(req, res){
 	
 	res.render('board/show', {
 		title: '미리보기',
+		session: k,
 		board_id: req.body.id,
 		sessionId: req.session.user.Id,
 		board: board,
@@ -201,6 +205,7 @@ exports.commentDeleteForm = function(req, res){
 		board_id: board_id,
 		board_num: board_num,
 		comment_id: comment_id
+		, session: req.session.user
 	});
 }
 

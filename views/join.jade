@@ -1,50 +1,74 @@
+html
+  head
+    title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    link(rel='stylesheet', type='text/css', href='css/common.css')
+    link(rel='stylesheet', type='text/css', href='css/index.css')
+    link(rel='stylesheet', type='text/css', href='css/cloud.css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+  body
+    #viewport
+      #world
+    include common/header.jade
+    include common/mainMenu.jade
 
-form(method='post', action='/makeAccount')
-	label ID
-		input(
-			type = 'textbox'
-			,name = 'idForm'
-			,id = 'idForm'			
-		)
-	br
-		
-	label	Password
-		input(
-			type = 'password'
-			,name = 'pwForm'
-			,id = 'pwForm'
-		)
-	br
-	
-	label	Password Confirm
-		input(
-			type = 'password'
-			,name = 'confirmForm'
-			,id = 'confirmForm'
-		)
-		
-	br	
-	
-	label	Name
-		input(
-			type = 'textbox'
-			,name = 'nameForm'
-			,id = 'nameForm'
-		)
-	br
-
-
-	label	Email
-		input(
-			type = 'textbox'
-			,name = 'emailForm'
-			,id = 'emailForm'
-		)
-	br
-	
-	input(
-		type = 'submit'
-		,name = 'loginButton'
-		,id = 'loginButton'
-		,value = '회원가입'
-	)
+    #detail02
+      #boardTop
+        #boardTitle 회원가입
+      #boardMiddle
+        #wrap(style='margin-left: 10px;')
+          #contents
+            form(method='post', action='/makeAccount')
+              label ID
+                input(
+                  type = 'textbox'
+                  ,name = 'idForm'
+                  ,id = 'idForm'      
+                )
+              br
+                
+              label  Password
+                input(
+                  type = 'password'
+                  ,name = 'pwForm'
+                  ,id = 'pwForm'
+                )
+            
+              br  
+            
+              label  Password Confirm
+                input(
+                  type = 'password'
+                  ,name = 'confirmForm'
+                  ,id = 'confirmForm'
+                )
+            
+              br  
+              
+              label  Name
+                input(
+                  type = 'textbox'
+                  ,name = 'nameForm'
+                  ,id = 'nameForm'
+                )
+              br
+            
+            
+              label  Email
+                input(
+                  type = 'textbox'
+                  ,name = 'emailForm'
+                  ,id = 'emailForm'
+                )
+              br
+              
+              input(
+                type = 'submit'
+                ,name = 'loginButton'
+                ,id = 'loginButton2'
+                ,value = '회원가입'
+              )
+      #boardBottom
+    include common/footer.jade
+    script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
