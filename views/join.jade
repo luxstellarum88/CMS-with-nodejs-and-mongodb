@@ -13,6 +13,14 @@ html
       #world
     include common/header.jade
     include common/mainMenu.jade
+    
+    script
+      function checkoverlap(){
+        id = document.getElementById("idForm").value;
+        window.open('./checkoverlap/'+id);
+      }
+
+
 
     #detail02
       #boardTop
@@ -34,6 +42,11 @@ html
                     type = 'textbox'
                     ,name = 'idForm'
                     ,id = 'idForm'      
+                  )
+                  input(
+                    type = 'button'
+                    ,onclick = 'checkoverlap();'
+                    ,value = '클릭'
                   )
               tr.odd
                 th 비밀번호

@@ -67,6 +67,28 @@ var self = module.exports =  {
 		}
 	},
 	
+	check_overlap : function(req, res) {
+		var user_id = req.params.id;
+		var model = dbModel.tossUserModel();
+		
+		model.count({Id:user_id}, function(err, count){
+			if(count) {
+					res.render('checkoverlap',{
+						title : 'Check Overlap',
+						avail : '사용하실 수 없는 아이디 입니다.'
+					});
+				//있을때
+			}
+			else {
+					res.render('checkoverlap',{
+						title : 'Check Overlap',
+						avail : '사용하실 수 있는 아이디 입니다.'
+					});
+				//없을때
+			}
+		})	;//end of count	
+	},//end of check_overlap
+	
 	insert : function(req, res){
 		var useridentity = dbModel.makeUserModel();
 		var user = req.body;

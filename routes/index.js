@@ -87,6 +87,9 @@ exports.join = function(req, res){
 	account.sign_up_page(req, res);
 }
 
+exports.checkoverlap = function(req, res){
+	account.check_overlap(req, res);
+}
 
 exports.makeaccount = function(req, res){
 	account.insert(req, res);

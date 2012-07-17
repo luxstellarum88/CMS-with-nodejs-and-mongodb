@@ -104,6 +104,7 @@ app.get('/admin/deleteUser/:id', requiresAdminLogin, routes.delete_user);
 
 app.get('/join', routes.join);
 app.post('/makeAccount', routes.makeaccount);
+app.get('/checkoverlap/:id', routes.checkoverlap);
 app.get('/logout', routes.logout);
 
 app.get('/admin/board_recent_view', requiresAdminLogin, routes.board_recent_view);
