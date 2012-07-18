@@ -1,5 +1,5 @@
 #boardMiddle #editorHeader { width: 771px; height: 36px; background: url("../../images/boardHeadBackground.png"); margin-bottom: 8px}
-#boardMiddle #editorHeader #title {width: 400px; height: 20px; border: 1px solid #eee; margin-top: 8px; margin-left: 20px;}
+#boardMiddle #editorHeader #subject {width: 400px; height: 20px; border: 1px solid #eee; margin-top: 8px; margin-left: 20px; display:inline;}
 #boardMiddle #editorFooter { width:51px; height:28px; margin: 0 auto}
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 10px }
 #detail03 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
