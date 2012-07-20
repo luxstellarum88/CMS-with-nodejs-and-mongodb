@@ -1,70 +1,70 @@
 html
-  head
-    title
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
-    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
-  body
-    #viewport
-      #world
-    
-    include ../common/header
-    include ../common/mainMenu
-    include ../common/subMenu/subMenu03.jade
-    
-    script(src="/javascript/common.js")
-    
-    #detail03
-      #boardTop
-        #boardTitle Board
-      #boardMiddle
-        #wrap(style='margin-left: 10px;')
-          #title 수정
-          #contents           
-            h1= title
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		include ../common/subMenu/subMenu03.jade
+		
+		script(src="/javascript/common.js")
+		
+		#detail03
+			#boardTop
+				#boardTitle Board
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 수정
+					#contents					 
+						h1= title
 
-            form(method='post', name='modify_form', action ='/update')
-              table
-                tr
-                  td.content No
-                  td.content #{docs.index}
-                    input(type='hidden', name='index', value='#{docs.index}')
-                    input(type='hidden', name='board_id', value='#{docs.board_id}')
-                  
-                tr
-                  td.content Subject
-                  td.content
-                    input(
-                      type='textbox'
-                      ,id = 'subjectForm'
-                      ,name = 'subjectForm'
-                      ,value = docs.subject
-                    )
-            
-                tr
-                  td.content Name
-                  td.content #{docs.user_name}
-                    input(
-                      type='hidden'
-                      ,id = 'nameForm'
-                      ,name = 'nameForm'
-                      ,value = docs.user_name
-                    )
-                tr
-                  td.content Content
-                  td.content
-                    textarea(name='memoForm', value='#{docs.content}') #{docs.content}
-                        
-              input(
-                type = 'button'
-                ,id = 'modifyButton'
-                ,name = 'modifyButton'
-                ,value = '수정'
-                ,onClick = 'call_confirm_post("정말 수정하시겠습니까","modify_form")'
-              )
-      #boardBottom
-    include ../common/footer
-    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
+						form(method='post', name='modify_form', action ='/update')
+							table
+								tr
+									td.content No
+									td.content #{docs.index}
+										input(type='hidden', name='index', value='#{docs.index}')
+										input(type='hidden', name='board_id', value='#{docs.board_id}')
+									
+								tr
+									td.content Subject
+									td.content
+										input(
+											type='textbox'
+											,id = 'subjectForm'
+											,name = 'subjectForm'
+											,value = docs.subject
+										)
+						
+								tr
+									td.content Name
+									td.content #{docs.user_name}
+										input(
+											type='hidden'
+											,id = 'nameForm'
+											,name = 'nameForm'
+											,value = docs.user_name
+										)
+								tr
+									td.content Content
+									td.content
+										textarea(name='memoForm', value='#{docs.content}') #{docs.content}
+												
+							input(
+								type = 'button'
+								,id = 'modifyButton'
+								,name = 'modifyButton'
+								,value = '수정'
+								,onClick = 'call_confirm_post("정말 수정하시겠습니까","modify_form")'
+							)
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

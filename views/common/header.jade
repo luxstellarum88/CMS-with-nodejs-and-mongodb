@@ -1,16 +1,16 @@
 script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
 #top
 #topMenu
-  - if(!session)
-    form#loginFrm(action='/sessions', method='POST')
-      input#idInputBox(type='text', name='id')
-      input#pwInputBox(type='password', name='password')
-      a(onclick='javascript:document.getElementById("loginFrm").submit();')
-        #loginButton(name='login')
-      a(href='/join')
-        #signUpButton
-  - else
-    p
-      !{session.Id} 님이 로그인 하셨습니다.
-      a(href='/logout')
-        &nbsp;[logout]
+	- if(!session)
+		form#loginFrm(action='/sessions', method='POST')
+			input#idInputBox(type='text', name='id')
+			input#pwInputBox(type='password', name='password')
+			a(onclick='javascript:document.getElementById("loginFrm").submit();')
+				#loginButton(name='login')
+			a(href='/join')
+				#signUpButton
+	- else
+		p
+			!{session.Id} 님이 로그인 하셨습니다.
+			a(href='/logout')
+				&nbsp;[logout]

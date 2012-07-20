@@ -1,40 +1,40 @@
 html
-  head
-    title
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/index.css')
-    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
-  body
-    #viewport
-      #world
-    
-    include common/header
-    include common/mainMenu  
-    #detail02
-      #boardTop
-        #boardTitle Admin Login
-      #boardMiddle
-        #wrap(style='margin-left: 10px;')
-          #title 관리자 기능 로그인
-          #contents
-            table(style='width:180px !important')
-              form(action='/admin/main', method='POST')
-                tr
-                  td(colspan='2', align='center', style='background:#ebf2f3; padding:7px; font-size:12px; font-family:gulim; color:#5e7b7f;') Admin Login
-                tr
-                  td(width='50', align='center', bgcolor='#ffffff') ID
-                  td(bgcolor='#ffffff')
-                    input(type='text', name='Id', id='Id')
-                tr
-                  td(width='50', align='center', bgcolor='#ffffff') PW
-                  td(bgcolor='#ffffff')
-                    input(type='password', name='password', id='password')
-                tr
-                  td(colspan='2', bgcolor='#ffffff')
-                    input(type = 'submit', name = 'login', id = 'login', value = '로그인')
-      #boardBottom
-    include common/footer
-    script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/index.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		
+		include common/header
+		include common/mainMenu	
+		#detail02
+			#boardTop
+				#boardTitle Admin Login
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 관리자 기능 로그인
+					#contents
+						table(style='width:180px !important')
+							form(action='/admin/main', method='POST')
+								tr
+									td(colspan='2', align='center', style='background:#ebf2f3; padding:7px; font-size:12px; font-family:gulim; color:#5e7b7f;') Admin Login
+								tr
+									td(width='50', align='center', bgcolor='#ffffff') ID
+									td(bgcolor='#ffffff')
+										input(type='text', name='Id', id='Id')
+								tr
+									td(width='50', align='center', bgcolor='#ffffff') PW
+									td(bgcolor='#ffffff')
+										input(type='password', name='password', id='password')
+								tr
+									td(colspan='2', bgcolor='#ffffff')
+										input(type = 'submit', name = 'login', id = 'login', value = '로그인')
+			#boardBottom
+		include common/footer
+		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')

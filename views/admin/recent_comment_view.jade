@@ -1,48 +1,48 @@
 html
-  head
-    title
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
-    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
-  body
-    #viewport
-      #world
-    
-    include ../common/header
-    include ../common/mainMenu  
-    #detail03
-      #boardTop
-        #boardTitle Admin
-      #boardMiddle
-        #wrap(style='margin-left: 10px;')
-          #title 최근 코멘트
-          #contents
-            h1= title
-            div(style='width:760px;')
-              table
-                tr
-                  th.content 번호
-                  th.content 게시판 명
-                  th.content 글 번호
-                  th.content 이름
-                  th.content 내용
-                  th.content 날짜
-                  -for(var i=0; i<docs.length; i++)
-                    -if(docs[i]){
-                      tr
-                        td.content #{i+1}
-                        td.content 
-                          a(href='/board/#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
-                        td.content #{docs[i].post_index}  
-                        td.content #{docs[i].user_name}
-                        td.content
-                          a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
-                        td.content #{docs[i].insert_date}
-                    -}
-              input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')
-      #boardBottom
-    include ../common/footer
-    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu	
+		#detail03
+			#boardTop
+				#boardTitle Admin
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 최근 코멘트
+					#contents
+						h1= title
+						div(style='width:760px;')
+							table
+								tr
+									th.content 번호
+									th.content 게시판 명
+									th.content 글 번호
+									th.content 이름
+									th.content 내용
+									th.content 날짜
+									-for(var i=0; i<docs.length; i++)
+										-if(docs[i]){
+											tr
+												td.content #{i+1}
+												td.content 
+													a(href='/board/#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
+												td.content #{docs[i].post_index}	
+												td.content #{docs[i].user_name}
+												td.content
+													a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
+												td.content #{docs[i].insert_date}
+										-}
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

@@ -1,92 +1,92 @@
 html
-  head
-    title
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/view.css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
-    -if(session!=-1)
-      link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-    body
-      #viewport
-        #world
-      -if(session!=-1)
-        include ../common/header
-        include ../common/mainMenu
-        include ../common/subMenu/subMenu03.jade
-    
-        script(src="/javascript/common.js")
-        script(src='/javascript/comment.js')
-    div#detail03
-      div#boardTop
-        div#boardTitle= title
-      div#boardMiddle
-        div#readHeader
-          div#titleWrap
-            a#title #{board.subject}
-            div#time #{board.insert_date}
-          div#information
-            div#author
-              a #{board.user_name}
-            div#readNum 조회 수 : #{board.hit}
-        div#readMiddle !{board.content}
-        div#readFooter
-          -if(session!=-1)
-            input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
-            input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
-                
-      div#boardBottom
-      
-    br
-    -if(session!=-1)
-      -for(var i=0; i<comment.length; i++){
-        -if(comment[i]){
-          div('id'='c'+ i)
-            p #{comment[i].user_id}, #{comment[i].content}
-            input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/#{comment[i].index}')");
-            input(type='button', id='comment_modify', value='수정', onClick="viewCommentModify(#{i}, '#{comment[i].content}', '#{board_id}', #{board.index}, #{comment[i].index})");
-        -}
-      -}
-            
-      div('id'="divCommentUpd", style="display:none;")
-        form(name='updForm')
-          내용 : 
-          input(type='text', name='content')
-          input(type='hidden', name='board_id')
-          input(type='hidden', name='board_index')    
-          input(type='hidden', name='index')
-          input(type='button', value='등록', onClick="updComment()")
-          input(type='button', value='취소', onClick="cnlComment()")
-                
-      -for(var i=0; i<length; i++)
-        a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
-            
-      br
-    -if(session!=-1 && sessionId)
-      form(method='post', action='/comment_write')
-        table
-          tr
-            td.content User
-              td.content #{sessionId}
-            td.content Password
-            td.content
-              input(type='password', id='passwordForm', name='passwordForm')    
-          tr
-            td.content Comment
-            td.content(colspan='3')
-              input(type='textbox', id='commentForm', name='commentForm')  
-              input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
-              input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
-              input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
-          tr
-            td.content(colspan='4')
-              input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
-      #boardBottom
-    -else if(session!=-1)
-      p 로그인 한 사용자만 코멘트를 입력할 수 있습니다.
-      #boardBottom
-    -if(session!=-1)
-      include ../common/footer
-      script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/view.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		-if(session!=-1)
+			link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		body
+			#viewport
+				#world
+			-if(session!=-1)
+				include ../common/header
+				include ../common/mainMenu
+				include ../common/subMenu/subMenu03.jade
+		
+				script(src="/javascript/common.js")
+				script(src='/javascript/comment.js')
+		div#detail03
+			div#boardTop
+				div#boardTitle= title
+			div#boardMiddle
+				div#readHeader
+					div#titleWrap
+						a#title #{board.subject}
+						div#time #{board.insert_date}
+					div#information
+						div#author
+							a #{board.user_name}
+						div#readNum 조회 수 : #{board.hit}
+				div#readMiddle !{board.content}
+				div#readFooter
+					-if(session!=-1)
+						input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
+						input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
+								
+			div#boardBottom
+			
+		br
+		-if(session!=-1)
+			-for(var i=0; i<comment.length; i++){
+				-if(comment[i]){
+					div('id'='c'+ i)
+						p #{comment[i].user_id}, #{comment[i].content}
+						input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/#{comment[i].index}')");
+						input(type='button', id='comment_modify', value='수정', onClick="viewCommentModify(#{i}, '#{comment[i].content}', '#{board_id}', #{board.index}, #{comment[i].index})");
+				-}
+			-}
+						
+			div('id'="divCommentUpd", style="display:none;")
+				form(name='updForm')
+					내용 : 
+					input(type='text', name='content')
+					input(type='hidden', name='board_id')
+					input(type='hidden', name='board_index')		
+					input(type='hidden', name='index')
+					input(type='button', value='등록', onClick="updComment()")
+					input(type='button', value='취소', onClick="cnlComment()")
+								
+			-for(var i=0; i<length; i++)
+				a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
+						
+			br
+		-if(session!=-1 && sessionId)
+			form(method='post', action='/comment_write')
+				table
+					tr
+						td.content User
+							td.content #{sessionId}
+						td.content Password
+						td.content
+							input(type='password', id='passwordForm', name='passwordForm')		
+					tr
+						td.content Comment
+						td.content(colspan='3')
+							input(type='textbox', id='commentForm', name='commentForm')	
+							input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
+							input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
+							input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
+					tr
+						td.content(colspan='4')
+							input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
+			#boardBottom
+		-else if(session!=-1)
+			p 로그인 한 사용자만 코멘트를 입력할 수 있습니다.
+			#boardBottom
+		-if(session!=-1)
+			include ../common/footer
+			script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

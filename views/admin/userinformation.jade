@@ -1,55 +1,55 @@
 html
-  head
-    title
-    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    link(rel='stylesheet', type='text/css', href='/css/common.css')
-    link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
-    link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-    link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
-  body
-    #viewport
-      #world
-    
-    include ../common/header
-    include ../common/mainMenu
-    
-    script(src='/javascript/common.js')  
-    #detail03
-      #boardTop
-        #boardTitle Admin
-      #boardMiddle
-        #wrap(style='margin-left: 10px;')
-          #title 게시판 생성
-          #contents
-            form(method='post', name='modify_form', id='modify_form', action='/user_modify')
-              table(border=1)
-                tr
-                  td ID
-                  td
-                    input(type='hidden', name='user_id', value='#{info.Id}')
-                    !{info.Id}
-                tr
-                  td 권한
-                  td
-                    -if(info.role == 'admin')
-                      select(name='user_role')
-                        option(value='Guest') Guest
-                        option(value='admin', selected) admin
-                    -else
-                      select(name='user_role')
-                        option(value='Guest', selected) Guest
-                        option(value='admin') admin
-                tr
-                  td 이름
-                  td
-                    !{info.name}
-                tr
-                  td email
-                  td
-                    !{info.email}
-              input(type='button', name='user_modify', value='수정', onClick='call_confirm_post("수정하시겠습니까?","modify_form")')
-              input(type='button', name='gotolist', value='목록', onClick='location.href="/admin/userlists"')
-      #boardBottom
-    include ../common/footer
-    script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')              
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		
+		script(src='/javascript/common.js')	
+		#detail03
+			#boardTop
+				#boardTitle Admin
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 게시판 생성
+					#contents
+						form(method='post', name='modify_form', id='modify_form', action='/user_modify')
+							table(border=1)
+								tr
+									td ID
+									td
+										input(type='hidden', name='user_id', value='#{info.Id}')
+										!{info.Id}
+								tr
+									td 권한
+									td
+										-if(info.role == 'admin')
+											select(name='user_role')
+												option(value='Guest') Guest
+												option(value='admin', selected) admin
+										-else
+											select(name='user_role')
+												option(value='Guest', selected) Guest
+												option(value='admin') admin
+								tr
+									td 이름
+									td
+										!{info.name}
+								tr
+									td email
+									td
+										!{info.email}
+							input(type='button', name='user_modify', value='수정', onClick='call_confirm_post("수정하시겠습니까?","modify_form")')
+							input(type='button', name='gotolist', value='목록', onClick='location.href="/admin/userlists"')
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')							
