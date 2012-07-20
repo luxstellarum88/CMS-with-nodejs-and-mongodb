@@ -1,10 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 /*
 	2012. 07. 13. by JH. DB구조 수정.
 */
-
 var board_schema = new Schema({
 	board_id : String,
 	notice : Boolean,
@@ -40,7 +38,6 @@ var comment_schema = new Schema({
 
 var recent_comment_model;
 
-
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
 	
@@ -55,7 +52,6 @@ exports.makeBoardModel = function(){
 exports.tossBoardModel = function(){
 	return BoardIdentityModel;	
 }
-
 
 var BoardIdentitySchema = new Schema({
 	no: Number,
@@ -95,9 +91,7 @@ var board_recent_schema = new Schema({
 	no : Number,
 	hit: Number
 });
-
 //공지사항용
-
 var notice_board_schema = new Schema({
 	no: Number,
 	id: String,
@@ -107,9 +101,7 @@ var notice_board_schema = new Schema({
 	date: Date,
 	hit: Number
 });
-
 //공지사항 코맨트
-
 var notice_comment_schema = new Schema({
 	boardNo: Number,
 	commId: Number,
@@ -119,8 +111,6 @@ var notice_comment_schema = new Schema({
 	comment: String,
 	date: Date //얜 필요없나?
 });
-
-
 /*
  *  at 2012 07 12 by JH. Recent Comment Schema
 */
@@ -137,14 +127,12 @@ var recent_comment_schema = new Schema({
 	date: Date
 });
 
-
 var BoardIdentityModel;
 var UserIdentityModel;
 var CommentIdentityModel;
 var board_recent_model;
 var notice_board_model;
 var recent_comment_model;
-
 
 exports.connectBoardDB = function(id){
 	var CollectionName = 'board_' + id +'s';
@@ -161,7 +149,6 @@ exports.tossBoardModel = function(){
 	return BoardIdentityModel;	
 }
 
-
 exports.connectUserDB = function(){
 	mongoose.connect('mongodb://localhost/testboard');
 	UserIdentityModel = mongoose.model('Users', UserIdentitySchema);
@@ -175,8 +162,6 @@ exports.tossUserModel = function(){
 	return UserIdentityModel;	
 }
 
-
-
 exports.connectCommentDB = function(){
 	mongoose.connect('mongodb://localhost/testboard');
 	CommentIdentityModel = mongoose.model('Comments', CommentIdentitySchema);
@@ -189,8 +174,6 @@ exports.makeCommentModel = function(){
 exports.tossCommentModel = function(){
 	return CommentIdentityModel;	
 }
-
-
 //최신글 관리 게시판
 exports.connect_board_recent_db = function(){
 	mongoose.connect('mongodb://localhost/testboard');
@@ -204,8 +187,6 @@ exports.make_board_recent_model = function(){
 exports.toss_board_recent_model = function(){
 	return board_recent_model;	
 }
-
-
 //공지사항용
 exports.connect_notice_board = function(id){
 	var name = id +'_notices';
@@ -221,8 +202,6 @@ exports.make_notice_board_model = function(){
 exports.toss_notice_board_model = function(){
 	return notice_board_model;	
 }
-
-
 //공지사항 코멘트용
 exports.connect_notice_comment = function(id){
 	var name = id + '_notice_comments';
@@ -237,7 +216,6 @@ exports.make_notice_comment_model = function(){
 exports.toss_notice_comment_model = function(){
 	return notice_comment_model;	
 }
-
 /*
 	2012 07 12 by JH. for recent_comment_board
 */

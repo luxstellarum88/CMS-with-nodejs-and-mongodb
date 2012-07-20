@@ -9,7 +9,6 @@ var SuperUserIdentitySchema = new Schema({
 
 var SuperUserIdentityModel;
 
-
 exports.connectSuperUserDB = function(){
 	mongoose.connect('mongodb://localhost/testboard');
 	SuperUserIdentityModel = mongoose.model('superusers', SuperUserIdentitySchema);
@@ -18,5 +17,3 @@ exports.connectSuperUserDB = function(){
 exports.tossSuperUserModel = function(){
 	return SuperUserIdentityModel;	
 }
-
-

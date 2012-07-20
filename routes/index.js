@@ -49,22 +49,17 @@ exports.board_make_form = function(req, res){
 	});
 }
 
-
 exports.recent_comment_view = function(req, res) {
 	recent_docs.comment(req, res);
 }
-
 
 exports.board_recent_view = function(req, res) {
 	recent_docs.post(req, res);
 }
 
-
-
 exports.session = function(req, res){
 	account.session(req, res);
 }
-
 
 exports.user_list = function(req, res){
 	account.list(req, res);
@@ -77,7 +72,6 @@ exports.logout = function(req, res) {
 exports.user_information_view = function(req, res){
 	account.information(req.params.id, req, res);
 }
-
 
 exports.user_modify = function(req, res){
 	account.modify(req.body, res);
@@ -99,11 +93,9 @@ exports.admin_check = function(req, res){
 	admin.check(req, res);	
 }
 
-
 exports.make_board = function(req, res){
 	admin.make_board(req, res);
 }
-
 
 exports.admin_view = function(req, res){
 	admin.board_list_view(req, res);
@@ -127,7 +119,6 @@ exports.send_mail_action = function(req, res){
 exports.delete_user = function(req, res){
 	admin.delete_user(req,res);
 }
-
 
 exports.board_list_page = function(req, res){
 	board.board_list(req, res);
@@ -162,7 +153,6 @@ exports.board_delete = function(req, res){
 	board.del(req, res);
 }
 
-
 exports.comment_insert = function(req, res){
 	comment.insert(req, res);
 }
@@ -174,9 +164,7 @@ exports.comment_delete = function(req, res) {
 exports.comment_update = function(req, res) {
 	comment.update(req, res);
 }
-
 //------------------------------------------------------수정완료
-
 exports.boardPreview = function(req, res){
 	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
 	var comm=[];
@@ -195,8 +183,6 @@ exports.boardPreview = function(req, res){
 		comment: comm
 	});
 }
-
-
 //
 exports.commentDeleteForm = function(req, res){
 	var board_id = req.query.board_id;

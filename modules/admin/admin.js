@@ -1,18 +1,19 @@
 var alert = require('../alert/alert');
 
 var self = module.exports = {
-
 	send_mail : function(sender, address, subject, content){
 		var email = require('mailer');
 		var addresses = "";
 			
-		if(Object.prototype.toString.call(address) == '[object Array]'){
+		if ( Object.prototype.toString.call(address) == '[object Array]' ) {
 			address.forEach(function(item){
 				addresses = addresses + item + ", "; 
 			});
-		}else{
+		}
+		else {
 			addresses = address;
 		}
+		
 		console.log('in admin.js _ send_mail : ' + addresses);
 		email.send({
 		    host : "smtp.gmail.com",
@@ -28,7 +29,7 @@ var self = module.exports = {
 		    password : 'nys3909'
 		    },
 		    function(err, result){
-		      if(err){
+		      if ( err ) {
 		      	console.log(err); return;
 		      } else
 		      	console.log('send mail success to ' + addresses);
@@ -52,8 +53,6 @@ var self = module.exports = {
 			,alert : alert_script
 		});
 	}, //end of send_mail_action
-	
-	
 
 	make_board : function(req, res){
 		var db = require('../Database/board/board_list_db');
@@ -67,7 +66,7 @@ var self = module.exports = {
 		model.date = new Date();
 		
 		model.save(function(err){
-			if(!err){
+			if ( !err ) {
 				res.redirect('/admin/main');
 			}
 			else {
@@ -76,21 +75,17 @@ var self = module.exports = {
 			}
 		});//end of save
 	},
-
 /*
 	2012. 07. 13. by JH
 	/admin/main 에 보일 페이지를 뿌려줄 js파일
 */
-
-
-	board_list_view : function(req, res) {
-		
+	board_list_view : function(req, res) {	
 		var db = require('../Database/board/board_list_db');
 		db.connect();
 		var model = db.get_model();
 		
 		model.find().sort('date', -1).exec(function(err, docs){
-			if(!err) {
+			if ( !err ) {
 				res.render('admin/main', {
 					title: 'admin main'
 					, docs: docs
@@ -103,17 +98,14 @@ var self = module.exports = {
 		});//end of find
 	},//end of view
 
-
-
 	delete_user : function(req, res){
 		var dbModel = require('../Database/ConnectDB');
 		
-
 		dbModel.connectUserDB();
 		var userModel = dbModel.tossUserModel();
 		var user_id = req.params.id;
 		userModel.findOne({Id: user_id}, function(err, user){
-			if(!err && user){
+			if ( !err && user ) {
 				console.log('in admin.js _ delete_user' + req.session.user.Id);
 				console.log('in admin.js _ delete_user' + user.email);
 				self.send_mail(
@@ -132,7 +124,6 @@ var self = module.exports = {
 		});
 	},//end of deleteUser
 
-
 	SuperUserAuth : function(id, password, callback){
 		var dbModel = require('../Database/Connect_Admin_DB');
 		dbModel.connectSuperUserDB();
@@ -140,8 +131,8 @@ var self = module.exports = {
 		var UserModel = dbModel.tossSuperUserModel();
 	
 		UserModel.findOne({Id: id}, function(err, user){
-			if(user){
-				if(user.password == password){
+			if ( user ) {
+				if ( user.password == password ) {
 					callback(user);
 				}
 				else
@@ -152,7 +143,6 @@ var self = module.exports = {
 		});
 	}, //end of SuperUserAuth
 
-
 	AdminAuth : function(id, password, callback) {
 		var dbModel = require('../Database/ConnectDB');
 		dbModel.connectUserDB();
@@ -161,8 +151,8 @@ var self = module.exports = {
 		
 		// login, password filtering
 		UserModel.findOne({Id: id}, function(err, user){
-			if(user){
-				if(user.password == password && user.role == 'admin'){
+			if ( user ) {
+				if ( user.password == password && user.role == 'admin' ) {
 					callback(user);
 				}
 				else
@@ -173,23 +163,22 @@ var self = module.exports = {
 		});//end of findOne
 	},//end of AdminAuth
 	
-	
 	check : function(req, res) {
 		var id = req.body.Id;
 		var password = req.body.password;
 		
 		self.SuperUserAuth(id, password, function(user){
-			if(user){ // SuperUser Login
+			if ( user ) { // SuperUser Login
 				req.session.user = user;			
 				res.redirect('/admin/main');
 			}
-			else{ // Admin Login	
+			else { // Admin Login	
 				self.AdminAuth(id, password, function(user){
-					if(user){
+					if ( user ) {
 						req.session.user = user;			
 						res.redirect('/admin/main');
 					}
-					else{ // Guest or login fail.
+					else { // Guest or login fail.
 						var alert_script = alert.makeAlert('존재하지 않는 계정입니다.')
 						res.render('alert', {
 							title : 'error',
@@ -202,18 +191,16 @@ var self = module.exports = {
 	}, //end of check
 
 	show_index_page : function(req, res) {
-		if(req.session.user) {
-			if(req.session.user.Id === 'superadmin') {
+		if ( req.session.user ) {
+			if ( req.session.user.Id === 'superadmin' ) {
 				res.redirect('/admin/main');
-			}
-			else{
+			}	else {
 		  		res.render('admin', {
 		  			title: 'admin'
 		  			, session: req.session.user
 		  		});
 		 	}
-	 	}
-	 	else{
+	 	}	else {
 	  		res.render('admin', {
 	  			title: 'admin'
 	  			, session: req.session.user

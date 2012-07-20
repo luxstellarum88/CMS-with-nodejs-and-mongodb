@@ -1,20 +1,81 @@
-#boardMiddle #readHeader { width: 771px; height: 26px; padding-top:10px; background: url("../../images/boardHeadBackground.png"); margin-bottom: 8px;}
-#boardMiddle #readHeader #titleWrap {width: 771px; height: 16px;}
-#boardMiddle #readHeader #title {color:black; font-family: 'NanumGorhicWeb'; font-size: 10pt; text-decoration: none; opacity: 1; margin: 0 3px; margin-left:20px; font-weight: bold; float: left}
-#boardMiddle #readHeader #time {float: right; margin-right: 20px}
-
-#boardMiddle #readHeader #information{width: 750px; height:20px; padding-top:5px; background: black; margin: 0 auto; margin-top:7px; opacity: 0.6; margin-bottom: 30px;-moz-border-radius-bottomleft:3px; -moz-border-radius-bottomright:3px; -webkit-border-bottom-left-radius:3px; -webkit-border-bottom-right-radius:3px; border-bottom-left-radius:3px; border-bottom-right-radius:3px;
+#boardMiddle #readHeader {
+	width : 771px;
+	height : 26px;
+	padding-top : 10px;
+	background : url("../../images/boardHeadBackground.png");
+	margin-bottom : 8px;
 }
-#boardMiddle #readHeader #information #author{font-size:9pt; color: white; float: left; margin-left: 30px;}
-#boardMiddle #readHeader #information #author a{color:white; text-decoration: none}
-#boardMiddle #readHeader #information #author a:hover{text-decoration: underline}
-#boardMiddle #readHeader #information #author a:visited{color:white; text-decoration: none}
+#boardMiddle #readHeader #titleWrap {
+	width : 771px;
+	height : 16px;
+}
+#boardMiddle #readHeader #title {
+	color : black;
+	font-family : 'NanumGorhicWeb';
+	font-size : 10pt;
+	text-decoration : none;
+	opacity : 1;
+	margin : 0 3px;
+	margin-left : 20px;
+	font-weight : bold;
+	float : left;
+}
+#boardMiddle #readHeader #time {
+	float : right;
+	margin-right : 20px;
+}
 
-#boardMiddle #readHeader #information #readNum{font-size:9pt; color: white; float: right; margin-right: 30px;}
+#boardMiddle #readHeader #information{
+	width: 750px; 
+	height:20px; 
+	padding-top:5px; 
+	background: black; 
+	margin: 0 auto; 
+	margin-top:7px; 
+	opacity: 0.6; 
+	margin-bottom: 30px;
+	-moz-border-radius-bottomleft:3px; 
+	-moz-border-radius-bottomright:3px; 
+	-webkit-border-bottom-left-radius:3px; 
+	-webkit-border-bottom-right-radius:3px; 
+	border-bottom-left-radius:3px; 
+	border-bottom-right-radius:3px;
+}
+#boardMiddle #readHeader #information #author {
+	font-size : 9pt;
+	color : white;
+	float : left;
+	margin-left : 30px;
+}
+#boardMiddle #readHeader #information #author a {
+	color : white;
+	text-decoration : none;
+}
+#boardMiddle #readHeader #information #author a:hover {
+	text-decoration : underline;
+}
+#boardMiddle #readHeader #information #author a:visited {
+	color : white;
+	text-decoration : none;
+}
 
-#boardMiddle #readMiddle {margin-top: 40px; padding: 0 20px; font-size: 10pt}
-
-#boardMiddle #readFooter { width:51px; height:28px; margin: 0 auto; margin-top: 50px}
+#boardMiddle #readHeader #information #readNum {
+	font-size : 9pt;
+	color : white;
+	float : right;
+	margin-right : 30px;
+}
+#boardMiddle #readMiddle {
+	margin-top : 40px;
+	padding : 0 20px;
+	font-size : 10pt;
+}
+#boardMiddle #readFooter {
+	width : 51px;
+	height : 28px;
+	margin : 0 auto;
+	margin-top : 50px;
+}
 /*
 
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 10px }

@@ -1,7 +1,6 @@
 /*
 	2012. 07. 13. by JH
 */
-
 var db = require('../Database/board/comment_db');
 var alert = require('../alert/alert');
 var self = module.exports = {
@@ -10,7 +9,7 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		model.count({deleted : false, post_index : condition}, function(err, counter) {
-			if(!err) {
+			if ( !err ) {
 				callback(counter);
 			}
 			else {
@@ -19,7 +18,6 @@ var self = module.exports = {
 			}
 		});//end of count	
 	},//end of counter
-	
 	
 	list : function(req, res, callback) {
 		db.connect();
@@ -31,10 +29,10 @@ var self = module.exports = {
 		var skip_size = (paging_size * current_page) - paging_size;
 		
 		model.count({deleted : false, post_index : post_index}, function(err, counter) {
-			if(!err) {
+			if ( !err ) {
 				model.find({deleted : false, post_index : post_index}).sort('insert_date', -1)
 					.skip(skip_size).limit(paging_size).exec( function(err, docs){
-					if(!err) {
+					if ( !err ) {
 						callback(docs, counter/paging_size);
 					}//end of if
 					else {
@@ -67,8 +65,8 @@ var self = module.exports = {
 		var board = require('../board/board');
 		
 		find_model.findOne().sort('index',-1).exec(function(err, docs){
-			if(!err){
-				if(docs)
+			if ( !err ) {
+				if ( docs )
 					index = docs.index + 1;
 				
 				make_model.board_id = board_id;
@@ -83,7 +81,7 @@ var self = module.exports = {
 				make_model.deleted = false;
 				
 				make_model.save(function(err){
-					if(!err) {
+					if ( !err ) {
 						console.log('in comment/write.js : insert success');
 					}
 					else {
@@ -91,10 +89,10 @@ var self = module.exports = {
 					}
 					
 					board.increase_hit(post_index, -1, function(result){
-						if(true == result){
+						if ( true == result ) {
 							res.redirect('/board/' + board_id + '/' + post_index);	
 						}
-						else{
+						else {
 							console.log('in comment.js _ insert : error');	
 						}						
 					});//end of board_increase_hit
@@ -113,7 +111,7 @@ var self = module.exports = {
 		var option = {multi : true};
 		
 		model.update(condition, update, option, function(err){
-			if(!err){
+			if ( !err ) {
 				callback(true);
 			}
 			else {
@@ -133,8 +131,8 @@ var self = module.exports = {
 		var user_id = req.session.user.Id;
 		
 		find_model.findOne({board_id:board_id, post_index:board_index, index:index}, function(err, docs){
-			if(!err && docs){
-				if(docs.user_id == user_id){
+			if ( !err && docs ) {
+				if ( docs.user_id == user_id ) {
 					docs.remove();
 					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id+'/'+board_index);								
 					res.render('alert', {
@@ -142,16 +140,15 @@ var self = module.exports = {
 						,alert : alert_script
 					});
 				}
-				else{
+				else {
 					var alert_script = alert.makeAlert('권한이 없습니다.');
 					res.render('alert', {
 						title: 'Error',
 						alert: alert_script
 					});	
 				}
-					
 			}
-			else{
+			else {
 				console.log('in comment/delete.js : error(01)');
 				var alert_script = alert.makeAlert('찾지 못하였습니다.');
 					res.render('alert', {
@@ -177,17 +174,17 @@ var self = module.exports = {
 		var update = {content:content, update_date:new Date()};
 		
 		model.findOne({board_id:board_id, post_index:post_index, index:index}, function(err, docs){
-			if(!err){
-				if(docs.user_id == user_id){
+			if ( !err ) {
+				if ( docs.user_id == user_id ) {
 					model.update(condition, update, null, function(err){
-						if(!err){
+						if ( !err ) {
 							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id+'/'+post_index);
 							res.render('alert', {
 								title : 'Success'
 								,alert : alert_script
 							});//end						
 						}
-						else{
+						else {
 							var alert_script = alert.makeAlert('오류가 발생했습니다.');
 								res.render('alert', {
 								title : 'Error'
@@ -196,7 +193,7 @@ var self = module.exports = {
 						}
 					});
 				}
-				else{
+				else {
 					var alert_script = alert.makeAlert('권한이 없습니다.');
 					res.render('alert', {
 						title : 'Error'
@@ -204,7 +201,7 @@ var self = module.exports = {
 					});//end of alert
 				}
 			}
-			else{
+			else {
 				console.log('in comment/update.js : (01)');
 				var alert_script = alert.makeAlert('오류가 발생했습니다.');
 				res.render('alert', {
@@ -214,6 +211,4 @@ var self = module.exports = {
 			}
 		});
 	}
-
-
 }//end of modules

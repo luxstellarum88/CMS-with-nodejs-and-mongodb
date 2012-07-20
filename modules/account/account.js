@@ -11,11 +11,10 @@ dbModel.connectUserDB();
 
 var self = module.exports =  {
 	init : function() {
-		
 	}, //end of init
 	
 	logout : function(req,res) {
-		if(req.session.user) {
+		if ( req.session.user ) {
 			req.session.user = "";
 		}
 		res.redirect('/');
@@ -34,29 +33,27 @@ var self = module.exports =  {
 		var regular_expression_password = /(?=.*\d)(?=.*[a-zA-Z]).{8,15}/;
 		var error_code = 0;
 		
-		if(user.idForm == "" || user.pwForm == "" || user.nameForm == "" || user.confirmForm == "" || user.emailForm == "") {
+		if ( user.idForm == "" || user.pwForm == "" || user.nameForm == "" || user.confirmForm == "" || user.emailForm == "" ) {
 			error_code = 1;
 			evt.emit('sign_up', error_code);
 			console.log('in account.js _ check_sign_up_condition _ if (1)');
-			
 		}//end of if
-		else if(!regular_expression_id.test(user.idForm)) {
+		else if ( !regular_expression_id.test(user.idForm) ) {
 			error_code = 2
 			console.log('in account.js _ check_sign_up_condition _ else if (1)');
 			evt.emit('sign_up', error_code);
-			
 		}
-		else if(user.pwForm != user.confirmForm) {
+		else if ( user.pwForm != user.confirmForm ) {
 			console.log('in account.js _ check_sign_up_condition _ else if (2)');
 			error_code = 3;
 			evt.emit('sign_up', error_code);
 		}
-		else if(!regular_expression_password.test(user.pwForm)){
+		else if ( !regular_expression_password.test(user.pwForm) ) {
 			console.log('in account.js _ check_sign_up_condition _ else if (3)');
 			error_code = 4;
 			evt.emit('sign_up', error_code);
 		}
-		else if(!regular_expression_email.test(user.emailForm)) {
+		else if ( !regular_expression_email.test(user.emailForm) ) {
 			console.log('in account.js _ check_sign_up_condition _ else if (4)');
 			error_code = 5;
 			evt.emit('sign_up', error_code);
@@ -72,7 +69,7 @@ var self = module.exports =  {
 		var model = dbModel.tossUserModel();
 		
 		model.count({Id:user_id}, function(err, count){
-			if(count) {
+			if ( count ) {
 					res.render('checkoverlap',{
 						title : 'Check Overlap',
 						avail : '사용하실 수 없는 아이디 입니다.'
@@ -98,10 +95,10 @@ var self = module.exports =  {
 			
 		evt.on('sign_up', function(error_code) {
 			console.log('in account.js :' +error_code);
-			switch(error_code) {
+			switch ( error_code ) {
 				case 0:
 					user_model.count({Id:user.idForm}, function(err, docs){
-						if(0 === docs) {
+						if ( 0 === docs ) {
 							useridentity.Id = user.idForm;
 							useridentity.password = user.pwForm;
 							useridentity.name = user.nameForm;
@@ -109,10 +106,10 @@ var self = module.exports =  {
 							useridentity.role = 'Guest';
 							
 							useridentity.save(function(err){
-								if(!err) {
+								if ( !err ) {
 									console.log('User_inser_success');
 									self.authenticate(user.idForm, user.pwForm, function(user){			
-										if(user){
+										if ( user ) {
 											req.session.user = user;
 											res.redirect('/');
 										}
@@ -122,7 +119,7 @@ var self = module.exports =  {
 									res.redirect('/');
 							});//end of save
 						}//end of if
-						else{
+						else {
 							var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
 							res.render('alert',{
 								title : 'error',
@@ -174,10 +171,8 @@ var self = module.exports =  {
 			}//end of switch						
 		});//end of evt
 		
-		self.check_sign_up_condition (user, evt);
-							
+		self.check_sign_up_condition (user, evt);	
 	}, //end of insert
-	
 	
 	display_userlist : function(type, content, current_page, length, docs, paging_size, req, res) {
 		res.render('admin/userlist', {
@@ -192,7 +187,6 @@ var self = module.exports =  {
 		});
 	},//end of display_userlist
 
-	
 	list : function(req, res) {
 		var user_model = dbModel.tossUserModel();
 		var current_page = req.params.page || 1;
@@ -203,37 +197,37 @@ var self = module.exports =  {
 			
 		content_reg_exp = new RegExp(content, 'i');
 			
-		if('role' === type) { //type role ... select box가 나오도록 디자인
+		if ( 'role' === type ) { //type role ... select box가 나오도록 디자인
 			user_model.find({role : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({role : content_reg_exp}).count(function(err, length) {
-					if(!err) {	
+					if ( !err ) {	
 						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
-					else{
+					else {
 						console.log("error -_-?");
 					}
 				});
 			});
 		}
-		else if('name' === type) { //type name
+		else if ( 'name' === type ) { //type name
 			user_model.find({name : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({name : content_reg_exp}).count(function(err, length) {
-					if(!err) {	
+					if ( !err ) {	
 						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
-					else{
+					else {
 						console.log("error -_-?");
 					}			
 				});
 			});
 		}
-		else if('id' === type) { //type id
+		else if ( 'id' === type ) { //type id
 			user_model.find({Id : content_reg_exp}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({Id : content_reg_exp}).count(function(err, length) {
-					if(!err) {	
+					if ( !err ) {	
 						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
-					else{
+					else {
 						console.log("error -_-?");
 					}	
 				});
@@ -242,10 +236,10 @@ var self = module.exports =  {
 		else { //type default
 			user_model.find({}).skip(skip_size).limit(paging_size).exec(function(err, docs) {
 				user_model.find({}).count(function(err, length) {
-					if(!err) {	
+					if ( !err ) {	
 						self.display_userlist(type, content, current_page, length, docs, paging_size, req, res);
 					}
-					else{
+					else {
 						console.log("error -_-?");
 					}	
 				});
@@ -253,42 +247,38 @@ var self = module.exports =  {
 		}
 	}, //end of list
 	
-	
 	authenticate : function (id, password, callback){
 		var user_model = dbModel.tossUserModel();	
 		// login, password filtering
-		
 		user_model.findOne({Id: id}, function(err, user){
-			if(user){
-				if(user.password == password){
+			if ( user ) {
+				if ( user.password == password ) {
 					callback(user);				
 				}
-				else{
+				else {
 					callback(null);
 				}				
 			}
-			else{
+			else {
 				callback(null);
 			}			
 		});//end of usermodel findOne callback
 	}, //end of authenticate
 	
-	
 	information : function(user_id, req, res) {
 		var user_model = dbModel.tossUserModel();
 		user_model.findOne({Id:user_id}, function(err, user){
-			if( user ) {
+			if ( user ) {
 				res.render('admin/userinformation', {
 					title : 'User_Information'
 					, session: req.session.user
 					, info : user
 				});//end of render
 			}//end of if
-			else{
+			else {
 				console.log('unexpected error');
 				res.redirect('admin/userlists');
 			}
-			
 		});//end of query
 	}, //end of information
 	
@@ -298,11 +288,11 @@ var self = module.exports =  {
 		var update = { role : user_info.user_role };
 		
 		user_model.update(condition, update, null, function(err) {
-			if(!err) {
+			if ( !err ) {
 				console.log('user info update success');
 				res.redirect('/user_information/'+user_info.user_id);
 			}//end of if
-			else{
+			else {
 				console.log('unexpected error');
 				res.redirect('admin/userlists/1');
 			}
@@ -312,13 +302,12 @@ var self = module.exports =  {
 	session : function(req, res) {
 		self.authenticate(req.body.id, req.body.password, function(user){
 			console.log(user);
-			
-			if(user){
+			if ( user ) {
 				console.log('auth_success');
 				req.session.user = user;
 				res.redirect('/');
 			}
-			else{
+			else {
 				var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');
 				res.render('alert',{
 					title : 'error'

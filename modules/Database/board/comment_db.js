@@ -1,7 +1,6 @@
 /*
 	2012. 07. 13. by JH. DB구조 수정.
 */
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

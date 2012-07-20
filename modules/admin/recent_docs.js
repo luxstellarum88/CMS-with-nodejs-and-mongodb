@@ -10,7 +10,7 @@ var self = module.exports = {
 		var model = recent_board_db.get_model();
 		
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
-			if(!err) {
+			if ( !err ) {
 				res.render('admin/board_recent_view', {
 					title : 'Recent Docs'
 					, docs : docs
@@ -23,7 +23,6 @@ var self = module.exports = {
 		});//end of find	
 	}, //end of function(post)
 	
-	
 	comment : function(req, res) {
 		var comment_db = require('../Database/board/comment_db');
 		comment_db.connect();
@@ -31,7 +30,7 @@ var self = module.exports = {
 		
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
 			
-			if(!err) {
+			if ( !err ) {
 				res.render('admin/recent_comment_view', {
 					title : 'Recent Comments'
 					, docs : docs
@@ -41,9 +40,6 @@ var self = module.exports = {
 			else {
 				console.log('recent_comment : error');
 			}
-		});//end of find
-		
+		});//end of find	
 	},//end of function(comment)
-	
-	
 }//emd of moduels
