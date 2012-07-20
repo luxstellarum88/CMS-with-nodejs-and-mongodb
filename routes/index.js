@@ -101,6 +101,14 @@ exports.admin_view = function(req, res){
 	admin.board_list_view(req, res);
 }
 
+exports.admin_board_modify_view = function(req, res) {
+	admin.board_modify_view(req, res);
+}
+
+exports.admin_board_update = function(req, res) {
+	admin.board_update(req, res);
+}
+
 /* e-mail sending part
  * called in "userlist" by the administrator
  * by Yoon-seop

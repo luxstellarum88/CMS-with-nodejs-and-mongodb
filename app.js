@@ -109,6 +109,9 @@ app.post('/admin/main', routes.admin_check);
 app.get('/admin/main', requiresSuperUserLogin, routes.admin_view);
 app.get('/admin', routes.admin);
 
+app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_page);
+app.get('/admin/board_update/:id/:name/:paging', requiresSuperUserLogin, routes.admin_board_update);
+
 app.post('/admin/board_make', routes.make_board);
 app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);
 

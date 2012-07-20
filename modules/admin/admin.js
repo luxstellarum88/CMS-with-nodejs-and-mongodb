@@ -98,6 +98,77 @@ var self = module.exports = {
 		});//end of find
 	},//end of view
 
+/*
+    2012. 07. 20. by JH
+	board를 수정 / 삭제
+*/
+	board_modify_view : function(req, res) {
+		var db = require('../Database/board/board_list.db');
+		db.connect();
+		var model = db.get_model();
+		var id = req.params.id;
+		
+		model.findOne( {id : id}, function(err, docs) {
+			if(!err ) {
+				/*
+					res.render('', {});//need render
+				*/
+			}//end of if
+			else {
+				console.log('in admin.js, modify_view : error(01)');
+			}//end of else
+		});//end of findOne
+	},//end of modify_view
+
+	board_update : function(req, res) {
+		var db = require('../Database/board/board_list.db');
+		db.connect();
+		var model = db.get_model();
+		var id  = req.params.id;
+		var name = req.params.name;
+		var paging_size = req.params.paging;
+		var condition = { id : id };
+		var update = { $set : {
+							name : name,
+							paging : paging_size,
+							update_date : new Date()
+						}};//end of update-state
+		model.update(condition, update, null, function(err) {
+			if(!err) {
+				console.log ('in admin.js, board_update : success');
+				/*
+					res.render('', {});//need render or redirect
+				*/
+			}//end of if
+			else{
+				console.log ('in admin.js, board_update : err(01)');
+			}//end of else
+		});//end of update
+	},//end of board_update
+
+	board_delete : function(req, res) {
+		var db = require('../Database/board/board_list_db');
+		db.connect;
+		var model = db.get_model();
+		var id = req.params.id;
+		var condition = { id : id };
+		var update = {$set : {
+							deleted : true,
+							update_date : new Date()
+						}};//end of update_state
+		model.update(condition, update, null, function(err) {
+			if(!err) {
+				/*
+					res.redirect(''); //end render of redirect
+				*/
+			}
+			else {
+				console.log('in admin.js, board_delete : error(01)');
+			}
+		});//end of update
+			
+	},
+	
 	delete_user : function(req, res){
 		var dbModel = require('../Database/ConnectDB');
 		
