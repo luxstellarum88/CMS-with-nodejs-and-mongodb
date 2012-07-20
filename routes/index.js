@@ -109,6 +109,14 @@ exports.admin_view = function(req, res){
 	admin.board_list_view(req, res);
 }
 
+exports.admin_board_modify_view = function(req, res) {
+	admin.board_modify_view(req, res);
+}
+
+exports.admin_board_update = function(req, res) {
+	admin.board_update(req, res);
+}
+
 /* e-mail sending part
  * called in "userlist" by the administrator
  * by Yoon-seop
@@ -161,7 +169,6 @@ exports.board_update = function(req, res){
 exports.board_delete = function(req, res){
 	board.del(req, res);
 }
-
 
 exports.comment_insert = function(req, res){
 	comment.insert(req, res);

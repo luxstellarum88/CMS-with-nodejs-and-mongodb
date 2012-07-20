@@ -262,8 +262,8 @@ var self = module.exports = {
 	
 	/*
 		2012. 07. 13. by JH
-	*/
-		
+    */
+
 	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
@@ -314,9 +314,25 @@ var self = module.exports = {
 		evt.emit('notice_comment_counting', evt, i);		
 	},//end of display_result
 	
-	get_notice : function(req, res){
+	/*
+		2012. 7. 20. by JH
+	*/
+	get_board_data : function(id, limit, res){
+		var model = db.get_model();
+		var list_model = list_db.get_model();
+		var limit_size = limit || 5;
 		
-	},//end of get_notice
+		model.find({id : id, deleted : false}).sort('date',-1).limit(limit_size).exec(function(err, docs){
+			if(!err) {
+				return docs;
+			}
+			else {
+				console.log('in board.js, get_board_data : error(01)');
+				return null;
+			}
+		});//end of find
+	},//end of get_board_data
+
 	
 	post_list : function(req, res) {
 		

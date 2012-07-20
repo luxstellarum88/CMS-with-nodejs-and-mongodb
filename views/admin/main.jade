@@ -32,7 +32,8 @@ html
                     -if(docs[i-1]){
                       tr
                         td.content #{i}
-                        td.content #{docs[i-1].id}
+                        td.content 
+                          a(href='/board_modify_view/#{docs[i-1].id}') #{docs[i-1].id}
                         td.content #{docs[i-1].name}
                         td.content #{docs[i-1].paging}
                         td.content #{docs[i-1].date}
