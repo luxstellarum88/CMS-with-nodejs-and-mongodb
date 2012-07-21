@@ -110,9 +110,10 @@ var self = module.exports = {
 		
 		model.findOne( {id : id}, function(err, docs) {
 			if(!err ) {
-				/*
-					res.render('', {});//need render
-				*/
+				res.render('admin/board_modify_view', {
+					title : 'board_modify'
+					, docs : docs
+				});//need render
 			}//end of if
 			else {
 				console.log('in admin.js, modify_view : error(01)');
@@ -125,8 +126,8 @@ var self = module.exports = {
 		db.connect();
 		var model = db.get_model();
 		var id  = req.params.id;
-		var name = req.params.name;
-		var paging_size = req.params.paging;
+		var name = req.body.name;
+		var paging_size = req.body.paging;
 		var condition = { id : id };
 		var update = { $set : {
 							name : name,
@@ -136,9 +137,11 @@ var self = module.exports = {
 		model.update(condition, update, null, function(err) {
 			if(!err) {
 				console.log ('in admin.js, board_update : success');
-				/*
-					res.render('', {});//need render or redirect
-				*/
+				var alert_script = alert.AlertRedirect("수정되었습니다.", '/admin/main');
+				res.render('alert/alert', {
+					title : "Success"
+					, alert : alert_script
+				});//need render or redirect
 			}//end of if
 			else{
 				console.log ('in admin.js, board_update : err(01)');

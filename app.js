@@ -102,15 +102,15 @@ app.post('/makeAccount', routes.makeaccount);
 app.get('/checkoverlap/:id', routes.checkoverlap);
 app.get('/logout', routes.logout);
 
+app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_page);
+app.post('/admin/board_update/:id', requiresSuperUserLogin, routes.admin_board_update);
+
 app.get('/admin/board_recent_view', requiresAdminLogin, routes.board_recent_view);
 app.get('/admin/recent_comment_view', requiresAdminLogin, routes.recent_comment_view);
 
 app.post('/admin/main', routes.admin_check);
 app.get('/admin/main', requiresSuperUserLogin, routes.admin_view);
 app.get('/admin', routes.admin);
-
-app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_page);
-app.get('/admin/board_update/:id/:name/:paging', requiresSuperUserLogin, routes.admin_board_update);
 
 app.post('/admin/board_make', routes.make_board);
 app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form);

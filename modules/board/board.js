@@ -315,11 +315,9 @@ var self = module.exports = {
 		model.find({board_id : id, deleted : false}).sort('insert_date',-1).limit(limit_size).exec(function(err, docs){
 			if(!err) {
 				if(docs) {
-					console.log('in board.js, get_board_data _ docs(if) : ' + docs);
 					callback(docs);
 				}
 				else {
-					console.log('in board.js, get_board_data _ docs(else) : ' + docs);
 					callback(null);
 				}
 				

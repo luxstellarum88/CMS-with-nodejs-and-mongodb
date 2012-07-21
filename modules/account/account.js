@@ -332,7 +332,7 @@ var self = module.exports =  {
 							evt.emit('show_index', notice, news);
 						}//end of if
 						else {
-							console.log('in account.js, show_index_page : get news data error(01)' + news_result);
+							console.log('in account.js, show_index_page : get news data error(01)');
 						}//end of else
 					});//end of get_board_data(news)
 				}//end of if
@@ -343,7 +343,6 @@ var self = module.exports =  {
 		});//end of evt.on(get_board_data)
 		
 		evt.on('show_index', function(notice, news) {
-			console.log('in account.js, show_index_page : show index notice : ' + notice);	
 			res.render('index',{
 				title : 'Express'
 				, session : req.session.user

@@ -1,0 +1,68 @@
+html
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		include ../common/subMenu/subMenu03.jade
+		
+		script(src="/javascript/common.js")
+		
+		#detail03
+			#boardTop
+				#boardTitle Board
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 수정
+					#contents					 
+						h1= title
+
+						form(method='post', name='modify_form', action ='/admin/board_update/#{docs.id}')
+							table
+								tr
+									td.content ID
+									td.content #{docs.id}
+									
+								tr
+									td.content Name
+									td.content
+										input(
+											type='textbox'
+											,id = 'name'
+											,name = 'name'
+											,value = docs.name
+										)
+						
+								tr
+									td.content Paging Size
+									td.content #{docs.paging}
+										input(
+											type='textbox'
+											,id = 'paging'
+											,name = 'paging'
+											,value = docs.paging
+										)
+								tr
+									td.content Date
+									td.content
+										#{docs.date}
+												
+							input(
+								type = 'button'
+								,id = 'modifyButton'
+								,name = 'modifyButton'
+								,value = '수정'
+								,onClick = 'call_confirm_post("정말 수정하시겠습니까","modify_form")'
+							)
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
