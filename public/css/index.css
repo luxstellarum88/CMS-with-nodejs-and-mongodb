@@ -170,7 +170,7 @@
 	height : 55px;
 	width : 370px;
 }
-#detail04 #boardTop #boardTitle.first {
+#detail04 #boardTop #boardTitle.first,#boardTitleNotice.first,#boardTitleNews.first {
 	font-size : 11pt;
 	color : #999999;
 	font-family : 'NanumGothicWeb';
@@ -181,12 +181,12 @@
 	margin-left : 47px;
 	float : left;
 }
-#detail04 #boardTop #boardTitle.select {
+#detail04 #boardTop #boardTitle.select,#boardTitleNotice.select,#boardTitleNews.select {
 	color : black;
 	background : url('../images/boardTitleBackground.png') no-repeat;
 	background-position : center;
 }
-#detail04 #boardTop #boardTitle {
+#detail04 #boardTop #boardTitle,#boardTitleNotice,#boardTitleNews {
 	font-size : 11pt;
 	color : #999999;
 	font-family : 'NanumGothicWeb';

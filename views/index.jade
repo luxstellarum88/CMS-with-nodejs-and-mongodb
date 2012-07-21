@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src='javascript/index.js')
 	body
 		#viewport
 			#world
@@ -58,16 +59,24 @@ html
 				#boardBottom
 			#detail04
 				#boardTop
-					#boardTitle.first.select 공지사항
-					#boardTitle 보도자료
+					#boardTitleNotice.first.select(onClick='javascript:show_notice();')
+						공지사항
+					#boardTitleNews(onClick='javascript:show_news();')
+						보도자료
 				#boardMiddle
-					div(style='margin-left: 10px; padding-top: 10px;')
+					#notice(style='margin-left: 10px; padding-top: 10px;')
 						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
-							li 2012.07.09 Update 공지..
-							li 2012.07.09 Update 공지..
-							li 2012.07.09 Update 공지..
-							li 2012.07.09 Update 공지..
-							li 2012.07.09 Update 공지..
+							-if( null != notice ) 
+								-for(var i=0; i<notice.length; i++)
+									li 
+										a(href='/board/notice/#{notice[i].index}') #{notice[i].subject}
+										
+					#news(style='margin-left: 10px; padding-top: 10px; display: none;')
+						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
+							-if( null != news ) 
+								-for(var i=0; i<news.length; i++)
+									li 
+										a(href='/board/news/#{news[i].index}') #{news[i].subject}
 				#boardBottom
 		include common/footer 
 		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')

@@ -7,6 +7,7 @@ var dbModel = require('../Database/ConnectDB');
 var alert = require('../alert/alert');
 var event_emitter = require('events').EventEmitter;
 
+
 dbModel.connectUserDB();
 
 var self = module.exports =  {
@@ -318,14 +319,39 @@ var self = module.exports =  {
 	},//end of session
 	
 	show_index_page : function (req, res) {
-		// if(req.session.user) {
-			// res.redirect('/board_main');
-		// }
-		// else{
-  			res.render('index', {
-  				title: 'Express'
-  				, session: req.session.user
-  			});
-	 	//}
+		var board = require('../board/board');
+		var evt = new event_emitter();
+				
+		evt.on('get_board_data', function(evt){
+			board.get_board_data('notice', 5, function(notice_result) {
+				if('error' != notice_result) {
+					board.get_board_data('news', 5, function(news_result) {
+						if('error' != news_result) {
+							var notice = notice_result;
+							var news = news_result;
+							evt.emit('show_index', notice, news);
+						}//end of if
+						else {
+							console.log('in account.js, show_index_page : get news data error(01)' + news_result);
+						}//end of else
+					});//end of get_board_data(news)
+				}//end of if
+				else {
+					console.log('in account.js, show_index_page : get notice data error(01)');
+				}//end of else
+			});//end of get_board_data(notice)
+		});//end of evt.on(get_board_data)
+		
+		evt.on('show_index', function(notice, news) {
+			console.log('in account.js, show_index_page : show index notice : ' + notice);	
+			res.render('index',{
+				title : 'Express'
+				, session : req.session.user
+				, notice : notice
+				, news : news
+			});//end of render	
+		});//end of evt.on
+		
+		evt.emit('get_board_data', evt);
 	}//end of show_index_page
 }//end of export
