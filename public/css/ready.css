@@ -1,0 +1,32 @@
+#detail03 {
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+}
+
+#detail03 #boardTop {
+	background-image : url('../images/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+
+#detail03 #boardMiddle {
+	background-image : url('../images/boardMiddle_870px.png');
+	height : 300px;
+	width : 776px;
+	padding : 0 50px;
+}
+
+#detail03 #boardMiddle #content {
+	padding-top: 120px;
+	text-align: center;
+	font-size: 18px;
+	font-family: 'NanumGorhicWeb';
+}
+
+#detail03 #boardBottom {
+	background-image : url('../images/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}

@@ -176,14 +176,33 @@ var self = module.exports = {
 		});//end of find
 	},//end of show
 	
+	modify_ajax : function(req, res){
+		var model = db.get_model();
+		
+		var board_id = req.body.ajax_id;
+		var board_index = req.body.ajax_index;
+		
+		model.findOne({board_id: board_id, index: board_index}, function(err, docs){
+			if(!err){
+				res.writeHead(200, {'content-type':'text/json'});
+				res.write(JSON.stringify({content:docs.content}));
+				res.end('\n');
+			}
+			else{
+				console.log('in modify.js : error(02)');
+			}
+		});
+	},
+	
+	
 	update : function(req, res) {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
 		var board_id = req.body.board_id;
 		var board_index = req.body.index;
-		var subject = req.body.subjectForm;
-		var content = req.body.memoForm;
+		var subject = req.body.subject;
+		var content = req.body.tx_content; // content id in daum-editor
 		
 		var condition = {board_id : board_id, index : board_index};
 		var update = {subject : subject, content : content, update_date : new Date()};

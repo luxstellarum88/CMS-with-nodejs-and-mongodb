@@ -26,6 +26,55 @@ exports.html_sub1_4 = function(req, res){
 	res.render('sub01/sub04', { title: 'sub1_4' , session: req.session.user });
 }
 
+
+exports.html_sub2_1 = function(req, res){
+	res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
+}
+exports.html_sub2_2 = function(req, res){
+	res.render('sub02/sub02', { title: 'sub2_2' , session: req.session.user });
+}
+exports.html_sub2_3 = function(req, res){
+	res.render('sub02/sub03', { title: 'sub2_3' , session: req.session.user });
+}
+exports.html_sub2_4 = function(req, res){
+	res.render('sub02/sub04', { title: 'sub2_4' , session: req.session.user });
+}
+
+
+// exports.html_sub3_1 = function(req, res){
+	// res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
+// }
+exports.html_sub3_2 = function(req, res){
+	res.render('sub03/sub02', { title: 'sub3_2' , session: req.session.user });
+}
+exports.html_sub3_3 = function(req, res){
+	res.render('sub03/sub03', { title: 'sub3_3' , session: req.session.user });
+}
+exports.html_sub3_4 = function(req, res){
+	res.render('sub03/sub04', { title: 'sub3_4' , session: req.session.user });
+}
+
+
+exports.html_sub4_1 = function(req, res){
+	res.render('sub04/sub01', { title: 'sub4_1' , session: req.session.user });
+}
+exports.html_sub4_2 = function(req, res){
+	res.render('sub04/sub02', { title: 'sub4_2' , session: req.session.user });
+}
+exports.html_sub4_3 = function(req, res){
+	res.render('sub04/sub03', { title: 'sub4_3' , session: req.session.user });
+}
+exports.html_sub4_4 = function(req, res){
+	res.render('sub04/sub04', { title: 'sub4_4' , session: req.session.user });
+}
+
+
+
+
+
+
+
+
 exports.index = function(req, res){
 	account.show_index_page(req, res);
 };
@@ -152,6 +201,10 @@ exports.board_modify_page = function(req, res){
 	board.modify_page(req, res);	
 }
 
+exports.board_modify_ajax = function(req, res){
+	board.modify_ajax(req, res);
+}
+
 
 exports.board_update = function(req, res){
 	board.check_update_condition(req, res);
@@ -179,7 +232,7 @@ exports.boardPreview = function(req, res){
 	board.subject = req.body.subject;
 	board.user_name = req.body.name;
 	board.insert_date = new Date();
-	board.content = req.body.memo;
+	board.content = req.body.tx_content;
 	var k=-1;
 	
 	res.render('board/show', {

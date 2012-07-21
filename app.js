@@ -89,6 +89,22 @@ app.get('/sub01/sub02', routes.html_sub1_2);
 app.get('/sub01/sub03', routes.html_sub1_3);
 app.get('/sub01/sub04', routes.html_sub1_4);
 
+app.get('/sub02/sub01', routes.html_sub2_1);
+app.get('/sub02/sub02', routes.html_sub2_2);
+app.get('/sub02/sub03', routes.html_sub2_3);
+app.get('/sub02/sub04', routes.html_sub2_4);
+
+//app.get('/sub03/sub01', routes.html_sub3_1);
+app.get('/sub03/sub02', routes.html_sub3_2);
+app.get('/sub03/sub03', routes.html_sub3_3);
+app.get('/sub03/sub04', routes.html_sub3_4);
+
+app.get('/sub04/sub01', routes.html_sub4_1);
+app.get('/sub04/sub02', routes.html_sub4_2);
+app.get('/sub04/sub03', routes.html_sub4_3);
+app.get('/sub04/sub04', routes.html_sub4_4);
+
+
 app.post('/sessions', routes.session);
 
 app.get('/admin/userlists/:page?', requiresAdminLogin, routes.user_list);
@@ -125,6 +141,7 @@ app.get('/board/:id/:num([0-9]+)/:comm_page?', requiresLogin ,routes.board_conte
 app.get('/board/:id', requiresLogin ,routes.board_post_list);
 app.post('/board_write', routes.board_insert);
 app.get('/board_modify/:id/:num', routes.board_modify_page);
+app.post('/board_modify_ajax', routes.board_modify_ajax);
 app.post('/update', routes.board_update);
 app.get('/board_delete/:id/:num', routes.board_delete);
 app.get('/board_main', requiresLogin ,routes.board_list_page);

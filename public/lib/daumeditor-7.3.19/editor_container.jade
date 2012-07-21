@@ -1,0 +1,246 @@
+#tx_trex_container.tx-editor-container
+    #tx_sidebar.tx-sidebar
+        .tx-sidebar-boundary
+          ul.tx-bar.tx-bar-left.tx-nav-attach
+            li.tx-list
+              #tx_image.tx-image.tx-btn-trans(unselectable='on')
+                a.tx-text(href='javascript:;', title='사진') 사진
+            li.tx-list
+              #tx_file.tx-file.tx-btn-trans(unselectable='on')
+                a.tx-text(href='javascript:;', title='파일') 파일
+            li.tx-list
+              #tx_media.tx-media.tx-btn-trans(unselectable='on')
+                a.tx-text(href='javascript:;', title='외부컨텐츠') 외부컨텐츠
+            li.tx-list.tx-list-extra
+              .tx-btn-nlrbg.tx-extra(unselectable='on')
+                a.tx-icon(href='javascript:;', title='버튼 더보기') 버튼 더보기
+              ul.tx-extra-menu.tx-menu(style='left: -48px;', unselectable='on')
+          ul.tx-bar.tx-bar-right
+            li.tx-list
+              #tx_fullscreen.tx-btn-lrbg.tx-fullscreen(unselectable='on')
+                a.tx-icon(href='javascript:;', title='넓게쓰기 (Ctrl+M)') 넓게쓰기
+          ul.tx-bar.tx-bar-right.tx-nav-opt
+            li.tx-list
+              #tx_switchertoggle.tx-switchtoggle(unselectable='on')
+                a(href='javascript:;', title='에디터 타입') 에디터
+      #tx_toolbar_basic.tx-toolbar.tx-toolbar-basic
+        .tx-toolbar-boundary
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              #tx_fontfamily.tx-slt-70bg.tx-fontfamily(unselectable='on')
+                a(href='javascript:;', title='글꼴') 굴림
+              #tx_fontfamily_menu.tx-fontfamily-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              #tx_fontsize.tx-slt-42bg.tx-fontsize(unselectable='on')
+                a(href='javascript:;', title='글자크기') 9pt
+              #tx_fontsize_menu.tx-fontsize-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left.tx-group-font
+            li.tx-list
+              #tx_bold.tx-btn-lbg.tx-bold(unselectable='on')
+                a.tx-icon(href='javascript:;', title='굵게 (Ctrl+B)') 굵게
+            li.tx-list
+              #tx_underline.tx-btn-bg.tx-underline(unselectable='on')
+                a.tx-icon(href='javascript:;', title='밑줄 (Ctrl+U)') 밑줄
+            li.tx-list
+              #tx_italic.tx-btn-bg.tx-italic(unselectable='on')
+                a.tx-icon(href='javascript:;', title='기울임 (Ctrl+I)') 기울임
+            li.tx-list
+              #tx_strike.tx-btn-bg.tx-strike(unselectable='on')
+                a.tx-icon(href='javascript:;', title='취소선 (Ctrl+D)') 취소선
+            li.tx-list
+              #tx_forecolor.tx-slt-tbg.tx-forecolor(unselectable='on')
+                a.tx-icon(href='javascript:;', title='글자색') 글자색
+                a.tx-arrow(href='javascript:;', title='글자색 선택') 글자색 선택
+              #tx_forecolor_menu.tx-menu.tx-forecolor-menu.tx-colorpallete(unselectable='on')
+            li.tx-list
+              #tx_backcolor.tx-slt-brbg.tx-backcolor(unselectable='on')
+                a.tx-icon(href='javascript:;', title='글자 배경색') 글자 배경색
+                a.tx-arrow(href='javascript:;', title='글자 배경색 선택') 글자 배경색 선택
+              #tx_backcolor_menu.tx-menu.tx-backcolor-menu.tx-colorpallete(unselectable='on')
+          ul.tx-bar.tx-bar-left.tx-group-align
+            li.tx-list
+              #tx_alignleft.tx-btn-lbg.tx-alignleft(unselectable='on')
+                a.tx-icon(href='javascript:;', title='왼쪽정렬 (Ctrl+,)') 왼쪽정렬
+            li.tx-list
+              #tx_aligncenter.tx-btn-bg.tx-aligncenter(unselectable='on')
+                a.tx-icon(href='javascript:;', title='가운데정렬 (Ctrl+.)') 가운데정렬
+            li.tx-list
+              #tx_alignright.tx-btn-bg.tx-alignright(unselectable='on')
+                a.tx-icon(href='javascript:;', title='오른쪽정렬 (Ctrl+/)') 오른쪽정렬
+            li.tx-list
+              #tx_alignfull.tx-btn-rbg.tx-alignfull(unselectable='on')
+                a.tx-icon(href='javascript:;', title='양쪽정렬') 양쪽정렬
+          ul.tx-bar.tx-bar-left.tx-group-tab
+            li.tx-list
+              #tx_indent.tx-btn-lbg.tx-indent(unselectable='on')
+                a.tx-icon(href='javascript:;', title='들여쓰기 (Tab)') 들여쓰기
+            li.tx-list
+              #tx_outdent.tx-btn-rbg.tx-outdent(unselectable='on')
+                a.tx-icon(href='javascript:;', title='내어쓰기 (Shift+Tab)') 내어쓰기
+          ul.tx-bar.tx-bar-left.tx-group-list
+            li.tx-list
+              #tx_lineheight.tx-slt-31lbg.tx-lineheight(unselectable='on')
+                a.tx-icon(href='javascript:;', title='줄간격') 줄간격
+                a.tx-arrow(href='javascript:;', title='줄간격') 줄간격 선택
+              #tx_lineheight_menu.tx-lineheight-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_styledlist.tx-slt-31rbg.tx-styledlist(unselectable='on')
+                a.tx-icon(href='javascript:;', title='리스트') 리스트
+                a.tx-arrow(href='javascript:;', title='리스트') 리스트 선택
+              #tx_styledlist_menu.tx-styledlist-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left.tx-group-etc
+            li.tx-list
+              #tx_emoticon.tx-btn-lbg.tx-emoticon(unselectable='on')
+                a.tx-icon(href='javascript:;', title='이모티콘') 이모티콘
+              #tx_emoticon_menu.tx-emoticon-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_link.tx-btn-bg.tx-link(unselectable='on')
+                a.tx-icon(href='javascript:;', title='링크 (Ctrl+K)') 링크
+              #tx_link_menu.tx-link-menu.tx-menu
+            li.tx-list
+              #tx_specialchar.tx-btn-bg.tx-specialchar(unselectable='on')
+                a.tx-icon(href='javascript:;', title='특수문자') 특수문자
+              #tx_specialchar_menu.tx-specialchar-menu.tx-menu
+            li.tx-list
+              #tx_table.tx-btn-bg.tx-table(unselectable='on')
+                a.tx-icon(href='javascript:;', title='표만들기') 표만들기
+              #tx_table_menu.tx-table-menu.tx-menu(unselectable='on')
+                .tx-menu-inner
+                  .tx-menu-preview
+                  .tx-menu-rowcol
+                  .tx-menu-deco
+                  .tx-menu-enter
+            li.tx-list
+              #tx_horizontalrule.tx-btn-rbg.tx-horizontalrule(unselectable='on')
+                a.tx-icon(href='javascript:;', title='구분선') 구분선
+              #tx_horizontalrule_menu.tx-horizontalrule-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              #tx_richtextbox.tx-btn-lbg.tx-richtextbox(unselectable='on')
+                a.tx-icon(href='javascript:;', title='글상자') 글상자
+              #tx_richtextbox_menu.tx-richtextbox-menu.tx-menu
+                .tx-menu-header
+                  .tx-menu-preview-area
+                    .tx-menu-preview
+                  .tx-menu-switch
+                    .tx-menu-simple.tx-selected
+                      a
+                        span 간단 선택
+                    .tx-menu-advanced
+                      a
+                        span 직접 선택
+                .tx-menu-inner
+                .tx-menu-footer
+                  img.tx-menu-confirm(src='/lib/daumeditor-7.3.19/images/icon/editor/btn_confirm.gif?rv=1.0.1', alt='')
+                  img.tx-menu-cancel(hspace='3', src='/lib/daumeditor-7.3.19/images/icon/editor/btn_cancel.gif?rv=1.0.1', alt='')
+            li.tx-list
+              #tx_quote.tx-btn-bg.tx-quote(unselectable='on')
+                a.tx-icon(href='javascript:;', title='인용구 (Ctrl+Q)') 인용구
+              #tx_quote_menu.tx-quote-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_background.tx-btn-bg.tx-background(unselectable='on')
+                a.tx-icon(href='javascript:;', title='배경색') 배경색
+              #tx_background_menu.tx-menu.tx-background-menu.tx-colorpallete(unselectable='on')
+            li.tx-list
+              #tx_dictionary.tx-btn-rbg.tx-dictionary(unselectable='on')
+                a.tx-icon(href='javascript:;', title='사전') 사전
+          ul.tx-bar.tx-bar-left.tx-group-undo
+            li.tx-list
+              #tx_undo.tx-btn-lbg.tx-undo(unselectable='on')
+                a.tx-icon(href='javascript:;', title='실행취소 (Ctrl+Z)') 실행취소
+            li.tx-list
+              #tx_redo.tx-btn-rbg.tx-redo(unselectable='on')
+                a.tx-icon(href='javascript:;', title='다시실행 (Ctrl+Y)') 다시실행
+          ul.tx-bar.tx-bar-right
+            li.tx-list
+              #tx_advanced.tx-btn-nlrbg.tx-advanced(unselectable='on')
+                a.tx-icon(href='javascript:;', title='툴바 더보기') 툴바 더보기
+      #tx_toolbar_advanced.tx-toolbar.tx-toolbar-advanced
+        .tx-toolbar-boundary
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              .tx-tableedit-title
+          ul.tx-bar.tx-bar-left.tx-group-align
+            li.tx-list
+              #tx_mergecells.tx-btn-lbg.tx-mergecells(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='병합') 병합
+              #tx_mergecells_menu.tx-mergecells-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_insertcells.tx-btn-bg.tx-insertcells(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='삽입') 삽입
+              #tx_insertcells_menu.tx-insertcells-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_deletecells.tx-btn-rbg.tx-deletecells(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='삭제') 삭제
+              #tx_deletecells_menu.tx-deletecells-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left.tx-group-align
+            li.tx-list
+              #tx_cellslinepreview.tx-slt-70lbg.tx-cellslinepreview(unselectable='on')
+                a(href='javascript:;', title='선 미리보기')
+              #tx_cellslinepreview_menu.tx-cellslinepreview-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_cellslinecolor.tx-slt-tbg.tx-cellslinecolor(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='선색') 선색
+                .tx-colorpallete(unselectable='on')
+              #tx_cellslinecolor_menu.tx-cellslinecolor-menu.tx-menu.tx-colorpallete(unselectable='on')
+            li.tx-list
+              #tx_cellslineheight.tx-btn-bg.tx-cellslineheight(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='두께') 두께
+              #tx_cellslineheight_menu.tx-cellslineheight-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_cellslinestyle.tx-btn-bg.tx-cellslinestyle(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='스타일') 스타일
+              #tx_cellslinestyle_menu.tx-cellslinestyle-menu.tx-menu(unselectable='on')
+            li.tx-list
+              #tx_cellsoutline.tx-btn-rbg.tx-cellsoutline(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='테두리') 테두리
+              #tx_cellsoutline_menu.tx-cellsoutline-menu.tx-menu(unselectable='on')
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              #tx_tablebackcolor.tx-btn-lrbg.tx-tablebackcolor(unselectable='on', style='background-color: #9aa5ea;')
+                a.tx-icon2(href='javascript:;', title='테이블 배경색') 테이블 배경색
+              #tx_tablebackcolor_menu.tx-tablebackcolor-menu.tx-menu.tx-colorpallete(unselectable='on')
+          ul.tx-bar.tx-bar-left
+            li.tx-list
+              #tx_tabletemplate.tx-btn-lrbg.tx-tabletemplate(unselectable='on')
+                a.tx-icon2(href='javascript:;', title='테이블 서식') 테이블 서식
+              #tx_tabletemplate_menu.tx-tabletemplate-menu.tx-menu.tx-colorpallete(unselectable='on')
+      #tx_canvas.tx-canvas
+        #tx_loading.tx-loading
+          div
+            img(src='/lib/daumeditor-7.3.19/images/icon/editor/loading2.png', width='113', height='21', align='absmiddle')
+        #tx_canvas_wysiwyg_holder.tx-holder(style='display: block;')
+          iframe#tx_canvas_wysiwyg(name='tx_canvas_wysiwyg', allowtransparency='true', frameborder='0')
+        .tx-source-deco
+          #tx_canvas_source_holder.tx-holder
+            textarea#tx_canvas_source(rows='30', cols='30')
+        #tx_canvas_text_holder.tx-holder
+          textarea#tx_canvas_text(rows='30', cols='30')
+      #tx_resizer.tx-resize-bar
+        .tx-resize-bar-bg
+        img#tx_resize_holder(src='/lib/daumeditor-7.3.19/images/icon/editor/skin/01/btn_drag01.gif', width='58', height='12', unselectable='on', alt='')
+      #tx_side_bi.tx-side-bi
+        div(style='text-align: right;')
+          img(hspace='4', height='14', width='78', align='absmiddle', src='/lib/daumeditor-7.3.19/images/icon/editor/editor_bi.png')
+      #tx_attach_div.tx-attach-div
+        #tx_attach_txt.tx-attach-txt 파일 첨부
+        #tx_attach_box.tx-attach-box
+          .tx-attach-box-inner
+            #tx_attach_preview.tx-attach-preview
+              p
+              img(src='/lib/daumeditor-7.3.19/images/icon/editor/pn_preview.gif', width='147', height='108', unselectable='on')
+            .tx-attach-main
+              #tx_upload_progress.tx-upload-progress
+                div 0%
+                p 파일을 업로드하는 중입니다.
+              ul.tx-attach-top
+                li#tx_attach_delete.tx-attach-delete
+                  a 전체삭제
+                li#tx_attach_size.tx-attach-size
+                  | 파일:
+                  span#tx_attach_up_size.tx-attach-size-up
+                  | /
+                  span#tx_attach_max_size
+                li#tx_attach_tools.tx-attach-tools
+              ul#tx_attach_list.tx-attach-list

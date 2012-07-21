@@ -47,6 +47,11 @@
 	width : 776px;
 	padding : 0 50px;
 }
+
+#detail03 #boardMiddle #img {
+	text-align: center;
+}
+
 #detail03 #boardBottom {
 	background-image : url('../../images/boardBottom_870px.png');
 	height : 34px;
