@@ -5,6 +5,8 @@ var recent_docs = require('../modules/admin/recent_docs');
 // admin
 var admin = require('../modules/admin/admin');
 // make alert script
+var admin_new = require('../modules/admin_new/admin');
+// make alert script
 var alert = require('../modules/alert/alert')
 // skin manager?!
 var skin_manager = require('../modules/skin_manager/service');
@@ -169,6 +171,56 @@ exports.send_mail_view = function(req, res){
 exports.send_mail_action = function(req, res){
 	admin.send_mail_action(req, res);
 }
+
+/* admin_new part
+ *  by Soon-Joe
+ */
+
+exports.admin_new_index = function(req, res){
+	admin_new.admin_new_index(req, res);
+}
+
+exports.admin_new_login = function(req, res){
+	admin_new.admin_new_login(req, res);
+}
+
+exports.admin_new_common_footer = function(req, res){
+	admin_new.admin_new_common_footer(req, res);
+}
+
+exports.admin_new_common_head = function(req, res){
+	admin_new.admin_new_common_head(req, res);
+}
+
+exports.admin_new_common_header = function(req, res){
+	admin_new.admin_new_common_header(req, res);
+}
+
+exports.admin_new_common_mainMenu = function(req, res){
+	admin_new.admin_new_common_mainMenu(req, res);
+}
+
+exports.admin_new_common_subHead = function(req, res){
+	admin_new.admin_new_common_subHead(req, res);
+}
+
+exports.admin_new_inc_leftMenu = function(req, res){
+	admin_new.admin_new_inc_leftMenu(req, res);
+}
+
+exports.admin_new_sub1_1 = function(req, res){
+	admin_new.admin_new_sub1_1(req, res);
+}
+
+exports.admin_new_sub1_2 = function(req, res){
+	admin_new.admin_new_sub1_2(req, res);
+}
+
+exports.admin_new_sub2_1 = function(req, res){
+	admin_new.admin_new_sub2_1(req, res);
+}
+
+
 
 /* User Ban (delete user operation by the admin)
  * by Yoon-seop, 12.7.12
