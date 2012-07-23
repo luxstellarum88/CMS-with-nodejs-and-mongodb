@@ -10,8 +10,10 @@ var self = module.exports = {
 	write_page : function(req, res) {
 		var auth = 'guest';
 		
-		if ( 'admin' === req.session.user.role || 'superadmin' === req.session.user.Id ) {
-			auth = 'admin';
+		if(req.session.user){
+			if ( 'admin' === req.session.user.role || 'superadmin' === req.session.user.Id ) {
+				auth = 'admin';
+			}
 		}
 		
 		res.render('board/write', {
@@ -248,6 +250,9 @@ var self = module.exports = {
 			
 		var board_id = req.params.id;
 		var board_index = req.params.num;
+		var sessionId = "";
+		if(req.session.user)
+			sessionId = req.session.user.Id;
 		
 		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 			if ( !err ) {
@@ -259,7 +264,7 @@ var self = module.exports = {
 						board_id : board_id,
 						comment : json_comments,
 						length : length,
-						sessionId : req.session.user.Id
+						sessionId : sessionId
 						, session: req.session.user
 					});//end of render
 				});//end of comment list
@@ -381,7 +386,9 @@ var self = module.exports = {
 						
 				var skip_size = (current_page * paging_size) - paging_size;
 				
-				var session_id = req.session.user.Id;
+				var session_id = "";
+				if(req.session.user)
+					session_id = req.session.user.Id;
 				
 				var search_reg_exp = new RegExp(content);
 									

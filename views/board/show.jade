@@ -127,7 +127,7 @@ html
 							input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 					-if(session!=-1 && sessionId)
 						div#readCommentList
-					-else
+					-else if(session!=-1)
 						div#NoSession
 							로그인 한 사용자만 코멘트를 입력할 수 있습니다.
 				div#readFooter

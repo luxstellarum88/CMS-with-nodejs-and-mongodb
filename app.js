@@ -40,7 +40,7 @@ app.configure('production', function(){
 
 // sessions check
 function requiresLogin(req, res, next){
-	if ( req.session.user ) {
+	if ( req.session.user) {
 		next();
 	}
 	else {
@@ -137,21 +137,21 @@ app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form
 app.post('/admin/sendmailView', routes.send_mail_view);	// mail writing form, called from "/admin/userlists"
 app.post('/admin/sendmailAction', routes.send_mail_action);	// sending mail action, result alert page, called from "/admin/sendmailView"
 
-app.get('/write/:id', routes.board_write_page);
+app.get('/write/:id', requiresLogin, routes.board_write_page);
 
 app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
 app.get('/board/:id', routes.board_post_list);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
 app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
-app.post('/update', routes.board_update);
-app.get('/board_delete/:id/:num', routes.board_delete);
+app.post('/update', requiresLogin, routes.board_update);
+app.get('/board_delete/:id/:num', requiresLogin,routes.board_delete);
 app.get('/board_main', requiresLogin ,routes.board_list_page);
 
-app.post('/comment_write', routes.comment_insert);
+app.post('/comment_write', requiresLogin, routes.comment_insert);
 
-app.get('/comment_delete/:id/:num/:index', routes.comment_delete);
-app.get('/comment_update/:id/:num/:index/:content', routes.comment_update);
+app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete);
+app.get('/comment_update/:id/:num/:index/:content', requiresLogin, routes.comment_update);
 
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
