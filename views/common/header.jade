@@ -10,7 +10,6 @@ script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
 			a(href='/join')
 				#signUpButton
 	- else
-		p
-			!{session.Id} 님이 로그인 하셨습니다.
-			a(href='/logout')
-				&nbsp;[logout]
+		!{session.Id} 님이 로그인 하셨습니다.
+		a(href='/logout')
+			#logoutButton
