@@ -44,8 +44,11 @@ function requiresLogin(req, res, next){
 		next();
 	}
 	else {
-		console.log('session no..');
-		res.redirect('/');
+		var alert_script = alert.makeAlert('권한이 없습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		});
 	}
 }
 
