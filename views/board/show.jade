@@ -122,12 +122,13 @@ html
 					div#readContent
 						!{board.content}
 					-if(session!=-1)
-						div#readButton
+						div#readButton(style="height:21px;width:142px")
+							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
 							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
 							input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 					-if(session!=-1 && sessionId)
 						div#readCommentList
-					-else
+					-else if(session!=-1)
 						div#NoSession
 							로그인 한 사용자만 코멘트를 입력할 수 있습니다.
 				div#readFooter

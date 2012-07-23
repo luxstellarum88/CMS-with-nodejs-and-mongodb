@@ -62,8 +62,10 @@ html
 					#editorFooter
 						input(type='hidden', name='index', value='#{docs.index}')
 						input(type='hidden', name='board_id', value='#{docs.board_id}')
-						a(href='javascript:submit();')
-							img#submitButton(src='/images/button_submit.png')
+						#div(style="height:31px;width:97px")
+							a(href='javascript:submit();')
+								img#submitButton(src='/images/button_submit.png')
+							input(type ='button', id='list', value='취소', onClick="location.href='/board/#{docs.board_id}'")
 				#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

@@ -40,12 +40,15 @@ app.configure('production', function(){
 
 // sessions check
 function requiresLogin(req, res, next){
-	if ( req.session.user ) {
+	if ( req.session.user) {
 		next();
 	}
 	else {
-		console.log('session no..');
-		res.redirect('/');
+		var alert_script = alert.makeAlert('권한이 없습니다.');
+		res.render('alert', {
+			title : 'Error',
+			alert : alert_script
+		});
 	}
 }
 
@@ -152,21 +155,21 @@ app.get('/admin_new/sub01/sub01', routes.admin_new_sub1_1);
 app.get('/admin_new/sub01/sub02', routes.admin_new_sub1_2);
 app.get('/admin_new/sub02/sub01', routes.admin_new_sub2_1);
 
-app.get('/write/:id', routes.board_write_page);
+app.get('/write/:id', requiresLogin, routes.board_write_page);
 
 app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
 app.get('/board/:id', routes.board_post_list);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
 app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
-app.post('/update', routes.board_update);
-app.get('/board_delete/:id/:num', routes.board_delete);
+app.post('/update', requiresLogin, routes.board_update);
+app.get('/board_delete/:id/:num', requiresLogin,routes.board_delete);
 app.get('/board_main', requiresLogin ,routes.board_list_page);
 
-app.post('/comment_write', routes.comment_insert);
+app.post('/comment_write', requiresLogin, routes.comment_insert);
 
-app.get('/comment_delete/:id/:num/:index', routes.comment_delete);
-app.get('/comment_update/:id/:num/:index/:content', routes.comment_update);
+app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete);
+app.get('/comment_update/:id/:num/:index/:content', requiresLogin, routes.comment_update);
 
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
