@@ -251,12 +251,13 @@ var self = module.exports = {
 		
 		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 			if ( !err ) {
-				comment.list(req, res, function(comments, length){
+				comment.list(req, res, function(comments, length){					
+					var json_comments = JSON.stringify(comments);
 					res.render('board/show', {
 						title : 'Show Contents',
 						board : docs,
 						board_id : board_id,
-						comment : comments,
+						comment : json_comments,
 						length : length,
 						sessionId : req.session.user.Id
 						, session: req.session.user

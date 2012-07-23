@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
 	body
 		#viewport
 			#world
@@ -15,7 +16,35 @@ html
 		include ../common/mainMenu
 		include ../common/subMenu/subMenu03.jade
 
-		script
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}
+			
+			$(document).ready(function(){
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+			});
+		script(type='text/javascript')
 			function search() {
 				location.href="/board/#{board_id}?type="+document.getElementsByName("type")[0].value
 								+"&content="+document.getElementsByName("content")[0].value;
@@ -52,7 +81,8 @@ html
 											a.replyNum [#{comment_number[i]}]
 										td.author
 											a #{docs[i].user_name}
-										td.time #{docs[i].insert_date}
+										td.time
+											div('id'='time'+i)
 										td.readNum #{docs[i].hit}
 								-}			
 				div#boardFooter

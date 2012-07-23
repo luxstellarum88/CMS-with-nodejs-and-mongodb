@@ -25,7 +25,7 @@ var self = module.exports = {
 		var post_index = req.params.num;
 		
 		var current_page = req.params.comm_page || 1;
-		var paging_size = 10;
+		var paging_size = 5;
 		var skip_size = (paging_size * current_page) - paging_size;
 		
 		model.count({deleted : false, post_index : post_index}, function(err, counter) {
@@ -54,7 +54,7 @@ var self = module.exports = {
 		
 		var board_id = req.body.board_id;
 		var post_index = req.body.board_index;
-		var password = req.body.paasswordForm;
+		var password = "";
 		var content = req.body.commentForm;
 		
 		var user_id = req.session.user.Id;

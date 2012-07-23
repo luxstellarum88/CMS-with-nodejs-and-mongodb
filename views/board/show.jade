@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/sub03/view.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
 		-if(session!=-1)
 			link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		body
@@ -19,6 +20,92 @@ html
 		
 				script(src="/javascript/common.js")
 				script(src='/javascript/comment.js')
+				script(type='text/javascript')
+					var date_array = new Array();
+			
+					function leadingZeros(n, digits) {
+						var zero = '';
+						n = n.toString();
+						if (n.length < digits) {
+							for (i = 0; i < digits - n.length; i++)
+								zero += '0';
+						}
+						return zero + n;
+					}
+					
+					function getTimeStamp(date) {
+						var d = new Date(date);
+						var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2) + ' ' + leadingZeros(d.getHours(), 2) + ':' + leadingZeros(d.getMinutes(), 2) + ':' + leadingZeros(d.getSeconds(), 2);
+						return s;
+					}				
+					
+					function makeCommentDiv(index, value){
+						var comm = document.createElement('div');
+						var comm_id = 'c'+index;
+						comm.setAttribute('id', comm_id);
+						
+						
+						var comm_left = document.createElement('div');
+						comm_left.setAttribute('id', 'readCommentListLeft');
+						
+						var user_name = document.createElement('div');
+						user_name.setAttribute('id', 'CommentUser');
+						user_name.innerHTML = value.user_id;
+						
+						var date = document.createElement('div');
+						date.setAttribute('id', 'CommentDate');
+						date.innerHTML = getTimeStamp(value.insert_date);
+						
+						comm_left.appendChild(user_name);
+						comm_left.appendChild(date);
+						
+						
+						
+						var comm_middle = document.createElement('div');
+						comm_middle.setAttribute('id', 'readCommentListMiddle');
+						
+						comm_middle.innerHTML = value.content;
+						
+						
+						var comm_right = document.createElement('div');
+						comm_right.setAttribute('id', 'readCommentListRight');
+						
+						var modify_button = document.createElement('div');
+						modify_button.setAttribute('id', 'CommentModify');
+						
+						var m_button = document.createElement('input');
+						m_button.setAttribute('type', 'button');
+						m_button.setAttribute('value', '수정');
+						m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);};
+						modify_button.appendChild(m_button);
+				
+						
+						var delete_button = document.createElement('div');						
+						delete_button.setAttribute('id', 'CommentDelete');
+
+						var d_button = document.createElement('input');
+						d_button.setAttribute('type', 'button');
+						d_button.setAttribute('value', '제거');
+						d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
+						delete_button.appendChild(d_button);
+
+						comm_right.appendChild(modify_button);
+						comm_right.appendChild(delete_button);
+						
+						comm.appendChild(comm_left);
+						comm.appendChild(comm_middle);
+						comm.appendChild(comm_right);
+						return comm;
+					}
+
+				script(type='text/javascript')
+					$(document).ready(function(){
+						var data = eval(!{JSON.stringify(comment)});
+						$.each(data, function(index, value){
+							$('#readCommentList').append(makeCommentDiv(index, value));
+						});			
+					});
+				
 		div#detail03
 			div#boardTop
 				div#boardTitle= title
@@ -31,25 +118,36 @@ html
 						div#author
 							a #{board.user_name}
 						div#readNum 조회 수 : #{board.hit}
-				div#readMiddle !{board.content}
-				div#readFooter
+				div#readMiddle
+					div#readContent
+						!{board.content}
 					-if(session!=-1)
-						input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
-						input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
-								
+						div#readButton
+							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
+							input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
+					-if(session!=-1 && sessionId)
+						div#readCommentList
+					-else
+						div#NoSession
+							로그인 한 사용자만 코멘트를 입력할 수 있습니다.
+				div#readFooter
+					-if(session!=-1 && sessionId)
+						div#readCommentPaging
+							-for(var i=0; i<length; i++)
+								a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
+						form(method='post', action='/comment_write')
+							table#CommentAttach
+								tr
+									td.content #{sessionId}
+									td.content(colspan='3')
+										input(type='textbox', id='commentForm', name='commentForm')	
+										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
+										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
+										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
+									td.content
+										input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')					
 			div#boardBottom
 			
-		br
-		-if(session!=-1)
-			-for(var i=0; i<comment.length; i++){
-				-if(comment[i]){
-					div('id'='c'+ i)
-						p #{comment[i].user_id}, #{comment[i].content}
-						input(type='button', id='comment_delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/#{comment[i].index}')");
-						input(type='button', id='comment_modify', value='수정', onClick="viewCommentModify(#{i}, '#{comment[i].content}', '#{board_id}', #{board.index}, #{comment[i].index})");
-				-}
-			-}
-						
 			div('id'="divCommentUpd", style="display:none;")
 				form(name='updForm')
 					내용 : 
@@ -59,34 +157,7 @@ html
 					input(type='hidden', name='index')
 					input(type='button', value='등록', onClick="updComment()")
 					input(type='button', value='취소', onClick="cnlComment()")
-								
-			-for(var i=0; i<length; i++)
-				a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
-						
-			br
-		-if(session!=-1 && sessionId)
-			form(method='post', action='/comment_write')
-				table
-					tr
-						td.content User
-							td.content #{sessionId}
-						td.content Password
-						td.content
-							input(type='password', id='passwordForm', name='passwordForm')		
-					tr
-						td.content Comment
-						td.content(colspan='3')
-							input(type='textbox', id='commentForm', name='commentForm')	
-							input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
-							input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
-							input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
-					tr
-						td.content(colspan='4')
-							input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
-			#boardBottom
-		-else if(session!=-1)
-			p 로그인 한 사용자만 코멘트를 입력할 수 있습니다.
-			#boardBottom
+									
 		-if(session!=-1)
 			include ../common/footer
 			script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

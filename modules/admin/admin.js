@@ -103,7 +103,7 @@ var self = module.exports = {
 	board를 수정 / 삭제
 */
 	board_modify_view : function(req, res) {
-		var db = require('../Database/board/board_list.db');
+		var db = require('../Database/board/board_list_db');
 		db.connect();
 		var model = db.get_model();
 		var id = req.params.id;
@@ -113,6 +113,7 @@ var self = module.exports = {
 				res.render('admin/board_modify_view', {
 					title : 'board_modify'
 					, docs : docs
+					, session: req.session.user
 				});//need render
 			}//end of if
 			else {
@@ -122,7 +123,7 @@ var self = module.exports = {
 	},//end of modify_view
 
 	board_update : function(req, res) {
-		var db = require('../Database/board/board_list.db');
+		var db = require('../Database/board/board_list_db');
 		db.connect();
 		var model = db.get_model();
 		var id  = req.params.id;
@@ -138,7 +139,7 @@ var self = module.exports = {
 			if(!err) {
 				console.log ('in admin.js, board_update : success');
 				var alert_script = alert.AlertRedirect("수정되었습니다.", '/admin/main');
-				res.render('alert/alert', {
+				res.render('alert', {
 					title : "Success"
 					, alert : alert_script
 				});//need render or redirect

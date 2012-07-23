@@ -65,17 +65,92 @@
 	float : right;
 	margin-right : 30px;
 }
+
 #boardMiddle #readMiddle {
 	margin-top : 40px;
 	padding : 0 20px;
 	font-size : 10pt;
 }
+
+#boardMiddle #readMiddle #readContent{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#boardMiddle #readMiddle #readButton{
+	width: 100px;
+	margin: 0 auto;
+}
+
+#boardMiddle #readMiddle #readCommentList {
+	position:relative;
+	width : 550px;
+	margin-left: 100px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListLeft {
+	width:100px;
+	height: 60px;
+	float:left;
+	margin-top: 10px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListLeft #CommentUser {
+	width: 100px;
+	height: 30px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListLeft #CommentDate {
+	width: 100px;
+	height: 30px;	
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListMiddle {
+	width:400px;
+	height: 60px;
+	word-break: break-all;
+	float:left;
+	margin-top: 10px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListRight {
+	width:50px;
+	height: 60px;
+	float:left;
+	margin-top: 10px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListRight #CommentModify {
+	width:50px;
+	height: 30px;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListRight #CommentDelete {
+	width:50px;
+	height: 30px;
+}
+
+#boardMiddle #NoSession {
+	margin-top: 70px;
+	text-align: center;
+}
+
 #boardMiddle #readFooter {
-	width : 51px;
-	height : 28px;
 	margin : 0 auto;
 	margin-top : 50px;
 }
+
+#boardMiddle #readFooter #readCommentPaging {
+	text-align: center;
+	margin-top: 370px;
+	margin-bottom: 20px;
+}
+
+#boardMiddle #readFooter #CommentAttach { 
+	margin-top:20px;
+	margin: 0 auto;
+}
+
 /*
 
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 10px }

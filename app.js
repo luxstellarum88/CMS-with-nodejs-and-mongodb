@@ -124,6 +124,8 @@ app.post('/admin/board_update/:id', requiresSuperUserLogin, routes.admin_board_u
 app.get('/admin/board_recent_view', requiresAdminLogin, routes.board_recent_view);
 app.get('/admin/recent_comment_view', requiresAdminLogin, routes.recent_comment_view);
 
+app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_view);
+
 app.post('/admin/main', routes.admin_check);
 app.get('/admin/main', requiresSuperUserLogin, routes.admin_view);
 app.get('/admin', routes.admin);
@@ -137,11 +139,11 @@ app.post('/admin/sendmailAction', routes.send_mail_action);	// sending mail acti
 
 app.get('/write/:id', routes.board_write_page);
 
-app.get('/board/:id/:num([0-9]+)/:comm_page?', requiresLogin ,routes.board_contents);
-app.get('/board/:id', requiresLogin ,routes.board_post_list);
-app.post('/board_write', routes.board_insert);
-app.get('/board_modify/:id/:num', routes.board_modify_page);
-app.post('/board_modify_ajax', routes.board_modify_ajax);
+app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
+app.get('/board/:id', routes.board_post_list);
+app.post('/board_write', requiresLogin, routes.board_insert);
+app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
+app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
 app.post('/update', routes.board_update);
 app.get('/board_delete/:id/:num', routes.board_delete);
 app.get('/board_main', requiresLogin ,routes.board_list_page);
