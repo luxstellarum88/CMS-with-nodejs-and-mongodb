@@ -123,7 +123,7 @@ html
 						!{board.content}
 					-if(session!=-1)
 						div#readButton(style="height:21px;width:142px")
-							input( type ='button', id='list', value='목록', onClick="location.href='/board/sub3_1'")
+							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
 							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
 							input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 					-if(session!=-1 && sessionId)
