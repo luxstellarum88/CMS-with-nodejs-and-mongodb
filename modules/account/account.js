@@ -28,10 +28,83 @@ var self = module.exports =  {
 		});
 	}, //end of sign_up
 	
+	check_id : function(req, res) {
+		var regular_expression_id = /^[0-9a-zA-Z]{4,15}$/;
+		var id = req.body.ajax_id_form;
+		var model = dbModel.tossUserModel();
+		
+		model.count({Id:id}, function(err, count){
+			if ( count ) {
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'동일한 아이디가 존재합니다.', color : 'red'}));
+					res.end('\n');
+				//있을때
+			}
+			else {
+				if(regular_expression_id.test(id)) {
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'사용가능합니다.', color : 'green'}));
+					res.end('\n');
+				}//end of if
+				else {
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+					res.end('\n');
+				} // end of else
+			}
+		})	;//end of count
+	},//end of check_id
+	
+	check_password : function(req, res) {
+		var regular_expression_password = /^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{8,15}$/;
+		var password = req.body.ajax_password_form;
+		if(regular_expression_password.test(password)) {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바른 양식입니다.', color : 'green'}));
+			res.end('\n');
+		}//end of if
+		else {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.end('\n');
+		} // end of else
+	},
+	
+	check_name : function(req, res) {
+		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
+		var name = req.body.ajax_name_form;
+		if(regular_expression_name.test(name)) {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바른 양식입니다.', color : 'green'}));
+			res.end('\n');
+		}//end of if
+		else {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.end('\n');
+		} // end of else
+	},
+	
+	check_email : function(req, res) {
+		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z0-9]+)(\.[a-zA-Z]+)?$/;
+		var email = req.body.ajax_email_form;
+		if(regular_expression_email.test(email)) {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바른 양식입니다.', color : 'green'}));
+			res.end('\n');
+		}//end of if
+		else {
+			res.writeHead(200, {'content-type':'text/json'});
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.end('\n');
+		} // end of else
+	},
+	
 	check_sign_up_condition : function(user, evt) {
-		var regular_expression_id = /(?=.*[0-9a-zA-Z]).{4,15}/;
-		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z]+){1,2}$/;
-		var regular_expression_password = /(?=.*\d)(?=.*[a-zA-Z]).{8,15}/;
+		var regular_expression_id = /^[0-9a-zA-Z]{4,15}$/;
+		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z0-9]+)(\.[a-zA-Z]+)?$/;
+		var regular_expression_password = /^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{8,15}/;
+		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
 		var error_code = 0;
 		
 		if ( user.idForm == "" || user.pwForm == "" || user.nameForm == "" || user.confirmForm == "" || user.emailForm == "" ) {
@@ -59,6 +132,11 @@ var self = module.exports =  {
 			error_code = 5;
 			evt.emit('sign_up', error_code);
 		}
+		else if ( !regular_expression_name.test(user.nameForm) ) {
+			console.log('in account.js _ check_sign_up_condition _ else if (5)');
+			error_code = 6;
+			evt.emit('sign_up', error_code);
+		}
 		else {
 			console.log('in account.js _ check_sign_up_condition _ else(1)');
 			evt.emit('sign_up', error_code);
@@ -66,22 +144,20 @@ var self = module.exports =  {
 	},
 	
 	check_overlap : function(req, res) {
-		var user_id = req.params.id;
+		var user_id = req.body.ajax_id_form;
 		var model = dbModel.tossUserModel();
 		
 		model.count({Id:user_id}, function(err, count){
 			if ( count ) {
-					res.render('checkoverlap',{
-						title : 'Check Overlap',
-						avail : '사용하실 수 없는 아이디 입니다.'
-					});
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'동일한 아이디가 존재합니다.', color : 'red'}));
+					res.end('\n');
 				//있을때
 			}
 			else {
-					res.render('checkoverlap',{
-						title : 'Check Overlap',
-						avail : '사용하실 수 있는 아이디 입니다.'
-					});
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'중복되는 아이디가 없습니다.', color : 'green'}));
+					res.end('\n');
 				//없을때
 			}
 		})	;//end of count	
@@ -164,6 +240,14 @@ var self = module.exports =  {
 				
 				case 5:
 					alert_script = alert.makeAlert("유요한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
+					res.render('alert',{
+						title : 'error',
+						alert : alert_script
+					});
+				break;
+				
+				case 6:
+					alert_script = alert.makeAlert("이름은 3~15자로, '.', '-', '_' 이상 세 가지의 특수문자만 허용됩니다.");
 					res.render('alert',{
 						title : 'error',
 						alert : alert_script

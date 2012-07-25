@@ -35,25 +35,19 @@ exports.html_sub2_1 = function(req, res){
 exports.html_sub2_2 = function(req, res){
 	res.render('sub02/sub02', { title: 'sub2_2' , session: req.session.user });
 }
-exports.html_sub2_3 = function(req, res){
-	res.render('sub02/sub03', { title: 'sub2_3' , session: req.session.user });
-}
-exports.html_sub2_4 = function(req, res){
-	res.render('sub02/sub04', { title: 'sub2_4' , session: req.session.user });
-}
 
 
 // exports.html_sub3_1 = function(req, res){
 	// res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
 // }
+exports.html_sub3_1 = function(req, res){
+	res.redirect('/board/sub3_1');
+}
 exports.html_sub3_2 = function(req, res){
 	res.render('sub03/sub02', { title: 'sub3_2' , session: req.session.user });
 }
 exports.html_sub3_3 = function(req, res){
 	res.render('sub03/sub03', { title: 'sub3_3' , session: req.session.user });
-}
-exports.html_sub3_4 = function(req, res){
-	res.render('sub03/sub04', { title: 'sub3_4' , session: req.session.user });
 }
 
 
@@ -70,6 +64,16 @@ exports.html_sub4_4 = function(req, res){
 	res.render('sub04/sub04', { title: 'sub4_4' , session: req.session.user });
 }
 
+
+exports.html_sub5_1 = function(req, res){
+	res.render('sub05/sub01', { title: 'sub5_1' , session: req.session.user });
+}
+exports.html_sub5_2 = function(req, res){
+	res.render('sub05/sub02', { title: 'sub5_2' , session: req.session.user });
+}
+exports.html_sub5_3 = function(req, res){
+	res.render('sub05/sub03', { title: 'sub5_3' , session: req.session.user });
+}
 
 
 
@@ -132,7 +136,23 @@ exports.join = function(req, res){
 	account.sign_up_page(req, res);
 }
 
-exports.checkoverlap = function(req, res){
+exports.check_id = function(req, res) {
+	account.check_id(req, res);
+}
+
+exports.check_password = function(req, res) {
+	account.check_password(req, res);
+}
+
+exports.check_name = function(req, res) {
+	account.check_name(req, res);
+}
+
+exports.check_email = function(req, res) {
+	account.check_email(req, res);
+}
+
+exports.check_overlap = function(req, res){
 	account.check_overlap(req, res);
 }
 
