@@ -1,14 +1,14 @@
 script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
+script(src='/javascript/editor_config.js', type='text/javascript', charset='utf-8')
+	
 #top
 #topMenu
 	- if(!session)
-		form#loginFrm(action='/sessions', method='POST')
+		form#loginFrm(action='/sessions', method='POST', autocomplete="off")
 			input#idInputBox(type='text', name='id')
 			input#pwInputBox(type='password', name='password')
-			a(onclick='javascript:document.getElementById("loginFrm").submit();')
-				#loginButton(name='login')
-			a(href='/join')
-				#signUpButton
+			input#loginButton(type='button', name='login', onclick='javascript:document.getElementById("loginFrm").submit();', autocomplete="off")
+			input#signUpButton(type='button', name='signup', onclick="location.href='/join'", autocomplete="off")
 	- else
 		p
 			!{session.Id} 님이 로그인 하셨습니다.
