@@ -85,7 +85,7 @@ html
 
 						var d_button = document.createElement('input');
 						d_button.setAttribute('type', 'button');
-						d_button.setAttribute('value', '제거');
+						d_button.setAttribute('value', '삭제');
 						d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
 						delete_button.appendChild(d_button);
 
@@ -114,7 +114,7 @@ html
 					div#titleWrap
 						a#title #{board.subject}
 						div#time #{board.insert_date}
-					div#information
+					div#information(style='display:none;')
 						div#author
 							a #{board.user_name}
 						div#readNum 조회 수 : #{board.hit}
@@ -125,7 +125,7 @@ html
 						div#readButton(style="height:21px;width:142px")
 							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
 							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
-							input( type ='button', id='delete', value='제거', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
+							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 					-if(session!=-1 && sessionId)
 						div#readCommentList
 					-else if(session!=-1)
