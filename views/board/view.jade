@@ -87,26 +87,38 @@ html
 								-}			
 				div#boardFooter
 					div#pagination
+<<<<<<< HEAD
 						a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
 							img(src='../images/board/button_forward.png')
 							span first Page |
 						
+=======
+>>>>>>> 4ad98ec514764f55a5cf007ab4e332dc7bdebf43
 						-current_page = parseInt(current_page);
-						
+						-var last = Math.ceil(length/paging);
+						-if(current_page!=1)
+							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
+								img(src='../images/board/button_forward.png')
+								span 처음 페이지 |
 						-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
-							-if(j>0 && j< ((length/paging)+1))
-								-if(j == current_page)
+							-if(j>0 && j<= last)
+								-if( j == current_page && j != last)
 									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
 										b #{j} 
 										|
-								-else 
+								-else if( j == current_page && j == last )
+									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
+										b #{j}
+								-else if( j != last )
 									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j} |
+								-else
+									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j}
+								
 						-}
-						-var last = Math.ceil(length/paging);
-						a(href='/board?/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
-							span 마지막 페이지
-							img(src='../images/board/button_backward.png')
-		
+						-if(current_page!=last)
+							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
+								span | 마지막 페이지
+								img(src='../images/board/button_backward.png')
 					div#search
 						-if(type == 'name')
 							select(id='type', name='type')

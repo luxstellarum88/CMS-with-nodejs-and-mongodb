@@ -28,7 +28,7 @@ html
 			#boardMiddle(style='height:320px;')
 				#contents
 					form(method='post', action='/makeAccount')
-						table.info(border='1',cellspacing='0')
+						table.info(border='1',cellspacing='0',style='font-size:12px;')
 							caption
 								span.c1
 									span.c2 기본정보
@@ -46,7 +46,7 @@ html
 									input(
 										type = 'button'
 										,onclick = 'checkoverlap();'
-										,value = '클릭'
+										,value = '중복 체크'
 									)
 							tr.odd
 								th 비밀번호

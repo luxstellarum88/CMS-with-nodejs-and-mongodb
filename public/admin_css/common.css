@@ -1,0 +1,37 @@
+* { padding:0; margin:0 }
+
+html,body{ color: #000; height:100%; font-size: 9pt }
+body { background:#eee; }/*왼쪽 영역 백그라운드 처리는 body부분에서 처리*/
+
+#header{ position:absolute; top:0; left:0; width:100%; height:70px; background:#ccc; overflow:hidden; }
+#headHeight{height:70px;}   /*컨텐츠영역 상단 보정(header height만큼 고정*/
+
+#container{ min-height:100%; margin-left:200px;/*왼쪽 영역 만큼 뛰기*/ background:#fff; margin-bottom:-50px;    /*푸터height만큼 마진값*/ }
+* html #container{height:100%;} /* IE7 hack*/
+
+#left { position:relative; width:200px; float:left; margin-left:-200px; }
+
+#right { position:relative; z-index:1; }
+* html #right { height:1%; }
+
+#footer { position:relative; clear:both; height:50px; background:#ccc; }
+#footerHeight{clear:both;height:50px;width:100%;}   /*컨텐츠영역 하단 보정(footer height만큼 고정*/
+
+
+
+.mainMenu {width: 180px; border-bottom: 1px solid gray; margin: 2px 0; padding: 5px 10px;}
+.mainMenu:after { content:""; clear:both; display:block; }
+.mainMenu{ *zoom:1; }
+
+.mainMenu .wrap-menu { width: 180px; height: 25px; margin-bottom: 7px; cursor: pointer;}
+.mainMenu .wrap-menu.wrap-menu-select { color: red}
+.mainMenu .wrap-menu .menu-icon {width: 23px; height: 23px; border: 1px solid gray; float: left}
+.mainMenu .wrap-menu .menu-text {font-size: 11pt; height: 25px; float: left; line-height: 25px; vertical-align: middle; display: table-cell}
+.mainMenu .wrap-menu .menu-arrow {float: right}
+
+.mainMenu .subMenu { clear: both; width: 180px; display: none}
+.mainMenu .subMenu.subMenu-select { display: block }
+/* .mainMenu .wrap-subMenu.wrap-subMenu-select #wrap-subMenu {width: 180px; height: 20px; cursor: pointer; } */
+.mainMenu .subMenu.subMenu-select .wrap-subMenu { width: 178px; height: 20px; cursor: pointer; background: white; border: 1px solid black; margin: 2px 0}
+.mainMenu .subMenu.subMenu-select .wrap-subMenu .subMenu-text  {font-size: 9pt; height: 20px; float: left; line-height: 20px; vertical-align: middle; display: table-cell}
+.mainMenu .subMenu.subMenu-select .wrap-subMenu.wrap-subMenu-select {color: red}

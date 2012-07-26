@@ -1,0 +1,23 @@
+
+$(document).ready(function(){
+	
+	var mainMenuSelect = function() {
+		var url = "http://jeg0330.cafe24.com/CMS/sub" + $(this).attr("value") + "/sub01.php";
+		var parm = {'selectMenu':'#'+$(this).attr("id")};
+		var target = "";
+		location.href=url;
+/* 		post_goto (url, parm,"_self");			 */
+	};
+	
+	
+	var subMenuSelect = function() {
+		var url = "http://jeg0330.cafe24.com/CMS/sub" + $(this).parent().parent().children(".wrap-menu").attr("value") + "/sub"+$(this).attr("value")+".php";
+		var parm = {'selectMenu':'#'+$(this).attr("id")};
+		var target = "";
+		post_goto (url, parm,"_self");			
+	}; 
+
+	$(".wrap-menu").bind("click",mainMenuSelect);
+	$(".wrap-subMenu").bind("click",subMenuSelect);
+
+});

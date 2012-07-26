@@ -140,6 +140,21 @@ app.get('/admin/board_make_form', requiresSuperUserLogin, routes.board_make_form
 app.post('/admin/sendmailView', routes.send_mail_view);	// mail writing form, called from "/admin/userlists"
 app.post('/admin/sendmailAction', routes.send_mail_action);	// sending mail action, result alert page, called from "/admin/sendmailView"
 
+app.get('/admin_new', routes.admin_new_index);
+app.get('/admin_new/login', routes.admin_new_login);
+
+app.get('/admin_new/common/footer', routes.admin_new_common_footer);
+app.get('/admin_new/common/head', routes.admin_new_common_head);
+app.get('/admin_new/common/header', routes.admin_new_common_header);
+app.get('/admin_new/common/mainMenu', routes.admin_new_common_mainMenu);
+app.get('/admin_new/common/subHead', routes.admin_new_common_subHead);
+
+app.get('/admin_new/inc/leftMenu', routes.admin_new_inc_leftMenu);
+
+app.get('/admin_new/sub01/sub01', routes.admin_new_sub1_1);
+app.get('/admin_new/sub01/sub02', routes.admin_new_sub1_2);
+app.get('/admin_new/sub02/sub01', routes.admin_new_sub2_1);
+
 app.get('/write/:id', requiresLogin, routes.board_write_page);
 
 app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
