@@ -108,7 +108,7 @@ html
 									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j}
 								
 						-}
-						-if(current_page!=last)
+						-if( 0 < current_page && current_page < last && 1 < last )
 							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
 								span | 마지막 페이지
 								img(src='../images/board/button_backward.png')
