@@ -391,11 +391,11 @@ var self = module.exports = {
 				
 				var search_reg_exp = new RegExp(content);
 									
-				if ( 'id' === type ) {
-					model.find({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id})
+				if ( 'docs' === type ) {
+					model.find({notice : false, deleted : false, board_id : board_id, $or : [ { 'subject' : search_reg_exp } , { 'content' : search_reg_exp } ]})
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
-								model.count({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id}, function(err, length){
+								model.count({notice : false, deleted : false, board_id : board_id, $or : [ { 'subject' : search_reg_exp } , { 'content' : search_reg_exp } ]}, function(err, length){
 									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
