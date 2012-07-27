@@ -16,6 +16,27 @@ html
 		include ../common/subMenu/subMenu03.jade
 		
 		script(src="/javascript/common.js")
+		script
+			function submit_enter(field,e){
+				var keycode;
+				if(window.event){
+					keycode = window.event.keyCode;
+				}
+				else if(e){
+					keycode = e.which;
+				}
+				else{
+					return true;
+				}
+				
+				if(keycode == 13){
+					call_confirm_post("정말 수정하시겠습니까","modify_form");
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
 		
 		#detail03
 			#boardTop
@@ -40,16 +61,18 @@ html
 											,id = 'name'
 											,name = 'name'
 											,value = docs.name
+											, onKeyPress='return submit_enter(this,event)'
 										)
 						
 								tr
 									td.content Paging Size
-									td.content #{docs.paging}
+									td.content
 										input(
 											type='textbox'
 											,id = 'paging'
 											,name = 'paging'
 											,value = docs.paging
+											, onKeyPress='return submit_enter(this,event)'
 										)
 								tr
 									td.content Date
@@ -62,6 +85,7 @@ html
 								,name = 'modifyButton'
 								,value = '수정'
 								,onClick = 'call_confirm_post("정말 수정하시겠습니까","modify_form")'
+								, class='clickable'
 							)
 			#boardBottom
 		include ../common/footer

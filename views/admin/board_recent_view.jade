@@ -40,7 +40,7 @@ html
 													a(href='/board/#{docs[i].board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 												td.content #{docs[i].insert_date}
 										-}
-							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
 			#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

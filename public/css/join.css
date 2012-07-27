@@ -37,9 +37,11 @@
 #contents .info th, #contents .info td {
 	border : 0;
 	padding : 10px 15px;
-	vertical-align : top;
 }
 #contents .info th em.require {
 	color : #624cd4;
 	font-style : normal;
+}
+#frm{
+	margin-bottom : 0px;
 }

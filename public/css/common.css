@@ -55,7 +55,7 @@ input:-webkit-autofill{
 	height : 25px;
 	float : left;
 	border : 0px;
-	cursor : pointer;
+	cursor : hand;
 }
 #logoutButton {
 	background : url('../images/logoutButton.png');
@@ -231,6 +231,10 @@ li.submenu {
 	opacity : 1;
 }
 /* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('../images/menu/menu04_select.jpg')} */
+
+.clickable{
+	cursor:hand;
+}
 
 #footer {
 	background : black;

@@ -30,14 +30,14 @@ html
 								tr
 									td(width='50', align='center', bgcolor='#ffffff') ID
 									td(bgcolor='#ffffff')
-										input(type='text', name='Id', id='Id')
+										input(type='text', name='Id', id='Id', onKeyPress='return submit_enter(this,event)')
 								tr
 									td(width='50', align='center', bgcolor='#ffffff') PW
 									td(bgcolor='#ffffff')
 										input(type='password', name='password', id='password', onKeyPress='return submit_enter(this,event)')
 								tr
 									td(colspan='2', bgcolor='#ffffff')
-										input(type = 'submit', name = 'login', id = 'login', value = '로그인')
+										input(type = 'submit', name = 'login', id = 'login', value = '로그인', class='clickable')
 			#boardBottom
 		include common/footer
 		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')

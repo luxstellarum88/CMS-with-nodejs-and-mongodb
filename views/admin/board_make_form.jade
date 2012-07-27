@@ -6,7 +6,8 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')\
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 	body
 		#viewport
 			#world
@@ -23,20 +24,20 @@ html
 						form(action='/admin/board_make', method='POST')
 							p
 								label(for='id') Board Id:
-								input(type='text', name='id', id='id')
+								input(type='text', name='id', id='id', onKeyPress='return submit_enter(this,event)')
 							p
 								label(for='name') Board Name:
-								input(type='text', name='name', id='name')
+								input(type='text', name='name', id='name', onKeyPress='return submit_enter(this,event)')
 							p
 								label(for='pagingNumber') Board PagingNumber:
-								input(type='text', name='pagingNumber', id='pagingNumber')
+								input(type='text', name='pagingNumber', id='pagingNumber', onKeyPress='return submit_enter(this,event)')
 							p
 								label(for='pagingNumber') Board Skin:
 								select
 									//-for(var i=0; i<skins.length; i++)
 										//option(value='#{skins[i]}')
 											//!{skins[i]}
-							input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성')
+							input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성', class='clickable')
 			#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
