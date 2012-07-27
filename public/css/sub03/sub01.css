@@ -1,4 +1,7 @@
 /* table {width: 100%; } */
+#boardMiddle #boardList {
+	margin-left:4px;
+}
 #boardMiddle #boardList th {
 	padding: 10px 0 11px 0 ;
 	text-align: center;
@@ -92,14 +95,21 @@
 
 #boardFooter { 
 	margin-top: 20px;
-	text-align: center; 
 	color:black; 
 	font-family: 'NanumGorhicWeb'; 
 	font-size: 3pt;
 }
 /* #boardFooter img {margin-top:-3px} */
+
+#boardFooter #list{
+	margin-right:150px;
+	float:left;
+	cursor:hand;
+}
+
 #boardFooter #pagination { 
-	margin-bottom: 30px
+	margin-bottom: 30px;
+	float:center;
 }
 #boardFooter #pagination a{ 
 	color:black; 
@@ -128,6 +138,10 @@
 	margin: 0 5px
 }
 
+#boardFooter #write{
+	margin-top:-2px;
+	float:right;
+}
 
 #boardFooter #search {
 	width: 370px; 
@@ -153,7 +167,7 @@
 
 #boardFooter #writeButton {
 	float:right; 
-	margin: 30px 29px 0 0
+	cursor : hand;
 }
 /* #boardFooter a:link{color:black; text-decoration: none} */
 

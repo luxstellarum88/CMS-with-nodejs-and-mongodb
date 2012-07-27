@@ -90,10 +90,10 @@ html
 					div#editorFooter(style="height:px;width:144px")
 						input(type='hidden', id='id', name='id', value='#{id}')
 						input(type='hidden', id='name', name='name', value='#{session.name}')
-						input(type='button', id='preview' ,value='미리보기')
+						input(type='button', id='preview' ,value='미리보기' , class='clickable')
 						a(href='javascript:submit();')
 							img#submitButton(src='../images/button_submit.png')
-					input( type ='button', id='list', value='취소', onClick="location.href='/board/#{id}'")
+					input( type ='button', id='list', value='취소', onClick="location.href='/board/#{id}'", class='clickable')
 			
 				div#boardBottom 
 		include ../common/footer

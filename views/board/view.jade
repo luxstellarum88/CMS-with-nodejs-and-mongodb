@@ -86,6 +86,11 @@ html
 										td.readNum #{docs[i].hit}
 								-}			
 				div#boardFooter
+					div#list
+						input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
+					div#write
+						a
+							img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")	
 					div#pagination
 						-current_page = parseInt(current_page);
 						-var last = Math.ceil(length/paging);
@@ -112,6 +117,7 @@ html
 							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
 								span | 마지막 페이지
 								img(src='../images/board/button_backward.png')
+								
 					div#search
 						-if(type == 'name')
 							select(id='type', name='type')
@@ -140,9 +146,6 @@ html
 						input#searchInputBox(type='text', name='content', value='#{content}')
 						a(href='javascript:search();')
 							img#searchButton(src='../images/board/button_search.png')
-					a
-						img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")
-				input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
 						
 			div#boardBottom
 		include ../common/footer
