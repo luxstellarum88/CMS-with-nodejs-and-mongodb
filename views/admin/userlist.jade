@@ -12,12 +12,35 @@ html
 			#world
 		include ../common/header.jade
 		include ../common/mainMenu.jade
+	
 		#detail03
 			script
 				function search() {
 					location.href="/admin/userlists?type="+document.getElementsByName("type")[0].value
 									+"&content="+document.getElementsByName("content")[0].value;
 				}
+				
+				script
+					function submit_enter(field,e){
+						var keycode;
+						if(window.event){
+							keycode = window.event.keyCode;
+						}
+						else if(e){
+							keycode = e.which;
+						}
+						else{
+							return true;
+						}
+						
+						if(keycode == 13){
+							search();
+							return false;
+						}
+						else{
+							return true;
+						}
+					}
 			#boardTop
 				#boardTitle User List
 			#boardMiddle
@@ -42,7 +65,7 @@ html
 										td.content #{result[i].role}
 										td.content
 											a( href='/admin/deleteUser/#{result[i].Id}' ) [삭제]
-							input( type='submit', name='btnemail', value='메일보내기' )
+							input( type='submit', name='btnemail', value='메일보내기', class='clickable' )
 						center
 							-for(var i=0; i < (length/paging_size); i++)
 								a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]
@@ -67,8 +90,8 @@ html
 									option(value='name') 이름
 									option(value='role') 권한
 								
-							input(type='text', name='content', id='content', value='#{content}')	
-							input(type='button', name='search_button', onClick='javascript:search()', value='검색')
+							input(type='text', name='content', id='content', value='#{content}', onKeyPress='return submit_enter(this,event)')	
+							input(type='button', name='search_button', onClick='javascript:search()', value='검색', class='clickable')
 			#boardBottom
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade
