@@ -48,7 +48,7 @@ var self = module.exports =  {
 				}//end of if
 				else {
 					res.writeHead(200, {'content-type':'text/json'});
-					res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+					res.write(JSON.stringify({content:'올바르지 않은 양식입니다(4~15자리, 알파벳+숫자).', color : 'red'}));
 					res.end('\n');
 				} // end of else
 			}
@@ -65,7 +65,7 @@ var self = module.exports =  {
 		}//end of if
 		else {
 			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(8~15자리, 알파벳과 숫자의 조합).', color : 'red'}));
 			res.end('\n');
 		} // end of else
 	},
@@ -80,7 +80,7 @@ var self = module.exports =  {
 		}//end of if
 		else {
 			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(3~15자리, 알파벳 + 숫자 + 특수문자(-/_/.)).', color : 'red'}));
 			res.end('\n');
 		} // end of else
 	},
@@ -95,7 +95,7 @@ var self = module.exports =  {
 		}//end of if
 		else {
 			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바르지 않은 양식입니다.', color : 'red'}));
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(예) goorm@skima.co.kr).', color : 'red'}));
 			res.end('\n');
 		} // end of else
 	},
@@ -239,7 +239,7 @@ var self = module.exports =  {
 				break;
 				
 				case 5:
-					alert_script = alert.makeAlert("유요한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
+					alert_script = alert.makeAlert("유효한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
 					res.render('alert',{
 						title : 'error',
 						alert : alert_script

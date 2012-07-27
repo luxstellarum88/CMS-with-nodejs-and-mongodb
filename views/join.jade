@@ -85,9 +85,9 @@ html
 		#detail02
 			#boardTop
 				#boardTitle 회원가입
-			#boardMiddle(style='height:320px;')
+			#boardMiddleJoin
 				#contents
-					form(method='post', action='/makeAccount')
+					form(method='post', action='/makeAccount', id='frm')
 						table.info(border='1',cellspacing='0',style='font-size:12px;')
 							caption
 								span.c1
@@ -103,6 +103,7 @@ html
 										,name = 'idForm'
 										,id = 'idForm'			
 									)
+									br
 									#check_id(style = 'display : inline;') 4~15자리, 알파벳+숫자
 							tr.odd
 								th 비밀번호
@@ -113,6 +114,7 @@ html
 										,name = 'pwForm'
 										,id = 'pwForm'			
 									)
+									br
 									#check_password(style = 'display : inline;') 8~15자리, 알파벳과 숫자의 조합
 							tr
 								th 비밀번호 확인
@@ -124,6 +126,7 @@ html
 										,id = 'confirmForm'
 										,style = 'display : "inline";'			
 									)
+									br
 									#check_confirm(style = 'display : inline;') 비밀번호를 다시 한 번 입력해 주세요.
 							tr.odd
 								th 이름
@@ -135,6 +138,7 @@ html
 										,id = 'nameForm'
 										,style = 'display : inline;'			
 									)
+									br
 									#check_name(style = 'display : inline;') 3~15자리, 알파벳 + 숫자 + 특수문자(-/_/.)						
 							tr
 								th 이메일
@@ -146,7 +150,8 @@ html
 										,id = 'emailForm'
 										,style = 'display:inline;'			
 									)
-									#check_email(style = 'display : inline;') 예) abc@def.co.kr													
+									br
+									#check_email(style = 'display : inline;') 예) goorm@skima.co.kr												
 						#join_button(align='center')
 							input(
 								type = 'submit'
