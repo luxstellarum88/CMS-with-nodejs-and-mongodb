@@ -276,16 +276,52 @@ var self = module.exports = {
 	/*
 		2012. 07. 13. by JH
 	*/
+	
+	getSubject : function(subject, callback){
+		var p = 0;
+		var len = 0;
+		var str;
+		var evt2 = new event_emitter();
+				
+		evt2.on('string_length', function(evt2, p){
+			if( len < 60 && p<subject.length ) {
+				if( subject.charCodeAt(p) > 255) len+=2;
+				else len+=1;
+				evt2.emit('string_length', evt2, ++p);
+			}
+			else{
+				if(p<subject.length)
+					str = subject.substr(0,p)+'...';
+				else
+					str = subject;
+					
+				callback(str);
+			}
+		});
+		
+		evt2.emit('string_length', evt2, p);
+	},
 
 	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
+		var k = 0;
 		var evt = new event_emitter();
 		var comment_number = new Array();
 		var notice_comment_number = new Array();
 		
 		console.log("in board.js display : " + docs.length);
+		
+		
+		evt.on('subject_cutting', function(evt, k){
+			if ( k < docs.length ) {
+				self.getSubject(docs[k].subject, function(str){
+					docs[k].subject = str;
+				});
+				evt.emit('subject_cutting', evt, ++k);
+			}
+		});
 		
 		evt.on('notice_comment_counting', function(evt, j){
 			if ( j < notice.length ) {
@@ -324,7 +360,8 @@ var self = module.exports = {
 				});//end of render
 			}//end of else
 		});//end of evt on
-		evt.emit('notice_comment_counting', evt, i);		
+		evt.emit('notice_comment_counting', evt, i);
+		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
 
 	/*

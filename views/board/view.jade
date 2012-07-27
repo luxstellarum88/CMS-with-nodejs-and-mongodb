@@ -70,7 +70,8 @@ html
 			function search() {
 				location.href="/board/#{board_id}?type="+document.getElementsByName("type")[0].value
 								+"&content="+document.getElementsByName("content")[0].value;
-			}		
+			}
+			
 		div#detail03
 			div#boardTop
 				div#boardTitle= title
@@ -99,7 +100,7 @@ html
 									tr
 										td.no #{length - ( (current_page-1) * paging ) - i}
 										td.title
-											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}	
+											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 											a.replyNum [#{comment_number[i]}]
 										td.author
 											a #{docs[i].user_name}

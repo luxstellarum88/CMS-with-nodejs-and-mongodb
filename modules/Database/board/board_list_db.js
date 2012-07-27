@@ -22,6 +22,6 @@ exports.make_model = function(){
 	return new model();
 }//end of make_model
 
-exports.get_model = function(){
+exports.get_model = function(){	
 	return model;
 }//end of get_model
