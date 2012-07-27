@@ -1,3 +1,19 @@
+function checkContent(content, callback){	
+	$.ajax({
+		type:'post',
+		dataType:"json",
+		url:'/comment_check',
+		data:{'content':content},
+		success: function(result){
+			callback(result);
+		},
+		error: function(result, status, err){
+			alert('fail!');
+			callback(0);
+		}
+	});
+}
+
 function viewCommentModify(idx, content, board_id, board_index, index){
 	var commentDiv = document.getElementById('c'+idx);
 	var updateCommentDiv = document.getElementById('divCommentUpd');
@@ -16,12 +32,19 @@ function updComment(){
 	var board_id = document.updForm.board_id.value;
 	var board_index = document.updForm.board_index.value;
 	var index = document.updForm.index.value;
-	var content = document.updForm.content.value;
+	var content = document.updForm.content.value;		
 
-	if(confirm("정말 수정하시겠습니까?"))
-		location.href='/comment_update/' + board_id + '/' + board_index + '/' + index + '/' + content;
+	checkContent(content, function(data){
+		if(data.result == 'true'){
+			if(confirm("정말 수정하시겠습니까?"))
+				location.href='/comment_update/' + board_id + '/' + board_index + '?index=' + index + '&content=' + content;
 	
-	hideCommentView();
+			hideCommentView();	
+		}
+		else{
+			alert('댓글이 빈칸입니다.')			
+		}
+	});
 }
 
 function cnlComment(){

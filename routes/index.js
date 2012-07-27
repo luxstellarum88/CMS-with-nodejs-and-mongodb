@@ -297,6 +297,10 @@ exports.comment_delete = function(req, res) {
 exports.comment_update = function(req, res) {
 	comment.update(req, res);
 }
+
+exports.comment_check_ajax = function(req, res){
+	comment.check_ajax(req, res);
+}
 //------------------------------------------------------수정완료
 exports.boardPreview = function(req, res){
 	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };

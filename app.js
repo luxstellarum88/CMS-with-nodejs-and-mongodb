@@ -188,7 +188,8 @@ app.get('/board_main', requiresLogin ,routes.board_list_page);
 app.post('/comment_write', requiresLogin, routes.comment_insert);
 
 app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete);
-app.get('/comment_update/:id/:num/:index/:content', requiresLogin, routes.comment_update);
+app.get('/comment_update/:id/:num', requiresLogin, routes.comment_update);
+app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop

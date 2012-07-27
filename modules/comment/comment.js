@@ -165,8 +165,8 @@ var self = module.exports = {
 		
 		var board_id = req.params.id;
 		var post_index = req.params.num;
-		var index = req.params.index;
-		var content = req.params.content;
+		var index = req.query.index;
+		var content = req.query.content || "";
 		
 		var user_id = req.session.user.Id;
 		
@@ -209,6 +209,18 @@ var self = module.exports = {
 					,alert : alert_script
 				});//end of alert
 			}
-		});
+		});			
+	},	
+
+	check_ajax : function(req, res){
+		var content = req.body.content || "";
+		var result = 'true';
+		if(content == "")
+			result = 'false';
+			
+		res.writeHead(200, {'content-type':'text/json'});
+		res.write(JSON.stringify({'result':result}));
+		res.end('\n');
 	}
+
 }//end of modules
