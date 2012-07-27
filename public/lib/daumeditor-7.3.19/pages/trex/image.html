@@ -12,6 +12,8 @@
 		if (typeof(execAttach) == 'undefined') { //Virtual Function
 	        return;
 	    }
+	    
+	    
 		
 		var url = document.getElementById('thumbnail');
 		var file = url.files[0]
@@ -66,7 +68,7 @@
 </div> -->
 <form method='post' id='uploader' enctype="multipart/form-data" action="/file_upload" onsubmit="return done();">
 	<input type="file" id="thumbnail" name="thumbnail"/>
-	<input type="submit"/>
+	<input type="submit" id="submit"/>
 </form>
 </body>
 </html>
