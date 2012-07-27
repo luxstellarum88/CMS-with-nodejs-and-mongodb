@@ -13,13 +13,17 @@
 	        return;
 	    }
 		
+		var url = document.getElementById('thumbnail');
+		var file = url.files[0]
+		var dir = '/images/' + file.name;
+		
 		var _mockdata = {
-			'imageurl': 'http://cfile284.uf.daum.net/image/116E89154AA4F4E2838948',
-			'filename': 'editor_bi.gif',
-			'filesize': 640,
+			'imageurl': dir,
+			'filename': file.name,
+			'filesize': file.size,
 			'imagealign': 'C',
-			'originalurl': 'http://cfile284.uf.daum.net/original/116E89154AA4F4E2838948',
-			'thumburl': 'http://cfile284.uf.daum.net/P150x100/116E89154AA4F4E2838948'
+			'originalurl': dir,
+			'thumburl': dir
 		};
 		execAttach(_mockdata);
 		closeWindow();
@@ -39,13 +43,13 @@
 </script>
 </head>
 <body onload="initUploader();">
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<div class="header">
 		<h1>사진 첨부</h1>
 	</div>	
 	<div class="body">
 		<dl class="alert">
-		    <dt>사진 첨부 확인</dt>
+		    <dt>사진 첨부</dt>
 		    <dd>
 		    	확인을 누르시면 임시 데이터가 사진첨부 됩니다.<br /> 
 				인터페이스는 소스를 확인해주세요.
@@ -59,6 +63,10 @@
 			<li class="cancel"><a href="#" onclick="closeWindow();" title="취소" class="btnlink">취소</a></li>
 		</ul>
 	</div>
-</div>
+</div> -->
+<form method='post' id='uploader' enctype="multipart/form-data" action="/file_upload" onsubmit="return done();">
+	<input type="file" id="thumbnail" name="thumbnail"/>
+	<input type="submit"/>
+</form>
 </body>
 </html>

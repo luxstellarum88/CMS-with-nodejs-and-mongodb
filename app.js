@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var express = require('express')
+  , fs = require('fs')
   , routes = require('./routes');
 // Session
 var SessionMemory = require('connect-redis')(express);
@@ -18,7 +19,7 @@ app.configure(function(){
   	layout: false
   });
   
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({uploadDir:'./public/uploads'}));
   app.use(express.cookieParser());  
   app.use(express.session({
   	secret: 'key',
@@ -191,6 +192,19 @@ app.get('/comment_update/:id/:num/:index/:content', requiresLogin, routes.commen
 
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
+
+app.post('/file_upload', function(req, res, next){
+	
+	var tmp_path = req.files.thumbnail.path;
+	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
+	fs.rename(tmp_path, target_path, function(err){
+		if(err) throw err;
+		fs.unlink(tmp_path, function(){
+			if(err) throw err;
+			res.send('success');
+		});
+	});
+});
 
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

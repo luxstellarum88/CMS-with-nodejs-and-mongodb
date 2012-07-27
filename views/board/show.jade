@@ -45,8 +45,8 @@ html
 						comm.setAttribute('id', comm_id);
 						
 						
-						var comm_left = document.createElement('div');
-						comm_left.setAttribute('id', 'readCommentListLeft');
+						var comm_top = document.createElement('div');
+						comm_top.setAttribute('id', 'readCommentListTop');
 						
 						var user_name = document.createElement('div');
 						user_name.setAttribute('id', 'CommentUser');
@@ -55,21 +55,7 @@ html
 						var date = document.createElement('div');
 						date.setAttribute('id', 'CommentDate');
 						date.innerHTML = getTimeStamp(value.insert_date);
-						
-						comm_left.appendChild(user_name);
-						comm_left.appendChild(date);
-						
-						
-						
-						var comm_middle = document.createElement('div');
-						comm_middle.setAttribute('id', 'readCommentListMiddle');
-						
-						comm_middle.innerHTML = value.content;
-						
-						
-						var comm_right = document.createElement('div');
-						comm_right.setAttribute('id', 'readCommentListRight');
-						
+												
 						var modify_button = document.createElement('div');
 						modify_button.setAttribute('id', 'CommentModify');
 						
@@ -89,12 +75,20 @@ html
 						d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
 						delete_button.appendChild(d_button);
 
-						comm_right.appendChild(modify_button);
-						comm_right.appendChild(delete_button);
 						
-						comm.appendChild(comm_left);
-						comm.appendChild(comm_middle);
-						comm.appendChild(comm_right);
+						comm_top.appendChild(user_name);
+						comm_top.appendChild(date);
+						comm_top.appendChild(modify_button);
+						comm_top.appendChild(delete_button);
+						
+						
+						var comm_bottom = document.createElement('div');
+						comm_bottom.setAttribute('id', 'readCommentListBottom');
+						
+						comm_bottom.innerHTML = value.content;
+						
+						comm.appendChild(comm_top);
+						comm.appendChild(comm_bottom);
 						return comm;
 					}
 
@@ -108,6 +102,7 @@ html
 						var __time = getTimeStamp('#{board.insert_date}')
 						$('#titleWrap #time').append('<div>' + __time + '</div>')		
 					});
+
 				
 		div#detail03
 			div#boardTop
@@ -118,19 +113,19 @@ html
 						a#title #{board.subject}
 						div#time
 					div#information
-						div#time #{board.insert_date}
-					div#information(style='display:none;')
 						div#author
 							a #{board.user_name}
-						div#readNum 조회 수 : #{board.hit}
+						-if(session!=-1)
+							div#readNum 조회 수 : #{board.hit}
 				div#readMiddle
 					div#readContent
 						!{board.content}
-					-if(session!=-1)
+					-if(session!=-1 && (sessionId == board.user_id) )
 						div#readButton(style="height:21px;width:142px")
 							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
-							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
-							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
+							-if(session.Id == board.user_id)
+								input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
+								input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
 					-if(session!=-1 && sessionId)
 						div#readCommentList
 					-else if(session!=-1)

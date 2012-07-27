@@ -75,6 +75,7 @@
 #boardMiddle #readMiddle #readContent{
 	margin-top: 10px;
 	margin-bottom: 10px;
+	min-height: 300px;
 }
 
 #boardMiddle #readMiddle #readButton{
@@ -88,46 +89,41 @@
 	margin-left: 100px;
 }
 
-#boardMiddle #readMiddle #readCommentList #readCommentListLeft {
-	width:100px;
-	height: 60px;
-	float:left;
+#boardMiddle #readMiddle #readCommentList #readCommentListTop {
+	width:550px;
+	height: 30px;
 	margin-top: 10px;
 }
 
-#boardMiddle #readMiddle #readCommentList #readCommentListLeft #CommentUser {
-	width: 100px;
+#boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentUser {
+	width: 310px;
 	height: 30px;
+	float : left;
 }
 
-#boardMiddle #readMiddle #readCommentList #readCommentListLeft #CommentDate {
-	width: 100px;
+#boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentDate {
+	width: 140px;
 	height: 30px;	
+	float : left;
 }
 
-#boardMiddle #readMiddle #readCommentList #readCommentListMiddle {
-	width:400px;
-	height: 60px;
+#boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentModify {
+	width:50px;
+	height: 30px;
+	float : left;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentDelete {
+	width:50px;
+	height: 30px;
+	float : left;
+}
+
+#boardMiddle #readMiddle #readCommentList #readCommentListBottom {
+	width:550px;
 	word-break: break-all;
-	float:left;
 	margin-top: 10px;
-}
-
-#boardMiddle #readMiddle #readCommentList #readCommentListRight {
-	width:50px;
-	height: 60px;
-	float:left;
-	margin-top: 10px;
-}
-
-#boardMiddle #readMiddle #readCommentList #readCommentListRight #CommentModify {
-	width:50px;
-	height: 30px;
-}
-
-#boardMiddle #readMiddle #readCommentList #readCommentListRight #CommentDelete {
-	width:50px;
-	height: 30px;
+	margin-bottom: 30px;
 }
 
 #boardMiddle #NoSession {
@@ -142,7 +138,7 @@
 
 #boardMiddle #readFooter #readCommentPaging {
 	text-align: center;
-	margin-top: 370px;
+	margin-top: 50px;
 	margin-bottom: 20px;
 }
 
