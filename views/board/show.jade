@@ -38,7 +38,13 @@ html
 						var s = leadingZeros(d.getFullYear(), 4) + '년 ' + leadingZeros(d.getMonth() + 1, 2) + '월 ' + leadingZeros(d.getDate(), 2) + '일 ' + leadingZeros(d.getHours(), 2) + '시 ' + leadingZeros(d.getMinutes(), 2) + '분 ' + leadingZeros(d.getSeconds(), 2) + '초';
 						return s;
 					}				
-					
+
+					function getTimeStampComment(date) {
+						var d = new Date(date);
+						var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2) + ' ' + leadingZeros(d.getHours(), 2) + ':' + leadingZeros(d.getMinutes(), 2) + ':' + leadingZeros(d.getSeconds(), 2);
+						return s;
+					}				
+										
 					function makeCommentDiv(index, value){
 						var comm = document.createElement('div');
 						var comm_id = 'c'+index;
@@ -54,27 +60,28 @@ html
 						
 						var date = document.createElement('div');
 						date.setAttribute('id', 'CommentDate');
-						date.innerHTML = getTimeStamp(value.insert_date);
-												
+						date.innerHTML = getTimeStampComment(value.insert_date);
+							
 						var modify_button = document.createElement('div');
 						modify_button.setAttribute('id', 'CommentModify');
-						
-						var m_button = document.createElement('input');
-						m_button.setAttribute('type', 'button');
-						m_button.setAttribute('value', '수정');
-						m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);};
-						modify_button.appendChild(m_button);
-				
-						
+
 						var delete_button = document.createElement('div');						
 						delete_button.setAttribute('id', 'CommentDelete');
 
-						var d_button = document.createElement('input');
-						d_button.setAttribute('type', 'button');
-						d_button.setAttribute('value', '삭제');
-						d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
-						delete_button.appendChild(d_button);
-
+						if('#{sessionId}' && '#{sessionId}' == value.user_id){
+							var m_button = document.createElement('input');
+							m_button.setAttribute('type', 'button');
+							m_button.setAttribute('value', '수정');
+							m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);}
+							
+							modify_button.appendChild(m_button);				
+							
+							var d_button = document.createElement('input');
+							d_button.setAttribute('type', 'button');
+							d_button.setAttribute('value', '삭제');
+							d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
+							delete_button.appendChild(d_button);							
+						}
 						
 						comm_top.appendChild(user_name);
 						comm_top.appendChild(date);
@@ -91,6 +98,17 @@ html
 						comm.appendChild(comm_bottom);
 						return comm;
 					}
+					function check(){
+						var content = document.getElementById('commentForm').value || "";
+						
+						if( content ==  ""){
+							alert('빈 칸입니다.');
+							return false;
+						}
+						else{
+							return true;
+						}
+					}
 
 				script(type='text/javascript')
 					$(document).ready(function(){
@@ -100,7 +118,8 @@ html
 						});
 						
 						var __time = getTimeStamp('#{board.insert_date}')
-						$('#titleWrap #time').append('<div>' + __time + '</div>')		
+						$('#titleWrap #time').append('<div>' + __time + '</div>')
+
 					});
 
 				
@@ -126,17 +145,16 @@ html
 							-if(session.Id == board.user_id)
 								input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'")
 								input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')")
-					-if(session!=-1 && sessionId)
+					-if(session!=-1)
 						div#readCommentList
-					-else if(session!=-1)
-						div#NoSession
-							로그인 한 사용자만 코멘트를 입력할 수 있습니다.
+
 				div#readFooter
-					-if(session!=-1 && sessionId)
+					-if(session!=-1)
 						div#readCommentPaging
 							-for(var i=0; i<length; i++)
 								a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
-						form(method='post', action='/comment_write')
+					-if(session!=-1 && sessionId)
+						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach
 								tr
 									td.content #{sessionId}
@@ -146,7 +164,7 @@ html
 										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
 									td.content
-										input(type = 'submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')					
+										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')					
 			div#boardBottom
 			
 			div('id'="divCommentUpd", style="display:none;")
