@@ -5,6 +5,9 @@ body {
 	font-family : 'NanumGorhicWeb';
 	font-size : 10pt;
 }
+input:-webkit-autofill{
+	color: transparent !important;
+}
 #top {
 	background : black;
 	opacity : 0.699999988079071044921875;
@@ -31,7 +34,7 @@ body {
 	background : url('../images/idInputBox.png') no-repeat;
 	width : 167px;
 	height : 25px;
-	border : none;
+	border : 0px;
 	padding-left : 20px;
 	outline : none;
 	float : left;
@@ -40,7 +43,7 @@ body {
 	background : url('../images/idInputBox.png') no-repeat;
 	width : 113px;
 	height : 25px;
-	border : none;
+	border : 0px;
 	padding-left : 20px;
 	outline : none;
 	float : left;
@@ -51,6 +54,7 @@ body {
 	width : 54px;
 	height : 25px;
 	float : left;
+	border : 0px;
 }
 #logoutButton {
 	background : url('../images/logoutButton.png');
@@ -65,6 +69,7 @@ body {
 	height : 25px;
 	float : left;
 	margin-left : 10px;
+	border : 0px;
 }
 #mainMenu {
 	background : url('../images/mainMenuBackground.png');

@@ -132,7 +132,23 @@ exports.join = function(req, res){
 	account.sign_up_page(req, res);
 }
 
-exports.checkoverlap = function(req, res){
+exports.check_id = function(req, res) {
+	account.check_id(req, res);
+}
+
+exports.check_password = function(req, res) {
+	account.check_password(req, res);
+}
+
+exports.check_name = function(req, res) {
+	account.check_name(req, res);
+}
+
+exports.check_email = function(req, res) {
+	account.check_email(req, res);
+}
+
+exports.check_overlap = function(req, res){
 	account.check_overlap(req, res);
 }
 

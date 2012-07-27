@@ -52,12 +52,16 @@
 	text-align: center;
 }
 
+#detail03 #boardMiddle #editorFooter #button{
+	height:31px;
+	width:97px;
+}
+
 #detail03 #boardBottom {
 	background-image : url('../../images/boardBottom_870px.png');
 	height : 34px;
 	width : 876px;
 }
-
 /*
 #detailWrap{ width:876px; height:279px; position:relative; left:50%; margin-left:-438px; margin-top: 20px }
 #detail03{ width:486px; float:left}

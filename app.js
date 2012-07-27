@@ -117,8 +117,16 @@ app.post('/user_modify', requiresAdminLogin, routes.user_modify);
 app.get('/admin/deleteUser/:id', requiresAdminLogin, routes.delete_user);
 
 app.get('/join', routes.join);
+
+//join condition check
+app.post('/check_id', routes.check_id);
+app.post('/check_password', routes.check_password);
+app.post('/check_name', routes.check_name);
+app.post('/check_email', routes.check_email);
+
+
 app.post('/makeAccount', routes.makeaccount);
-app.get('/checkoverlap/:id', routes.checkoverlap);
+app.post('/check_overlap', routes.check_overlap);
 app.get('/logout', routes.logout);
 
 app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_page);

@@ -103,7 +103,10 @@ html
 						var data = eval(!{JSON.stringify(comment)});
 						$.each(data, function(index, value){
 							$('#readCommentList').append(makeCommentDiv(index, value));
-						});			
+						});
+						
+						var __time = getTimeStamp('#{board.insert_date}')
+						$('#titleWrap #time').append('<div>' + __time + '</div>')		
 					});
 				
 		div#detail03
@@ -113,6 +116,8 @@ html
 				div#readHeader
 					div#titleWrap
 						a#title #{board.subject}
+						div#time
+					div#information
 						div#time #{board.insert_date}
 					div#information(style='display:none;')
 						div#author
