@@ -7,12 +7,15 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 	body
 		#viewport
 			#world
 		
 		include common/header
 		include common/mainMenu	
+		include common/subMenu/subMenu01
+		
 		#detail02
 			#boardTop
 				#boardTitle Admin Login
@@ -31,7 +34,7 @@ html
 								tr
 									td(width='50', align='center', bgcolor='#ffffff') PW
 									td(bgcolor='#ffffff')
-										input(type='password', name='password', id='password')
+										input(type='password', name='password', id='password', onKeyPress='return submit_enter(this,event)')
 								tr
 									td(colspan='2', bgcolor='#ffffff')
 										input(type = 'submit', name = 'login', id = 'login', value = '로그인')
