@@ -98,18 +98,21 @@
 	color:black; 
 	font-family: 'NanumGorhicWeb'; 
 	font-size: 3pt;
+	text-align:center;
 }
 /* #boardFooter img {margin-top:-3px} */
 
 #boardFooter #list{
-	margin-right:150px;
-	float:left;
 	cursor:hand;
+	float:left;
+}
+
+#boardFooter #write{
+	margin-top:-2px;
 }
 
 #boardFooter #pagination { 
 	margin-bottom: 30px;
-	float:center;
 }
 #boardFooter #pagination a{ 
 	color:black; 
@@ -138,18 +141,12 @@
 	margin: 0 5px
 }
 
-#boardFooter #write{
-	margin-top:-2px;
-	float:right;
-}
-
 #boardFooter #search {
 	width: 370px; 
 	height: 26px; 
-	margin: 0 auto;
+	margin: auto;
 }
 #boardFooter select {
-	margin-left: 10px; 
 	float:left
 }
 #boardFooter #searchInputBox { 
