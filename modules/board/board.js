@@ -32,7 +32,6 @@ var self = module.exports = {
 	
 		find_model.findOne().sort('index', -1).exec(function(err, docs){
 			if ( !err ) {
-				//잠적적 문제요인
 				if ( docs ) index = docs.index + 1;	
 		
 				make_model.board_id = req.body.id;
@@ -63,8 +62,8 @@ var self = module.exports = {
 	},//end of insert
 		
 	check_insert_condition : function(req, res) {
-		var subject = req.body.subject || "";
-		var memo = req.body.tx_content || "";
+		var subject = self.trim(req.body.subject) || "";
+		var memo = self.trim(req.body.tx_content) || "";
 		
 		if ( (""!=subject) && (""!=memo) ) {
 			self.insert(req, res);
@@ -465,7 +464,7 @@ var self = module.exports = {
 	},//end of post
 	
 	check_update_condition : function(req, res) {
-		if ( (""!=req.body.subject) && (""!=req.body.memoForm) ) {
+		if ( (""!=self.trim(req.body.subject)) && (""!=self.trim(req.body.memoForm)) ) {
 			self.update(req, res);
 		}
 		else {
@@ -505,5 +504,10 @@ var self = module.exports = {
 				callback(false);
 			}//end of else
 		}) ;//end of update
-	}//end of increase_hit
+	},//end of increase_hit
+	
+	trim : function(string) {
+		string += ''; // 숫자라도 문자열로 변환
+		return string.replace(/^\s*|\s*$/g, '');
+	}
 }//end of module

@@ -1,14 +1,15 @@
 script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
-script(src='/javascript/editor_config.js', type='text/javascript', charset='utf-8')
-	
+script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 #top
 #topMenu
 	- if(!session)
-		form#loginFrm(action='/sessions', method='POST', autocomplete="off")
+		form#loginFrm(action='/sessions', method='POST')
 			input#idInputBox(type='text', name='id')
-			input#pwInputBox(type='password', name='password')
-			input#loginButton(type='button', name='login', onclick='javascript:document.getElementById("loginFrm").submit();', autocomplete="off")
-			input#signUpButton(type='button', name='signup', onclick="location.href='/join'", autocomplete="off")
+			input#pwInputBox(type='password', name='password', onKeyPress='return submit_enter(this,event)')
+			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
+			
+			a(href='/join')
+				#signUpButton
 	- else
 		div(style='display:inline;position:absolute;top:3px;left:0px;text-align:right;width:340px;') !{session.Id} 님이 로그인 하셨습니다.
 		a(href='/logout')

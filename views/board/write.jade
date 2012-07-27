@@ -88,8 +88,8 @@ html
 					div#editorMiddle
 						include ../../public/lib/daumeditor-7.3.19/editor_container
 					div#editorFooter(style="height:px;width:144px")
-						input(type='hidden', name='id', value='#{id}')
-						input(type='hidden', name='name', id='name', value='#{session.name}')
+						input(type='hidden', id='id', name='id', value='#{id}')
+						input(type='hidden', id='name', name='name', value='#{session.name}')
 						input(type='button', id='preview' ,value='미리보기')
 						a(href='javascript:submit();')
 							img#submitButton(src='../images/button_submit.png')
