@@ -89,6 +89,16 @@ input:-webkit-autofill{
 	margin-left : 28px;
 	margin-top : 6px;
 }
+
+#mainMenu #paddinglogo {
+	width : 80px;
+	height : 37px;
+	display : block;
+	float : left;
+	margin-left : 28px;
+	margin-top : 6px;
+}
+
 ul.mainmenu {
 	float : left;
 	height : 50px;
