@@ -12,7 +12,7 @@ input:-webkit-autofill{
 	background : black;
 	opacity : 0.699999988079071044921875;
 	height : 33px;
-	padding-top : 8px;
+	padding-top : 4px;
 	position : relative;
 }
 #topMenu {
@@ -20,11 +20,11 @@ input:-webkit-autofill{
 	height : 25px;
 	position : absolute;
 	left : 50%;
-	margin-top : -33px;
+	margin-top : -31px;
 	margin-left : -30px;
 	color : white;
 	text-align : right;
-	font-size : 17px;
+	font-size : 13px;
 }
 #topMenu p {
 	text-align : right;
