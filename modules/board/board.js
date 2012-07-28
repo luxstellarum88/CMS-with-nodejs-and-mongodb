@@ -254,27 +254,75 @@ var self = module.exports = {
 		var current_comment = req.params.comm_page || 1;
 		var sessionId = "";
 		var sessionRole = "";
-		if(req.session.user)
+		if(req.session.user){
 			sessionId = req.session.user.Id;
 			sessionRole = req.session.user.role;
+		}
+				
+		var evt = new event_emitter();
+		var evt2 = new event_emitter();
+		var i = 0;
+		var j = -2;
+		var count=0;
+		var pagedir=0;
+		var dir=0;
+		docs_arr = new Array();
+		comment_number = new Array();
 		
-		console.log(req.params);
-		
-		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
+		model.find({board_id : board_id}).sort('insert_date',-1).exec(function(err, docs){
 			if ( !err ) {
 				comment.list(req, res, function(comments, length){					
-					var json_comments = JSON.stringify(comments);
-					res.render('board/show', {
-						title : '게시판',
-						board : docs,
-						board_id : board_id,
-						comment : json_comments,
-						current_comment : current_comment,
-						length : length,
-						sessionId : sessionId,
-						sessionRole : sessionRole,
-						session: req.session.user
-					});//end of render
+					evt.on('docs_finder', function(evt, i, index, docs){
+						if(docs[i].index != index){
+							evt.emit('docs_finder', evt, ++i, index, docs);
+						}
+						else{
+							dir = i;
+							console.log('dir : ' + dir);
+							evt2.on('make_docs', function(evt2, i, j){
+								if(j >= 3){
+									//render	
+									var json_comments = JSON.stringify(comments);
+									res.render('board/show', {
+										title : '게시판',
+										board : docs[dir],
+										docs: docs_arr,
+										pagedir : pagedir,
+										board_id : board_id,
+										comment : json_comments,
+										comment_number: comment_number,
+										current_comment : current_comment,
+										length : length,
+										sessionId : sessionId,
+										sessionRole : sessionRole,
+										session: req.session.user
+									});//end of render								
+								}
+								else if(docs[i+j]){								
+									comment.get_count(board_id, docs[i+j].index, function(length){
+										// console.log('docs['+i+'+'+j+'] : ' + docs[i+j]);
+										// console.log('found : ---- i :' + i + ', j : ' + j +' ----');
+										// console.log('length : ' + length);
+										docs_arr[count] = docs[i+j];
+										comment_number[count] = length || 0;
+									
+										if(index == docs_arr[count].index)
+											pagedir = count;
+\									
+										count++;
+										evt2.emit('make_docs', evt2, i, ++j);
+									});
+								}
+								else{
+									//console.log('not found : ---- i :' + i + ', j : ' + j +' ----');
+									evt2.emit('make_docs', evt2, i, ++j);										
+								}
+							});
+							evt2.emit('make_docs', evt2, i, j);
+						}
+					});
+					evt.emit('docs_finder', evt, 0, board_index, docs);
+					
 				});//end of comment list
 			}//end of if
 			else {
@@ -318,10 +366,7 @@ var self = module.exports = {
 		var k = 0;
 		var evt = new event_emitter();
 		var comment_number = new Array();
-		var notice_comment_number = new Array();
-		
-		console.log("in board.js display : " + docs.length);
-		
+		var notice_comment_number = new Array();		
 		
 		evt.on('subject_cutting', function(evt, k){
 			if ( k < docs.length ) {
