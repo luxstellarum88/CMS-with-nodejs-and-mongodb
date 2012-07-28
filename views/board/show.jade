@@ -11,7 +11,7 @@ html
 		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 		-if(session!=-1)
 			link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-		body
+		body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
 			#viewport
 				#world
 			-if(session!=-1)

@@ -85,7 +85,7 @@ input:-webkit-autofill{
 #mainMenu #logo {
 	width : 150px;
 	height : 37px;
-	margin-top : 0px;
+	margin-left:30px;
 	display : block;
 	float : left;
 }
@@ -102,7 +102,7 @@ ul.mainmenu {
 	float : left;
 	height : 50px;
 	margin-top : -28px;
-	margin-left : 90px;
+	margin-left : 30px;
 	padding : 0;
 }
 li.mainmenu {
@@ -120,7 +120,7 @@ li.mainmenu {
 	width : 90px;
 	height : 27px;
 	background-image : url('/images/menu/menu01.png');
-	margin-left : 185px;
+	margin-left : 245px;
 }
 .mainmenu a#menu1:hover {
 	background-image : url('/images/menu/menu01_h.png');
@@ -282,4 +282,13 @@ li.submenu {
 	left : 50%;
 	margin-left : 340px;
 	font-weight : bold;
+}
+#go_top {
+	position: absolute;
+	z-index: 9999;
+	font-size: 11pt;
+	color: #ACC6E3;
+	font-family: 'NanumGothicWeb';
+	margin-bottom: 20px;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
