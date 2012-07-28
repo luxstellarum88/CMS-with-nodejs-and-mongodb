@@ -283,3 +283,12 @@ li.submenu {
 	margin-left : 340px;
 	font-weight : bold;
 }
+#go_top {
+	position: absolute;
+	z-index: 9999;
+	font-size: 11pt;
+	color: #ACC6E3;
+	font-family: 'NanumGothicWeb';
+	margin-bottom: 20px;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
