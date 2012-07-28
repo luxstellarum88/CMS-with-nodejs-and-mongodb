@@ -113,10 +113,9 @@ html
 				div#boardFooter
 					div#pageLine
 						div#list
-							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
+							img(src='../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'")
 						div#write
-							a
-								img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")	
+							img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")	
 						div#pagination
 							-current_page = parseInt(current_page);
 							-var last = Math.ceil(length/paging);
