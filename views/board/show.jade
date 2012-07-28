@@ -72,6 +72,7 @@ html
 							var m_button = document.createElement('input');
 							m_button.setAttribute('type', 'button');
 							m_button.setAttribute('value', '수정');
+							m_button.setAttribute('class', 'clickable');
 							m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);}
 							
 							modify_button.appendChild(m_button);				
@@ -79,6 +80,7 @@ html
 							var d_button = document.createElement('input');
 							d_button.setAttribute('type', 'button');
 							d_button.setAttribute('value', '삭제');
+							d_button.setAttribute('class', 'clickable');
 							d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
 							delete_button.appendChild(d_button);							
 						}
