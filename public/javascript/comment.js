@@ -36,10 +36,15 @@ function updComment(){
 
 	checkContent(content, function(data){
 		if(data.result == 'true'){
-			if(confirm("정말 수정하시겠습니까?"))
-				location.href='/comment_update/' + board_id + '/' + board_index + '?index=' + index + '&content=' + content;
+			if(content.length < 200){	
+				if(confirm("정말 수정하시겠습니까?"))
+					location.href='/comment_update/' + board_id + '/' + board_index + '?index=' + index + '&content=' + content;
 	
-			hideCommentView();	
+				hideCommentView();	
+			}
+			else{
+				alert('200자 이상은 달 수 없습니다.');
+			}			
 		}
 		else{
 			alert('댓글이 빈칸입니다.')			

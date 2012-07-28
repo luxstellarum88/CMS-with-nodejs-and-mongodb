@@ -109,6 +109,10 @@ html
 							alert('빈 칸입니다.');
 							return false;
 						}
+						else if( content.length > 200){
+							alert('200자 이상은 달 수 없습니다.');
+							return false;		
+						}
 						else{
 							return true;
 						}
@@ -166,7 +170,7 @@ html
 								tr
 									td.content #{sessionId}
 									td.content(colspan='3')
-										input(type='textbox', id='commentForm', name='commentForm')	
+										textarea(id='commentForm', name='commentForm', style="resize:none; width:480px; height:110px;")
 										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
 										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
@@ -176,13 +180,14 @@ html
 			
 			div('id'="divCommentUpd", style="display:none;")
 				form(name='updForm')
-					내용 : 
-					input(type='text', name='content', onKeyPress = 'return comment_enter(this,event)');
-					input(type='hidden', name='board_id')
-					input(type='hidden', name='board_index')		
-					input(type='hidden', name='index')
-					input(type='button', value='등록', onClick="updComment()", class='clickable')
-					input(type='button', value='취소', onClick="cnlComment()", class='clickable')
+					#UpdTextArea
+						textarea(name='content', style="resize:none; width:450px; height:70px;", onKeyPress = 'return comment_enter(this,event)');
+						input(type='hidden', name='board_id')
+						input(type='hidden', name='board_index')		
+						input(type='hidden', name='index')
+					#UpdButtons(style="text-align: right; margin-right: 98px; margin-top: 5px; margin-bottom: 16px;")
+						input(type='button', value='등록', onClick="updComment()", class='clickable')
+						input(type='button', value='취소', onClick="cnlComment()", class='clickable')
 									
 		-if(session!=-1)
 			include ../common/footer
