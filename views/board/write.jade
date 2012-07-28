@@ -12,7 +12,7 @@ html
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
 		script(src="/lib/daumeditor-7.3.19/js/editor_loader.js?environment=development", type="text/javascript", charset="utf-8")
 		script(src='/javascript/editor_config.js', type='text/javascript', charset='utf-8')
-	body
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
 		#viewport
 			#world
 		
@@ -92,7 +92,7 @@ html
 						input(type='hidden', id='name', name='name', value='#{session.name}')
 						input(type='button', id='preview' ,value='미리보기' , class='clickable')
 						a(href='javascript:submit();')
-							img#submitButton(src='../images/button_submit.png')
+							img#submitButton(src='/images/board/button_submit.png')
 						input( type ='button', id='list', value='취소', onClick="location.href='/board/#{id}'", class='clickable')
 			
 				div#boardBottom 

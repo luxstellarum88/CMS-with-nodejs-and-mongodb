@@ -129,10 +129,11 @@ var self = module.exports = {
 		var index = req.params.index;
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;
 		
 		find_model.findOne({board_id:board_id, post_index:board_index, index:index}, function(err, docs){
 			if ( !err && docs ) {
-				if ( docs.user_id == user_id ) {
+				if ( docs.user_id == user_id || user_role == 'admin' ) {
 					docs.remove();
 					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id+'/'+board_index);								
 					res.render('alert', {
@@ -169,13 +170,14 @@ var self = module.exports = {
 		var content = req.query.content || "";
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;
 		
 		var condition = {board_id:board_id, post_index:post_index, index:index};
 		var update = {content:content, update_date:new Date()};
 		
 		model.findOne({board_id:board_id, post_index:post_index, index:index}, function(err, docs){
 			if ( !err ) {
-				if ( docs.user_id == user_id ) {
+				if ( docs.user_id == user_id || user_role == 'admin' ) {
 					model.update(condition, update, null, function(err){
 						if ( !err ) {
 							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id+'/'+post_index);

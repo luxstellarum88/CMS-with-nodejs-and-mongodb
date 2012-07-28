@@ -11,7 +11,7 @@ html
 		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 		-if(session!=-1)
 			link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-		body
+		body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
 			#viewport
 				#world
 			-if(session!=-1)
@@ -69,7 +69,8 @@ html
 						var delete_button = document.createElement('div');						
 						delete_button.setAttribute('id', 'CommentDelete');
 
-						if('#{sessionId}' && '#{sessionId}' == value.user_id){
+						if(('#{sessionId}' && '#{sessionId}' == value.user_id) || '#{sessionRole}' == 'admin'){
+							
 							var m_button = document.createElement('input');
 							m_button.setAttribute('type', 'button');
 							m_button.setAttribute('value', '수정');
@@ -86,6 +87,7 @@ html
 							delete_button.appendChild(d_button);							
 						}
 						
+
 						
 						comm_top.appendChild(user_name);
 						comm_top.appendChild(date);
@@ -150,7 +152,7 @@ html
 					div#readButton(style="height:36px;width:142px;")
 						-if(session!=-1)
 							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
-						-if(session!=-1 && sessionId == board.user_id)
+						-if((session!=-1 && sessionId == board.user_id) || (sessionRole=='admin'))
 							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
 							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 					-if(session!=-1)
