@@ -16,7 +16,6 @@
 	width : 51px;
 	height : 28px;
 	margin : 0 auto;
-	cursor:hand;
 }
 #detail03 {
 	width : 876px;
@@ -53,9 +52,9 @@
 }
 
 #detail03 #boardMiddle #editorFooter{
-	text-align:center;
 	height:50px;
 	width:200px;
+	align:center;
 }
 
 #detail03 #boardMiddle #editorFooter #button{
