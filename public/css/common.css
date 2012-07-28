@@ -2,7 +2,7 @@ body {
 	background : url('/images/background.png') repeat-x;
 	background-color : #779ec7;
 	margin : 0;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 10pt;
 }
 input:-webkit-autofill{
@@ -241,7 +241,7 @@ li.submenu {
 	position : relative;
 	bottom : 0;
 	color : #999999;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 10pt;
 	padding-top : 20px;
 	margin-top : 36px;

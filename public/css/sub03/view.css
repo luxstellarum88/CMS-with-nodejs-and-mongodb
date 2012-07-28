@@ -68,7 +68,7 @@
 
 #boardMiddle #readMiddle {
 	margin-top : 40px;
-	padding : 0 20px;
+
 	font-size : 10pt;
 }
 
@@ -76,6 +76,7 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	min-height: 300px;
+	padding : 0 20px;	
 }
 
 #boardMiddle #readMiddle #readButton{
@@ -97,45 +98,83 @@
 
 #boardMiddle #readMiddle #readCommentList {
 	position:relative;
-	width : 550px;
-	margin-left: 100px;
-}
+	width : 771px;
 
+}
+#boardMiddle #readMiddle #readCommentList #commentTop {
+	width : 771px;
+	height : 11px;
+	background : url("../../images/board/boardCommentBackground_top.png");
+}
+#boardMiddle #readMiddle #readCommentList #commentMiddle {
+	width : 731px;
+	padding : 0 20px;
+	background : url("../../images/board/boardCommentBackground_middle.png") repeat-y;
+	
+}
+#boardMiddle #readMiddle #readCommentList #commentBottom {
+	width : 771px;
+	height : 13px;
+	background : url("../../images/board/boardCommentBackground_bottom.png");
+	
+}
 #boardMiddle #readMiddle #readCommentList #readCommentListTop {
-	width:550px;
-	height: 30px;
-	margin-top: 10px;
+/* 	padding:10px; */
+	width: 711px;
+	height: 25px;
+	line-height: 25px;
+	padding: 8px 10px 0;
+
+/* 	height: 30px; */
+/* 	margin-top: 10px; */
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentUser {
-	width: 310px;
-	height: 30px;
+/* 	width: 310px; */
+/* 	height: 30px; */
+	font-size: 10pt;
 	float : left;
+	color: #ED2B0B;
+	
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentDate {
-	width: 140px;
-	height: 30px;	
+
+	font-size: 9pt;
+	color: gray;
+/* 	height: 30px;	 */
 	float : left;
+	margin-left: 30px;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentModify {
-	width:50px;
-	height: 30px;
-	float : left;
+/* 	width:50px; */
+/* 	height: 30px; */
+	float : right;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentDelete {
-	width:50px;
-	height: 30px;
-	float : left;
+/* 	width:50px; */
+/* 	height: 30px; */
+	float : right;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListBottom {
-	width:550px;
-	word-break: break-all;
-	margin-top: 10px;
-	margin-bottom: 30px;
+	width: 711px;
+	line-height: 20px;
+	padding: 0 10px 12px;
+	border-bottom: 1px dotted gray;
+	font-size: 9pt;
+	color: black;
+/* 	width:550px; */
+/* 	word-break: break-all; */
+/* 	margin-top: 10px; */
+/* 	margin-bottom: 30px; */
+}
+
+#boardMiddle #readMiddle #readCommentList .lastComment #readCommentListBottom {
+	border-bottom: none;
+	
 }
 
 #boardMiddle #NoSession {
@@ -162,39 +201,3 @@
 #boardMiddle #readFooter #CommentAttach #CommentWriteButton{
 	cursor:hand;
 }
-
-/*
-
-#detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 10px }
-#detail03 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
-#detail03 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb'; text-align:center; height: 40px; padding-top: 15px; margin-left: 39px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
-
-#detail03 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png');  width:776px; padding: 0 50px }
-
-#detail03 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}
-
-
-*/
-
-
-
-/*
-#detailWrap{ width:876px; height:279px; position:relative; left:50%; margin-left:-438px; margin-top: 20px }
-#detail03{ width:486px; float:left}
-#detail03 #boardTop { background-image:url('../images/boardTop_480px.png'); height:55px; width:486px; }
-#detail03 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb'; background:url('../images/boardTitleBackground.png') no-repeat; width: 100px; text-align:center; height: 40px; padding-top: 15px; margin-left: 20px; background-position: center;}
-#detail03 #boardMiddle {background-image:url('../images/boardMiddle_480px.png'); height:170px; width:386px; padding: 0 50px }
-#detail03 #boardMiddle #wrap { width: 376px; margin-left: 10px; float: left; padding-top: 10px; padding-bottom: 10px }
-#detail03 #boardMiddle #wrap #title { color:#334d66; font-family: 'NanumGorhicWeb'; font-size: 11pt; height: 40px; vertical-align: middle; display: table-cell  }
-#detail03 #boardMiddle #wrap #images {width:228px; height: 38px; border:1px solid #dfdfdf; margin:5px 0 10px 0}
-#detail03 #boardMiddle #wrap #contents { color:black; font-family: 'NanumGorhicWeb'; font-size: 9pt;  }
-#detail03 #boardBottom {background-image:url('../images/boardBottom_480px.png'); height:34px; width:486;}
-
-
-#detail04{ width:370px; margin-left:20px; float:left }
-#detail04 #boardTop { background-image:url('../images/boardTop_370px.png'); height:55px; width:370px; }
-#detail04 #boardTop #boardTitle.select {font-size:11pt; color: black; font-family:'NanumGothicWeb'; background:url('../images/boardTitleBackground.png') no-repeat; width: 100px; text-align:center; height: 40px; padding-top: 15px; margin-left: 20px; background-position: center; float: left}
-#detail04 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb';no-repeat; width: 100px; text-align:center; height: 40px; padding-top: 15px; margin-left: 20px; float: left}
-#detail04 #boardMiddle {background-image:url('../images/boardMiddle_370px.png'); height:170px; width:270px; padding: 0 50px }
-#detail04 #boardBottom {background-image:url('../images/boardBottom_370px.png'); height:34px; width:370px;}
-*/

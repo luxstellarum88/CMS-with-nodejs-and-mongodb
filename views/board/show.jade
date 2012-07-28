@@ -124,9 +124,9 @@ html
 					$(document).ready(function(){
 						var data = eval(!{JSON.stringify(comment)});
 						$.each(data, function(index, value){
-							$('#readCommentList').append(makeCommentDiv(index, value));
+							$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
 						});
-						
+						$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
 						var __time = getTimeStamp('#{board.insert_date}')
 						$('#titleWrap #time').append('<div>' + __time + '</div>')
 
@@ -157,6 +157,9 @@ html
 							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 					-if(session!=-1)
 						div#readCommentList
+							div#commentTop
+							div#commentMiddle
+							div#commentBottom
 
 				div#readFooter
 					-if(session!=-1)
