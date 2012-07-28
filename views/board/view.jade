@@ -58,6 +58,8 @@ html
 			}
 			
 			$(document).ready(function(){
+				$('#searchInputBox').focus();
+			
 				var data = eval(!{JSON.stringify(docs)});
 				$.each(data, function(index, value){
 					var date = getTimeStamp(value.insert_date);

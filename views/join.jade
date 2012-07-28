@@ -17,6 +17,7 @@ html
 		
 		script
 			$(document).ready(function(){
+				$('#idForm').focus();
 				$('#idForm').focusout(function(){
 					$.ajax({
 						type : 'post'
