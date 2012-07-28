@@ -12,7 +12,7 @@ var self = module.exports = {
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
 			if ( !err ) {
 				res.render('admin/board_recent_view', {
-					title : 'Recent Docs'
+					title : '최근 게시물'
 					, docs : docs
 					, session: req.session.user				
 				});//end of render
@@ -32,7 +32,7 @@ var self = module.exports = {
 			
 			if ( !err ) {
 				res.render('admin/recent_comment_view', {
-					title : 'Recent Comments'
+					title : '최근 코멘트'
 					, docs : docs
 					, session: req.session.user
 				})//end of render

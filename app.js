@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var express = require('express')
+  , fs = require('fs')
   , routes = require('./routes');
 // Session
 var SessionMemory = require('connect-redis')(express);
@@ -18,7 +19,7 @@ app.configure(function(){
   	layout: false
   });
   
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({uploadDir:'./public/uploads'}));
   app.use(express.cookieParser());  
   app.use(express.session({
   	secret: 'key',
@@ -89,36 +90,40 @@ app.get('/', routes.index);
 // HTML PAGE RENDERING PART
 
 // Introduction
-app.get('/sub01/sub01', routes.html_sub1_1); // OverView 
-app.get('/sub01/sub02', routes.html_sub1_2); // Features
-app.get('/sub01/sub03', routes.html_sub1_3); // Demos
-app.get('/sub01/sub04', routes.html_sub1_4); // Licensing
+app.get('/intro/overview', routes.html_sub1_1); // OverView 
+app.get('/intro/features', routes.html_sub1_2); // Features
+app.get('/intro/demos', routes.html_sub1_3); // Demos
+app.get('/intro/license', routes.html_sub1_4); // Licensing
 
 // support
-app.get('/sub02/sub01', routes.html_sub2_1); // 
-app.get('/sub02/sub02', routes.html_sub2_2); // FAQ
+app.get('/support/care', routes.html_sub2_1); // 
+app.get('/support/faq', routes.html_sub2_2); // FAQ
 
 
 // app.get('/sub03/sub01', routes.html_sub3_1);
 // Community
-app.get('/sub03/sub01', routes.html_sub3_1); // Freeboard
-app.get('/sub03/sub02', routes.html_sub3_2); // Q&A
-app.get('/sub03/sub03', routes.html_sub3_3); // User Tip & Knowhow
+app.get('/community/freeboard', routes.html_sub3_1); // Freeboard
+app.get('/community/qna', routes.html_sub3_2); // Q&A
+app.get('/community/tip', routes.html_sub3_3); // User Tip & Knowhow
 
 
 // Usage
-app.get('/sub04/sub01', routes.html_sub4_1); // Installation
-app.get('/sub04/sub02', routes.html_sub4_2); // User Manual
-app.get('/sub04/sub03', routes.html_sub4_3); // Developer Manual
+app.get('/usage/install', routes.html_sub4_1); // Installation
+app.get('/usage/manual', routes.html_sub4_2); // User Manual
+//app.get('/usage/developer', routes.html_sub4_3); // Developer Manual
 
 
 // Download
-app.get('/sub05/sub01', routes.html_sub5_1); // SourceCode
-app.get('/sub05/sub02', routes.html_sub5_2); // Plug-in
-app.get('/sub05/sub03', routes.html_sub5_3); // Skin
+app.get('/download/source', routes.html_sub5_1); // SourceCode
+app.get('/download/plugin', routes.html_sub5_2); // Plug-in
+app.get('/download/skin', routes.html_sub5_3); // Skin
+
+
 
 
 app.post('/sessions', routes.session);
+app.get('/sessions', routes.session);
+
 
 app.get('/admin/userlists/:page?', requiresAdminLogin, routes.user_list);
 app.get('/user_information/:id', requiresAdminLogin, routes.user_information_view);
@@ -187,10 +192,24 @@ app.get('/board_main', requiresLogin ,routes.board_list_page);
 app.post('/comment_write', requiresLogin, routes.comment_insert);
 
 app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete);
-app.get('/comment_update/:id/:num/:index/:content', requiresLogin, routes.comment_update);
+app.get('/comment_update/:id/:num', requiresLogin, routes.comment_update);
+app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
+
+app.post('/file_upload', function(req, res, next){
+	
+	var tmp_path = req.files.thumbnail.path;
+	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
+	fs.rename(tmp_path, target_path, function(err){
+		if(err) throw err;
+		fs.unlink(tmp_path, function(){
+			if(err) throw err;
+			res.send('success');
+		});
+	});
+});
 
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

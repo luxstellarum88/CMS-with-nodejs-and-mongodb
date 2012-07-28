@@ -13,14 +13,13 @@ html
 		
 		include ../common/header
 		include ../common/mainMenu	
+		include ../common/subMenu/subMenu03.jade
 		#detail03
 			#boardTop
-				#boardTitle Admin
+				#boardTitle 최근 댓글 보기
 			#boardMiddle
 				#wrap(style='margin-left: 10px;')
-					#title 최근 코멘트
 					#contents
-						h1= title
 						div(style='width:760px;')
 							table
 								tr
@@ -42,7 +41,7 @@ html
 													a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
 												td.content #{docs[i].insert_date}
 										-}
-							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로')
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
 			#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

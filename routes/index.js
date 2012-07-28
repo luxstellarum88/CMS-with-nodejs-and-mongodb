@@ -16,24 +16,24 @@ var board = require('../modules/board/board');
 var comment = require('../modules/comment/comment');
 
 exports.html_sub1_1 = function(req, res){
-	res.render('sub01/sub01', { title: 'sub1_1' , session: req.session.user });
+	res.render('sub01/sub01', { title: 'goorm 소개 > 소개' , session: req.session.user });
 }
 exports.html_sub1_2 = function(req, res){
-	res.render('sub01/sub02', { title: 'sub1_2' , session: req.session.user });
+	res.render('sub01/sub02', { title: 'goorm 소개 > 특징' , session: req.session.user });
 }
 exports.html_sub1_3 = function(req, res){
-	res.render('sub01/sub03', { title: 'sub1_3' , session: req.session.user });
+	res.render('sub01/sub03', { title: 'goorm 소개 > 데모' , session: req.session.user });
 }
 exports.html_sub1_4 = function(req, res){
-	res.render('sub01/sub04', { title: 'sub1_4' , session: req.session.user });
+	res.render('sub01/sub04', { title: 'goorm 소개 > 라이센' , session: req.session.user });
 }
 
 
 exports.html_sub2_1 = function(req, res){
-	res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
+	res.render('sub02/sub01', { title: '지원 > 기술지원' , session: req.session.user });
 }
 exports.html_sub2_2 = function(req, res){
-	res.render('sub02/sub02', { title: 'sub2_2' , session: req.session.user });
+	res.render('sub02/sub02', { title: '지원 > 자주 묻는 질문' , session: req.session.user });
 }
 
 
@@ -41,38 +41,38 @@ exports.html_sub2_2 = function(req, res){
 	// res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
 // }
 exports.html_sub3_1 = function(req, res){
-	res.redirect('/board/sub3_1');
+	res.redirect('/board/freeboard');
 }
 exports.html_sub3_2 = function(req, res){
-	res.render('sub03/sub02', { title: 'sub3_2' , session: req.session.user });
+	res.render('sub03/sub02', { title: '커뮤니티 > 질문게시판' , session: req.session.user });
 }
 exports.html_sub3_3 = function(req, res){
-	res.render('sub03/sub03', { title: 'sub3_3' , session: req.session.user });
+	res.render('sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user });
 }
 
 
 exports.html_sub4_1 = function(req, res){
-	res.render('sub04/sub01', { title: 'sub4_1' , session: req.session.user });
+	res.render('sub04/sub01', { title: '사용방법 > 설치' , session: req.session.user });
 }
 exports.html_sub4_2 = function(req, res){
-	res.render('sub04/sub02', { title: 'sub4_2' , session: req.session.user });
+	res.render('sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user });
 }
-exports.html_sub4_3 = function(req, res){
-	res.render('sub04/sub03', { title: 'sub4_3' , session: req.session.user });
-}
-exports.html_sub4_4 = function(req, res){
-	res.render('sub04/sub04', { title: 'sub4_4' , session: req.session.user });
-}
+// exports.html_sub4_3 = function(req, res){
+	// res.render('sub04/sub03', { title: 'sub4_3' , session: req.session.user });
+// }
+// exports.html_sub4_4 = function(req, res){
+	// res.render('sub04/sub04', { title: 'sub4_4' , session: req.session.user });
+// }
 
 
 exports.html_sub5_1 = function(req, res){
-	res.render('sub05/sub01', { title: 'sub5_1' , session: req.session.user });
+	res.render('sub05/sub01', { title: '다운로드 > 소스코드' , session: req.session.user });
 }
 exports.html_sub5_2 = function(req, res){
-	res.render('sub05/sub02', { title: 'sub5_2' , session: req.session.user });
+	res.render('sub05/sub02', { title: '다운로드 > 플러그인' , session: req.session.user });
 }
 exports.html_sub5_3 = function(req, res){
-	res.render('sub05/sub03', { title: 'sub5_3' , session: req.session.user });
+	res.render('sub05/sub03', { title: '다운로드 > 스킨' , session: req.session.user });
 }
 
 
@@ -99,7 +99,7 @@ exports.board_make_form = function(req, res){
 		// });
 	// });
 	res.render('admin/board_make_form', {
-		title: 'board_make_form'
+		title: '게시판 생성'
 		, session: req.session.user
 	});
 }
@@ -297,6 +297,10 @@ exports.comment_delete = function(req, res) {
 exports.comment_update = function(req, res) {
 	comment.update(req, res);
 }
+
+exports.comment_check_ajax = function(req, res){
+	comment.check_ajax(req, res);
+}
 //------------------------------------------------------수정완료
 exports.boardPreview = function(req, res){
 	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
@@ -323,7 +327,7 @@ exports.commentDeleteForm = function(req, res){
 	var comment_id = req.query.comment_id;
 	
 	res.render('commDelete', {
-		title: 'commDelete',
+		title: '코멘트 삭제',
 		board_id: board_id,
 		board_num: board_num,
 		comment_id: comment_id

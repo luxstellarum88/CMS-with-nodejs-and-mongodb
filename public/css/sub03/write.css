@@ -43,7 +43,6 @@
 }
 #detail03 #boardMiddle {
 	background-image : url('../../images/boardMiddle_870px.png');
-	height : 600px;
 	width : 776px;
 	padding : 0 50px;
 }
@@ -52,9 +51,15 @@
 	text-align: center;
 }
 
+#detail03 #boardMiddle #editorFooter{
+	height:50px;
+	width:200px;
+	align:center;
+}
+
 #detail03 #boardMiddle #editorFooter #button{
-	height:31px;
-	width:97px;
+	height:50px;
+	width:200px;
 }
 
 #detail03 #boardBottom {

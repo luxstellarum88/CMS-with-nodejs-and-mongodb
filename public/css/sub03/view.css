@@ -13,7 +13,7 @@
 	color : black;
 	font-family : 'NanumGorhicWeb';
 	font-size : 10pt;
-	text-decoration : none;
+	text-decoration : none;    
 	opacity : 1;
 	margin : 0 3px;
 	margin-left : 20px;
@@ -83,6 +83,18 @@
 	margin: 0 auto;
 }
 
+#boardMiddle #readMiddle #readButton #list{
+	cursor:hand;
+}
+
+#boardMiddle #readMiddle #readButton #modify{
+	cursor:hand;
+}
+
+#boardMiddle #readMiddle #readButton #delete{
+	cursor:hand;
+}
+
 #boardMiddle #readMiddle #readCommentList {
 	position:relative;
 	width : 550px;
@@ -145,6 +157,10 @@
 #boardMiddle #readFooter #CommentAttach { 
 	margin-top:20px;
 	margin: 0 auto;
+}
+
+#boardMiddle #readFooter #CommentAttach #CommentWriteButton{
+	cursor:hand;
 }
 
 /*

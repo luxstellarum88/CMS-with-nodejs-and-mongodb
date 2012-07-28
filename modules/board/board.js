@@ -17,7 +17,7 @@ var self = module.exports = {
 		}
 		
 		res.render('board/write', {
-			title: 'write'
+			title: '게시물 작성'
 			, id : req.params.id
 			, auth : auth
 			, session: req.session.user
@@ -32,7 +32,6 @@ var self = module.exports = {
 	
 		find_model.findOne().sort('index', -1).exec(function(err, docs){
 			if ( !err ) {
-				//잠적적 문제요인
 				if ( docs ) index = docs.index + 1;	
 		
 				make_model.board_id = req.body.id;
@@ -63,8 +62,8 @@ var self = module.exports = {
 	},//end of insert
 		
 	check_insert_condition : function(req, res) {
-		var subject = req.body.subject || "";
-		var memo = req.body.tx_content || "";
+		var subject = self.trim(req.body.subject) || "";
+		var memo = self.trim(req.body.tx_content) || "";
 		
 		if ( (""!=subject) && (""!=memo) ) {
 			self.insert(req, res);
@@ -135,7 +134,7 @@ var self = module.exports = {
 		model.find().sort('date', -1).exec(function(err, docs){
 			if ( !err ) {
 				res.render('board/main', {
-					title: 'Board Main'
+					title: '게시판 메인'
 					, docs: docs
 					, session: req.session.user
 				});//end of render
@@ -152,14 +151,15 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;
 		var board_id = req.params.id;
 		var board_index = req.params.num;
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
-				if ( docs.user_id === user_id ) {
+				if ( docs.user_id === user_id ||  user_role === 'admin') {
 					res.render('board/modify', {
-						title: 'Board Modify'
+						title: '게시물 수정'
 						, docs: docs
 						, session: req.session.user
 					});//end of render
@@ -201,6 +201,7 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;		
 		var board_id = req.body.board_id;
 		var board_index = req.body.index;
 		var subject = req.body.subject;
@@ -211,7 +212,7 @@ var self = module.exports = {
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
-				if ( docs.user_id === user_id ) {
+				if ( docs.user_id === user_id || user_role === 'admin' ) {
 					model.update(condition, update, null, function(err){
 						if ( !err ) {
 							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id);
@@ -250,22 +251,29 @@ var self = module.exports = {
 			
 		var board_id = req.params.id;
 		var board_index = req.params.num;
+		var current_comment = req.params.comm_page || 1;
 		var sessionId = "";
+		var sessionRole = "";
 		if(req.session.user)
 			sessionId = req.session.user.Id;
+			sessionRole = req.session.user.role;
+		
+		console.log(req.params);
 		
 		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 			if ( !err ) {
 				comment.list(req, res, function(comments, length){					
 					var json_comments = JSON.stringify(comments);
 					res.render('board/show', {
-						title : 'Show Contents',
+						title : '게시판',
 						board : docs,
 						board_id : board_id,
 						comment : json_comments,
+						current_comment : current_comment,
 						length : length,
-						sessionId : sessionId
-						, session: req.session.user
+						sessionId : sessionId,
+						sessionRole : sessionRole,
+						session: req.session.user
 					});//end of render
 				});//end of comment list
 			}//end of if
@@ -277,16 +285,52 @@ var self = module.exports = {
 	/*
 		2012. 07. 13. by JH
 	*/
+	
+	getSubject : function(subject, callback){
+		var p = 0;
+		var len = 0;
+		var str;
+		var evt2 = new event_emitter();
+				
+		evt2.on('string_length', function(evt2, p){
+			if( len < 60 && p<subject.length ) {
+				if( subject.charCodeAt(p) > 255) len+=2;
+				else len+=1;
+				evt2.emit('string_length', evt2, ++p);
+			}
+			else{
+				if(p<subject.length)
+					str = subject.substr(0,p)+'...';
+				else
+					str = subject;
+					
+				callback(str);
+			}
+		});
+		
+		evt2.emit('string_length', evt2, p);
+	},
 
 	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
+		var k = 0;
 		var evt = new event_emitter();
 		var comment_number = new Array();
 		var notice_comment_number = new Array();
 		
 		console.log("in board.js display : " + docs.length);
+		
+		
+		evt.on('subject_cutting', function(evt, k){
+			if ( k < docs.length ) {
+				self.getSubject(docs[k].subject, function(str){
+					docs[k].subject = str;
+				});
+				evt.emit('subject_cutting', evt, ++k);
+			}
+		});
 		
 		evt.on('notice_comment_counting', function(evt, j){
 			if ( j < notice.length ) {
@@ -325,7 +369,8 @@ var self = module.exports = {
 				});//end of render
 			}//end of else
 		});//end of evt on
-		evt.emit('notice_comment_counting', evt, i);		
+		evt.emit('notice_comment_counting', evt, i);
+		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
 
 	/*
@@ -392,11 +437,11 @@ var self = module.exports = {
 				
 				var search_reg_exp = new RegExp(content);
 									
-				if ( 'id' === type ) {
-					model.find({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id})
+				if ( 'docs' === type ) {
+					model.find({notice : false, deleted : false, board_id : board_id, $or : [ { 'subject' : search_reg_exp } , { 'content' : search_reg_exp } ]})
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
-								model.count({notice : false, deleted : false, user_id : search_reg_exp, board_id : board_id}, function(err, length){
+								model.count({notice : false, deleted : false, board_id : board_id, $or : [ { 'subject' : search_reg_exp } , { 'content' : search_reg_exp } ]}, function(err, length){
 									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
@@ -465,7 +510,7 @@ var self = module.exports = {
 	},//end of post
 	
 	check_update_condition : function(req, res) {
-		if ( (""!=req.body.subject) && (""!=req.body.memoForm) ) {
+		if ( (""!=self.trim(req.body.subject)) && (""!=self.trim(req.body.memoForm)) ) {
 			self.update(req, res);
 		}
 		else {
@@ -505,5 +550,10 @@ var self = module.exports = {
 				callback(false);
 			}//end of else
 		}) ;//end of update
-	}//end of increase_hit
+	},//end of increase_hit
+	
+	trim : function(string) {
+		string += ''; // 숫자라도 문자열로 변환
+		return string.replace(/^\s*|\s*$/g, '');
+	}
 }//end of module

@@ -6,37 +6,39 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')\
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 	body
 		#viewport
 			#world
 		
 		include ../common/header
 		include ../common/mainMenu	
+		include ../common/subMenu/subMenu03.jade
 		#detail03
 			#boardTop
-				#boardTitle Admin
+				#boardTitle 게시판 생성
 			#boardMiddle
 				#wrap(style='margin-left: 10px;')
-					#title 게시판 생성
 					#contents
 						form(action='/admin/board_make', method='POST')
-							p
-								label(for='id') Board Id:
-								input(type='text', name='id', id='id')
-							p
-								label(for='name') Board Name:
-								input(type='text', name='name', id='name')
-							p
-								label(for='pagingNumber') Board PagingNumber:
-								input(type='text', name='pagingNumber', id='pagingNumber')
-							p
-								label(for='pagingNumber') Board Skin:
-								select
-									//-for(var i=0; i<skins.length; i++)
-										//option(value='#{skins[i]}')
-											//!{skins[i]}
-							input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성')
+							label(for='id') Board Id:
+							input(type='text', name='id', id='id', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='name') Board Name:
+							input(type='text', name='name', id='name', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='pagingNumber') Board PagingNumber:
+							input(type='text', name='pagingNumber', id='pagingNumber', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='pagingNumber') Board Skin:
+							select
+								//-for(var i=0; i<skins.length; i++)
+									//option(value='#{skins[i]}')
+										//!{skins[i]}
+							br
+							input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성', class='clickable')br
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
 			#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

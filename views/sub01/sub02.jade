@@ -3,7 +3,7 @@ html
 		title
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
+		link(rel='stylesheet', type='text/css', href='../css/sub01/sub02.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
@@ -13,13 +13,74 @@ html
 		include ../common/header.jade
 		include ../common/mainMenu.jade
 		include ../common/subMenu/subMenu01.jade
-		
-		#detail03
-			#boardTop
-			#boardMiddle
-				#content
-					준비 중입니다.
-			#boardBottom
-			
+		#detail01
+			#detail01Text
+				#title 안녕, goorm!
+				#contents
+					| 구름은 다양한 오픈 소스 라이브러리를 기반으로 다양한 플랫폼과 웹브라우저에서 동작하는 것을 목표 개발되었습니다. 웹부터 모바일까지 다양한 개발 환경을 지원하며, 플러그인 기능을 통해 얼마든지 확장 가능합니다. 또한 UI 작성 및 UML 작성 도구를 지원하고 실시간 협업 환경을 제공해줌으로써 개발 효율성을 극대화할 수 있습니다.
+			#detail01Image
+				img(src='../images/sub01/detailImage01.png')
+			#detail02
+				#boardTop
+					#boardTitle 특징
+				#boardMiddle
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 자신만의 클라우드 통합 개발 환경 구축!
+						#contents
+							| 개인 서버에 설치하거나 uizard.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 다양한 플러그인 지원!
+						#contents
+							| 다양한 프로그래밍 언어를 지원하는 플러그인 뿐만 아니라 추가적인 기능을 제공하는 다양한 플러그인을 쉽게 설치/관리할 수 있으며, 누구든지 이러한 플러그인을 개발하고 배포할 수 있습니다.
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 실시간 협업을 통한 효율적인 개발!
+						#contents
+							| 실시간 협업 서버를 제공하여, 이를 통해 원격지에 있는 다른 팀원들과 쉽게 협업할 수 있습니다. 채팅 뿐만 아니라 동시에 소스 코드를 편집하거나 UI를 디자인할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 편리한 UI 기술!
+						#contents 순수 웹기술만으로 개발된 UI 디자인 도구를 이용하여, UI를 편리하게 기술하고 이를 개발 중인 프로젝트에 바로 적용할 수 있습니다.
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 오픈 소스를 통한 자유도 높은 재구성
+						#contents
+							| 주요 기능과 관련된 모듈 / 플러그인 뿐만 아니라 코어까지 오픈 소스로 공개하고 있기 때문에 자신에게 알맞은 재구성을 통해 개인에게 최적화된 개발 환경을 구성할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 다양한 언어의 하이라이팅 기능 제공!
+						#contents
+							| 개발 언어에 맞춰 하이라이팅 기능을 지원합니다. 기본적으로 제공하는 HTML, CSS, Java 외의 플러그인 설치를 통해 새로운 언어에 대한 하이라이팅 기능을 사용할 수 있습니다.
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 개발 효율을 높여주는 편리한 찾기/바꾸기!
+						#contents 일반적인 단어 찾기 뿐만 아니라 대소문자 구분, 정규 표현식 등을 이용해 보다 편리하게 단어를 찾고 바꿀 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 자신만의 개발 환경을 위한 다양한 테마
+						#contents
+							| 구름에서 제공하는 기본 테마와 맥 스타일, 이클립스 스타일의 테마 외의	다른 사용자들이 디자인한 테마를 다운 받아 사용하거나 자신만의 테마를 만들 수 있습니다.
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 프로젝트 유지 및 관리를 위한 FTP와 SVN
+						#contents
+							| 작업한 프로젝트를 FTP 기능을 이용해 바로 서버에 올릴 수 있습니다. 별도의 버전 관리 시스템을 사용 하는 경우 저장소를 등록해 버전 관리를 할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 콘솔
+						#contents 작업한 프로젝트의 컴파일 및 실행 모두 구름에서 할 수 있습니다. 또한 콘솔을 이용해 데이터를 입력 받아 구름에서 바로 테스트 할 수 있습니다.
+				#boardBottom
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade

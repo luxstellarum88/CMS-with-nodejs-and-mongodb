@@ -15,6 +15,28 @@ html
 		include ../common/header
 		include ../common/mainMenu
 		include ../common/subMenu/subMenu03.jade
+		
+		script
+			function submit_enter_search(field,e){
+				var keycode;
+				if(window.event){
+					keycode = window.event.keyCode;
+				}
+				else if(e){
+					keycode = e.which;
+				}
+				else{
+					return true;
+				}
+				
+				if(keycode == 13){					
+					search();
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
 
 		script(type='text/javascript')
 			var date_array = new Array();
@@ -36,6 +58,8 @@ html
 			}
 			
 			$(document).ready(function(){
+				$('#searchInputBox').focus();
+			
 				var data = eval(!{JSON.stringify(docs)});
 				$.each(data, function(index, value){
 					var date = getTimeStamp(value.insert_date);
@@ -48,10 +72,11 @@ html
 			function search() {
 				location.href="/board/#{board_id}?type="+document.getElementsByName("type")[0].value
 								+"&content="+document.getElementsByName("content")[0].value;
-			}		
+			}
+			
 		div#detail03
 			div#boardTop
-				div#boardTitle= title
+				div#boardTitle 커뮤니티 게시판
 			div#boardMiddle
 				div#boardList
 					table(cellspacing='0')
@@ -77,7 +102,7 @@ html
 									tr
 										td.no #{length - ( (current_page-1) * paging ) - i}
 										td.title
-											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}	
+											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 											a.replyNum [#{comment_number[i]}]
 										td.author
 											a #{docs[i].user_name}
@@ -86,63 +111,66 @@ html
 										td.readNum #{docs[i].hit}
 								-}			
 				div#boardFooter
-					div#pagination
-						-current_page = parseInt(current_page);
-						-var last = Math.ceil(length/paging);
-						-if(current_page!=1)
-							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
-								img(src='../images/board/button_forward.png')
-								span 처음 페이지 |
-						-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
-							-if(j>0 && j<= last)
-								-if( j == current_page && j != last)
-									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
-										b #{j} 
-										|
-								-else if( j == current_page && j == last )
-									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
-										b #{j}
-								-else if( j != last )
-									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j} |
-								-else
-									a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j}
+					div#pageLine
+						div#list
+							img(src='../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'")
+						div#write
+							img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")	
+						div#pagination
+							-current_page = parseInt(current_page);
+							-var last = Math.ceil(length/paging);
+							-if(last>0)
+								a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
+									img(src='../images/board/button_forward.png')
+									span 처음 페이지 |
+							-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
+								-if(j>0 && j<= last)
+									-if( j == current_page && j != last)
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
+											b #{j} 
+											|
+									-else if( j == current_page && j == last )
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
+											b #{j}
+									-else if( j != last )
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j} |
+									-else
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j}
+									
+							-}
+							-if(last>0)
+								a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
+									span | 마지막 페이지
+									img(src='../images/board/button_backward.png')
 								
-						-}
-						-if(current_page!=last)
-							a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
-								span | 마지막 페이지
-								img(src='../images/board/button_backward.png')
 					div#search
 						-if(type == 'name')
 							select(id='type', name='type')
-								option(value='id') 아이디
+								option(value='docs') 제목+내용
 								option(value='subject') 제목
 								option(value='content') 내용
 								option(value='name', selected) 이름
 						-else if(type == 'memo')
 							select(id='type', name='type')
-								option(value='id') 아이디
+								option(value='docs') 제목+내용
 								option(value='subject') 제목
 								option(value='content', selected) 내용
 								option(value='name') 이름
 						-else if(type == 'subject')
 							select(id='type', name='type')
-								option(value='id') 아이디
+								option(value='docs') 제목+내용
 								option(value='subject', selected) 제목
 								option(value='content') 내용
 								option(value='name') 이름
 						-else
 							select(id='type', name='type')
-								option(value='id', selected) 아이디
+								option(value='docs', selected) 제목+내용
 								option(value='subject') 제목
 								option(value='content') 내용
 								option(value='name') 이름
-						input#searchInputBox(type='text', name='content', value='#{content}')
+						input#searchInputBox(type='text', name='content', value='#{content}', onKeyPress='return submit_enter_search(this,event);')
 						a(href='javascript:search();')
 							img#searchButton(src='../images/board/button_search.png')
-					a
-						img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")
-				input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
 						
 			div#boardBottom
 		include ../common/footer

@@ -1,5 +1,5 @@
 body {
-	background : url('../images/background.png') repeat-x;
+	background : url('/images/background.png') repeat-x;
 	background-color : #779ec7;
 	margin : 0;
 	font-family : 'NanumGorhicWeb';
@@ -12,7 +12,7 @@ input:-webkit-autofill{
 	background : black;
 	opacity : 0.699999988079071044921875;
 	height : 33px;
-	padding-top : 8px;
+	padding-top : 4px;
 	position : relative;
 }
 #topMenu {
@@ -20,18 +20,18 @@ input:-webkit-autofill{
 	height : 25px;
 	position : absolute;
 	left : 50%;
-	margin-top : -33px;
+	margin-top : -31px;
 	margin-left : -30px;
 	color : white;
 	text-align : right;
-	font-size : 17px;
+	font-size : 13px;
 }
 #topMenu p {
 	text-align : right;
 	color : white;
 }
 #idInputBox {
-	background : url('../images/idInputBox.png') no-repeat;
+	background : url('/images/idInputBox.png') no-repeat;
 	width : 167px;
 	height : 25px;
 	border : 0px;
@@ -40,7 +40,7 @@ input:-webkit-autofill{
 	float : left;
 }
 #pwInputBox {
-	background : url('../images/idInputBox.png') no-repeat;
+	background : url('/images/idInputBox.png') no-repeat;
 	width : 113px;
 	height : 25px;
 	border : 0px;
@@ -50,21 +50,22 @@ input:-webkit-autofill{
 	margin-left : 5px;
 }
 #loginButton {
-	background : url('../images/loginButton.png');
+	background : url('/images/loginButton.png');
 	width : 54px;
 	height : 25px;
 	float : left;
 	border : 0px;
+	cursor : hand;
 }
 #logoutButton {
-	background : url('../images/logoutButton.png');
+	background : url('/images/logoutButton.png');
 	width : 77px;
 	height : 25px;
 	float : right;
 	margin-left : 10px;
 }
 #signUpButton {
-	background : url('../images/signUpButton.png');
+	background : url('/images/signUpButton.png');
 	width : 77px;
 	height : 25px;
 	float : left;
@@ -72,7 +73,7 @@ input:-webkit-autofill{
 	border : 0px;
 }
 #mainMenu {
-	background : url('../images/mainMenuBackground.png');
+	background : url('/images/mainMenuBackground.png');
 	width : 870px;
 	height : 52px;
 	margin-top : 24px;
@@ -84,25 +85,24 @@ input:-webkit-autofill{
 #mainMenu #logo {
 	width : 150px;
 	height : 37px;
+	margin-top : 0px;
 	display : block;
 	float : left;
-	margin-left : 28px;
-	margin-top : 6px;
 }
 
 #mainMenu #paddinglogo {
-	width : 80px;
+	width : 150px;
 	height : 37px;
+	margin-top : 0px;
 	display : block;
 	float : left;
-	margin-left : 28px;
-	margin-top : 6px;
 }
 
 ul.mainmenu {
 	float : left;
 	height : 50px;
 	margin-top : -28px;
+	margin-left : 90px;
 	padding : 0;
 }
 li.mainmenu {
@@ -114,52 +114,63 @@ li.mainmenu {
 	display : block;
 	text-indent : -5000px;
 	overflow : hidden;
+	margin-top : 7px;
 }
 .mainmenu a#menu1 {
-	width : 107px;
+	width : 90px;
 	height : 27px;
-	background-image : url('../images/menu/menu01.png');
-	margin-left : 255px;
+	background-image : url('/images/menu/menu01.png');
+	margin-left : 185px;
 }
 .mainmenu a#menu1:hover {
-	background-image : url('../images/menu/menu01_h.png');
+	background-image : url('/images/menu/menu01_h.png');
 }
-/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('../images/menu/menu01_select.jpg')} */
+/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('/images/menu/menu01_select.jpg')} */
 
 .mainmenu a#menu2 {
-	width : 120px;
+	width : 60px;
 	height : 27px;
-	background-image : url('../images/menu/menu02.png');
+	background-image : url('/images/menu/menu02.png');
 }
 .mainmenu a#menu2:hover {
-	background-image : url('../images/menu/menu02_h.png');
+	background-image : url('/images/menu/menu02_h.png');
 }
-/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('../images/menu/menu02_select.jpg')} */
+/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('/images/menu/menu02_select.jpg')} */
 
 .mainmenu a#menu3 {
 	width : 82px;
 	height : 27px;
-	background-image : url('../images/menu/menu03.png');
+	background-image : url('/images/menu/menu03.png');
 }
 .mainmenu a#menu3:hover {
-	background-image : url('../images/menu/menu03_h.png');
+	background-image : url('/images/menu/menu03_h.png');
 }
-/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('../images/menu/menu03_select.jpg')} */
+/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('/images/menu/menu03_select.jpg')} */
 
 .mainmenu a#menu4 {
 	width : 82px;
 	height : 27px;
-	background-image : url('../images/menu/menu04.png');
+	background-image : url('/images/menu/menu04.png');
 }
 .mainmenu a#menu4:hover {
-	background-image : url('../images/menu/menu04_h.png');
+	background-image : url('/images/menu/menu04_h.png');
 }
-/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('../images/menu/menu04_select.jpg')} */
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
+
+.mainmenu a#menu5 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/menu/menu05.png');
+}
+.mainmenu a#menu5:hover {
+	background-image : url('/images/menu/menu05_h.png');
+}
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
 
 
 #subMenu {
 	height : 88px;
-	background : url('../images/subMenuBackground.png') no-repeat;
+	background : url('/images/subMenuBackground.png') no-repeat;
 	position : relative;
 	top : -82px;
 	margin-top : 35px;
@@ -190,46 +201,50 @@ li.submenu {
 .submenu a#menu1 {
 	width : 67px;
 	height : 13px;
-	background-image : url('../images/submenu/submenu01_01.png');
+	background-image : url('/images/submenu/submenu01_01.png');
 }
 .submenu a#menu1:hover {
-	background-image : url('../images/submenu/submenu01_01.png');
+	background-image : url('/images/submenu/submenu01_01.png');
 	opacity : 1;
 }
-/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('../images/menu/menu01_select.jpg')} */
+/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('/images/menu/menu01_select.jpg')} */
 
 .submenu a#menu2 {
 	width : 91px;
 	height : 13px;
-	background-image : url('../images/submenu/submenu01_02.png');
+	background-image : url('/images/submenu/submenu01_02.png');
 }
 .submenu a#menu2:hover {
-	background-image : url('../images/submenu/submenu01_02.png');
+	background-image : url('/images/submenu/submenu01_02.png');
 	opacity : 1;
 }
-/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('../images/menu/menu02_select.jpg')} */
+/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('/images/menu/menu02_select.jpg')} */
 
 .submenu a#menu3 {
 	width : 115px;
 	height : 13px;
-	background-image : url('../images/submenu/submenu01_03.png');
+	background-image : url('/images/submenu/submenu01_03.png');
 }
 .submenu a#menu3:hover {
-	background-image : url('../images/submenu/submenu01_03.png');
+	background-image : url('/images/submenu/submenu01_03.png');
 	opacity : 1;
 }
-/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('../images/menu/menu03_select.jpg')} */
+/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('/images/menu/menu03_select.jpg')} */
 
 .submenu a#menu4 {
 	width : 79px;
 	height : 13px;
-	background-image : url('../images/submenu/submenu01_04.png');
+	background-image : url('/images/submenu/submenu01_04.png');
 }
 .submenu a#menu4:hover {
-	background-image : url('../images/submenu/submenu01_04.png');
+	background-image : url('/images/submenu/submenu01_04.png');
 	opacity : 1;
 }
-/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('../images/menu/menu04_select.jpg')} */
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
+
+.clickable{
+	cursor:hand;
+}
 
 #footer {
 	background : black;
@@ -240,7 +255,7 @@ li.submenu {
 	bottom : 0;
 	color : #999999;
 	font-family : 'NanumGorhicWeb';
-	font-size : 7pt;
+	font-size : 10pt;
 	padding-top : 20px;
 	margin-top : 36px;
 }
@@ -259,7 +274,7 @@ li.submenu {
 	margin-top : 30px;
 }
 #footer #footerLogo {
-	background : url('../images/goormLogo.png');
+	background : url('/images/goormLogo.png');
 	width : 94px;
 	height : 33px;
 	position : relative;

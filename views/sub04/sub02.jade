@@ -3,7 +3,7 @@ html
 		title
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
+		link(rel='stylesheet', type='text/css', href='../css/sub04/sub02.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
@@ -14,12 +14,105 @@ html
 		include ../common/mainMenu.jade
 		include ../common/subMenu/subMenu04.jade
 
-		#detail03
-			#boardTop
-			#boardMiddle
-				#content
-					준비 중입니다.
-			#boardBottom
+	#detail01
+		#detail01Text
+			#title 메뉴얼 다운로드
+			#contents
+				| 구름에 일반적인 사용에 대한 안내를 위한 구름 사용자 메뉴얼과 플러그인 개발 및 모듈 개발에 대한 안내를 위한 구름 개발자 메뉴얼을 다운 받을 수 있습니다.
+	
+	#detail02.userManual
+		#boardTop
+			#boardTitle 사용자 메뉴얼
+		#boardMiddle
+			#boardList
+				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
+					thead
+						tr
+							th.title 파일 이름
+							th.download 다운로드
+							th.time 날짜
+							th.readNum 조회수
+					tbody
+						tr
+							td.title
+								a(href='/board/usermanual/14') 구름 사용자 메뉴얼 v1.0 (Korean, PDF)
+								a.replyNum(href='/board/usermanual/14') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+						tr
+							td.title
+								a(href='/board/usermanual/13') 구름 사용자 메뉴얼 v0.2 (Korean, PDF)
+								a.replyNum(href='/board/usermanual/13') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+						tr
+							td.title
+								a(href='/board/usermanual/12') 구름 사용자 메뉴얼 v0.1 (Korean, PDF)
+								a.replyNum(href='/board/usermanual/12') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+						tr
+							td.title
+								a(href='/board/usermanual/11') 구름 사용자 메뉴얼 v0.0 (Korean, PDF)
+								a.replyNum(href='/board/usermanual/11') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+		#boardBottom
 			
-		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
-		include ../common/footer.jade
+			
+	#detail02.developerManual
+		#boardTop
+			#boardTitle 개발자 메뉴얼
+		#boardMiddle
+			#boardList
+				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
+					thead
+						tr
+							th.title 파일 이름
+							th.download 다운로드
+							th.time 날짜
+							th.readNum 조회수
+					tbody
+						tr
+							td.title
+								a(href='/board/developermanual/17') 구름 개발자 메뉴얼 v0.2 (Korean, PDF)
+								a.replyNum(href='/board/developermanual/17') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+						tr
+							td.title
+								a(href='/board/developermanual/16') 구름 개발자 메뉴얼 v0.1 (Korean, PDF)
+								a.replyNum(href='/board/developermanual/16') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+						tr
+							td.title
+								a(href='/board/developermanual/15') 구름 개발자 메뉴얼 v0.0 (Korean, PDF)
+								a.replyNum(href='/board/developermanual/15') [31]
+							td.download
+								a(href='')
+									#v10.downloadButton
+							td.time 12.07.09
+							td.readNum 12
+		#boardBottom
+			
+	script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+	include ../common/footer.jade

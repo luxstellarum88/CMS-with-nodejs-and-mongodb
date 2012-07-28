@@ -69,6 +69,11 @@
 	width : 776px;
 	padding : 0 50px;
 }
+#detail02 #boardMiddleJoin{
+	background-image : url('../images/boardMiddle_870px.png');
+	width : 776px;
+	padding : 0 50px;
+}
 #detail02 #boardMiddle #wrap {
 	width : 230px;
 	margin-left : 33px;
