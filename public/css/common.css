@@ -102,7 +102,7 @@ ul.mainmenu {
 	float : left;
 	height : 50px;
 	margin-top : -28px;
-	margin-left : 30px;
+	margin-left : 90px;
 	padding : 0;
 }
 li.mainmenu {
@@ -117,7 +117,7 @@ li.mainmenu {
 	margin-top : 7px;
 }
 .mainmenu a#menu1 {
-	width : 107px;
+	width : 90px;
 	height : 27px;
 	background-image : url('/images/menu/menu01.png');
 	margin-left : 185px;
@@ -128,7 +128,7 @@ li.mainmenu {
 /* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('/images/menu/menu01_select.jpg')} */
 
 .mainmenu a#menu2 {
-	width : 120px;
+	width : 60px;
 	height : 27px;
 	background-image : url('/images/menu/menu02.png');
 }
@@ -154,6 +154,16 @@ li.mainmenu {
 }
 .mainmenu a#menu4:hover {
 	background-image : url('/images/menu/menu04_h.png');
+}
+/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
+
+.mainmenu a#menu5 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/menu/menu05.png');
+}
+.mainmenu a#menu5:hover {
+	background-image : url('/images/menu/menu05_h.png');
 }
 /* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
 
