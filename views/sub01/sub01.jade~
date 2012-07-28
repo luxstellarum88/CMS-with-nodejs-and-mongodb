@@ -1,0 +1,63 @@
+html
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='../css/common.css')
+		link(rel='stylesheet', type='text/css', href='../css/sub01/sub01.css')
+		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+		include ../common/subMenu/subMenu01.jade
+		#detail01
+			#detail01Text
+				#title 안녕, goorm!
+				#contents
+					| Mac을 켜자마자 보게 되는 데스크탑으로부터 날마다 사용하는 응용프로그램까지 모든 것이 간결하고 직관적으로 설계되었습니다. 대단한 기능을 손쉽게 사용할 수 있게 하려면 정말 우수한 기술이 필요합니다.
+			#detail01Image
+				img(src='../images/sub01/detailImage01.png')
+			#detail02
+				#boardTop
+					#boardTitle 특징
+				#boardMiddle
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 자신만의 클라우드 통합 개발 환경 구축!
+						#contents
+							| 개인 서버에 설치하거나 uizard.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 다양한 플러그인 지원!
+						#contents
+							| 다양한 프로그래밍 언어를 지원하는 플러그인 뿐만 아니라 추가적인 기능을 제공하는 다양한 플러그인을 쉽게 설치/관리할 수 있으며, 누 구든지 이러한 플러그인을 개발하고 배포할 수 있습니다.
+					#wrap(style='margin-left: 10px;')
+						#left
+							#icon
+						#title 실시간 협업을 통한 효율적인 개발!
+						#contents
+							| 실시간 협업 서버를 제공하여, 이를 통해 원격지에 있는 다른 팀원들과 쉽게 협업할 수 있습니다. 채팅 뿐만 아니라 동시에 소스 코드를 편집하거나 UI를 디자인할 수 있습니다.
+					#wrap
+						#left
+							#icon
+						#title 편리한 UI 기술!
+						#contents 순수 웹기술만으로 개발된 UI 디자인 도구를 이용하여, UI를 편리하게 기술하고 이를 개발 중인 프로젝트에 바로 적용할 수 있습니다.
+				#boardBottom
+		#detail03
+			#boardTop
+				#boardTitle 특징
+			#boardMiddle
+				#wrap
+					#title 안녕, goorm!
+					#contents
+						| Mac을 켜자마자 보게 되는 데스크탑으로부터 날마다 사용하는 응용프로그램까지 모든 것이 간결하고 직관적으로 설계되었습니다. 대단한 기능을 손쉽게 사용할 수 있게 하려면 정말 우수한 기술이 필요합니다.
+				#detail03Image
+					img(src='../images/sub01/detailImage03.png')
+			#boardBottom
+		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+		include ../common/footer.jade
