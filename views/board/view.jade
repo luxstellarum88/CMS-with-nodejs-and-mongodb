@@ -113,9 +113,9 @@ html
 				div#boardFooter
 					div#pageLine
 						div#list
-							img(src='../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'")
+							img(src='../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'", class='clickable')
 						div#write
-							img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'")	
+							img(src='../images/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'", class='clickable')	
 						div#pagination
 							-current_page = parseInt(current_page);
 							-var last = Math.ceil(length/paging);
