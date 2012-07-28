@@ -38,7 +38,7 @@ var self = module.exports = {
 
 	send_mail_view : function(req, res) {
 		res.render('admin/sendmail', {
-			title: 'Send e-mail'
+			title: 'e-mail 보내기'
 			, sender: 'operator@goorm.org'
 			, addresses: req.body.chklist
 			, session: req.session.user
@@ -87,7 +87,7 @@ var self = module.exports = {
 		model.find().sort('date', -1).exec(function(err, docs){
 			if ( !err ) {
 				res.render('admin/main', {
-					title: 'admin main'
+					title: '관리자 메인'
 					, docs: docs
 					, session: req.session.user
 				});//end of render
@@ -111,7 +111,7 @@ var self = module.exports = {
 		model.findOne( {id : id}, function(err, docs) {
 			if(!err ) {
 				res.render('admin/board_modify_view', {
-					title : 'board_modify'
+					title : '게시판 수정'
 					, docs : docs
 					, session: req.session.user
 				});//need render
@@ -271,13 +271,13 @@ var self = module.exports = {
 				res.redirect('/admin/main');
 			}	else {
 		  		res.render('admin', {
-		  			title: 'admin'
+		  			title: '관리자 페이지'
 		  			, session: req.session.user
 		  		});
 		 	}
 	 	}	else {
 	  		res.render('admin', {
-	  			title: 'admin'
+	  			title: '관리자 페이지'
 	  			, session: req.session.user
 	  		});
 		 }
