@@ -386,11 +386,11 @@ var self = module.exports =  {
 	
 	session : function(req, res) {
 		self.authenticate(req.body.id, req.body.password, function(user){
-			console.log(user);
+			console.log('hello : ' + user);
 			if ( user ) {
-				console.log('auth_success');
+				var url = req.body.url || '/';
 				req.session.user = user;
-				res.redirect('/');
+				res.redirect(url);
 			}
 			else {
 				var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');

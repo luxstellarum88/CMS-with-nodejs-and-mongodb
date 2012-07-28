@@ -17,7 +17,7 @@ html
 		include ../common/subMenu/subMenu03.jade
 		
 		script
-			function submit_enter(field,e){
+			function submit_enter_search(field,e){
 				var keycode;
 				if(window.event){
 					keycode = window.event.keyCode;
@@ -29,7 +29,7 @@ html
 					return true;
 				}
 				
-				if(keycode == 13){
+				if(keycode == 13){					
 					search();
 					return false;
 				}
@@ -167,7 +167,7 @@ html
 								option(value='subject') 제목
 								option(value='content') 내용
 								option(value='name') 이름
-						input#searchInputBox(type='text', name='content', value='#{content}', onKeyPress='return submit_enter(this.event);')
+						input#searchInputBox(type='text', name='content', value='#{content}', onKeyPress='return submit_enter_search(this,event);')
 						a(href='javascript:search();')
 							img#searchButton(src='../images/board/button_search.png')
 						

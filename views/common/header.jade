@@ -5,13 +5,17 @@ script
 	function join(){
 		location.href='/join';
 	}
+	function save_url(){
+		document.getElementById('url').value = location.href;
+	}
 
 #top
 #topMenu
 	- if(!session)
-		form#loginFrm(action='/sessions', method='POST')
-			input#idInputBox(type='text', name='id', onKeyPress='return submit_enter(this,event)')
-			input#pwInputBox(type='password', name='password', onKeyPress='return submit_enter(this,event)')
+		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();')
+			input#idInputBox(type='text', name='id')
+			input#pwInputBox(type='password', name='password')
+			input#pwUrlBox(type='hidden', name='url', id='url', value='')
 			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
 			input#signUpButton(type='button', name='signUp', onclick='join();', class='clickable')
 	- else

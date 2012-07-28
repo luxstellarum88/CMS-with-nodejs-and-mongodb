@@ -120,6 +120,8 @@ app.get('/sub05/sub03', routes.html_sub5_3); // Skin
 
 
 app.post('/sessions', routes.session);
+app.get('/sessions', routes.session);
+
 
 app.get('/admin/userlists/:page?', requiresAdminLogin, routes.user_list);
 app.get('/user_information/:id', requiresAdminLogin, routes.user_information_view);

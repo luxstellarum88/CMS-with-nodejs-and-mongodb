@@ -11,7 +11,9 @@ function submit_enter(field,e){
 	}
 	
 	if(keycode == 13){
-		myfield.form.submit();
+		alert('hello : ' + Request.Url.ToString());
+		field.form.method = 'post';
+		field.form.submit();
 		return false;
 	}
 	else{
