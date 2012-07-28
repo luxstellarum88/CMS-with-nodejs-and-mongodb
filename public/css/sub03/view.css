@@ -146,7 +146,6 @@
 	color: gray;
 /* 	height: 30px;	 */
 	float : left;
-	margin-left: 30px;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentModify {
@@ -208,10 +207,10 @@
 	width: 750px; 
 	height:117px; 
 	padding: 20px 0; 
-	background: rgba(0,0,0,.6); 
+	background: black;
 	margin: 0 auto; 
 	margin-top: -4px; 
-/* 	opacity: 0.6;  */
+	opacity: 0.6; 
 	margin-bottom: 30px;
 	-moz-border-radius-bottomleft:3px; 
 	-moz-border-radius-bottomright:3px; 
