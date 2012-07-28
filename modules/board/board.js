@@ -17,7 +17,7 @@ var self = module.exports = {
 		}
 		
 		res.render('board/write', {
-			title: 'write'
+			title: '게시물 작성'
 			, id : req.params.id
 			, auth : auth
 			, session: req.session.user
@@ -134,7 +134,7 @@ var self = module.exports = {
 		model.find().sort('date', -1).exec(function(err, docs){
 			if ( !err ) {
 				res.render('board/main', {
-					title: 'Board Main'
+					title: '게시판 메인'
 					, docs: docs
 					, session: req.session.user
 				});//end of render
@@ -158,7 +158,7 @@ var self = module.exports = {
 			if ( !err ) {
 				if ( docs.user_id === user_id ) {
 					res.render('board/modify', {
-						title: 'Board Modify'
+						title: '게시물 수정'
 						, docs: docs
 						, session: req.session.user
 					});//end of render
@@ -261,7 +261,7 @@ var self = module.exports = {
 				comment.list(req, res, function(comments, length){					
 					var json_comments = JSON.stringify(comments);
 					res.render('board/show', {
-						title : 'Show Contents',
+						title : '게시판',
 						board : docs,
 						board_id : board_id,
 						comment : json_comments,

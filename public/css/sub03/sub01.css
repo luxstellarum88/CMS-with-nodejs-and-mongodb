@@ -206,6 +206,11 @@
 	width:876px;
 }
 
+#search {
+	padding: 7px 12px 4px 20px;
+	background-color: whiteSmoke;
+	border-radius: 10px;
+}
 
 /*
 #detailWrap{ width:876px; height:279px; position:relative; left:50%; margin-left:-438px; margin-top: 20px }

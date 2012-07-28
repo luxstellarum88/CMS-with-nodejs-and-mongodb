@@ -23,7 +23,7 @@ var self = module.exports =  {
 
 	sign_up_page : function(req, res) {
 		res.render('join', {
-			title: 'Join'
+			title: '회원가입'
 			, session: req.session.user
 		});
 	}, //end of sign_up
@@ -261,7 +261,7 @@ var self = module.exports =  {
 	
 	display_userlist : function(type, content, current_page, length, docs, paging_size, req, res) {
 		res.render('admin/userlist', {
-			title : "UserList"
+			title : "회원 리스트"
 			,session: req.session.user
 			,result : docs
 			,type : type
@@ -355,7 +355,7 @@ var self = module.exports =  {
 		user_model.findOne({Id:user_id}, function(err, user){
 			if ( user ) {
 				res.render('admin/userinformation', {
-					title : 'User_Information'
+					title : '회원 정보'
 					, session: req.session.user
 					, info : user
 				});//end of render
@@ -428,7 +428,7 @@ var self = module.exports =  {
 		
 		evt.on('show_index', function(notice, news) {
 			res.render('index',{
-				title : 'Express'
+				title : 'goorm'
 				, session : req.session.user
 				, notice : notice
 				, news : news
