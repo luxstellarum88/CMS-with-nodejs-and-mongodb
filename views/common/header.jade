@@ -13,18 +13,39 @@ script
 	$("document").ready(function() {
 		$("#go_top").css("top", $(window).height()-100);
 		$("#go_top").css("left", ($(window).width()+1000)/2);
-		
 		var currentPosition = parseInt($("#go_top").css("top"));
-		
 		$(window).resize(function(){
 			$("#go_top").css("top", $(window).height()-100);
 			$("#go_top").css("left", ($(window).width()+1000)/2);
 			currentPosition = parseInt($("#go_top").css("top"));
 		});
-		
 		$(window).scroll(function() {	
 			var position = $(window).scrollTop();
 			$("#go_top").stop().animate({"top":position+currentPosition+"px"},500);
+		});
+	});
+	
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#mainMenu #menu1").mouseover(function(){
+			$("#subMenu1").attr("style", "display: block");
+			$("#subMenu2, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu2").mouseover(function(){
+			$("#subMenu2").attr("style", "display: block");
+			$("#subMenu1, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu3").mouseover(function(){
+			$("#subMenu3").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu4").mouseover(function(){
+			$("#subMenu4").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu5").mouseover(function(){
+			$("#subMenu5").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu4").attr("style", "display: none");
 		});
 	});
 

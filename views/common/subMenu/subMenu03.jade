@@ -1,8 +1,5 @@
-#subMenu
-	ul.submenu
-		li.submenu
-			a#menu1(href='freeboard') 자유게시판
-		li.submenu
-			a#menu2(href='qna') 질문 게시판
-		li.submenu
-			a#menu3(href='tip') 사용자 팁/노하우
+include ./subMenu
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#subMenu3").attr("style", "display: block");
+	});

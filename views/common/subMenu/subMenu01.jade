@@ -1,16 +1,5 @@
-#subMenu1
-	ul.submenu
-		li.submenu
-			a#menu1(href='overview') 소개
-		li.submenu
-			a#menu2(href='features') 특징
-		li.submenu
-			a#menu3(href='demos') 데모
-		li.submenu
-			a#menu4(href='license') 라이센스
-#subMenu2
-	ul.submenu
-		li.submenu
-			a#menu1(href='care') 기술지원
-		li.submenu
-			a#menu2(href='faq') 자주 묻는 질문
+include ./subMenu
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#subMenu1").attr("style", "display: block");
+	});

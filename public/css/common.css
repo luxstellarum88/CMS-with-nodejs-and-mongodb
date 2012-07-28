@@ -176,12 +176,15 @@ li.mainmenu {
 	margin-top : 35px;
 	background-position : center;
 	z-index : 0;
+	display: none;
 }
 .submenu a {
 	display : block;
 	text-indent : -5000px;
 	overflow : hidden;
 	opacity : 0.60000002384185791015625;
+	background-repeat: no-repeat;
+	background-position-x : center;
 }
 ul.submenu {
 	width : 432px;
@@ -198,49 +201,33 @@ li.submenu {
 	height : 13px;
 	margin-right : 20px;
 }
-.submenu a#menu1 {
-	width : 67px;
-	height : 13px;
-	background-image : url('/images/submenu/submenu01_01.png');
-}
-.submenu a#menu1:hover {
-	background-image : url('/images/submenu/submenu01_01.png');
-	opacity : 1;
-}
-/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('/images/menu/menu01_select.jpg')} */
+/* 서브메뉴 순서별 */
+.submenu a.short{ width : 65px;	height : 13px; }
+.submenu a.long{ width : 110px; height : 13px; }
 
-.submenu a#menu2 {
-	width : 91px;
-	height : 13px;
-	background-image : url('/images/submenu/submenu01_02.png');
-}
-.submenu a#menu2:hover {
-	background-image : url('/images/submenu/submenu01_02.png');
-	opacity : 1;
-}
-/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('/images/menu/menu02_select.jpg')} */
+/* 서브메뉴 페이지별 */
+.submenu a#menu1_1 { background-image : url('/images/submenu/submenu01_01.png'); }
+.submenu a#menu1_2 { background-image : url('/images/submenu/submenu01_02.png'); }
+.submenu a#menu1_3 { background-image : url('/images/submenu/submenu01_03.png'); }
+.submenu a#menu1_4 { background-image : url('/images/submenu/submenu01_04.png'); }
 
-.submenu a#menu3 {
-	width : 115px;
-	height : 13px;
-	background-image : url('/images/submenu/submenu01_03.png');
-}
-.submenu a#menu3:hover {
-	background-image : url('/images/submenu/submenu01_03.png');
-	opacity : 1;
-}
-/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('/images/menu/menu03_select.jpg')} */
+.submenu a#menu2_1 { margin-left: 40px; background-image : url('/images/submenu/submenu02_01.png'); }
+.submenu a#menu2_2 { background-image : url('/images/submenu/submenu02_02.png'); }
 
-.submenu a#menu4 {
-	width : 79px;
-	height : 13px;
-	background-image : url('/images/submenu/submenu01_04.png');
-}
-.submenu a#menu4:hover {
-	background-image : url('/images/submenu/submenu01_04.png');
-	opacity : 1;
-}
-/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
+.submenu a#menu3_1 { background-image : url('/images/submenu/submenu03_01.png'); }
+.submenu a#menu3_2 { background-image : url('/images/submenu/submenu03_02.png'); }
+.submenu a#menu3_3 { background-image : url('/images/submenu/submenu03_03.png'); }
+
+.submenu a#menu4_1 { margin-left: 180px; background-image : url('/images/submenu/submenu04_01.png'); }
+.submenu a#menu4_2 { background-image : url('/images/submenu/submenu04_02.png'); }
+
+.submenu a#menu5_1 { margin-left: 170px; background-image : url('/images/submenu/submenu05_01.png'); }
+.submenu a#menu5_2 { background-image : url('/images/submenu/submenu05_02.png'); }
+.submenu a#menu5_3 { background-image : url('/images/submenu/submenu05_03.png'); }
+
+.submenu a:hover { opacity : 1; }
+
+
 
 .clickable{
 	cursor:hand;
