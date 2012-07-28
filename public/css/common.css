@@ -168,7 +168,7 @@ li.mainmenu {
 /* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
 
 
-#subMenu {
+#subMenu1, #subMenu2, #subMenu3, #subMenu4, #subMenu5 {
 	height : 88px;
 	background : url('/images/subMenuBackground.png') no-repeat;
 	position : relative;
