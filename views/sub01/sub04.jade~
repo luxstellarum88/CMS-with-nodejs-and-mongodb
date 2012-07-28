@@ -12,7 +12,7 @@ html
 			#world
 		include ../common/header.jade
 		include ../common/mainMenu.jade
-		include ../common/subMenu/subMenu01.jade
+		include ../common/subMenu/subMenu02.jade
 
 		#detail03
 			#boardTop

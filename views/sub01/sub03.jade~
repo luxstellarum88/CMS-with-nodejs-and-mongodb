@@ -21,5 +21,6 @@ html
 					준비 중입니다.
 			#boardBottom
 
+
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade
