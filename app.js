@@ -198,7 +198,7 @@ app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 //--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
 
-app.post('/file_upload', function(req, res, next){
+app.post('/image_upload', function(req, res, next){
 	
 	var tmp_path = req.files.thumbnail.path;
 	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
@@ -206,7 +206,22 @@ app.post('/file_upload', function(req, res, next){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
 			if(err) throw err;
-			res.send('success');
+			res.send('image rename success');
+		});
+	});
+});
+
+app.post('/file_upload', function(req, res, next){
+	console.log(req.body);
+	console.log(req.files);
+	
+	var tmp_path = req.files.file.path;	
+	var target_path = __dirname +'/public/uploads/' + req.files.file.name;
+	fs.rename(tmp_path, target_path, function(err){
+		if(err) throw err;
+		fs.unlink(tmp_path, function(){
+			if(err) throw err;
+			res.send('file rename success');
 		});
 	});
 });

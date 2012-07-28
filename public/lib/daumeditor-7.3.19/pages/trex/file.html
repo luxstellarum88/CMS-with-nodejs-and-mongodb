@@ -13,12 +13,16 @@
 		if (typeof(execAttach) == 'undefined') { //Virtual Function
 	        return;
 	    }
+	    
+	    var url = document.getElementById('file');
+		var file = url.files[0]
+		var dir = '/uploads/' + file.name;
 		
 		var _mockdata = {
-			'attachurl': 'http://cfile297.uf.daum.net/attach/207C8C1B4AA4F5DC01A644',
-			'filemime': 'image/gif',
-			'filename': 'editor_bi.gif',
-			'filesize': 640
+			'attachurl': dir,
+			'filemime': file.type,
+			'filename': file.name,
+			'filesize': file.size
 		};
 		execAttach(_mockdata);
 		closeWindow();
@@ -38,6 +42,7 @@
 </script>
 </head>
 <body onload="initUploader();">
+<!--
 <div class="wrapper">
 	<div class="header">
 		<h1>파일 첨부</h1>
@@ -59,5 +64,10 @@
 		</ul>
 	</div>
 </div>
+-->
+<form method='post' id='uploader' enctype="multipart/form-data" action="/file_upload" onsubmit="return done();">
+	<input type="file" id="file" name="file"/>
+	<input type="submit" id="submit"/>
+</form>
 </body>
 </html>
