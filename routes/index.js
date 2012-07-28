@@ -308,6 +308,14 @@ exports.mypage_auth = function(req, res) {
 	mypage.index_page(req, res);
 }
 
+exports.mypage_inform = function(req, res) {
+	mypage.inform_page(req, res);
+}
+
+exports.mypage_update = function(req, res) {
+	mypage.update(req, res);
+}
+
 
 
 //------------------------------------------------------수정완료
