@@ -114,7 +114,9 @@
 }
 #boardMiddle #readMiddle #readCommentList #commentBottom {
 	width : 771px;
-	height : 13px;
+	height : 35px;
+	line-height: 35px;
+	text-align: center;
 	background : url("../../images/board/boardCommentBackground_bottom.png");
 	
 }
@@ -166,11 +168,31 @@
 	border-bottom: 1px dotted gray;
 	font-size: 9pt;
 	color: black;
-/* 	width:550px; */
-/* 	word-break: break-all; */
-/* 	margin-top: 10px; */
-/* 	margin-bottom: 30px; */
 }
+
+
+#boardMiddle #readMiddle #readCommentList #readCommentPaging a{ 
+	color:black; 
+	font-family: 'NanumGorhicWeb'; 
+	font-size: 9pt; 
+	text-decoration: none; 
+	opacity: 0.6; 
+	margin: 0 3px
+}
+#boardMiddle #readMiddle #readCommentList #readCommentPaging a.select{
+	font-size: 12pt; 
+	color: #ed2b0b; 
+	font-weight: bold; 
+	opacity: 1 
+}
+#boardMiddle #readMiddle #readCommentList #readCommentPaging a span{
+	margin-top: -3px
+}
+#boardMiddle #readMiddle #readCommentList #readCommentPaging a:hover{
+	opacity: 1
+}
+
+
 
 #boardMiddle #readMiddle #readCommentList .lastComment #readCommentListBottom {
 	border-bottom: none;
@@ -183,21 +205,49 @@
 }
 
 #boardMiddle #readFooter {
-	margin : 0 auto;
-	margin-top : 50px;
-}
-
-#boardMiddle #readFooter #readCommentPaging {
-	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 20px;
+	width: 750px; 
+	height:117px; 
+	padding: 20px 0; 
+	background: rgba(0,0,0,.6); 
+	margin: 0 auto; 
+	margin-top: -4px; 
+/* 	opacity: 0.6;  */
+	margin-bottom: 30px;
+	-moz-border-radius-bottomleft:3px; 
+	-moz-border-radius-bottomright:3px; 
+	-webkit-border-bottom-left-radius:3px; 
+	-webkit-border-bottom-right-radius:3px; 
+	border-bottom-left-radius:3px; 
+	border-bottom-right-radius:3px;
 }
 
 #boardMiddle #readFooter #CommentAttach { 
-	margin-top:20px;
 	margin: 0 auto;
+	width: 650px;
 }
 
+#boardMiddle #readFooter #CommentAttach #commentUser{
+	color: white;
+	font-size: 10pt;
+	margin-right: 10px; 
+	vertical-align: top;
+	padding-top: 10px;
+	width: 100px;
+}
+#boardMiddle #readFooter #CommentAttach #commentContent{
+	width: 480px;
+	
+}
+#boardMiddle #readFooter #CommentAttach #commentContent #commentForm{
+	width: 480px;
+	height: 110px;
+	border: 1px solid black
+	
+}
+
+#boardMiddle #readFooter #CommentAttach #commentSubmit{
+	width: 70px;
+}
 #boardMiddle #readFooter #CommentAttach #CommentWriteButton{
 	cursor:hand;
 }

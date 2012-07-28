@@ -160,26 +160,27 @@ html
 							div#commentTop
 							div#commentMiddle
 							div#commentBottom
+								-if(session!=-1)
+									div#readCommentPaging
+										-for(var i=0; i<length; i++)
+											-if(current_comment==i+1)
+												a(href='/board/#{board_id}/#{board.index}/#{i+1}', class='select') #{i+1}
+											-else
+												a(href='/board/#{board_id}/#{board.index}/#{i+1}') #{i+1}
 
 				div#readFooter
-					-if(session!=-1)
-						div#readCommentPaging
-							-for(var i=0; i<length; i++)
-								-if(current_comment==i+1)
-									[#{i+1}]
-								-else
-									a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
+
 					-if(session!=-1 && sessionId)
 						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach
 								tr
-									td.content #{sessionId}
-									td.content(colspan='3')
-										textarea(id='commentForm', name='commentForm', style="resize:none; width:480px; height:110px;")
+									td.content(id='commentUser') #{sessionId}
+									td.content(id='commentContent', colspan='3')
+										textarea(id='commentForm', name='commentForm')
 										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
 										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
-									td.content
+									td.content(id='commentSubmit')
 										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')					
 			div#boardBottom
 			
