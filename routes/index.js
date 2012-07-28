@@ -316,7 +316,13 @@ exports.mypage_update = function(req, res) {
 	mypage.update(req, res);
 }
 
+exports.mypage_recent_docs = function(req, res) {
+	mypage.recent_docs_page(req, res);
+}
 
+exports.mypage_recent_comm = function(req, res) {
+	mypage.recent_comm_page(req, res);
+}
 
 //------------------------------------------------------수정완료
 exports.boardPreview = function(req, res){

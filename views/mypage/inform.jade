@@ -13,7 +13,7 @@ html
 		script
 			$(document).ready(function(){
 				$('#mypage_password').focus();
-				$('#mypage_password').focusout(function(){
+				$('#mypage_password').keyup(function(){
 					$.ajax({
 						type : 'post'
 						, dataType : 'json'
@@ -24,6 +24,12 @@ html
 							}
 						, error : function(data, status, err) {}
 					});
+					if( $('#mypage_password').val() != $('#mypage_confirm').val() ) {
+						$('#check_confirm').text('입력하신 비밀번호와 일치하지 않습니다.').css('color', 'red');
+					}
+					else {
+						$('#check_confirm').text('입력하신 비밀번호와 일치합니다.').css('color', 'green');
+					}
 				});
 				
 				$('#mypage_name').focusout(function(){
@@ -60,26 +66,27 @@ html
 						$('#check_confirm').text('입력하신 비밀번호와 일치합니다.').css('color', 'green');
 					}
 				});
-				if( 101 == authed ) {
+				
+				if( 101 == #{authed} ) {
 					$('#mypage_menu1').click(function(){
-						$.post('/mypage/inform');
+						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
 					$('#mypage_menu2').click(function(){
-						$.post('/mypage/recent_docs');
+						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
 					$('#mypage_menu3').click(function(){
-						$.post('/mypage/recent_comm');
+						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
 					$('#mypage_menu1').click(function(){
-						$.get('/mypage');
+						location.href='/mypage';
 					});
 					$('#mypage_menu2').click(function(){
-						$.get('/mypage');
+						location.href='/mypage';
 					});
 					$('#mypage_menu3').click(function(){
-						$.get('/mypage');
+						location.href='/mypage';
 					});
 				}
 			});
@@ -91,10 +98,10 @@ html
 		
 		#detail02
 			#boardTop
-				#boardTitle
-				#mypage_menu1(style='display:inline;') 회원정보수정
-				#mypage_menu2(style='display:inline;') 작성 글 목록
-				#mypage_menu3(style='display:inline;') 작성 코멘트 목록
+				form(method='post', id='mypage_menu', name='mypage_menu')
+					#mypage_menu1(style='display:inline;') 회원정보수정
+					#mypage_menu2(style='display:inline;') 작성 글 목록
+					#mypage_menu3(style='display:inline;') 작성 코멘트 목록
 			#boardMiddleJoin
 				#contents
 					form(method='post', action='/mypage/update', name='frm')
