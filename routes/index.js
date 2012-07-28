@@ -14,6 +14,8 @@ var skin_manager = require('../modules/skin_manager/service');
 var board = require('../modules/board/board');
 //comment
 var comment = require('../modules/comment/comment');
+//my page (user information page)
+var mypage = require('../modules/mypage/mypage');
 
 exports.html_sub1_1 = function(req, res){
 	res.render('sub01/sub01', { title: 'goorm 소개 > 소개' , session: req.session.user });
@@ -301,6 +303,21 @@ exports.comment_update = function(req, res) {
 exports.comment_check_ajax = function(req, res){
 	comment.check_ajax(req, res);
 }
+
+exports.mypage_auth = function(req, res) {
+	mypage.index_page(req, res);
+}
+
+exports.mypage_inform = function(req, res) {
+	mypage.inform_page(req, res);
+}
+
+exports.mypage_update = function(req, res) {
+	mypage.update(req, res);
+}
+
+
+
 //------------------------------------------------------수정완료
 exports.boardPreview = function(req, res){
 	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };

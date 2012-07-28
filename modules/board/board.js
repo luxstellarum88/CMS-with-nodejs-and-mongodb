@@ -151,12 +151,13 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;
 		var board_id = req.params.id;
 		var board_index = req.params.num;
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
-				if ( docs.user_id === user_id ) {
+				if ( docs.user_id === user_id ||  user_role === 'admin') {
 					res.render('board/modify', {
 						title: '게시물 수정'
 						, docs: docs
@@ -200,6 +201,7 @@ var self = module.exports = {
 		var model = db.get_model();
 		
 		var user_id = req.session.user.Id;
+		var user_role = req.session.user.role;		
 		var board_id = req.body.board_id;
 		var board_index = req.body.index;
 		var subject = req.body.subject;
@@ -210,7 +212,7 @@ var self = module.exports = {
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
-				if ( docs.user_id === user_id ) {
+				if ( docs.user_id === user_id || user_role === 'admin' ) {
 					model.update(condition, update, null, function(err){
 						if ( !err ) {
 							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id);
@@ -251,8 +253,10 @@ var self = module.exports = {
 		var board_index = req.params.num;
 		var current_comment = req.params.comm_page || 1;
 		var sessionId = "";
+		var sessionRole = "";
 		if(req.session.user)
 			sessionId = req.session.user.Id;
+			sessionRole = req.session.user.role;
 		
 		console.log(req.params);
 		
@@ -268,6 +272,7 @@ var self = module.exports = {
 						current_comment : current_comment,
 						length : length,
 						sessionId : sessionId,
+						sessionRole : sessionRole,
 						session: req.session.user
 					});//end of render
 				});//end of comment list
