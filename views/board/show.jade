@@ -86,6 +86,7 @@ html
 							delete_button.appendChild(d_button);							
 						}
 						
+						
 						comm_top.appendChild(user_name);
 						comm_top.appendChild(date);
 						comm_top.appendChild(modify_button);
@@ -128,7 +129,7 @@ html
 				
 		div#detail03
 			div#boardTop
-				div#boardTitle= title
+				div#boardTitle 게시글
 			div#boardMiddle
 				div#readHeader
 					div#titleWrap
@@ -155,7 +156,10 @@ html
 					-if(session!=-1)
 						div#readCommentPaging
 							-for(var i=0; i<length; i++)
-								a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
+								-if(current_comment==i+1)
+									[#{i+1}]
+								-else
+									a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
 					-if(session!=-1 && sessionId)
 						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach

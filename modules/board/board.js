@@ -249,9 +249,12 @@ var self = module.exports = {
 			
 		var board_id = req.params.id;
 		var board_index = req.params.num;
+		var current_comment = req.params.comm_page || 1;
 		var sessionId = "";
 		if(req.session.user)
 			sessionId = req.session.user.Id;
+		
+		console.log(req.params);
 		
 		model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 			if ( !err ) {
@@ -262,9 +265,10 @@ var self = module.exports = {
 						board : docs,
 						board_id : board_id,
 						comment : json_comments,
+						current_comment : current_comment,
 						length : length,
-						sessionId : sessionId
-						, session: req.session.user
+						sessionId : sessionId,
+						session: req.session.user
 					});//end of render
 				});//end of comment list
 			}//end of if
