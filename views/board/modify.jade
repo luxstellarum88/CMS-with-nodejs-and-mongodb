@@ -21,6 +21,25 @@ html
 		
 		script(src="/javascript/common.js")
 		script(type='text/javascript')
+			function make_action_and_target(url, target){
+				var form = document.createElement('form');
+				form.setAttribute('method', 'post');
+				form.setAttribute('action', url);
+				form.setAttribute('target', target);
+				
+				document.body.appendChild(form);
+				return form;
+			}
+			
+			function add_data(name, value){
+				var input = document.createElement('input');
+				input.setAttribute('type', 'hidden');
+				input.setAttribute('name', name);
+				input.setAttribute('value', value);
+				
+				return input;
+			}
+		script(type='text/javascript')
 			$(document).ready(function(){
 				EditorJSLoader.ready(function(Editor) {
 					editor = new Editor(config);
@@ -40,6 +59,25 @@ html
 						alert('content load fail!');
 					}
 				});
+				
+				$('#preview').click(function(){
+					var content = Editor.getContent();
+					var id = $('#board_id').val();
+					var subject = $('#subject').val();
+					var name = $('#name').val();
+				
+					OpenWindow('', 'newWin', 850, 450);
+					
+					var form = make_action_and_target('/board_preview', 'newWin');
+					
+					form.appendChild(add_data('tx_content', content));
+					form.appendChild(add_data('subject', subject));
+					form.appendChild(add_data('name', name));
+					form.appendChild(add_data('id', id));
+					
+					form.submit();			
+				});
+				
 			});
 			
 			function saveContent() {
@@ -62,10 +100,12 @@ html
 					#editorFooter
 						input(type='hidden', name='index', value='#{docs.index}')
 						input(type='hidden', name='board_id', value='#{docs.board_id}')
+						input(type='hidden', name='name', id='name', value='#{docs.user_name}')
 						div#button
+							input(type='button', id='preview' ,value='미리보기' , class='clickable')
 							a(href='javascript:submit();')
 								img#submitButton(src='/images/button_submit.png')
-							input(type ='button', id='list', value='취소', onClick="location.href='/board/#{docs.board_id}'")
+							input(type ='button', id='list', value='취소', onClick="location.href='/board/#{docs.board_id}'", class='clickable')
 				#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
