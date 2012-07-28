@@ -12,6 +12,7 @@ html
 			#world
 		include ../common/header.jade
 		include ../common/mainMenu.jade
+		include ../common/subMenu/subMenu03.jade
 	
 		#detail03
 			script
@@ -42,7 +43,7 @@ html
 						}
 					}
 			#boardTop
-				#boardTitle User List
+				#boardTitle 유저 리스트
 			#boardMiddle
 				#boardList
 					div(style='width:760px;')
@@ -65,7 +66,8 @@ html
 										td.content #{result[i].role}
 										td.content
 											a( href='/admin/deleteUser/#{result[i].Id}' ) [삭제]
-							input( type='submit', name='btnemail', value='메일보내기', class='clickable' )
+							input( type='submit', name='btnemail', value='메일보내기', class='clickable' )br
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
 						center
 							-for(var i=0; i < (length/paging_size); i++)
 								a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]

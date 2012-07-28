@@ -40,12 +40,10 @@ html
 		
 		#detail03
 			#boardTop
-				#boardTitle Board
+				#boardTitle 게시판 수정
 			#boardMiddle
 				#wrap(style='margin-left: 10px;')
-					#title 수정
-					#contents					 
-						h1= title
+					#contents
 
 						form(method='post', name='modify_form', action ='/admin/board_update/#{docs.id}')
 							table
