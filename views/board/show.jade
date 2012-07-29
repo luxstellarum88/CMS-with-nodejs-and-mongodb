@@ -69,6 +69,8 @@ html
 				var delete_button = document.createElement('div');						
 				delete_button.setAttribute('id', 'CommentDelete');
 
+				
+				
 				if(('#{sessionId}' && '#{sessionId}' == value.user_id) || '#{sessionRole}' == 'admin'){
 			
 					var m_button = document.createElement('input');
@@ -166,8 +168,8 @@ html
 												a(href='/board/#{board_id}/#{board.index}/#{i+1}') #{i+1}
 
 
-				div#readFooter
-					-if(session!=-1 && sessionId)
+				-if(session!=-1 && sessionId)
+					div#readFooter
 						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach
 								tr

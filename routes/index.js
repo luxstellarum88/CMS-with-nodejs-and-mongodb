@@ -341,7 +341,8 @@ exports.boardPreview = function(req, res){
 		board_id: req.body.id,
 		sessionId: req.session.user.Id,
 		board: board,
-		comment: comm
+		comment: comm,
+		sessionRole:""
 	});
 }
 //
