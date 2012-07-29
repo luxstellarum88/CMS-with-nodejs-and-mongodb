@@ -25,6 +25,7 @@ function viewCommentModify(idx, content, board_id, board_index, index){
 	document.updForm.Upd_board_id.value= board_id;
 	document.updForm.Upd_board_index.value= board_index;
 	document.updForm.Upd_index.value= index;
+	document.updForm.Upd_self_index.value= idx;
 	updateCommentDiv.style.display='';
 }
 // 	

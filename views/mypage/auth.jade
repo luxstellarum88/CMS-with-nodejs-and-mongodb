@@ -51,6 +51,8 @@ html
 						#mypage_menu2.menuText 작성 글 목록
 						#mypage_menu3.menuText 작성 코멘트 목록
 				#contents.contents.topPadding
+					#message
+						회원 인증을 위해 비밀번호를 입력해주세요.
 					form(method='post', action='/mypage/auth')
 						비밀번호 
 						input(type='password', id='mypage_password', name='mypage_password')

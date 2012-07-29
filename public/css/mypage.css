@@ -21,3 +21,7 @@
 .topPadding{
 	padding-top : 120px;
 }
+
+#message {
+	margin-bottom: 13px;
+}

@@ -58,7 +58,6 @@ html
 				var comm_id = 'c'+index;
 				comm.setAttribute('id', comm_id);
 				
-					
 				var comm_top = document.createElement('div');
 				comm_top.setAttribute('id', 'readCommentListTop');
 				
@@ -163,6 +162,10 @@ html
 											switch(result.code){
 												case 0:
 													alert('수정되었습니다.');
+													var comment_idx = $('#Upd_self_index').val();
+													var __div = '#c' + comment_idx + ' #readCommentListBottom';
+													$(__div).empty();
+													$(__div).append(content);
 													hideCommentView();
 													break;
 												case 1:
@@ -289,6 +292,7 @@ html
 						input(type='hidden', name='Upd_board_id', id='Upd_board_id')
 						input(type='hidden', name='Upd_board_index', id='Upd_board_index')		
 						input(type='hidden', name='Upd_index', id='Upd_index')
+						input(type='hidden', name='Upd_self_index', id='Upd_self_index')						
 					#UpdButtons(style="text-align: right; margin-right: 98px; margin-top: 5px; margin-bottom: 16px;")
 						input(type='button', value='등록', id='UpdModifyButton', class='clickable')
 						input(type='button', value='취소', onClick="cnlComment()", class='clickable')

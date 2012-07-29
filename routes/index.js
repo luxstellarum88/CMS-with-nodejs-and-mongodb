@@ -46,10 +46,12 @@ exports.html_sub3_1 = function(req, res){
 	res.redirect('/board/freeboard');
 }
 exports.html_sub3_2 = function(req, res){
-	res.render('sub03/sub02', { title: '커뮤니티 > 질문게시판' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board/qna');
+//	res.render('sub03/sub02', { title: '커뮤니티 > 질문게시판' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub3_3 = function(req, res){
-	res.render('sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board/tip');
+//	res.render('sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 

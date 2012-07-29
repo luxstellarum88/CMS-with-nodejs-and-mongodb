@@ -218,12 +218,15 @@
 	margin-top: -4px; 
 	opacity: 0.6; 
 	margin-bottom: 30px;
+	margin-top:10px;
 	-moz-border-radius-bottomleft:3px; 
 	-moz-border-radius-bottomright:3px; 
 	-webkit-border-bottom-left-radius:3px; 
 	-webkit-border-bottom-right-radius:3px; 
 	border-bottom-left-radius:3px; 
 	border-bottom-right-radius:3px;
+	border-top-left-radius:3px; 
+	border-top-right-radius:3px;
 }
 
 #boardMiddle #readFooter #CommentAttach { 
