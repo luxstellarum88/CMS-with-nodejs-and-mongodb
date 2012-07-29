@@ -40,6 +40,12 @@ html
 				return s;
 			}				
 
+			function getTimeStampList(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}				
+
 			function getTimeStampComment(date) {
 				var d = new Date(date);
 				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2) + ' ' + leadingZeros(d.getHours(), 2) + ':' + leadingZeros(d.getMinutes(), 2) + ':' + leadingZeros(d.getSeconds(), 2);
@@ -126,9 +132,16 @@ html
 				$.each(data, function(index, value){
 					$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
 				});
+				
+				var listdata = eval(!{JSON.stringify(docs)});
+				$.each(listdata, function(index, value){
+					var __time = getTimeStampList(value.insert_date);
+					$('#time'+index).append('<p>' + __time + '</p>');
+				});
+				
 				$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
-				var __time = getTimeStamp('#{board.insert_date}')
-				$('#titleWrap #time').append('<div>' + __time + '</div>')
+				var __time = getTimeStamp('#{board.insert_date}');
+				$('#titleWrap #time').append('<div>' + __time + '</div>');
 			});
 
 				
