@@ -176,10 +176,10 @@ var self = module.exports = {
 		db.connect();
 		var model = db.get_model();
 		
-		var board_id = req.params.id;
-		var post_index = req.params.num;
-		var index = req.query.index;
-		var content = req.query.content || "";
+		var board_id = req.body.board_id;
+		var post_index = req.body.board_index;
+		var index = req.body.index;
+		var content = req.body.content || "";
 		
 		var user_id = req.session.user.Id;
 		var user_role = req.session.user.role;
@@ -188,40 +188,37 @@ var self = module.exports = {
 		var update = {content:content, update_date:new Date()};
 		
 		model.findOne({board_id:board_id, post_index:post_index, index:index}, function(err, docs){
-			if ( !err ) {
+			console.log('docs : ' + docs);
+			if ( !err && docs) {
 				if ( docs.user_id == user_id || user_role == 'admin' ) {
 					model.update(condition, update, null, function(err){
 						if ( !err ) {
-							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id+'/'+post_index);
-							res.render('alert', {
-								title : 'Success'
-								,alert : alert_script
-							});//end						
+							//success : code = 0
+							res.writeHead(200, {'content-type':'text/json'});
+							res.write(JSON.stringify({'code':0}));
+							res.end('\n');
 						}
 						else {
-							var alert_script = alert.makeAlert('오류가 발생했습니다.');
-								res.render('alert', {
-								title : 'Error'
-								,alert : alert_script
-							});//end of alert						
+							// update fail
+							res.writeHead(200, {'content-type':'text/json'});
+							res.write(JSON.stringify({'code':1}));
+							res.end('\n');
 						}
 					});
 				}
 				else {
-					var alert_script = alert.makeAlert('권한이 없습니다.');
-					res.render('alert', {
-						title : 'Error'
-						,alert : alert_script
-					});//end of alert
+					// don't have right ..
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({'code':2}));
+					res.end('\n');
 				}
 			}
 			else {
+				// not found
 				console.log('in comment/update.js : (01)');
-				var alert_script = alert.makeAlert('오류가 발생했습니다.');
-				res.render('alert', {
-					title : 'Error'
-					,alert : alert_script
-				});//end of alert
+				res.writeHead(200, {'content-type':'text/json'});
+				res.write(JSON.stringify({'code':3}));
+				res.end('\n');
 			}
 		});			
 	},	

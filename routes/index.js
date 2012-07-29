@@ -297,12 +297,12 @@ exports.comment_delete = function(req, res) {
 	comment.del (req, res);
 }
 
-exports.comment_update = function(req, res) {
-	comment.update(req, res);
-}
-
 exports.comment_check_ajax = function(req, res){
 	comment.check_ajax(req, res);
+}
+
+exports.comment_update_ajax = function(req, res){
+	comment.update(req, res);
 }
 
 exports.mypage_auth_page = function(req, res) {

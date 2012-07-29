@@ -143,6 +143,55 @@ html
 				$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
 				var __time = getTimeStamp('#{board.insert_date}');
 				$('#titleWrap #time').append('<div>' + __time + '</div>');
+				
+				$('#UpdModifyButton').click(function(){
+					var board_id = $('#Upd_board_id').val();
+					var board_index = $('#Upd_board_index').val();
+					var index = $('#Upd_index').val();
+					var content = $('#Upd_content').val();
+					
+					checkContent(content, function(check){
+						if(check.result == 'true'){
+							if(content.length < 200){	
+								if(confirm("정말 수정하시겠습니까?")){
+									$.ajax({
+										type:'post',
+										dataType:"json",
+										url:'/comment_modify_ajax',
+										data:{'board_id':board_id, 'board_index':board_index, 'index':index, 'content':content},
+										success: function(result){
+											switch(result.code){
+												case 0:
+													alert('수정되었습니다.');
+													hideCommentView();
+													break;
+												case 1:
+													alert('실패했습니다.');
+													break;
+												case 2:
+													alert('권한이 없습니다.');
+													break;
+												case 3:
+													alert('실패했습니다.');
+													break;
+											}
+										},
+										error: function(data, status, err){
+											alert('comment modify fail!');
+										}
+									});
+								}
+							}
+							else{
+								alert('200자 이상은 달 수 없습니다.');
+							}			
+						}
+						else{
+							alert('댓글이 빈칸입니다.')			
+						}
+					});
+				});
+				
 			});
 
 				
@@ -234,14 +283,14 @@ html
 			div#boardBottom
 			
 			div('id'="divCommentUpd", style="display:none;")
-				form(name='updForm')
+				form(name='updForm', id='updForm')
 					#UpdTextArea
-						textarea(name='content', style="resize:none; width:450px; height:70px;", onKeyPress = 'return comment_enter(this,event)');
-						input(type='hidden', name='board_id')
-						input(type='hidden', name='board_index')		
-						input(type='hidden', name='index')
+						textarea(name='Upd_content', id='Upd_content', style="resize:none; width:450px; height:70px;", onKeyPress = 'return comment_enter(this,event)');
+						input(type='hidden', name='Upd_board_id', id='Upd_board_id')
+						input(type='hidden', name='Upd_board_index', id='Upd_board_index')		
+						input(type='hidden', name='Upd_index', id='Upd_index')
 					#UpdButtons(style="text-align: right; margin-right: 98px; margin-top: 5px; margin-bottom: 16px;")
-						input(type='button', value='등록', onClick="updComment()", class='clickable')
+						input(type='button', value='등록', id='UpdModifyButton', class='clickable')
 						input(type='button', value='취소', onClick="cnlComment()", class='clickable')
 									
 		-if(session!=-1)
