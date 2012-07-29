@@ -211,12 +211,20 @@ html
 				div#readMiddle
 					div#readContent
 						!{board.content}
-					div#readButton(style="height:36px;width:142px; margin-top: 24px; margin-bottom: 6px;")
+					div#readButton
 						-if(session!=-1)
-							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
+							div#list
+								img(src='../../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'", class='clickable')
+
+
 						-if((session!=-1 && sessionId == board.user_id) || (session!=-1 && sessionRole=='admin'))
-							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
-							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
+							div#delete
+								img(src='../../images/board/button_delete.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
+							div#modify
+								img(src='../../images/board/button_modify.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
+
+
+
 					-if(session!=-1)
 						div#readCommentList
 							div#commentTop
@@ -258,15 +266,15 @@ html
 								-for(var i=0; i<docs.length; i++)
 									-if(pagedir == i && docs[i]){
 										tr
-											td.no(style="background-color:#e0e0e0;") #{i+1}
-											td.title(style="background-color:#e0e0e0;")
+											td.no(style="background-color:#FAFAFA;") #{i+1}
+											td.title(style="background-color:#FAFAFA;")
 												!{docs[i].subject}
 												a.replyNum [#{comment_number[i]}]
-											td.author(style="background-color:#e0e0e0;")
+											td.author(style="background-color:#FAFAFA;")
 												a #{docs[i].user_name}
-											td.time(style="background-color:#e0e0e0;")
+											td.time(style="background-color:#FAFAFA;")
 												div('id'='time'+i)
-											td.readNum(style="background-color:#e0e0e0;") #{docs[i].hit}										
+											td.readNum(style="background-color:#FAFAFA;") #{docs[i].hit}										
 									-}
 									-else if(docs[i]){
 										tr
