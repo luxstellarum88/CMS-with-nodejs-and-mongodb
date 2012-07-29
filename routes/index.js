@@ -331,22 +331,27 @@ exports.mypage_recent_comm = function(req, res) {
 
 //------------------------------------------------------수정완료
 exports.boardPreview = function(req, res){
-	var board = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
+	var boardObj = {subject:'', user_name:'', insert_date:'', content:'', no:0, };
 	var comm=[];
-	board.subject = req.body.subject;
-	board.user_name = req.body.name;
-	board.insert_date = new Date();
-	board.content = req.body.tx_content;
+	boardObj.subject = req.body.subject;
+	boardObj.user_name = req.body.name;
+	boardObj.insert_date = new Date();
+	boardObj.content = req.body.tx_content;
 	var k=-1;
+	
+	board.getSubject(boardObj.subject, function(string){
+		boardObj.subject = string;
+	});
 	
 	res.render('board/show', {
 		title: '미리보기',
 		session: k,
 		board_id: req.body.id,
 		sessionId: req.session.user.Id,
-		board: board,
+		board: boardObj,
 		comment: comm,
-		sessionRole:""
+		sessionRole:"",
+		docs:""
 	});
 }
 //
