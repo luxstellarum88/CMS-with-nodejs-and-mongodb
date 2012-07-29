@@ -222,7 +222,7 @@ html
 
 						-if((session!=-1 && sessionId == board.user_id) || (session!=-1 && sessionRole=='admin'))
 							div#delete
-								img(src='../../images/board/button_delete.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
+								img(src='../../images/board/button_delete.png', id='delete', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 							div#modify
 								img(src='../../images/board/button_modify.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
 
