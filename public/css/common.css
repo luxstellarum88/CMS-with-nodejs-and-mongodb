@@ -4,6 +4,11 @@ body {
 	margin : 0;
 	font-family : 'NanumGothicWeb';
 	font-size : 10pt;
+	line-height: 1.4;
+}
+table{
+	border-collapse: collapse;
+	
 }
 input:-webkit-autofill{
 	color: transparent !important;
@@ -286,4 +291,6 @@ li.submenu {
 	margin-bottom: 20px;
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 	cursor : hand;
+	text-align: center;
+	font-weight: bold;
 }

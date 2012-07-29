@@ -22,14 +22,14 @@
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
-	margin-left : 60px;
+	margin-left : 47px;
 	float : left;
 	background : url('/images/boardTitleBackground.png') no-repeat;
 	background-position : center;
 }
 #detail02 #boardMiddle {
 	background-image : url('/images/boardMiddle_870px.png');
-	height : 190px;
+	height : 300px;
 	width : 776px;
 	padding : 0 50px;
 }
@@ -39,19 +39,20 @@
 	padding : 0 50px;
 }
 #detail02 #boardMiddle #wrap {
-	width : 230px;
-	margin-left : 33px;
+	margin-left : 10px;
 	float : left;
 	padding-top : 10px;
 	padding-bottom : 10px;
+
 }
 #detail02 #boardMiddle #wrap #title {
 	color : #334d66;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 11pt;
 	height : 40px;
 	vertical-align : middle;
 	display : table-cell;
+	font-weight: bold;
 }
 #detail02 #boardMiddle #wrap #images {
 	width : 228px;
@@ -61,12 +62,129 @@
 }
 #detail02 #boardMiddle #wrap #contents {
 	color : black;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 9pt;
+	line-height: 1.4;
+}
+#detail02 #boardMiddle #wrap #contents table.licenseInformation{
+	color : black;
+	font-family : 'NanumGothicWeb';
+	font-size : 9pt;
+	line-height: 1.4;
+	width: 756px;
+	border: 1px solid #e4e4e4;
+	
+	text-align: center;	
+}
+#detail02 #boardMiddle #wrap #contents table.licenseInformation tr{
+/* 	border: 1px solid black; */
+
+}
+#detail02 #boardMiddle #wrap #contents table.licenseInformation th{
+/* 	border: 1px solid black; */
+	background: #E7EEF7;
+	font-weight: normal;
+	border-left: 1px solid #e4e4e4;
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+}
+#detail02 #boardMiddle #wrap #contents table.licenseInformation td{
+	border-left: 1px solid #e4e4e4;
+	border-right: 1px solid #e4e4e4;
+}
+#detail02 #boardMiddle #wrap #contents table.licenseInformation td.license{
+	text-align: left;	
+	background: #fafafa;
+	padding: 4px 7px;
+	border-left: 1px solid #e4e4e4;
+	border-right: 1px solid #e4e4e4;
 }
 #detail02 #boardBottom {
 	background-image : url('/images/boardBottom_870px.png');
 	height : 34px;
 	width : 876px;
 }
-#detailW
+
+#detail03 {
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 30px;
+}
+#detail03 #boardTop {
+	background-image : url('/images/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+#detail03 #boardTop #boardTitle {
+	font-size : 11pt;
+	color : black;
+	font-family : 'NanumGothicWeb';
+	text-align : center;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 53px;
+	float : left;
+	background : url('/images/boardTitleBackground.png') no-repeat;
+	background-position : center;
+}
+#detail03 #boardMiddle {
+	background-image : url('/images/boardMiddle_870px.png');
+	height : 245px;
+	width : 776px;
+	padding : 0 50px;
+}
+#detail03 #boardMiddleJoin{
+	background-image : url('/images/boardMiddle_870px.png');
+	width : 776px;
+	padding : 0 50px;
+}
+#detail03 #boardMiddle #wrap1 {
+	margin-left : 10px;
+	float : left;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+#detail03 #boardMiddle #wrap1 #title {
+	color : #334d66;
+	font-family : 'NanumGothicWeb';
+	font-size : 11pt;
+	height : 40px;
+	vertical-align : middle;
+	display : table-cell;
+	font-weight: bold;
+}
+#detail03 #boardMiddle #wrap1 #images {
+	width : 228px;
+	height : 38px;
+	border : #dfdfdf solid 1px;
+	margin : 5px 0 10px 0;
+}
+#detail03 #boardMiddle #wrap1 #contents {
+	color : black;
+	font-family : 'NanumGothicWeb';
+	font-size : 9pt;
+	line-height: 1.4;
+}
+#detail03 #boardMiddle #wrap1 #contents #wrap2{
+	margin: 4px 0;
+	float: left
+}
+#detail03 #boardMiddle #wrap1 #contents #wrap2 #bullet{
+	width: 20px;
+	height: 20px;
+	line-height: 16px;
+	text-align: center;
+	font-size: 7pt;
+	float:left;
+}
+#detail03 #boardMiddle #wrap1 #contents #wrap2 #detail{
+	width: 746px;
+	float: left;
+}
+#detail03 #boardBottom {
+	background-image : url('/images/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}

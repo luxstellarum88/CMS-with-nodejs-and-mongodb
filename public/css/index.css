@@ -88,6 +88,7 @@
 	height : 40px;
 	vertical-align : middle;
 	display : table-cell;
+	font-weight: bold;
 }
 #detail02 #boardMiddle #wrap #images {
 	width : 228px;
@@ -151,8 +152,7 @@
 	color : #334d66;
 	font-family : 'NanumGorhicWeb';
 	font-size : 11pt;
-/* 	height : 40px; */
-/* 	line-height: 40px; */
+	font-weight: bold;
 }
 #detail03 #boardMiddle #wrap #contents1 {
 	color : black;
