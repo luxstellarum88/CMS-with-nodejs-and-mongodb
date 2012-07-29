@@ -113,27 +113,27 @@ html
 							form(method='post', id='page_form', action='/mypage/recent_docs')
 								input(type='hidden', id='page', name='page', value='#{current_page}')
 								-if(last>0)
-									#firstPage(onClick='goto_page(1)', style='display:inline;')
+									#firstPage(onClick='goto_page(1)', style='display:inline;cursor:hand;')
 										img(src='../images/board/button_forward.png')
 										span 처음 페이지 |
 								-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
 									-if(j>0 && j<= last)
 										-if( j == current_page && j != last)
-											#pages(onClick='goto_page(#{j})', style='display:inline;')
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
 												b #{j} 
 												|
 										-else if( j == current_page && j == last )
-											#pages(onClick='goto_page(#{j})', style='display:inline;')
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
 												b #{j}
 										-else if( j != last )
-											#pages(onClick='goto_page(#{j})', style='display:inline;')
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
 												!{j} |
 										-else
-											#pages(onClick='goto_page(#{j})', style='display:inline;')
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
 												!{j}
 								-}
 								-if(last>0)
-									#pages(onClick='goto_page(#{last})', style='display:inline;')
+									#pages(onClick='goto_page(#{last})', style='display:inline;cursor:hand;')
 										span | 마지막 페이지
 										img(src='../images/board/button_backward.png')
 			div#boardBottom
