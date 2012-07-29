@@ -45,12 +45,9 @@ html
 			$(document).ready(function(){
 				EditorJSLoader.ready(function(Editor) {
 					var editor = new Editor(config);
-					var images = editor.getAttachment('image');
-					for(var i=0;i<images.length();i++){
-						Editor.getSidebar().getAttacher("image").execAttach(images[i].data);
-					}
 				});
-    
+				
+				
 				$.ajax({
 					type:'post',
 					dataType:"json",
@@ -65,6 +62,7 @@ html
 						alert('content load fail!');
 					}
 				});
+				
 				
 				$('#previewButton').click(function(){
 					var content = Editor.getContent();
