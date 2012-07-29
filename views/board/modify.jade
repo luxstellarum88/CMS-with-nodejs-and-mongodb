@@ -20,6 +20,7 @@ html
 		include ../common/subMenu/subMenu03.jade
 		
 		script(src="/javascript/common.js")
+		
 		script(type='text/javascript')
 			function make_action_and_target(url, target){
 				var form = document.createElement('form');
@@ -39,10 +40,15 @@ html
 				
 				return input;
 			}
+			
 		script(type='text/javascript')
 			$(document).ready(function(){
 				EditorJSLoader.ready(function(Editor) {
-					editor = new Editor(config);
+					var editor = new Editor(config);
+					var images = editor.getAttachment('image');
+					for(var i=0;i<images.length();i++){
+						Editor.getSidebar().getAttacher("image").execAttach(images[i].data);
+					}
 				});
     
 				$.ajax({
@@ -60,7 +66,7 @@ html
 					}
 				});
 				
-				$('#preview').click(function(){
+				$('#previewButton').click(function(){
 					var content = Editor.getContent();
 					var id = $('#board_id').val();
 					var subject = $('#subject').val();
@@ -101,11 +107,13 @@ html
 						input(type='hidden', name='index', value='#{docs.index}')
 						input(type='hidden', name='board_id', value='#{docs.board_id}')
 						input(type='hidden', name='name', id='name', value='#{docs.user_name}')
-						div#button
-							input(type='button', id='preview' ,value='미리보기' , class='clickable')
+						div#buttonList
+							a
+								img#previewButton(src='/images/board/button_preview.png')
 							a(href='javascript:submit();')
 								img#submitButton(src='/images/board/button_submit.png')
-							input(type ='button', id='list', value='취소', onClick="location.href='/board/#{docs.board_id}'", class='clickable')
+							a(href="javascript:location.href='/board/#{docs.board_id}'")
+								img#cancelButton(src='/images/board/button_cancel.png')
 				#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

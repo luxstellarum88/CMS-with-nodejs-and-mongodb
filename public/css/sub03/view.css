@@ -86,14 +86,20 @@
 
 #boardMiddle #readMiddle #readButton #list{
 	cursor:hand;
+	position: absolute;
+	left: 53px;
 }
 
 #boardMiddle #readMiddle #readButton #modify{
 	cursor:hand;
+	position: absolute;
+	right:83px;
 }
 
 #boardMiddle #readMiddle #readButton #delete{
 	cursor:hand;
+	position: absolute;
+	right:129px;
 }
 
 #boardMiddle #readMiddle #readCommentList {
