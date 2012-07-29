@@ -84,7 +84,6 @@ function requiresSuperUserLogin(req, res, next){
 
 // Routes
 
-//--------------------------------------using
 app.get('/', routes.index);
 
 // HTML PAGE RENDERING PART
@@ -195,7 +194,6 @@ app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete)
 app.get('/comment_update/:id/:num', requiresLogin, routes.comment_update);
 app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 
-//--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
 
 app.post('/image_upload', function(req, res, next){
@@ -221,6 +219,13 @@ app.post('/file_upload', function(req, res, next){
 		});
 	});
 });
+
+//for user information page(my page)
+app.get('/mypage', requiresLogin, routes.mypage_auth);
+app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
+app.post('/mypage/update', requiresLogin, routes.mypage_update);
+app.post('/mypage/recent_docs', requiresLogin, routes.mypage_recent_docs);
+app.post('/mypage/recent_comm', requiresLogin, routes.mypage_recent_comm);
 
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

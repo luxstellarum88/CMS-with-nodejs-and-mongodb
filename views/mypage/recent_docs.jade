@@ -1,0 +1,141 @@
+html
+	head
+		title
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/sub03/sub01.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+		script
+			$(document).ready(function(){
+				if( 101 == #{authed} ) {
+					$('#mypage_menu1').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/inform').submit();
+					});
+					$('#mypage_menu2').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
+					});
+					$('#mypage_menu3').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
+					});
+				}
+				else {
+					$('#mypage_menu1').click(function(){
+						location.href='/mypage';
+					});
+					$('#mypage_menu2').click(function(){
+						location.href='/mypage';
+					});
+					$('#mypage_menu3').click(function(){
+						location.href='/mypage';
+					});
+				}
+			})	
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		
+		script
+			function goto_page(j) {
+				$('#page').val(j);
+				$('#page_form').submit();
+			}
+
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}
+			
+			$(document).ready(function(){
+				$('#searchInputBox').focus();
+			
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+			});
+			
+		div#detail03
+			div#boardTop
+				div#boardTitle 작성 글 목록
+				form(method='post', id='mypage_menu', name='mypage_menu')
+					#mypage_menu1(style='display:inline;') 회원정보수정
+					#mypage_menu2(style='display:inline;') 작성 글 목록
+					#mypage_menu3(style='display:inline;') 작성 코멘트 목록
+			div#boardMiddle
+				div#boardList
+					table(cellspacing='0')
+						tr
+							th.no 번호
+							th.author 게시판
+							th.title 제목
+							th.time 날짜
+							th.readNum 조회수
+							-for(var i=0; i<docs.length; i++)
+								-if(docs[i]){
+									tr
+										td.no #{length - ( (current_page-1) * paging ) - i}
+										td.author
+											a(href='/board/#{docs[i].board_id', style="color:black;") #{docs[i].board_id}
+										td.title
+											a(href='/board/#{docs[i].board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+										td.time
+											div('id'='time'+i)
+										td.readNum #{docs[i].hit}
+								-}			
+				div#boardFooter
+					div#pageLine
+						div#pagination
+							-current_page = parseInt(current_page);
+							-var last = Math.ceil(length/paging);
+							form(method='post', id='page_form', action='/mypage/recent_docs')
+								input(type='hidden', id='page', name='page', value='#{current_page}')
+								-if(last>0)
+									#firstPage(onClick='goto_page(1)', style='display:inline;cursor:hand;')
+										img(src='../images/board/button_forward.png')
+										span 처음 페이지 |
+								-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
+									-if(j>0 && j<= last)
+										-if( j == current_page && j != last)
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
+												b #{j} 
+												|
+										-else if( j == current_page && j == last )
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
+												b #{j}
+										-else if( j != last )
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
+												!{j} |
+										-else
+											#pages(onClick='goto_page(#{j})', style='display:inline;cursor:hand;')
+												!{j}
+								-}
+								-if(last>0)
+									#pages(onClick='goto_page(#{last})', style='display:inline;cursor:hand;')
+										span | 마지막 페이지
+										img(src='../images/board/button_backward.png')
+			div#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

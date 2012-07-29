@@ -41,7 +41,7 @@ var self = module.exports = {
 			title: 'e-mail 보내기'
 			, sender: 'operator@goorm.org'
 			, addresses: req.body.chklist
-			, session: req.session.user
+			, session: req.session.user, cookie_id: req.cookies.id
 		});
 	}, //end of send_mail_view
 	
@@ -50,7 +50,7 @@ var self = module.exports = {
 		var alert_script = alert.AlertRedirect('메일이 발송되었습니다.', '/admin/userlists');
 		res.render('alert', {
 			title : 'Mail Sended'
-			,alert : alert_script
+			,alert : alert_script, cookie_id: req.cookies.id
 		});
 	}, //end of send_mail_action
 
@@ -89,7 +89,7 @@ var self = module.exports = {
 				res.render('admin/main', {
 					title: '관리자 메인'
 					, docs: docs
-					, session: req.session.user
+					, session: req.session.user, cookie_id: req.cookies.id
 				});//end of render
 			}//end of if
 			else {
@@ -113,7 +113,7 @@ var self = module.exports = {
 				res.render('admin/board_modify_view', {
 					title : '게시판 수정'
 					, docs : docs
-					, session: req.session.user
+					, session: req.session.user, cookie_id: req.cookies.id
 				});//need render
 			}//end of if
 			else {
@@ -272,13 +272,13 @@ var self = module.exports = {
 			}	else {
 		  		res.render('admin', {
 		  			title: '관리자 페이지'
-		  			, session: req.session.user
+		  			, session: req.session.user, cookie_id: req.cookies.id
 		  		});
 		 	}
 	 	}	else {
 	  		res.render('admin', {
 	  			title: '관리자 페이지'
-	  			, session: req.session.user
+	  			, session: req.session.user, cookie_id: req.cookies.id
 	  		});
 		 }
 	}, //end of show_index_page

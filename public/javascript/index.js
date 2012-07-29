@@ -12,3 +12,11 @@ function show_news() {
 	document.getElementById("notice").style.display = "none";
 	
 }//end of show_news
+
+function goto_notice() {
+	location.href = '/board/notice';
+}
+
+function goto_news() {
+	location.href = '/board/news';
+}

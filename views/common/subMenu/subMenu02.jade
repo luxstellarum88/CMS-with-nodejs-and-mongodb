@@ -1,6 +1,5 @@
-#subMenu
-	ul.submenu
-		li.submenu
-			a#menu1(href='care') 기술지원
-		li.submenu
-			a#menu2(href='faq') 자주 묻는 질문
+include ./subMenu
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#subMenu2").attr("style", "display: block");
+	});

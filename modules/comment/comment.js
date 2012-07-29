@@ -47,6 +47,18 @@ var self = module.exports = {
 		});//end of count	
 	},//end of list
 	
+	get_count : function(board_id, post_index, callback){
+		db.connect();
+		var model = db.get_model();
+
+		model.count({deleted : false, board_id: board_id, post_index : post_index}, function(err, length){
+			if(!err)
+				callback(length);
+			else
+				console.log('in comment.js : error(04)');
+		});
+	},
+	
 	insert : function(req, res) {
 		db.connect();
 		var make_model = db.make_model();
