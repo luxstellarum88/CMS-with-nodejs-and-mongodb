@@ -20,7 +20,7 @@ var self = module.exports = {
 			title: '게시물 작성'
 			, id : req.params.id
 			, auth : auth
-			, session: req.session.user
+			, session: req.session.user, cookie_id: req.cookies.id
 		});
 	}, //end of write_page
 	
@@ -136,7 +136,7 @@ var self = module.exports = {
 				res.render('board/main', {
 					title: '게시판 메인'
 					, docs: docs
-					, session: req.session.user
+					, session: req.session.user, cookie_id: req.cookies.id
 				});//end of render
 			}//end of if
 			else {
@@ -161,7 +161,7 @@ var self = module.exports = {
 					res.render('board/modify', {
 						title: '게시물 수정'
 						, docs: docs
-						, session: req.session.user
+						, session: req.session.user, cookie_id: req.cookies.id
 					});//end of render
 				}//end of if
 				else {
@@ -273,7 +273,7 @@ var self = module.exports = {
 						length : length,
 						sessionId : sessionId,
 						sessionRole : sessionRole,
-						session: req.session.user
+						session: req.session.user, cookie_id: req.cookies.id
 					});//end of render
 				});//end of comment list
 			}//end of if
@@ -365,7 +365,7 @@ var self = module.exports = {
 					content: content,
 					comment_number : comment_number,
 					notice_comment_number : notice_comment_number 
-					, session: req.session.user
+					, session: req.session.user, cookie_id: req.cookies.id
 				});//end of render
 			}//end of else
 		});//end of evt on

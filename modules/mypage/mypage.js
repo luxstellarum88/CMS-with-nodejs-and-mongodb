@@ -138,7 +138,7 @@ var self = module.exports = {
 	,index_page : function(req, res) {
 		res.render('mypage/auth', {
 			 title : '비밀번호'
-			,session : req.session.user
+			,session : req.session.user, cookie_id: req.cookies.id
 			,authed : 0
 		});//end of render
 	}//end of index_page
@@ -156,7 +156,7 @@ var self = module.exports = {
 			if(!err) {
 				res.render('mypage/inform', {
 					 title : '회원정보수정'
-					,session : req.session.user
+					,session : req.session.user, cookie_id: req.cookies.id
 					,authed : authed
 					,user : docs 
 				});//end of render
@@ -186,7 +186,7 @@ var self = module.exports = {
 					if(!err){
 						res.render('mypage/recent_docs', {
 							 title : '작성 글 목록'
-							,session : req.session.user
+							,session : req.session.user, cookie_id: req.cookies.id
 							,authed : authed
 							,current_page : current_page
 							,docs : docs
@@ -224,7 +224,7 @@ var self = module.exports = {
 					if(!err){						
 						res.render('mypage/recent_comm', {
 							 title : '작성 댓글 목록'
-							,session : req.session.user
+							,session : req.session.user, cookie_id: req.cookies.id
 							,authed : authed
 							,current_page : current_page
 							,docs : docs

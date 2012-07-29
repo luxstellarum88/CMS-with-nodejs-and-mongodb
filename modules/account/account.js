@@ -24,7 +24,7 @@ var self = module.exports =  {
 	sign_up_page : function(req, res) {
 		res.render('join', {
 			title: '회원가입'
-			, session: req.session.user
+			, session: req.session.user, cookie_id: req.cookies.id
 		});
 	}, //end of sign_up
 	
@@ -250,7 +250,7 @@ var self = module.exports =  {
 					alert_script = alert.makeAlert("이름은 3~15자로, '.', '-', '_' 이상 세 가지의 특수문자만 허용됩니다.");
 					res.render('alert',{
 						title : 'error',
-						alert : alert_script
+						alert : alert_script, cookie_id: req.cookies.id
 					});
 				break;
 			}//end of switch						
@@ -357,7 +357,7 @@ var self = module.exports =  {
 				res.render('admin/userinformation', {
 					title : '회원 정보'
 					, session: req.session.user
-					, info : user
+					, info : user, cookie_id: req.cookies.id
 				});//end of render
 			}//end of if
 			else {
@@ -390,6 +390,7 @@ var self = module.exports =  {
 			if ( user ) {
 				var url = req.body.url || '/';
 				req.session.user = user;
+				res.cookie("id", req.body.id);
 				res.redirect(url);
 			}
 			else {
@@ -431,7 +432,7 @@ var self = module.exports =  {
 				title : 'goorm'
 				, session : req.session.user
 				, notice : notice
-				, news : news
+				, news : news, cookie_id: req.cookies.id
 			});//end of render	
 		});//end of evt.on
 		

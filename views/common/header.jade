@@ -56,7 +56,10 @@ script(type="text/javascript")
 #topMenu
 	- if(!session)
 		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();')
-			input#idInputBox(type='text', name='id')
+			- if(!cookie_id)
+				input#idInputBox(type='text', name='id', value='')
+			- else
+				input#idInputBox(type='text', name='id', value='#{cookie_id}')
 			input#pwInputBox(type='password', name='password')
 			input#pwUrlBox(type='hidden', name='url', id='url', value='')
 			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
