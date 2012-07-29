@@ -82,6 +82,23 @@ function requiresSuperUserLogin(req, res, next){
 	}
 }
 
+function requiresCheck(req, res, next){
+	if( req.params.id && (req.params.id === 'usermanual' || req.params.id === 'developermanual') )
+		if( req.session.user && (req.session.user.role === 'admin' || req.session.user.Id === 'superadmin') ){
+			next();
+		}
+		else{
+			var alert_script = alert.makeAlert('권한이 없습니다.');
+			res.render('alert', {
+				title : 'Error',
+				alert : alert_script
+			});			
+		}
+	else{
+		next();
+	}
+}
+
 // Routes
 
 app.get('/', routes.index);
@@ -181,7 +198,7 @@ app.get('/admin_new/sub02/sub01', routes.admin_new_sub2_1);
 app.get('/write/:id', requiresLogin, routes.board_write_page);
 
 app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
-app.get('/board/:id', routes.board_post_list);
+app.get('/board/:id', requiresCheck, routes.board_post_list);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
 app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
