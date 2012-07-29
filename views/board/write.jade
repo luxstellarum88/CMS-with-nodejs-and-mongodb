@@ -19,14 +19,14 @@ html
 		include ../common/header
 		include ../common/mainMenu
 		include ../common/subMenu/subMenu03.jade
-
+		
 		script(type='text/javascript')
 			$(document).ready(function(){	
 				EditorJSLoader.ready(function(Editor) {
 					editor = new Editor(config);
 				});
 				
-				$('#preview').click(function(){
+				$('#previewButton').click(function(){
 					var content = Editor.getContent();
 					var id = $('#id').val();
 					var subject = $('#subject').val();
@@ -95,7 +95,7 @@ html
 						a(href='javascript:submit();')
 							img#submitButton(src='/images/board/button_submit.png')
 						&nbsp;&nbsp;
-						a(href="location.href='/board/#{id}'", id="list")
+						a(href="javascript:location.href='/board/#{id}'", id="list")
 							img#cancelButton(src='/images/board/button_cancel.png')
 			
 				div#boardBottom 

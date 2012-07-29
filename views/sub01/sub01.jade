@@ -13,6 +13,10 @@ html
 		include ../common/header.jade
 		include ../common/mainMenu.jade
 		include ../common/subMenu/subMenu01.jade
+		script(type="text/javascript")
+			$("document").ready(function() {
+				$("#menu1_1").attr("style", "opacity:1");
+			});
 		#detail01
 			#detail01Text
 				#title 안녕, goorm!

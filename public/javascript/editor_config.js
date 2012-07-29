@@ -25,7 +25,11 @@
 		sidebar: {
 			attachbox: {
 				show: true
+			},
+			capacity: {
+				maximum: 15 * 1024 * 1024
 			}
+			
 		},
 		size: {
 			contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */

@@ -18,9 +18,6 @@ var comment = require('../modules/comment/comment');
 var mypage = require('../modules/mypage/mypage');
 
 exports.html_sub1_1 = function(req, res){
-	// req.session.user.cookie_id = req.cookies.id;
-	// console.log("cookie:", req.session.user.cookie_id);
-	
 	res.render('sub01/sub01', { title: 'goorm 소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_2 = function(req, res){
@@ -344,7 +341,8 @@ exports.boardPreview = function(req, res){
 		board_id: req.body.id,
 		sessionId: req.session.user.Id,
 		board: board,
-		comment: comm
+		comment: comm,
+		sessionRole:""
 	});
 }
 //

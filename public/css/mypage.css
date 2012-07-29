@@ -1,0 +1,23 @@
+.leftMenu{
+	float : left;
+	position : absolute;
+	top : 100px;
+	line-height : 2.3em;
+}
+
+.menuText{
+	font-size : 11pt;
+	color : black;
+	cursor : hand;
+	font-family : 'NanumGothicWeb';
+}
+
+.contents{
+	margin-left : 110px;
+	font-size : 11pt;
+	text-align : center;
+}
+
+.topPadding{
+	padding-top : 120px;
+}
