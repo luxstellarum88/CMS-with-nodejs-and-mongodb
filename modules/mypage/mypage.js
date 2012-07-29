@@ -265,11 +265,17 @@ var self = module.exports = {
 			if(!err) {
 				evt.on('get_post_inform', function(evt, i) {
 					if(i < docs.length) {
-						board.get_post_subject(docs[i].index, function(subject){
+						board.get_post_subject(docs[i].post_index, function(subject){
 							board.get_board_name(docs[i].board_id, function(name){
-								post_subject[i] = subject;
-								board_name[i] = name;
-								evt.emit('get_post_inform', evt, ++i);
+								board.getSubject(subject, function(short_subject){
+									board.getSubject(docs[i].content, function(short_content){
+										post_subject[i] = short_subject;
+										board_name[i] = name;
+										docs[i].content = short_content;
+										evt.emit('get_post_inform', evt, ++i);	
+									});
+								});
+								
 							});
 						});//end of counter
 					}//end of if
