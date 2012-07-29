@@ -86,7 +86,8 @@
 }
 
 #boardMiddle #boardList td.time { 
-	text-align: center
+	text-align: center;
+	width: 64px;
 }
 
 #boardMiddle #boardList td.readNum { 
