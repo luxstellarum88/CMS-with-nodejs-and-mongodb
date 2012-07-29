@@ -305,8 +305,12 @@ exports.comment_check_ajax = function(req, res){
 	comment.check_ajax(req, res);
 }
 
-exports.mypage_auth = function(req, res) {
+exports.mypage_auth_page = function(req, res) {
 	mypage.index_page(req, res);
+}
+
+exports.mypage_auth = function(req, res) {
+	mypage.authed(req, res);
 }
 
 exports.mypage_inform = function(req, res) {

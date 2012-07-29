@@ -81,7 +81,6 @@
 		for (var i = 0, len = images.length; i < len; i++) {
 			// existStage는 현재 본문에 존재하는지 여부
 			if (images[i].existStage) {
-				// data는 팝업에서 execAttach 등을 통해 넘긴 데이터
 				formGenerator.createField(
 						tx.input({
 							'type': "hidden",

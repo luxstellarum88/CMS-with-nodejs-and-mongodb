@@ -268,6 +268,30 @@ var self = module.exports = {
 		
 		evt2.emit('string_length', evt2, p);
 	},
+	
+	get_board_name : function(condition, callback) {
+		var model = list_db.get_model();
+		model.findOne({id : condition}, function(err,docs) {
+			if(!err){
+				callback(docs.name);
+			}
+			else {
+				callback(null);
+			}
+		});//end of findOne
+	},
+	
+	get_post_subject : function(condition, callback) {
+		var model = db.get_model();
+		model.findOne({index : condition}, function(err,docs) {
+			if(!err){
+				callback(docs.subject);
+			}
+			else {
+				callback(null);
+			}
+		});//end of findOne
+	},
 		
 	show_contents : function(req, res) {
 		var model = db.get_model();

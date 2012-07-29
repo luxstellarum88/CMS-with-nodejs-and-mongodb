@@ -20,6 +20,7 @@ html
 		include ../common/subMenu/subMenu03.jade
 		
 		script(src="/javascript/common.js")
+		
 		script(type='text/javascript')
 			function make_action_and_target(url, target){
 				var form = document.createElement('form');
@@ -39,10 +40,15 @@ html
 				
 				return input;
 			}
+			
 		script(type='text/javascript')
 			$(document).ready(function(){
 				EditorJSLoader.ready(function(Editor) {
-					editor = new Editor(config);
+					var editor = new Editor(config);
+					var images = editor.getAttachment('image');
+					for(var i=0;i<images.length();i++){
+						Editor.getSidebar().getAttacher("image").execAttach(images[i].data);
+					}
 				});
     
 				$.ajax({

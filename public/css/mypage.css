@@ -6,7 +6,7 @@
 }
 
 .menuText{
-	font-size : 11pt;
+	font-size : 9pt;
 	color : black;
 	cursor : hand;
 	font-family : 'NanumGothicWeb';
@@ -14,7 +14,7 @@
 
 .contents{
 	margin-left : 110px;
-	font-size : 11pt;
+	font-size : 9pt;
 	text-align : center;
 }
 
