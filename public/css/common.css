@@ -2,7 +2,7 @@ body {
 	background : url('/images/background.png') repeat-x;
 	background-color : #779ec7;
 	margin : 0;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 10pt;
 }
 input:-webkit-autofill{
@@ -206,24 +206,24 @@ li.submenu {
 .submenu a.long{ width : 110px; height : 13px; }
 
 /* 서브메뉴 페이지별 */
-.submenu a#menu1_1 { background-image : url('/images/submenu/submenu01_01.png'); }
-.submenu a#menu1_2 { background-image : url('/images/submenu/submenu01_02.png'); }
-.submenu a#menu1_3 { background-image : url('/images/submenu/submenu01_03.png'); }
-.submenu a#menu1_4 { background-image : url('/images/submenu/submenu01_04.png'); }
+.submenu a#menu1_1 {background-image : url('/images/submenu/submenu01_01.png'); }
+.submenu a#menu1_2 {background-image : url('/images/submenu/submenu01_02.png'); }
+.submenu a#menu1_3 {background-image : url('/images/submenu/submenu01_03.png'); }
+.submenu a#menu1_4 {background-image : url('/images/submenu/submenu01_04.png'); }
 
-.submenu a#menu2_1 { margin-left: 40px; background-image : url('/images/submenu/submenu02_01.png'); }
-.submenu a#menu2_2 { background-image : url('/images/submenu/submenu02_02.png'); }
+.submenu a#menu2_1 {margin-left: 40px; background-image : url('/images/submenu/submenu02_01.png'); }
+.submenu a#menu2_2 {background-image : url('/images/submenu/submenu02_02.png'); }
 
-.submenu a#menu3_1 { background-image : url('/images/submenu/submenu03_01.png'); }
-.submenu a#menu3_2 { background-image : url('/images/submenu/submenu03_02.png'); }
-.submenu a#menu3_3 { background-image : url('/images/submenu/submenu03_03.png'); }
+.submenu a#menu3_1 {margin-left: 20px; background-image : url('/images/submenu/submenu03_01.png'); }
+.submenu a#menu3_2 {background-image : url('/images/submenu/submenu03_02.png'); }
+.submenu a#menu3_3 {background-image : url('/images/submenu/submenu03_03.png'); }
 
-.submenu a#menu4_1 { margin-left: 180px; background-image : url('/images/submenu/submenu04_01.png'); }
-.submenu a#menu4_2 { background-image : url('/images/submenu/submenu04_02.png'); }
+.submenu a#menu4_1 {margin-left: 180px; background-image : url('/images/submenu/submenu04_01.png'); }
+.submenu a#menu4_2 {background-image : url('/images/submenu/submenu04_02.png'); }
 
-.submenu a#menu5_1 { margin-left: 170px; background-image : url('/images/submenu/submenu05_01.png'); }
-.submenu a#menu5_2 { background-image : url('/images/submenu/submenu05_02.png'); }
-.submenu a#menu5_3 { background-image : url('/images/submenu/submenu05_03.png'); }
+.submenu a#menu5_1 {margin-left: 170px; background-image : url('/images/submenu/submenu05_01.png'); }
+.submenu a#menu5_2 {background-image : url('/images/submenu/submenu05_02.png'); }
+.submenu a#menu5_3 {background-image : url('/images/submenu/submenu05_03.png'); }
 
 .submenu a:hover { opacity : 1; }
 
@@ -241,7 +241,7 @@ li.submenu {
 	position : relative;
 	bottom : 0;
 	color : #999999;
-	font-family : 'NanumGorhicWeb';
+	font-family : 'NanumGothicWeb';
 	font-size : 10pt;
 	padding-top : 20px;
 	margin-top : 36px;
