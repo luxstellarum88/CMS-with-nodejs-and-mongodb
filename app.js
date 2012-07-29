@@ -110,6 +110,7 @@ app.get('/community/tip', routes.html_sub3_3); // User Tip & Knowhow
 // Usage
 app.get('/usage/install', routes.html_sub4_1); // Installation
 app.get('/usage/manual', routes.html_sub4_2); // User Manual
+app.get('/manual', routes.manual); // User Manual
 //app.get('/usage/developer', routes.html_sub4_3); // Developer Manual
 
 
