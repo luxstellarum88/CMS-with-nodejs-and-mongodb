@@ -56,7 +56,7 @@ script(type="text/javascript")
 #topMenu
 	- if(!session)
 		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();')
-			- if(!cookie_id)
+			- if (typeof(cookie_id) == 'undefined')
 				input#idInputBox(type='text', name='id', value='')
 			- else
 				input#idInputBox(type='text', name='id', value='#{cookie_id}')
