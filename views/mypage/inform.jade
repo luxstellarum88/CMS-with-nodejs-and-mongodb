@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', type='text/css', href='../css/index.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
 		link(rel='stylesheet', type='text/css', href='../css/join.css')
+		link(rel='stylesheet', type='text/css', href='../css/mypage.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
@@ -98,12 +99,13 @@ html
 		
 		#detail02
 			#boardTop
-				form(method='post', id='mypage_menu', name='mypage_menu')
-					#mypage_menu1(style='display:inline;') 회원정보수정
-					#mypage_menu2(style='display:inline;') 작성 글 목록
-					#mypage_menu3(style='display:inline;') 작성 코멘트 목록
 			#boardMiddleJoin
-				#contents
+				#boardMenu.leftMenu
+					form(method='post', id='mypage_menu', name='mypage_menu')
+						#mypage_menu1.menuText 회원정보수정
+						#mypage_menu2.menuText 작성 글 목록
+						#mypage_menu3.menuText 작성 코멘트 목록
+				#contents.contents
 					form(method='post', action='/mypage/update', name='frm')
 						table.info(border='1',cellspacing='0',style='font-size:12px;')
 							caption
