@@ -16,7 +16,7 @@ var self = module.exports =  {
 	
 	logout : function(req,res) {
 		if ( req.session.user ) {
-			req.session.user = "";
+			req.session.destroy();
 		}
 		res.redirect('/');
 	}, //end of logout
@@ -71,7 +71,7 @@ var self = module.exports =  {
 	},
 	
 	check_name : function(req, res) {
-		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
+		var regular_expression_name = /^[가-힣0-9a-zA-Z._-]{3,15}$/;
 		var name = req.body.ajax_name_form;
 		if(regular_expression_name.test(name)) {
 			res.writeHead(200, {'content-type':'text/json'});
@@ -80,7 +80,7 @@ var self = module.exports =  {
 		}//end of if
 		else {
 			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(3~15자리, 알파벳 + 숫자 + 특수문자(-/_/.)).', color : 'red'}));
+			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(3~15자리, 한글/알파벳/숫자/특수문자(-/_/.)).', color : 'red'}));
 			res.end('\n');
 		} // end of else
 	},
@@ -104,7 +104,7 @@ var self = module.exports =  {
 		var regular_expression_id = /^[0-9a-zA-Z]{4,15}$/;
 		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z0-9]+)(\.[a-zA-Z]+)?$/;
 		var regular_expression_password = /^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{8,15}/;
-		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
+		var regular_expression_name = /^[가-힣0-9a-zA-Z._-]{3,15}$/;
 		var error_code = 0;
 		
 		if ( user.idForm == "" || user.pwForm == "" || user.nameForm == "" || user.confirmForm == "" || user.emailForm == "" ) {

@@ -198,7 +198,6 @@ app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
 
 app.post('/image_upload', function(req, res, next){
-	
 	var tmp_path = req.files.thumbnail.path;
 	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
 	fs.rename(tmp_path, target_path, function(err){
@@ -210,10 +209,7 @@ app.post('/image_upload', function(req, res, next){
 	});
 });
 
-app.post('/file_upload', function(req, res, next){
-	console.log(req.body);
-	console.log(req.files);
-	
+app.post('/file_upload', function(req, res, next){	
 	var tmp_path = req.files.file.path;	
 	var target_path = __dirname +'/public/uploads/' + req.files.file.name;
 	fs.rename(tmp_path, target_path, function(err){
@@ -226,7 +222,8 @@ app.post('/file_upload', function(req, res, next){
 });
 
 //for user information page(my page)
-app.get('/mypage', requiresLogin, routes.mypage_auth);
+app.get('/mypage', requiresLogin, routes.mypage_auth_page);
+app.post('/mypage/auth', requiresLogin, routes.mypage_auth);
 app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
 app.post('/mypage/update', requiresLogin, routes.mypage_update);
 app.post('/mypage/recent_docs', requiresLogin, routes.mypage_recent_docs);

@@ -68,9 +68,10 @@
 	width : 876px;
 }
 
+#buttonList { padding-left: 43px; }
 #previewButton { left: 53px; position: absolute; cursor:hand;}
 #confirmButton { }
-#cancelButton { }
+#cancelButton { padding-left: 6px; }
 /*
 #detailWrap{ width:876px; height:279px; position:relative; left:50%; margin-left:-438px; margin-top: 20px }
 #detail03{ width:486px; float:left}

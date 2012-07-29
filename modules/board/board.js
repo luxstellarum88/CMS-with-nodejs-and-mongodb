@@ -268,6 +268,30 @@ var self = module.exports = {
 		
 		evt2.emit('string_length', evt2, p);
 	},
+	
+	get_board_name : function(condition, callback) {
+		var model = list_db.get_model();
+		model.findOne({id : condition}, function(err,docs) {
+			if(!err){
+				callback(docs.name);
+			}
+			else {
+				callback(null);
+			}
+		});//end of findOne
+	},
+	
+	get_post_subject : function(condition, callback) {
+		var model = db.get_model();
+		model.findOne({index : condition}, function(err,docs) {
+			if(!err){
+				callback(docs.subject);
+			}
+			else {
+				callback(null);
+			}
+		});//end of findOne
+	},
 		
 	show_contents : function(req, res) {
 		var model = db.get_model();
@@ -433,8 +457,6 @@ var self = module.exports = {
 		console.log("in board.js display : " + docs.length);
 		console.log("in board.js display : " + docs1.length);
 		
-		
-
 			res.render('sub04/sub02', {
 				board_id: board_id,
 				title: title,
@@ -622,36 +644,37 @@ var self = module.exports = {
 						if ( !err ) {
 							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
 								length1 = length;
-		list_model.findOne({id : board_id2}, function(err, board){		
-			if ( !err && board ) {
-				var current_page = req.query.page || 1;
-				var type = req.query.type || "";
-				var content = req.query.content || "";
 								
-				var title = board.name || "";
-				var paging_size = board.paging; 
-						
-				var skip_size = (current_page * paging_size) - paging_size;
-				
-				var session_id = "";
-				if(req.session.user)
-					session_id = req.session.user.Id;
-				
-				var search_reg_exp = new RegExp(content);
-									
-				model.find({notice : false, deleted : false, board_id : board_id2})
-					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
-						if ( !err ) {
-							model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
-								self.display_result2(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
-							});//end of count
-						}//end of if
-						else {
-							console.log('in view.js : error (06)');
-						}//end of else
-				});//end of find
-			}
-		});//end of findOne
+								list_model.findOne({id : board_id2}, function(err, board){		
+									if ( !err && board ) {
+										var current_page = req.query.page || 1;
+										var type = req.query.type || "";
+										var content = req.query.content || "";
+														
+										var title = board.name || "";
+										var paging_size = board.paging; 
+												
+										var skip_size = (current_page * paging_size) - paging_size;
+										
+										var session_id = "";
+										if(req.session.user)
+											session_id = req.session.user.Id;
+										
+										var search_reg_exp = new RegExp(content);
+															
+										model.find({notice : false, deleted : false, board_id : board_id2})
+											.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+												if ( !err ) {
+													model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
+														self.display_result2(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
+													});//end of count
+												}//end of if
+												else {
+													console.log('in view.js : error (06)');
+												}//end of else
+										});//end of find
+									}
+								});//end of findOne
 								
 							});//end of count
 						}//end of if
@@ -662,9 +685,6 @@ var self = module.exports = {
 			}
 		});//end of findOne
 
-
-		
-		
 	},//end of post
 	
 	check_update_condition : function(req, res) {

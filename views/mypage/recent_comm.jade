@@ -93,17 +93,17 @@ html
 						tr
 							th.no 번호
 							th.author 게시판
-							th.no 글번호
-							th.title 내용
+							th.no 글 제목
+							th.title 댓글 내용
 							th.time 날짜
 							-for(var i=0; i<docs.length; i++)
 								-if(docs[i]){
 									tr
 										td.no #{length - ( (current_page-1) * paging ) - i}
 										td.author
-											a(href='/board/#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
-										td.no
-											a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].post_index}
+											a(href='/board/#{docs[i].board_id}', style="color:black;") #{board_name[i]}
+										td.title
+											a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{post_subject[i]}
 										td.title
 											a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
 										td.time
