@@ -215,3 +215,7 @@
 	height : 34px;
 	width : 370px;
 }
+#detail04 #boardMiddle a { color: #333333; text-decoration: none; }
+#detail04 #boardMiddle a:hover { color: gray; text-decoration: none; }
+
+#detail04 #boardMiddle li {list-style:none; border-bottom: #EEE solid 1px;}

@@ -25,7 +25,11 @@
 		sidebar: {
 			attachbox: {
 				show: true
+			},
+			capacity: {
+				maximum: 15 * 1024 * 1024
 			}
+			
 		},
 		size: {
 			contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
@@ -78,7 +82,6 @@
 			// existStage는 현재 본문에 존재하는지 여부
 			if (images[i].existStage) {
 				// data는 팝업에서 execAttach 등을 통해 넘긴 데이터
-				alert('attachment information - image[' + i + '] \r\n' + JSON.stringify(images[i].data));
 				formGenerator.createField(
 						tx.input({
 							'type': "hidden",
@@ -90,7 +93,6 @@
 		}
 		var files = editor.getAttachments('file');
 		for (var i = 0, len = files.length; i < len; i++) {
-			alert('attachment information - file[' + i + '] \r\n' + JSON.stringify(files[i].data));
 			formGenerator.createField(
 					tx.input({
 						'type': "hidden",

@@ -13,6 +13,48 @@ html
 		include ../common/header.jade
 		include ../common/mainMenu.jade
 		include ../common/subMenu/subMenu04.jade
+		script(type="text/javascript")
+			$("document").ready(function() {
+				$("#menu4_2").attr("style", "opacity:1");
+			});
+
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}
+			
+			$(document).ready(function(){
+			
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+				var data1 = eval(!{JSON.stringify(docs1)});
+				$.each(data1, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time1' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+				
+			});
 
 	#detail01
 		#detail01Text
@@ -26,49 +68,22 @@ html
 		#boardMiddle
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
-					thead
-						tr
-							th.title 파일 이름
-							th.download 다운로드
-							th.time 날짜
-							th.readNum 조회수
-					tbody
-						tr
-							td.title
-								a(href='/board/usermanual/14') 구름 사용자 메뉴얼 v1.0 (Korean, PDF)
-								a.replyNum(href='/board/usermanual/14') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
-						tr
-							td.title
-								a(href='/board/usermanual/13') 구름 사용자 메뉴얼 v0.2 (Korean, PDF)
-								a.replyNum(href='/board/usermanual/13') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
-						tr
-							td.title
-								a(href='/board/usermanual/12') 구름 사용자 메뉴얼 v0.1 (Korean, PDF)
-								a.replyNum(href='/board/usermanual/12') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
-						tr
-							td.title
-								a(href='/board/usermanual/11') 구름 사용자 메뉴얼 v0.0 (Korean, PDF)
-								a.replyNum(href='/board/usermanual/11') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
+					tr
+						th.title 파일 이름
+						th.download 다운로드
+						th.time 날짜
+						th.readNum 조회수
+						-for(var i=0; i<paging; i++)
+							-if(docs1[i]){
+								tr
+									td.title
+										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
+									td.author
+										a #{docs1[i].user_name}
+									td.time
+										div('id'='time1'+i)
+									td.readNum #{docs1[i].hit}
+							-}
 		#boardBottom
 			
 			
@@ -78,40 +93,22 @@ html
 		#boardMiddle
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
-					thead
-						tr
-							th.title 파일 이름
-							th.download 다운로드
-							th.time 날짜
-							th.readNum 조회수
-					tbody
-						tr
-							td.title
-								a(href='/board/developermanual/17') 구름 개발자 메뉴얼 v0.2 (Korean, PDF)
-								a.replyNum(href='/board/developermanual/17') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
-						tr
-							td.title
-								a(href='/board/developermanual/16') 구름 개발자 메뉴얼 v0.1 (Korean, PDF)
-								a.replyNum(href='/board/developermanual/16') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
-						tr
-							td.title
-								a(href='/board/developermanual/15') 구름 개발자 메뉴얼 v0.0 (Korean, PDF)
-								a.replyNum(href='/board/developermanual/15') [31]
-							td.download
-								a(href='')
-									#v10.downloadButton
-							td.time 12.07.09
-							td.readNum 12
+					tr
+						th.title 파일 이름
+						th.download 다운로드
+						th.time 날짜
+						th.readNum 조회수
+						-for(var i=0; i<paging; i++)
+							-if(docs[i]){
+								tr
+									td.title
+										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+									td.author
+										a #{docs[i].user_name}
+									td.time
+										div('id'='time'+i)
+									td.readNum #{docs[i].hit}
+							-}
 		#boardBottom
 			
 	script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')

@@ -11,124 +11,125 @@ html
 		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
 		-if(session!=-1)
 			link(rel='stylesheet', type='text/css', href='/css/cloud.css')
-		body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
-			#viewport
-				#world
-			-if(session!=-1)
-				include ../common/header
-				include ../common/mainMenu
-				include ../common/subMenu/subMenu03.jade
-		
-				script(src="/javascript/common.js")
-				script(src='/javascript/comment.js')
-				script(type='text/javascript')
-					var date_array = new Array();
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		-if(session!=-1)
+			include ../common/header
+			include ../common/mainMenu
+			include ../common/subMenu/subMenu03.jade
+	
+		script(src="/javascript/common.js")
+		script(src='/javascript/comment.js')
+		script(type='text/javascript')
+			var date_array = new Array();
+	
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits-1) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
 			
-					function leadingZeros(n, digits) {
-						var zero = '';
-						n = n.toString();
-						if (n.length < digits-1) {
-							for (i = 0; i < digits - n.length; i++)
-								zero += '0';
-						}
-						return zero + n;
-					}
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '년 ' + leadingZeros(d.getMonth() + 1, 2) + '월 ' + leadingZeros(d.getDate(), 2) + '일 ' + leadingZeros(d.getHours(), 2) + '시 ' + leadingZeros(d.getMinutes(), 2) + '분 ' + leadingZeros(d.getSeconds(), 2) + '초';
+				return s;
+			}				
+
+			function getTimeStampComment(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2) + ' ' + leadingZeros(d.getHours(), 2) + ':' + leadingZeros(d.getMinutes(), 2) + ':' + leadingZeros(d.getSeconds(), 2);
+				return s;
+			}				
+								
+			function makeCommentDiv(index, value){
+				var comm = document.createElement('div');
+				var comm_id = 'c'+index;
+				comm.setAttribute('id', comm_id);
+				
 					
-					function getTimeStamp(date) {
-						var d = new Date(date);
-						var s = leadingZeros(d.getFullYear(), 4) + '년 ' + leadingZeros(d.getMonth() + 1, 2) + '월 ' + leadingZeros(d.getDate(), 2) + '일 ' + leadingZeros(d.getHours(), 2) + '시 ' + leadingZeros(d.getMinutes(), 2) + '분 ' + leadingZeros(d.getSeconds(), 2) + '초';
-						return s;
-					}				
+				var comm_top = document.createElement('div');
+				comm_top.setAttribute('id', 'readCommentListTop');
+				
+				var user_name = document.createElement('div');
+				user_name.setAttribute('id', 'CommentUser');
+				user_name.innerHTML = value.user_id;
+				
+				var date = document.createElement('div');
+				date.setAttribute('id', 'CommentDate');
+				date.innerHTML = '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp'+getTimeStampComment(value.insert_date);
+					
+				var modify_button = document.createElement('div');
+				modify_button.setAttribute('id', 'CommentModify');
 
-					function getTimeStampComment(date) {
-						var d = new Date(date);
-						var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2) + ' ' + leadingZeros(d.getHours(), 2) + ':' + leadingZeros(d.getMinutes(), 2) + ':' + leadingZeros(d.getSeconds(), 2);
-						return s;
-					}				
-										
-					function makeCommentDiv(index, value){
-						var comm = document.createElement('div');
-						var comm_id = 'c'+index;
-						comm.setAttribute('id', comm_id);
-						
-						
-						var comm_top = document.createElement('div');
-						comm_top.setAttribute('id', 'readCommentListTop');
-						
-						var user_name = document.createElement('div');
-						user_name.setAttribute('id', 'CommentUser');
-						user_name.innerHTML = value.user_id;
-						
-						var date = document.createElement('div');
-						date.setAttribute('id', 'CommentDate');
-						date.innerHTML = '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp'+getTimeStampComment(value.insert_date);
-							
-						var modify_button = document.createElement('div');
-						modify_button.setAttribute('id', 'CommentModify');
+				var delete_button = document.createElement('div');						
+				delete_button.setAttribute('id', 'CommentDelete');
 
-						var delete_button = document.createElement('div');						
-						delete_button.setAttribute('id', 'CommentDelete');
-
-						if(('#{sessionId}' && '#{sessionId}' == value.user_id) || '#{sessionRole}' == 'admin'){
-							
-							var m_button = document.createElement('input');
-							m_button.setAttribute('type', 'button');
-							m_button.setAttribute('value', '수정');
-							m_button.setAttribute('class', 'clickable');
-							m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);}
-							
-							modify_button.appendChild(m_button);				
-							
-							var d_button = document.createElement('input');
-							d_button.setAttribute('type', 'button');
-							d_button.setAttribute('value', '삭제');
-							d_button.setAttribute('class', 'clickable');
-							d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
-							delete_button.appendChild(d_button);							
-						}
-						
-						comm_top.appendChild(user_name);
-						comm_top.appendChild(date);
-						comm_top.appendChild(modify_button);
-						comm_top.appendChild(delete_button);
-						
-						
-						var comm_bottom = document.createElement('div');
-						comm_bottom.setAttribute('id', 'readCommentListBottom');
-						
-						comm_bottom.innerHTML = value.content;
-						
-						comm.appendChild(comm_top);
-						comm.appendChild(comm_bottom);
-						return comm;
+				
+				
+				if(('#{sessionId}' && '#{sessionId}' == value.user_id) || '#{sessionRole}' == 'admin'){
+			
+					var m_button = document.createElement('input');
+					m_button.setAttribute('type', 'button');
+					m_button.setAttribute('value', '수정');
+					m_button.setAttribute('class', 'clickable');
+					m_button.onclick = function() {viewCommentModify(index, value.content, '#{board_id}', #{board.index}, value.index);}
+					
+					modify_button.appendChild(m_button);				
+					
+					var d_button = document.createElement('input');
+					d_button.setAttribute('type', 'button');
+					d_button.setAttribute('value', '삭제');
+					d_button.setAttribute('class', 'clickable');
+					d_button.onclick = function() {call_confirm_get('정말 삭제하시겠습니까?','/comment_delete/#{board_id}/#{board.index}/'+value.index);};
+					delete_button.appendChild(d_button);							
+				}
+				
+				comm_top.appendChild(user_name);
+				comm_top.appendChild(date);
+				comm_top.appendChild(modify_button);
+				comm_top.appendChild(delete_button);
+				
+				
+				var comm_bottom = document.createElement('div');
+				comm_bottom.setAttribute('id', 'readCommentListBottom');
+				
+				comm_bottom.innerHTML = value.content;
+				
+				comm.appendChild(comm_top);
+				comm.appendChild(comm_bottom);
+				return comm;
+			}
+			function check(){
+					var content = document.getElementById('commentForm').value || "";
+					
+					if( content ==  ""){
+						alert('빈 칸입니다.');
+						return false;
 					}
-					function check(){
-						var content = document.getElementById('commentForm').value || "";
-						
-						if( content ==  ""){
-							alert('빈 칸입니다.');
-							return false;
-						}
-						else if( content.length > 200){
-							alert('200자 이상은 달 수 없습니다.');
-							return false;		
-						}
-						else{
-							return true;
-						}
+					else if( content.length > 200){
+						alert('200자 이상은 달 수 없습니다.');
+						return false;		
 					}
+					else{
+						return true;
+					}
+				}
 
-				script(type='text/javascript')
-					$(document).ready(function(){
-						var data = eval(!{JSON.stringify(comment)});
-						$.each(data, function(index, value){
-							$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
-						});
-						$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
-						var __time = getTimeStamp('#{board.insert_date}')
-						$('#titleWrap #time').append('<div>' + __time + '</div>')
-						
-					});
+		script(type='text/javascript')
+			$(document).ready(function(){
+				var data = eval(!{JSON.stringify(comment)});
+				$.each(data, function(index, value){
+					$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
+				});
+				$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
+				var __time = getTimeStamp('#{board.insert_date}')
+				$('#titleWrap #time').append('<div>' + __time + '</div>')
+			});
 
 				
 		div#detail03
@@ -150,7 +151,7 @@ html
 					div#readButton(style="height:36px;width:142px;")
 						-if(session!=-1)
 							input( type ='button', id='list', value='목록', onClick="location.href='/board/#{board_id}'")
-						-if((session!=-1 && sessionId == board.user_id) || (sessionRole=='admin'))
+						-if((session!=-1 && sessionId == board.user_id) || (session!=-1 && sessionRole=='admin'))
 							input( type ='button', id='modify', value='수정', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
 							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 					-if(session!=-1)
@@ -166,8 +167,9 @@ html
 											-else
 												a(href='/board/#{board_id}/#{board.index}/#{i+1}') #{i+1}
 
-				div#readFooter
-					-if(session!=-1 && sessionId)
+
+				-if(session!=-1 && sessionId)
+					div#readFooter
 						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach
 								tr
@@ -182,39 +184,39 @@ html
 										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')																
 
 				div#boardList
-					table(cellspacing='0')
-						tr
-							th.no 번호
-							th.title 제목
-							th.author 글쓴이
-							th.time 날짜
-							th.readNum 조회수
-							-for(var i=0; i<docs.length; i++)
-								-if(pagedir == i && docs[i]){
-									tr
-										td.no(style="background-color:#e0e0e0;") #{i+1}
-										td.title(style="background-color:#e0e0e0;")
-											!{docs[i].subject}
-											a.replyNum [#{comment_number[i]}]
-										td.author(style="background-color:#e0e0e0;")
-											a #{docs[i].user_name}
-										td.time(style="background-color:#e0e0e0;")
-											div('id'='time'+i)
-										td.readNum(style="background-color:#e0e0e0;") #{docs[i].hit}										
-								-}
-								-else if(docs[i]){
-									tr
-										td.no #{i+1}
-										td.title
-											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
-											a.replyNum [#{comment_number[i]}]
-										td.author
-											a #{docs[i].user_name}
-										td.time
-											div('id'='time'+i)
-										td.readNum #{docs[i].hit}
-								-}
-
+					-if(session!=-1)
+						table(cellspacing='0')
+							tr
+								th.no 번호
+								th.title 제목
+								th.author 글쓴이
+								th.time 날짜
+								th.readNum 조회수
+								-for(var i=0; i<docs.length; i++)
+									-if(pagedir == i && docs[i]){
+										tr
+											td.no(style="background-color:#e0e0e0;") #{i+1}
+											td.title(style="background-color:#e0e0e0;")
+												!{docs[i].subject}
+												a.replyNum [#{comment_number[i]}]
+											td.author(style="background-color:#e0e0e0;")
+												a #{docs[i].user_name}
+											td.time(style="background-color:#e0e0e0;")
+												div('id'='time'+i)
+											td.readNum(style="background-color:#e0e0e0;") #{docs[i].hit}										
+									-}
+									-else if(docs[i]){
+										tr
+											td.no #{i+1}
+											td.title
+												a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+												a.replyNum [#{comment_number[i]}]
+											td.author
+												a #{docs[i].user_name}
+											td.time
+												div('id'='time'+i)
+											td.readNum #{docs[i].hit}
+									-}
 			div#boardBottom
 			
 			div('id'="divCommentUpd", style="display:none;")
