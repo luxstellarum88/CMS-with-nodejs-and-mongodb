@@ -244,6 +244,30 @@ var self = module.exports = {
 		});//end of find
 	}, //end of update
 	
+	getSubject : function(subject, callback){
+		var p = 0;
+		var len = 0;
+		var str;
+		var evt2 = new event_emitter();
+				
+		evt2.on('string_length', function(evt2, p){
+			if( len < 60 && p<subject.length ) {
+				if( subject.charCodeAt(p) > 255) len+=2;
+				else len+=1;
+				evt2.emit('string_length', evt2, ++p);
+			}
+			else{
+				if(p<subject.length)
+					str = subject.substr(0,p)+'...';
+				else
+					str = subject;
+					
+				callback(str);
+			}
+		});
+		
+		evt2.emit('string_length', evt2, p);
+	},
 		
 	show_contents : function(req, res) {
 		var model = db.get_model();
@@ -278,7 +302,7 @@ var self = module.exports = {
 						}
 						else{
 							dir = i;
-							console.log('dir : ' + dir);
+
 							evt2.on('make_docs', function(evt2, i, j){
 								if(j >= 3){
 									//render	
@@ -305,6 +329,10 @@ var self = module.exports = {
 										// console.log('length : ' + length);
 										docs_arr[count] = docs[i+j];
 										comment_number[count] = length || 0;
+										
+										self.getSubject(docs_arr[count].subject, function(string){
+											docs_arr[count].subject = string;
+										});
 									
 										if(index == docs_arr[count].index)
 											pagedir = count;
@@ -333,31 +361,6 @@ var self = module.exports = {
 		2012. 07. 13. by JH
 	*/
 	
-	getSubject : function(subject, callback){
-		var p = 0;
-		var len = 0;
-		var str;
-		var evt2 = new event_emitter();
-				
-		evt2.on('string_length', function(evt2, p){
-			if( len < 60 && p<subject.length ) {
-				if( subject.charCodeAt(p) > 255) len+=2;
-				else len+=1;
-				evt2.emit('string_length', evt2, ++p);
-			}
-			else{
-				if(p<subject.length)
-					str = subject.substr(0,p)+'...';
-				else
-					str = subject;
-					
-				callback(str);
-			}
-		});
-		
-		evt2.emit('string_length', evt2, p);
-	},
-
 	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
