@@ -16,7 +16,7 @@ var self = module.exports =  {
 	
 	logout : function(req,res) {
 		if ( req.session.user ) {
-			req.session.user = "";
+			req.session.destroy();
 		}
 		res.redirect('/');
 	}, //end of logout

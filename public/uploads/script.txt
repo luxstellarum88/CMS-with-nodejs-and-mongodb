@@ -1,0 +1,23 @@
+1. <head>와 </head> 사이에 삽입
+
+	<script type="text/javascript">
+	var omitformtags=["input", "textarea", "select"]
+	omitformtags=omitformtags.join("|")
+	function disableselect(e){
+	if (omitformtags.indexOf(e.target.tagName.toLowerCase())==-1)
+	return false
+	}
+	function reEnable(){
+	return true
+	}
+	if (typeof document.onselectstart!="undefined")
+	document.onselectstart=new Function ("return false")
+	else{
+	document.onmousedown=disableselect
+	document.onmouseup=reEnable
+	}
+	</script>
+
+2. <body> 문구를 하단의 내용으로 전환
+
+	<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">

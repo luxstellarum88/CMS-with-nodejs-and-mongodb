@@ -1,6 +1,7 @@
 html
 	head
 		title
+			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='/css/common.css')
 		link(rel='stylesheet', type='text/css', href='/css/index.css')
@@ -69,27 +70,27 @@ html
 					#boardTitleNews(onClick='javascript:show_news();')
 						보도자료
 				#boardMiddle
-					#notice 
+					#notice(style='overflow:hidden')
 						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
 							#boardNoticeMore(onClick='goto_notice();', style='cursor:hand; width:55px; position: absolute; left: 790; top: 207;')
 								+ 더보기
 							-if( null != notice ) 
 								-for(var i=0; i<notice.length; i++)
 									li 
-										-if( notice[i].subject.length > 45 )
-											a(href='/board/notice/#{notice[i].index}') #{notice[i].subject.substring(0,42)}...
+										-if( notice[i].subject.length > 28 )
+											a(href='/board/notice/#{notice[i].index}') #{notice[i].subject.substring(0,27)}...
 										-else
 											a(href='/board/notice/#{notice[i].index}') #{notice[i].subject}
 										
-					#news(style='margin-left: 10px; padding-top: 10px; display: none;')
+					#news(style='display: none; overflow:hidden;')
 						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
 							#boardNewsMore(onClick='goto_news();', style='cursor:hand;width:55px; position: absolute; left: 790; top: 207;')
 								+ 더보기
 							-if( null != news ) 
 								-for(var i=0; i<news.length; i++)
 									li 
-										-if( news[i].subject.length > 45 )
-											a(href='/board/news/#{news[i].index}') #{news[i].subject.substring(0,42)}...
+										-if( news[i].subject.length > 28 )
+											a(href='/board/news/#{news[i].index}') #{news[i].subject.substring(0,27)}...
 										-else
 											a(href='/board/news/#{news[i].index}') #{news[i].subject}
 				#boardBottom
