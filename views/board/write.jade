@@ -87,13 +87,16 @@ html
 						input(type='text',value='제목을 입력하세요', id='subject', name='subject', onfocus="clearContents(this);")
 					div#editorMiddle
 						include ../../public/lib/daumeditor-7.3.19/editor_container
-					div#editorFooter(style="height:50px;width:200px;align:center;")
+					div#editorFooter(style="height:50px;width:200px;text-align:center;")
 						input(type='hidden', id='id', name='id', value='#{id}')
 						input(type='hidden', id='name', name='name', value='#{session.name}')
-						input(type='button', id='preview' ,value='미리보기' , class='clickable')
+						a
+							img#previewButton(src='/images/board/button_preview.png')
 						a(href='javascript:submit();')
 							img#submitButton(src='/images/board/button_submit.png')
-						input( type ='button', id='list', value='취소', onClick="location.href='/board/#{id}'", class='clickable')
+						&nbsp;&nbsp;
+						a(href="location.href='/board/#{id}'", id="list")
+							img#cancelButton(src='/images/board/button_cancel.png')
 			
 				div#boardBottom 
 		include ../common/footer

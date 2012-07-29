@@ -84,7 +84,6 @@ function requiresSuperUserLogin(req, res, next){
 
 // Routes
 
-//--------------------------------------using
 app.get('/', routes.index);
 
 // HTML PAGE RENDERING PART
@@ -196,10 +195,9 @@ app.get('/comment_delete/:id/:num/:index', requiresLogin, routes.comment_delete)
 app.get('/comment_update/:id/:num', requiresLogin, routes.comment_update);
 app.post('/comment_check', requiresLogin, routes.comment_check_ajax);
 
-//--------------------------------------using
 app.post('/board_preview', routes.boardPreview);	// preview contents in a write mode. by Yoon-seop
 
-app.post('/file_upload', function(req, res, next){
+app.post('/image_upload', function(req, res, next){
 	
 	var tmp_path = req.files.thumbnail.path;
 	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
@@ -207,10 +205,32 @@ app.post('/file_upload', function(req, res, next){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
 			if(err) throw err;
-			res.send('success');
+			res.send('image rename success');
 		});
 	});
 });
+
+app.post('/file_upload', function(req, res, next){
+	console.log(req.body);
+	console.log(req.files);
+	
+	var tmp_path = req.files.file.path;	
+	var target_path = __dirname +'/public/uploads/' + req.files.file.name;
+	fs.rename(tmp_path, target_path, function(err){
+		if(err) throw err;
+		fs.unlink(tmp_path, function(){
+			if(err) throw err;
+			res.send('file rename success');
+		});
+	});
+});
+
+//for user information page(my page)
+app.get('/mypage', requiresLogin, routes.mypage_auth);
+app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
+app.post('/mypage/update', requiresLogin, routes.mypage_update);
+app.post('/mypage/recent_docs', requiresLogin, routes.mypage_recent_docs);
+app.post('/mypage/recent_comm', requiresLogin, routes.mypage_recent_comm);
 
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

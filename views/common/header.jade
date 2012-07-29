@@ -9,22 +9,46 @@ script
 	function save_url(){
 		document.getElementById('url').value = location.href;
 	}
+	function mypage(){
+		location.href='/mypage';
+	}
 	
 	$("document").ready(function() {
 		$("#go_top").css("top", $(window).height()-100);
 		$("#go_top").css("left", ($(window).width()+1000)/2);
-		
 		var currentPosition = parseInt($("#go_top").css("top"));
-		
 		$(window).resize(function(){
 			$("#go_top").css("top", $(window).height()-100);
 			$("#go_top").css("left", ($(window).width()+1000)/2);
 			currentPosition = parseInt($("#go_top").css("top"));
 		});
-		
 		$(window).scroll(function() {	
 			var position = $(window).scrollTop();
 			$("#go_top").stop().animate({"top":position+currentPosition+"px"},500);
+		});
+	});
+	
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#mainMenu #menu1").mouseover(function(){
+			$("#subMenu1").attr("style", "display: block");
+			$("#subMenu2, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu2").mouseover(function(){
+			$("#subMenu2").attr("style", "display: block");
+			$("#subMenu1, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu3").mouseover(function(){
+			$("#subMenu3").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu4").mouseover(function(){
+			$("#subMenu4").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu5").mouseover(function(){
+			$("#subMenu5").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu4").attr("style", "display: none");
 		});
 	});
 
@@ -32,12 +56,16 @@ script
 #topMenu
 	- if(!session)
 		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();')
-			input#idInputBox(type='text', name='id')
+			- if (typeof(cookie_id) == 'undefined')
+				input#idInputBox(type='text', name='id', value='')
+			- else
+				input#idInputBox(type='text', name='id', value='#{cookie_id}')
 			input#pwInputBox(type='password', name='password')
 			input#pwUrlBox(type='hidden', name='url', id='url', value='')
 			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
 			input#signUpButton(type='button', name='signUp', onclick='join();', class='clickable')
 	- else
-		div(style='display:inline;position:absolute;top:5px;left:0px;text-align:right;width:340px;') !{session.Id} 님이 로그인 하셨습니다.
+		div(style='display:inline;position:absolute;top:5px;left:0px;text-align:right;width:250px;') !{session.Id} 님이 로그인 하셨습니다.
 		a(href='/logout')
 			#logoutButton
+		#logoutButton(onclick='mypage();')

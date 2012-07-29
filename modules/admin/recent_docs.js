@@ -14,7 +14,7 @@ var self = module.exports = {
 				res.render('admin/board_recent_view', {
 					title : '최근 게시물'
 					, docs : docs
-					, session: req.session.user				
+					, session: req.session.user, cookie_id: req.cookies.id				
 				});//end of render
 			}//end of if
 			else {
@@ -34,7 +34,7 @@ var self = module.exports = {
 				res.render('admin/recent_comment_view', {
 					title : '최근 코멘트'
 					, docs : docs
-					, session: req.session.user
+					, session: req.session.user, cookie_id: req.cookies.id
 				})//end of render
 			}//end of err
 			else {

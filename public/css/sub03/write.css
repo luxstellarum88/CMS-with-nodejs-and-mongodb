@@ -67,6 +67,10 @@
 	height : 34px;
 	width : 876px;
 }
+
+#previewButton { left: 53px; position: absolute; }
+#confirmButton { }
+#cancelButton { }
 /*
 #detailWrap{ width:876px; height:279px; position:relative; left:50%; margin-left:-438px; margin-top: 20px }
 #detail03{ width:486px; float:left}
