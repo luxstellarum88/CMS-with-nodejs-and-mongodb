@@ -1,6 +1,7 @@
 html
 	head
 		title
+			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
 		link(rel='stylesheet', type='text/css', href='../css/sub04/sub02.css')
@@ -84,6 +85,10 @@ html
 										div('id'='time1'+i)
 									td.readNum #{docs1[i].hit}
 							-}
+				-if(session)
+					div(style="text-align: right;top: 15;position: relative;")
+						a(href="/board/usermanual")
+							[게시판으로 이동]
 		#boardBottom
 			
 			
@@ -109,6 +114,10 @@ html
 										div('id'='time'+i)
 									td.readNum #{docs[i].hit}
 							-}
+				-if(session)
+					div(style="text-align: right;top: 15;position: relative;")
+						a(href="/board/developermanual")
+							[게시판으로 이동]
 		#boardBottom
 			
 	script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
