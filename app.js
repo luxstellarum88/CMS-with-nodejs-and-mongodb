@@ -228,6 +228,8 @@ app.post('/file_upload', function(req, res, next){
 app.get('/mypage', requiresLogin, routes.mypage_auth);
 app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
 app.post('/mypage/update', requiresLogin, routes.mypage_update);
+app.post('/mypage/recent_docs', requiresLogin, routes.mypage_recent_docs);
+app.post('/mypage/recent_comm', requiresLogin, routes.mypage_recent_comm);
 
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

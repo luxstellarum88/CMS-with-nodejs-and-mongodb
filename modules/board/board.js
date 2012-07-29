@@ -308,7 +308,7 @@ var self = module.exports = {
 									
 										if(index == docs_arr[count].index)
 											pagedir = count;
-\									
+									
 										count++;
 										evt2.emit('make_docs', evt2, i, ++j);
 									});

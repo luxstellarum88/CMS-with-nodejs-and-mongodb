@@ -1,5 +1,6 @@
 var user_db = require('../Database/ConnectDB');
 var board_db = require('../Database/board/board_db');
+var comment_db = require('../Database/board/comment_db');
 var event_emitter = require('events').EventEmitter;
 var alert = require('../alert/alert');
 
@@ -23,12 +24,18 @@ var self = module.exports = {
 	,update : function(req, res) {
 		user_db.connectUserDB();
 		var model = user_db.tossUserModel();
-		req.body.mypage_password = req.body.mypage_password || req.session.user.password;
-		req.body.mypage_confirm = req.body.mypage_confirm || req.session.user.password;
 		var id = req.body.mypage_id,
 			password = req.body.mypage_password || req.session.user.password,
+			confirm = req.body.mypage_confirm || req.session.user.password,
 			name = req.body.mypage_name,
 			email = req.body.mypage_email;
+		
+		var user = {
+			 mypage_password : password
+			,mypage_name : name
+			,mypage_confirm : confirm
+			,mypage_email : email
+		};
 			
 		var condition = { Id : id };
 		var update = { password : password
@@ -36,7 +43,6 @@ var self = module.exports = {
 						,email : email };
 						
 		var evt = new event_emitter();
-		 
 		evt.on('update', function(error_code) {
 			switch(error_code) {
 				case 0:
@@ -87,7 +93,7 @@ var self = module.exports = {
 			}//end of switch
 		});
 		
-		self.check_update_condition(req.body, evt);		
+		self.check_update_condition(user, evt);		
 	}//end of update
 	
 	,check_update_condition : function(user, evt) {
@@ -96,7 +102,7 @@ var self = module.exports = {
 		var regular_expression_password = /^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{8,15}/;
 		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
 		var error_code = 0;
-		
+		console.log('in mypage.js, update : password : ' + user.mypage_password + ' -- confirm : ' + user.mypage_confirm);
 		if ( user.mypage_name == "" || user.mypage_email == "" ) {
 			error_code = 1;
 			console.log('in mypage.js _ check_update_condition _ if (1)');
@@ -141,13 +147,17 @@ var self = module.exports = {
 		user_db.connectUserDB();
 		var model = user_db.tossUserModel();
 		var id = req.session.user.Id;
-		
+		var authed = 0;
+		if(req.session.user) {
+			authed = 101;
+		}
+
 		model.findOne({Id:id}, function(err, docs) {
 			if(!err) {
 				res.render('mypage/inform', {
 					 title : '회원정보수정'
 					,session : req.session.user
-					,authed : 101
+					,authed : authed
 					,user : docs 
 				});//end of render
 			}//end of if
@@ -157,5 +167,80 @@ var self = module.exports = {
 		});//end of findOne;
 	}//end of inform_page
 	
+	,recent_docs_page : function(req, res) {
+		board_db.connect();
+		var model = board_db.get_model();
+		var id = req.session.user.Id;
+		var current_page = req.body.page || 1;
+		var paging_size = 10;
+		var skip_size = (current_page * paging_size) - paging_size;
+		var authed = 0;
+		if(req.session.user) {
+			authed = 101;
+		}
+		
+		model.find({user_id:id, deleted:false}).sort('insert_date', -1)
+					.skip(skip_size).limit(paging_size).exec(function(err, docs){
+			if(!err) {
+				model.count({user_id : id, deleted : false}, function(err, length){
+					if(!err){
+						res.render('mypage/recent_docs', {
+							 title : '작성 글 목록'
+							,session : req.session.user
+							,authed : authed
+							,current_page : current_page
+							,docs : docs
+							,paging : paging_size
+							,length : length
+						});//end of render
+					}//end of if
+					else {
+						console.log('in mypage.js, recent_docs_page : error(02)');
+					}//end of else
+				});//end of count
+			}//end of if
+			else {
+				console.log('in mypage.js, recent_docs_page : error(01)');
+			}//end of else
+		});//end of find
+	}//end of inform_page
+	
+	,recent_comm_page : function(req, res) {
+		comment_db.connect();
+		var model = comment_db.get_model();
+		var id = req.session.user.Id;
+		var current_page = req.body.page || 1;
+		var paging_size = 10;
+		var skip_size = (current_page * paging_size) - paging_size;
+		var authed = 0;
+		if(req.session.user) {
+			authed = 101;
+		}
+		
+		model.find({user_id:id, deleted:false}).sort('insert_date', -1)
+					.skip(skip_size).limit(paging_size).exec(function(err, docs){
+			if(!err) {
+				model.count({user_id:id, deleted:false}, function(err, length){
+					if(!err){						
+						res.render('mypage/recent_comm', {
+							 title : '작성 댓글 목록'
+							,session : req.session.user
+							,authed : authed
+							,current_page : current_page
+							,docs : docs
+							,paging : paging_size
+							,length : length
+						});//end of render
+					}//end of if
+					else {
+						console.log('in mypage.js, recent_docs_page : error(02)');
+					}//end of else
+				});//end of count
+			}//end of if
+			else {
+				console.log('in mypage.js, recent_docs_page : error(01)');
+			}//end of else
+		});//end of find
+	}//end of inform_page
 	
 };//end of module export

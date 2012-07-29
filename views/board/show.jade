@@ -61,7 +61,7 @@ html
 						
 						var date = document.createElement('div');
 						date.setAttribute('id', 'CommentDate');
-						date.innerHTML = getTimeStampComment(value.insert_date);
+						date.innerHTML = '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp'+getTimeStampComment(value.insert_date);
 							
 						var modify_button = document.createElement('div');
 						modify_button.setAttribute('id', 'CommentModify');
@@ -122,11 +122,9 @@ html
 					$(document).ready(function(){
 						var data = eval(!{JSON.stringify(comment)});
 						$.each(data, function(index, value){
-							if(value){
-								$('#readCommentList').append(makeCommentDiv(index, value));
-							}
+							$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
 						});
-						
+						$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
 						var __time = getTimeStamp('#{board.insert_date}')
 						$('#titleWrap #time').append('<div>' + __time + '</div>')
 						
@@ -157,61 +155,66 @@ html
 							input( type ='button', id='delete', value='삭제', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 					-if(session!=-1)
 						div#readCommentList
+							div#commentTop
+							div#commentMiddle
+							div#commentBottom
+								-if(session!=-1)
+									div#readCommentPaging
+										-for(var i=0; i<length; i++)
+											-if(current_comment==i+1)
+												a(href='/board/#{board_id}/#{board.index}/#{i+1}', class='select') #{i+1}
+											-else
+												a(href='/board/#{board_id}/#{board.index}/#{i+1}') #{i+1}
 
 				div#readFooter
-					-if(session!=-1)
-						div#readCommentPaging
-							-for(var i=0; i<length; i++)
-								-if(current_comment==i+1)
-									[#{i+1}]
-								-else
-									a(href='/board/#{board_id}/#{board.index}/#{i+1}') [#{i+1}]
 					-if(session!=-1 && sessionId)
 						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
 							table#CommentAttach
 								tr
-									td.content #{sessionId}
-									td.content(colspan='3')
-										textarea(id='commentForm', name='commentForm', style="resize:none; width:480px; height:110px;")
+									td.content(id='commentUser') #{sessionId}
+									td.content(id='commentContent', colspan='3')
+										textarea(id='commentForm', name='commentForm')
 										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
 										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
-									td.content
-										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')
-															
-					div#boardList
-						table(cellspacing='0')
-							tr
-								th.no 번호
-								th.title 제목
-								th.author 글쓴이
-								th.time 날짜
-								th.readNum 조회수
-								-for(var i=0; i<docs.length; i++)
-									-if(pagedir == i && docs[i]){
-										tr
-											td.no(style="background-color:#e0e0e0;") #{i+1}
-											td.title(style="background-color:#e0e0e0;")
-												!{docs[i].subject}
-												a.replyNum [#{comment_number[i]}]
-											td.author(style="background-color:#e0e0e0;")
-												a #{docs[i].user_name}
-											td.time(style="background-color:#e0e0e0;")
-												div('id'='time'+i)
-											td.readNum(style="background-color:#e0e0e0;") #{docs[i].hit}										
-									-}
-									-else if(docs[i]){
-										tr
-											td.no #{i+1}
-											td.title
-												a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
-												a.replyNum [#{comment_number[i]}]
-											td.author
-												a #{docs[i].user_name}
-											td.time
-												div('id'='time'+i)
-											td.readNum #{docs[i].hit}
-									-}
+
+									td.content(id='commentSubmit')
+										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')																
+
+				div#boardList
+					table(cellspacing='0')
+						tr
+							th.no 번호
+							th.title 제목
+							th.author 글쓴이
+							th.time 날짜
+							th.readNum 조회수
+							-for(var i=0; i<docs.length; i++)
+								-if(pagedir == i && docs[i]){
+									tr
+										td.no(style="background-color:#e0e0e0;") #{i+1}
+										td.title(style="background-color:#e0e0e0;")
+											!{docs[i].subject}
+											a.replyNum [#{comment_number[i]}]
+										td.author(style="background-color:#e0e0e0;")
+											a #{docs[i].user_name}
+										td.time(style="background-color:#e0e0e0;")
+											div('id'='time'+i)
+										td.readNum(style="background-color:#e0e0e0;") #{docs[i].hit}										
+								-}
+								-else if(docs[i]){
+									tr
+										td.no #{i+1}
+										td.title
+											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+											a.replyNum [#{comment_number[i]}]
+										td.author
+											a #{docs[i].user_name}
+										td.time
+											div('id'='time'+i)
+										td.readNum #{docs[i].hit}
+								-}
+
 			div#boardBottom
 			
 			div('id'="divCommentUpd", style="display:none;")

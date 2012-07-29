@@ -1,6 +1,5 @@
-#subMenu
-	ul.submenu
-		li.submenu
-			a#menu1(href='install') 설치
-		li.submenu
-			a#menu2(href='manual') 사용자 메뉴얼
+include ./subMenu
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#subMenu4").attr("style", "display: block");
+	});
