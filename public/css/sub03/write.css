@@ -68,7 +68,7 @@
 	width : 876px;
 }
 
-#previewButton { left: 53px; position: absolute; }
+#previewButton { left: 53px; position: absolute; cursor:hand;}
 #confirmButton { }
 #cancelButton { }
 /*
