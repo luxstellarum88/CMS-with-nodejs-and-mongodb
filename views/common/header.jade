@@ -65,7 +65,7 @@ script(type="text/javascript")
 			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
 			input#signUpButton(type='button', name='signUp', onclick='join();', class='clickable')
 	- else
-		div(style='display:inline;position:absolute;top:5px;left:0px;text-align:right;width:340px;') !{session.Id} 님이 로그인 하셨습니다.
+		div(style='display:inline;position:absolute;top:5px;left:0px;text-align:right;width:250px;') !{session.Id} 님이 로그인 하셨습니다.
 		a(href='/logout')
 			#logoutButton
-		input(type='button', name='mypage', onclick='mypage();', value='회원정보')
+		#logoutButton(onclick='mypage();')
