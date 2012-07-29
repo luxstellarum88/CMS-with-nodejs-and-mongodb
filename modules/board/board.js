@@ -29,11 +29,10 @@ var self = module.exports = {
 		var find_model = db.get_model();
 		var index = 1;
 		var write_type;
-	
 		find_model.findOne().sort('index', -1).exec(function(err, docs){
 			if ( !err ) {
-				if ( docs ) index = docs.index + 1;	
-		
+				if ( docs ) index = docs.index + 1;
+				
 				make_model.board_id = req.body.id;
 				make_model.notice = req.body.write_type || false; 
 				make_model.index = index; 
@@ -45,7 +44,8 @@ var self = module.exports = {
 				make_model.insert_date = new Date();
 				make_model.update_date = new Date();
 				make_model.deleted = false;
-				
+				make_model.file = req.body.tx_attach_file;
+				console.log("board.js insert file : " + make_model.file);
 				make_model.save(function(err) {
 					if ( !err ) {
 						console.log('in write.js : insert success');
@@ -423,6 +423,7 @@ var self = module.exports = {
 				});//end of counter			
 			}//end of if
 			else {
+				console.log("board.js 426 display_result : " + docs.file);
 				res.render('board/view', {
 					board_id: board_id,
 					title: title,
@@ -641,6 +642,7 @@ var self = module.exports = {
 				model.find({notice : false, deleted : false, board_id : board_id})
 					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						docs1 = docs;
+						console.log("board.js 645 docs1: " + docs1);
 						if ( !err ) {
 							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
 								length1 = length;

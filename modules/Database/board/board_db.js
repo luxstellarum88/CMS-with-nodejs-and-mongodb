@@ -15,7 +15,8 @@ var schema = new Schema({
 	hit : Number,
 	insert_date : Date,
 	update_date : Date,
-	deleted : Boolean
+	deleted : Boolean,
+	file : Array
 });//end of board_schema
 
 var model;

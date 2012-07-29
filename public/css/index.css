@@ -144,22 +144,45 @@
 	width : 376px;
 	margin-left : 10px;
 	float : left;
-	padding-top : 0;
+	padding-top : 10px;
 	padding-bottom : 0;
 }
 #detail03 #boardMiddle #wrap #title {
 	color : #334d66;
 	font-family : 'NanumGorhicWeb';
 	font-size : 11pt;
-	height : 40px;
-	vertical-align : middle;
-	display : table-cell;
+/* 	height : 40px; */
+/* 	line-height: 40px; */
 }
-#detail03 #boardMiddle #wrap #contents {
+#detail03 #boardMiddle #wrap #contents1 {
 	color : black;
 	font-family : 'NanumGorhicWeb';
 	font-size : 9pt;
+	margin-top: 5px;
 }
+#detail03 #boardMiddle #wrap #contents2 {
+	color : #b3b3b3;
+	font-family : 'NanumGorhicWeb';
+	font-size : 7pt;
+	margin-top: 2px;
+}
+#detail03 #boardMiddle #wrap #latestVersionDownloadButton { 
+	background: url('/images/button_latestVersionDownload.png'); 
+	width:153px;
+	height:36px;
+	margin-top: 14px;
+	float: left;
+}
+#detail03 #boardMiddle #wrap #versionInfo {
+	color : black;
+	font-family : 'NanumGorhicWeb';
+	font-size : 8pt;
+	text-align: left;
+	float: left;
+	margin-top: 19px;
+	margin-left: 20px;
+}
+
 #detail03 #boardBottom {
 	background-image : url('/images/boardBottom_480px.png');
 	height : 34px;

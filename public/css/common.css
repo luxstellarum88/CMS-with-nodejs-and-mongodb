@@ -64,6 +64,13 @@ input:-webkit-autofill{
 	float : right;
 	margin-left : 10px;
 }
+#myPageButton {
+	background : url('/images/button_myPage.png');
+	width : 77px;
+	height : 25px;
+	float : right;
+	margin-left : 10px;
+}
 #signUpButton {
 	background : url('/images/signUpButton.png');
 	width : 77px;

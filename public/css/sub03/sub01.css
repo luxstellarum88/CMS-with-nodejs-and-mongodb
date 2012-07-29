@@ -1,6 +1,6 @@
 
 #boardMiddle #boardList {
-	margin-left:4px;
+	margin-left:3px;
 }
 #boardMiddle #boardList th {
 	padding: 10px 0 11px 0 ;
@@ -15,7 +15,7 @@
 	background: url("../../images/boardHeadBackground_left.png")
 }
 #boardMiddle #boardList th.title { 
-	width: 455px; 
+	width: 440px; 
 	text-align: center; 
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
@@ -25,7 +25,7 @@
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
 #boardMiddle #boardList th.time { 
-	width: 76px; 
+	width: 91px; 
 	text-align: center;
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
@@ -87,12 +87,12 @@
 
 #boardMiddle #boardList td.time { 
 	text-align: center;
-	width: 64px;
+/* 	width: 64px; */
 }
 
 #boardMiddle #boardList td.time p { 
 	text-align: center;
-	width: 64px;
+/* 	width: 64px; */
 }
 
 #boardMiddle #boardList td.readNum { 
