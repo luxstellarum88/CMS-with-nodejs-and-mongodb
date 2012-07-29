@@ -1,6 +1,10 @@
 var user_db = require('../Database/ConnectDB');
 var board_db = require('../Database/board/board_db');
 var comment_db = require('../Database/board/comment_db');
+
+var comment = require('../comment/comment');
+var board = require('../board/board');
+
 var event_emitter = require('events').EventEmitter;
 var alert = require('../alert/alert');
 
@@ -12,12 +16,14 @@ var self = module.exports = {
 		var id = req.session.user.Id;
 		
 		model.findOne({Id:id}, function(err, docs) {
-			if(docs.password === password) {
-				self.inform_page(req, res);
-			}//end of if
-			else {
-				self.index_page(req, res);
-			}//end of else
+			if(!err){
+				if(docs.password === password) {
+					self.inform_page(req, res);
+				}//end of if
+				else {
+					self.index_page(req, res);
+				}//end of else
+			}
 		});//end of findOne;
 	}//end of authed
 	
@@ -48,6 +54,9 @@ var self = module.exports = {
 				case 0:
 					model.update(condition, update, null, function(err) {
 						if(!err){
+							req.session.user.name = name;
+							req.session.user.password = password;
+							req.session.user.email = email;
 							self.inform_page(req, res);
 						}//end of if
 						else {
@@ -100,7 +109,7 @@ var self = module.exports = {
 		var regular_expression_id = /^[0-9a-zA-Z]{4,15}$/;
 		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z0-9]+)(\.[a-zA-Z]+)?$/;
 		var regular_expression_password = /^(?=([a-zA-Z]+[0-9]+[a-zA-Z0-9]*|[0-9]+[a-zA-Z]+[a-zA-Z0-9]*)$).{8,15}/;
-		var regular_expression_name = /^[0-9a-zA-Z._-]{3,15}$/;
+		var regular_expression_name = /^[가-힣0-9a-zA-Z._-]{3,15}$/;
 		var error_code = 0;
 		console.log('in mypage.js, update : password : ' + user.mypage_password + ' -- confirm : ' + user.mypage_confirm);
 		if ( user.mypage_name == "" || user.mypage_email == "" ) {
@@ -175,29 +184,56 @@ var self = module.exports = {
 		var paging_size = 10;
 		var skip_size = (current_page * paging_size) - paging_size;
 		var authed = 0;
+		
+		var evt = new event_emitter();
+		var comm_count  = new Array();
+		var board_name = new Array();
+		var i = 0;
+		
 		if(req.session.user) {
 			authed = 101;
 		}
-		
+				
 		model.find({user_id:id, deleted:false}).sort('insert_date', -1)
 					.skip(skip_size).limit(paging_size).exec(function(err, docs){
 			if(!err) {
-				model.count({user_id : id, deleted : false}, function(err, length){
-					if(!err){
-						res.render('mypage/recent_docs', {
-							 title : '작성 글 목록'
-							,session : req.session.user, cookie_id: req.cookies.id
-							,authed : authed
-							,current_page : current_page
-							,docs : docs
-							,paging : paging_size
-							,length : length
-						});//end of render
+				
+				evt.on('comm_count', function(evt, i) {
+					if(i < docs.length) {
+						comment.counter(docs[i].index, function(result){
+							board.get_board_name(docs[i].board_id, function(name_result){
+								board.getSubject(docs[i].subject, function(subject_result){
+									comm_count[i] = result;
+									board_name[i] = name_result;
+									docs[i].subject = subject_result;
+									evt.emit('comm_count', evt, ++i);
+								});//end of getSubject
+							});
+						});//end of counter
 					}//end of if
-					else {
-						console.log('in mypage.js, recent_docs_page : error(02)');
+					else{
+						model.count({user_id : id, deleted : false}, function(err, length){
+							if(!err){
+								res.render('mypage/recent_docs', {
+									 title : '작성 글 목록'
+									,session : req.session.user, cookie_id: req.cookies.id
+									,authed : authed
+									,current_page : current_page
+									,docs : docs
+									,paging : paging_size
+									,length : length
+									,comm_number : comm_count
+									,board_name : board_name
+								});//end of render
+							}//end of if
+							else {
+								console.log('in mypage.js, recent_docs_page : error(02)');
+							}//end of else
+						});//end of count
 					}//end of else
-				});//end of count
+				});//end of evt on
+				
+				evt.emit('comm_count', evt, i);				
 			}//end of if
 			else {
 				console.log('in mypage.js, recent_docs_page : error(01)');
@@ -213,6 +249,13 @@ var self = module.exports = {
 		var paging_size = 10;
 		var skip_size = (current_page * paging_size) - paging_size;
 		var authed = 0;
+		
+		var evt = new event_emitter();
+		var post_subject  = new Array();
+		var board_name = new Array();
+		var i = 0;
+		
+		
 		if(req.session.user) {
 			authed = 101;
 		}
@@ -220,22 +263,39 @@ var self = module.exports = {
 		model.find({user_id:id, deleted:false}).sort('insert_date', -1)
 					.skip(skip_size).limit(paging_size).exec(function(err, docs){
 			if(!err) {
-				model.count({user_id:id, deleted:false}, function(err, length){
-					if(!err){						
-						res.render('mypage/recent_comm', {
-							 title : '작성 댓글 목록'
-							,session : req.session.user, cookie_id: req.cookies.id
-							,authed : authed
-							,current_page : current_page
-							,docs : docs
-							,paging : paging_size
-							,length : length
-						});//end of render
+				evt.on('get_post_inform', function(evt, i) {
+					if(i < docs.length) {
+						board.get_post_subject(docs[i].index, function(subject){
+							board.get_board_name(docs[i].board_id, function(name){
+								post_subject[i] = subject;
+								board_name[i] = name;
+								evt.emit('get_post_inform', evt, ++i);
+							});
+						});//end of counter
 					}//end of if
-					else {
-						console.log('in mypage.js, recent_docs_page : error(02)');
+					else{
+						model.count({user_id:id, deleted:false}, function(err, length){
+							if(!err){						
+								res.render('mypage/recent_comm', {
+									 title : '작성 댓글 목록'
+									,session : req.session.user, cookie_id: req.cookies.id
+									,authed : authed
+									,current_page : current_page
+									,docs : docs
+									,paging : paging_size
+									,length : length
+									,board_name : board_name
+									,post_subject : post_subject
+								});//end of render
+							}//end of if
+							else {
+								console.log('in mypage.js, recent_docs_page : error(02)');
+							}//end of else
+						});//end of count
 					}//end of else
-				});//end of count
+				});//end of evt on
+				
+				evt.emit('get_post_inform', evt, i);
 			}//end of if
 			else {
 				console.log('in mypage.js, recent_docs_page : error(01)');

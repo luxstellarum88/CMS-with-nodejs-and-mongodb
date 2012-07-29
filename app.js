@@ -226,7 +226,8 @@ app.post('/file_upload', function(req, res, next){
 });
 
 //for user information page(my page)
-app.get('/mypage', requiresLogin, routes.mypage_auth);
+app.get('/mypage', requiresLogin, routes.mypage_auth_page);
+app.post('/mypage/auth', requiresLogin, routes.mypage_auth);
 app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
 app.post('/mypage/update', requiresLogin, routes.mypage_update);
 app.post('/mypage/recent_docs', requiresLogin, routes.mypage_recent_docs);

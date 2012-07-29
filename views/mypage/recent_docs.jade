@@ -100,9 +100,10 @@ html
 									tr
 										td.no #{length - ( (current_page-1) * paging ) - i}
 										td.author
-											a(href='/board/#{docs[i].board_id', style="color:black;") #{docs[i].board_id}
+											a(href='/board/#{docs[i].board_id', style="color:black;") #{board_name[i]}
 										td.title
 											a(href='/board/#{docs[i].board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+											[#{comm_number[i]}]
 										td.time
 											div('id'='time'+i)
 										td.readNum #{docs[i].hit}
