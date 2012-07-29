@@ -60,7 +60,8 @@ exports.html_sub4_1 = function(req, res){
 	res.render('sub04/sub01', { title: '사용방법 > 설치' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub4_2 = function(req, res){
-	res.render('sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render('sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/manual');
 }
 // exports.html_sub4_3 = function(req, res){
 	// res.render('sub04/sub03', { title: 'sub4_3' , session: req.session.user });
@@ -370,4 +371,7 @@ exports.commentDelete = function(req, res){
 	commDelete.deleteComment(board_id, board_num, comment_id, password, res);
 }
 
+exports.manual = function(req, res){
+	board.manual(req,res);
+}
 

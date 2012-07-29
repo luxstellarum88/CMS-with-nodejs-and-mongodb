@@ -420,6 +420,37 @@ var self = module.exports = {
 	/*
 		2012. 7. 20. by JH
 	*/
+	display_result2 : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
+		var comment = require('../comment/comment');
+		var i = 0;
+		var j = 0;
+		var k = 0;
+		var evt = new event_emitter();
+		
+		console.log("in board.js display : " + docs.length);
+		console.log("in board.js display : " + docs1.length);
+		
+		
+
+			res.render('sub04/sub02', {
+				board_id: board_id,
+				title: title,
+				docs: docs,
+				docs1: docs1,
+				current_page: current_page,
+				paging: paging_size,
+				length: length,
+				length1: length1,				
+				sessionId: sessionId,
+				type: type,
+				content: content,
+				session: req.session.user
+			});//end of render
+
+		evt.emit('notice_comment_counting', evt, i);
+		evt.emit('subject_cutting',evt,k);		
+	},//end of display_result
+
 	get_board_data : function(id, limit, callback){
 		var model = db.get_model();
 		var list_model = list_db.get_model();
@@ -551,6 +582,86 @@ var self = module.exports = {
 				console.log('in view.js : error(01)');
 			}//end of else
 		});//end of findOne
+	},//end of post
+
+	manual : function(req, res) {
+		
+		var model = db.get_model();
+		var list_model = list_db.get_model();
+		var board_id = 'usermanual'; 
+		var board_id2 = 'developermanual'; 
+		var docs1 = new Array();
+		var docs2 = new Array();
+		var length1, length2;
+		/*
+			posts part
+		*/
+		list_model.findOne({id : board_id}, function(err, board){		
+			if ( !err && board ) {
+				var current_page = req.query.page || 1;
+				var type = req.query.type || "";
+				var content = req.query.content || "";
+								
+				var title = board.name || "";
+				var paging_size = board.paging; 
+						
+				var skip_size = (current_page * paging_size) - paging_size;
+				
+				var session_id = "";
+				if(req.session.user)
+					session_id = req.session.user.Id;
+				
+				var search_reg_exp = new RegExp(content);
+									
+				model.find({notice : false, deleted : false, board_id : board_id})
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+						docs1 = docs;
+						if ( !err ) {
+							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
+								length1 = length;
+		list_model.findOne({id : board_id2}, function(err, board){		
+			if ( !err && board ) {
+				var current_page = req.query.page || 1;
+				var type = req.query.type || "";
+				var content = req.query.content || "";
+								
+				var title = board.name || "";
+				var paging_size = board.paging; 
+						
+				var skip_size = (current_page * paging_size) - paging_size;
+				
+				var session_id = "";
+				if(req.session.user)
+					session_id = req.session.user.Id;
+				
+				var search_reg_exp = new RegExp(content);
+									
+				model.find({notice : false, deleted : false, board_id : board_id2})
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+						if ( !err ) {
+							model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
+								self.display_result2(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
+							});//end of count
+						}//end of if
+						else {
+							console.log('in view.js : error (06)');
+						}//end of else
+				});//end of find
+			}
+		});//end of findOne
+								
+							});//end of count
+						}//end of if
+						else {
+							console.log('in view.js : error (06)');
+						}//end of else
+				});//end of find
+			}
+		});//end of findOne
+
+
+		
+		
 	},//end of post
 	
 	check_update_condition : function(req, res) {
