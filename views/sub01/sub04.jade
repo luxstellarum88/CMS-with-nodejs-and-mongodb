@@ -6,6 +6,7 @@ html
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
 		link(rel='stylesheet', type='text/css', href='../css/ready.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
+		link(rel='stylesheet', type='text/css', href='../css/sub01/sub04.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
@@ -18,13 +19,33 @@ html
 			$("document").ready(function() {
 				$("#menu1_4").attr("style", "opacity:1");
 			});
-
-		#detail03
+		#detail01
+			#detail01Text
+				#title 구름 오픈소스 라이센스
+				#contents
+					| 구름은 웹 기반 통합 개발 환경을 제공하기 위한 오픈 소스 프로젝트입니다. 다양한 오픈 소스 라이브러리를 기반으로 개발되었으며, 다양한 플랫폼과 웹브라우저에서 동작하는 것을 목표로 하고 있습니다. 지원하는 개발 환경은 웹부터 모바일까지 다양하게 지원하며, 플러그인 기능을 통해 얼마든지 확장 가능합니다. 또한 UI 작성 및 UML 작성 도구를 지원하고 실시간 협업 환경을 제공해줌으로써 개발 효율성을 극대화할 수 있다는 장점이 있습니다.
+		#detail02
 			#boardTop
+				#boardTitle 특징
 			#boardMiddle
-				#content
-					준비 중입니다.
+				#wrap(style='margin-left: 10px;')
+					#title 자신만의 클라우드 통합 개발 환경 구축!
+					#images
+					#contents
+						| 개인 서버에 설치하거나 goorm.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+				#wrap
+					#title 다양한 플러그인 지원!
+					#images
+					#contents
+						| 다양한 프로그래밍 언어를 지원하는 플러그인 뿐만 아니라 추가적인 기능을 제공하는 다양한 플러그인을 쉽게 설치/관리할 수 있으며, 누구든지 이러한 플러그인을 개발하고 배포할 수 있습니다.
+				#wrap
+					#title
+						| 실시간 협업을 통한 효율적인
+						br
+						| 개발!
+					#images
+					#contents
+						| 실시간 협업 서버를 제공하여, 이를 통해 원격지에 있는 다른 팀원들과 쉽게 협업할 수 있습니다. 채팅 뿐만 아니라 동시에 소스 코드를 편집하거나 UI를 디자인할 수 있습니다.
 			#boardBottom
-
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade
