@@ -19,14 +19,14 @@ html
 		include ../common/header
 		include ../common/mainMenu
 		include ../common/subMenu/subMenu03.jade
-
+		
 		script(type='text/javascript')
 			$(document).ready(function(){	
 				EditorJSLoader.ready(function(Editor) {
 					editor = new Editor(config);
 				});
 				
-				$('#preview').click(function(){
+				$('#previewButton').click(function(){
 					var content = Editor.getContent();
 					var id = $('#id').val();
 					var subject = $('#subject').val();

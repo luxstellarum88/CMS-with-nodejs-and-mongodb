@@ -69,18 +69,18 @@ html
 					#boardTitleNews(onClick='javascript:show_news();')
 						보도자료
 				#boardMiddle
-					#notice(style='margin-left: 10px; padding-top: 10px;')
+					#notice 
 						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
-							#boardNoticeMore(onClick='goto_notice();', style='cursor:hand; width:55px;')
+							#boardNoticeMore(onClick='goto_notice();', style='cursor:hand; width:55px; position: absolute; left: 790; top: 200;')
 								+ 더보기
 							-if( null != notice ) 
 								-for(var i=0; i<notice.length; i++)
 									li 
-										a(href='/board/notice/#{notice[i].index}') #{notice[i].subject}
+										a(href='/board/notice/#{notice[i].index}') #{notice[i].subject.substring(0,30)}
 										
 					#news(style='margin-left: 10px; padding-top: 10px; display: none;')
 						ul(style='padding: 0; margin: 0; list-style: none; font-family: \'NanumGothicWeb\'; font-size: 9pt; line-height: 2.5;')
-							#boardNewsMore(onClick='goto_news();', style='cursor:hand;width:55px;')
+							#boardNewsMore(onClick='goto_news();', style='cursor:hand;width:55px; position: absolute; left: 790; top: 200;')
 								+ 더보기
 							-if( null != news ) 
 								-for(var i=0; i<news.length; i++)
