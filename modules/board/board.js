@@ -45,8 +45,7 @@ var self = module.exports = {
 				make_model.update_date = new Date();
 				make_model.deleted = false;
 				make_model.file = req.body.tx_attach_file;
-				console.log('req.body:');
-				console.log(req.body);
+				
 				make_model.save(function(err) {
 					if ( !err ) {
 						console.log('in write.js : insert success');
@@ -54,7 +53,7 @@ var self = module.exports = {
 						console.log('in write.js : insert fail');
 					}
 					res.redirect('/board/' + req.body.id);
-				}) ;//end of save
+				});//end of save
 			}//end of if
 			else {
 				console.log('in write.js : error(02)');
@@ -300,7 +299,7 @@ var self = module.exports = {
 			
 		var board_id = req.params.id;
 		var board_index = req.params.num;
-		var current_comment = req.params.comm_page || 1;
+		var current_comment = req.query.comm_page || 1;
 		var sessionId = "";
 		var sessionRole = "";
 		if(req.session.user){

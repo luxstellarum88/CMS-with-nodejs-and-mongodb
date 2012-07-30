@@ -24,7 +24,7 @@ var self = module.exports = {
 		var model = db.get_model();
 		var post_index = req.params.num;
 		
-		var current_page = req.params.comm_page || 1;
+		var current_page = req.query.comm_page || 1;
 		var paging_size = 5;
 		var skip_size = (paging_size * current_page) - paging_size;
 		
