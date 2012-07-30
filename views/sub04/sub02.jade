@@ -83,12 +83,11 @@ html
 									td.title
 										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
 									td.author
-										ul
-											-if(typeof(docs1[i].file.length) != "undefined" && typeof(docs1[i].file) != "undefined")
-												-for(var j=0; j<docs1[i].file.length; j++)
-													li(style="list-style:none")
-														a(href='#{docs1[i].file[j]}', style="color:black;")
-															img#downloadImg(src='/images/button_download.png');
+										-if(typeof(docs1[i].file.length) != "undefined" && typeof(docs1[i].file) != "undefined")
+											-for(var j=0; j<docs1[i].file.length; j++)
+												div
+													a(href='#{docs1[i].file[j]}', style="color:black;")
+														img#downloadImg(src='/images/button_download.png');
 									td.time
 										div('id'='time1'+i)
 									td.readNum #{docs1[i].hit}
@@ -121,7 +120,7 @@ html
 									td.title
 										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 									td.author
-										ul
+										ul(style="padding-left:0px;")
 											-if(typeof(docs[i].file.length) != "undefined" && typeof(docs[i].file) != "undefined")
 												-for(var j=0; j<docs[i].file.length; j++)
 													li(style="list-style:none")

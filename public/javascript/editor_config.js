@@ -23,13 +23,19 @@ var config = {
 		preventUnload: false
 	},
 	sidebar: {
+		attacher:{
+			image:{
+			},
+			file:{
+				boxonly: true
+			}
+		},
 		attachbox: {
 			show: true
 		},
 		capacity: {
 			maximum: 15 * 1024 * 1024
 		}
-		
 	},
 	size: {
 		contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
@@ -82,15 +88,15 @@ function setForm(editor) {
 		// existStage는 현재 본문에 존재하는지 여부
 		if (images[i].existStage) {
 			formGenerator.createField(
-					tx.input({
-						'type': "hidden",
-						'name': 'tx_attach_image',
-						'value': images[i].data.imageurl // 예에서는 이미지경로만 받아서 사용
-					})
+				tx.input({
+					'type': "hidden",
+					'name': 'tx_attach_image',
+					'value': images[i].data.imageurl // 예에서는 이미지경로만 받아서 사용
+				})
 			);
 		}
 	}
-	var files = editor.getAttachments('file');
+	var files = editor.getAttachments('file', true);
 	for (var i = 0, len = files.length; i < len; i++) {
 		formGenerator.createField(
 				tx.input({
