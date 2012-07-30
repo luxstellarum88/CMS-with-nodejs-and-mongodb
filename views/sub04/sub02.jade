@@ -70,6 +70,7 @@ html
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
 					tr
+						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
@@ -77,6 +78,7 @@ html
 						-for(var i=0; i<paging; i++)
 							-if(docs1[i]){
 								tr
+									td.left
 									td.title
 										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
 									td.author
@@ -103,6 +105,7 @@ html
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
 					tr
+						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
@@ -110,6 +113,7 @@ html
 						-for(var i=0; i<paging; i++)
 							-if(docs[i]){
 								tr
+									td.left
 									td.title
 										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 									td.author
