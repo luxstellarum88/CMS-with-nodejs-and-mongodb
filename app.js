@@ -119,6 +119,15 @@ function requiresWriteCheck(req, res, next){
 	}
 }
 
+function isSuperAdmin(req, res, next){
+	if( req.session.user && req.session.user.Id === 'superadmin' ){
+		res.redirect('/admin');
+	}
+	else{
+		next();
+	}
+}
+
 // Routes
 
 app.get('/', routes.index);
@@ -258,7 +267,7 @@ app.post('/file_upload', function(req, res, next){
 });
 
 //for user information page(my page)
-app.get('/mypage', requiresLogin, routes.mypage_auth_page);
+app.get('/mypage', requiresLogin, isSuperAdmin, routes.mypage_auth_page);
 
 // dummy
 app.get('/mypage/welcome', requiresLogin, function(req, res){
