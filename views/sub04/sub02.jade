@@ -92,7 +92,7 @@ html
 										div('id'='time1'+i)
 									td.readNum #{docs1[i].hit}
 							-}
-				-if(session && session.role == 'admin')
+				-if(session && (session.role == 'admin' || session.Id == 'superadmin'))
 					div(style="text-align: right;top: 15;position: relative;")
 						a(href="/board/usermanual")
 							[게시판으로 이동]
@@ -128,7 +128,7 @@ html
 										div('id'='time'+i)
 									td.readNum #{docs[i].hit}
 							-}
-				-if(session && session.role == 'admin')
+				-if(session && (session.role == 'admin' || session.Id == 'superadmin'))
 					div(style="text-align: right;top: 15;position: relative;")
 						a(href="/board/developermanual")
 							[게시판으로 이동]
