@@ -45,7 +45,8 @@ var self = module.exports = {
 				make_model.update_date = new Date();
 				make_model.deleted = false;
 				make_model.file = req.body.tx_attach_file;
-				console.log("board.js insert file : " + make_model.file);
+				console.log('req.body:');
+				console.log(req.body);
 				make_model.save(function(err) {
 					if ( !err ) {
 						console.log('in write.js : insert success');
@@ -317,7 +318,7 @@ var self = module.exports = {
 		docs_arr = new Array();
 		comment_number = new Array();
 		
-		model.find({board_id : board_id}).sort('insert_date',-1).exec(function(err, docs){
+		model.find({board_id : board_id, deleted : false}).sort('insert_date',-1).exec(function(err, docs){
 			if ( !err ) {
 				comment.list(req, res, function(comments, length){
 					evt.on('docs_finder', function(evt, i, index, docs){
@@ -642,6 +643,7 @@ var self = module.exports = {
 				model.find({notice : false, deleted : false, board_id : board_id})
 					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						docs1 = docs;
+						console.log(docs1);
 						if ( !err ) {
 							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
 								length1 = length;

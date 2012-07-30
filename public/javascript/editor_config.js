@@ -23,12 +23,6 @@ var config = {
 		preventUnload: false
 	},
 	sidebar: {
-		attacher: {
-			file:{
-				boxonly: true,
-				wysiwygonly: false
-			}
-		},
 		attachbox: {
 			show: true
 		},

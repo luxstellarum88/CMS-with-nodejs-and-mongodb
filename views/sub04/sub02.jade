@@ -83,7 +83,7 @@ html
 										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
 									td.author
 										ul
-											-if(typeof(docs1[i].file.length) != "undefined")
+											-if(typeof(docs1[i].file.length) != "undefined" && typeof(docs1[i].file) != "undefined")
 												-for(var j=0; j<docs1[i].file.length; j++)
 													li(style="list-style:none")
 														a(href='#{docs1[i].file[j]}', style="color:black;")
@@ -119,7 +119,7 @@ html
 										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 									td.author
 										ul
-											-if(typeof(docs1[i].file.length) != "undefined")
+											-if(typeof(docs[i].file.length) != "undefined" && typeof(docs[i].file) != "undefined")
 												-for(var j=0; j<docs[i].file.length; j++)
 													li(style="list-style:none")
 														a(href='#{docs[i].file[j]}', style="color:black;")
