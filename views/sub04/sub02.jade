@@ -70,6 +70,7 @@ html
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
 					tr
+						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
@@ -77,14 +78,16 @@ html
 						-for(var i=0; i<paging; i++)
 							-if(docs1[i]){
 								tr
+									td.left
 									td.title
 										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
 									td.author
 										ul
-										-for(var j=0; j<docs1[i].file.length; j++)
-											li(style="list-style:none")
-												a(href='#{docs1[i].file[j]}', style="color:black;")
-													img#downloadImg(src='/images/button_download.png');
+											-if(typeof(docs1[i].file.length != "undefined"){
+												-for(var j=0; j<docs1[i].file.length; j++)
+													li(style="list-style:none")
+														a(href='#{docs1[i].file[j]}', style="color:black;")
+															img#downloadImg(src='/images/button_download.png');
 									td.time
 										div('id'='time1'+i)
 									td.readNum #{docs1[i].hit}
@@ -103,6 +106,7 @@ html
 			#boardList
 				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
 					tr
+						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
@@ -110,14 +114,16 @@ html
 						-for(var i=0; i<paging; i++)
 							-if(docs[i]){
 								tr
+									td.left
 									td.title
 										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 									td.author
 										ul
-										-for(var j=0; j<docs[i].file.length; j++)
-											li(style="list-style:none")
-												a(href='#{docs[i].file[j]}', style="color:black;")
-													img#downloadImg(src='/images/button_download.png');
+											-if(typeof(docs1[i].file.length != "undefined"){
+												-for(var j=0; j<docs[i].file.length; j++)
+													li(style="list-style:none")
+														a(href='#{docs[i].file[j]}', style="color:black;")
+															img#downloadImg(src='/images/button_download.png');
 									td.time
 										div('id'='time'+i)
 									td.readNum #{docs[i].hit}

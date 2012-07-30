@@ -8,10 +8,10 @@
 #boardMiddle #boardList th {padding: 10px 0 11px 0 ; text-align: center; color:black; font-family: 'NanumGorhicWeb'; font-size: 9pt; font-weight: bold; }
 
 #boardMiddle #boardList th.left { width: 20px;  background: url("/images/boardHeadBackground_left_20px.png")}
-#boardMiddle #boardList th.title { width: 506px; text-align: left; padding-left: 20px ;background: url("../../images/boardHeadBackground_middle.png") repeat-x}
+#boardMiddle #boardList th.title { width: 482px; text-align: left; padding-left: 20px ;background: url("../../images/boardHeadBackground_middle.png") repeat-x}
 #boardMiddle #boardList th.download { width: 120px;  background: url("/images/boardHeadBackground_middle.png")}
 #boardMiddle #boardList th.time { width: 76px; text-align: center;background: url("/images/boardHeadBackground_middle.png") repeat-x}
-#boardMiddle #boardList th.readNum { width: 74px; text-align: center; background: url("/images/boardHeadBackground_middle.png") repeat-x}
+#boardMiddle #boardList th.readNum { width: 77px; text-align: center; background: url("/images/boardHeadBackground_right.png") repeat-x}
 #boardMiddle #boardList th.right { width: 20px;  background: url("/images/boardHeadBackground_right_20px.png")}
 
 #boardMiddle #boardList tbody tr:hover{background: #fafafa}
