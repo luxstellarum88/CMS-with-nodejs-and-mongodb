@@ -82,8 +82,26 @@ function requiresSuperUserLogin(req, res, next){
 	}
 }
 
-function requiresCheck(req, res, next){
+function requiresViewCheck(req, res, next){
 	if( req.params.id && (req.params.id === 'usermanual' || req.params.id === 'developermanual') )
+		if( req.session.user && (req.session.user.role === 'admin' || req.session.user.Id === 'superadmin') ){
+			next();
+		}
+		else{
+			var alert_script = alert.makeAlert('권한이 없습니다.');
+			res.render('alert', {
+				title : 'Error',
+				alert : alert_script
+			});			
+		}
+	else{
+		next();
+	}
+}
+
+
+function requiresWriteCheck(req, res, next){
+	if( req.params.id && (req.params.id === 'usermanual' || req.params.id === 'developermanual') || req.params.id === 'news' || req.params.id === 'notice' || req.params.id === 'faq' )	
 		if( req.session.user && (req.session.user.role === 'admin' || req.session.user.Id === 'superadmin') ){
 			next();
 		}
@@ -156,7 +174,6 @@ app.post('/check_password', routes.check_password);
 app.post('/check_name', routes.check_name);
 app.post('/check_email', routes.check_email);
 
-
 app.post('/makeAccount', routes.makeaccount);
 app.post('/check_overlap', routes.check_overlap);
 app.get('/logout', routes.logout);
@@ -195,10 +212,10 @@ app.get('/admin_new/sub01/sub01', routes.admin_new_sub1_1);
 app.get('/admin_new/sub01/sub02', routes.admin_new_sub1_2);
 app.get('/admin_new/sub02/sub01', routes.admin_new_sub2_1);
 
-app.get('/write/:id', requiresLogin, routes.board_write_page);
+app.get('/write/:id', requiresLogin, requiresWriteCheck, routes.board_write_page);
 
 app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
-app.get('/board/:id', requiresCheck, routes.board_post_list);
+app.get('/board/:id', requiresViewCheck, routes.board_post_list);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
 app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
@@ -240,6 +257,12 @@ app.post('/file_upload', function(req, res, next){
 
 //for user information page(my page)
 app.get('/mypage', requiresLogin, routes.mypage_auth_page);
+
+// dummy
+app.get('/mypage/welcome', requiresLogin, function(req, res){
+	res.render('mypage/welcome',{title:'환영합니다 ! ', user_id:'USER_ID', session:req.session.user});
+});
+
 app.post('/mypage/auth', requiresLogin, routes.mypage_auth);
 app.post('/mypage/inform', requiresLogin, routes.mypage_inform);
 app.post('/mypage/update', requiresLogin, routes.mypage_update);
