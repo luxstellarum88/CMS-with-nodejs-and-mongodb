@@ -266,3 +266,15 @@
 #boardMiddle #readFooter #CommentAttach #CommentWriteButton{
 	cursor:hand;
 }
+.attach{
+	padding: 4px 5px 4px 5px;
+	margin: 0px 10px 0px 10px;
+	color: black;
+	font-family: 'NanumGorhicWeb';
+	font-size: 9pt;
+	font-weight: normal;
+	border-bottom: 1px solid #EEE;
+}
+.attach a,img{
+	vertical-align: middle;
+}
