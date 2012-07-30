@@ -58,9 +58,7 @@ html
 				return s;
 			}
 			
-			$(document).ready(function(){
-				$('#searchInputBox').focus();
-			
+			$(document).ready(function(){			
 				var data = eval(!{JSON.stringify(docs)});
 				$.each(data, function(index, value){
 					var date = getTimeStamp(value.insert_date);
