@@ -307,6 +307,12 @@ var self = module.exports = {
 				console.log('in mypage.js, recent_docs_page : error(01)');
 			}//end of else
 		});//end of find
-	}//end of inform_page
+	},//end of inform_page
+	
+	mypage_welcome : function(req, res){
+		res.render('welcome', {
+			title : '환영 합니다 !'
+		});
+	}
 	
 };//end of module export
