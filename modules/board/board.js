@@ -299,7 +299,7 @@ var self = module.exports = {
 			
 		var board_id = req.params.id;
 		var board_index = req.params.num;
-		var current_comment = req.params.comm_page || 1;
+		var current_comment = req.query.comm_page || 1;
 		var sessionId = "";
 		var sessionRole = "";
 		if(req.session.user){

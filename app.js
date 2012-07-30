@@ -199,7 +199,7 @@ app.get('/admin_new/sub02/sub01', routes.admin_new_sub2_1);
 
 app.get('/write/:id', requiresLogin, routes.board_write_page);
 
-app.get('/board/:id/:num([0-9]+)/:comm_page?', routes.board_contents);
+app.get('/board/:id/:num([0-9]+)', routes.board_contents);
 app.get('/board/:id', requiresCheck, routes.board_post_list);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);

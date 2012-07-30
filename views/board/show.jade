@@ -237,9 +237,9 @@ html
 									div#readCommentPaging
 										-for(var i=0; i<length; i++)
 											-if(current_comment==i+1)
-												a(href='/board/#{board_id}/#{board.index}/#{i+1}', class='select') #{i+1}
+												a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}', class='select') #{i+1}
 											-else
-												a(href='/board/#{board_id}/#{board.index}/#{i+1}') #{i+1}
+												a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}') #{i+1}
 
 
 				-if(session!=-1 && sessionId)
