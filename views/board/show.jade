@@ -129,6 +129,10 @@ html
 		script(type='text/javascript')
 			$(document).ready(function(){
 				var data = eval(!{JSON.stringify(comment)});
+				
+				if(typeof(comment) === 'undefined')
+					$('#readCommentList').css('display', 'none');
+				
 				$.each(data, function(index, value){
 					$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
 				});
@@ -257,13 +261,13 @@ html
 								tr
 									td.content(id='commentUser') #{sessionId}
 									td.content(id='commentContent', colspan='3')
-										textarea(id='commentForm', name='commentForm')
+										textarea(id='commentForm', name='commentForm', style="margin-right:6px;")
 										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
 										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
 
 									td.content(id='commentSubmit')
-										input(type='submit', id = 'commentWriteButton', name = 'commentWriteButton', value = '달기')																
+										input(type='image', id = 'commentWriteButton', name = 'submit', src='/images/board/button_comment.png')																
 
 				div#boardList
 					-if(session!=-1)

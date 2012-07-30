@@ -25,8 +25,7 @@ var config = {
 	sidebar: {
 		attacher: {
 			file:{
-				boxonly: true,
-				wysiwygonly: false
+				boxonly: true
 			}
 		},
 		attachbox: {
