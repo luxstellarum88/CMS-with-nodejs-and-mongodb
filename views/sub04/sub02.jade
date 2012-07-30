@@ -68,13 +68,14 @@ html
 			#boardTitle 사용자 메뉴얼
 		#boardMiddle
 			#boardList
-				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
+				table(cellspacing='0')
 					tr
 						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
 						th.readNum 조회수
+						th.right
 						-for(var i=0; i<paging; i++)
 							-if(docs1[i]){
 								tr
@@ -83,7 +84,7 @@ html
 										a(href='/board/#{board_id}/#{docs1[i].index}', style="color:black;") #{docs1[i].subject}
 									td.author
 										ul
-											-if(typeof(docs1[i].file.length != "undefined"))
+											-if(typeof(docs1[i].file.length) != "undefined")
 												-for(var j=0; j<docs1[i].file.length; j++)
 													li(style="list-style:none")
 														a(href='#{docs1[i].file[j]}', style="color:black;")
@@ -91,8 +92,9 @@ html
 									td.time
 										div('id'='time1'+i)
 									td.readNum #{docs1[i].hit}
+									td.right
 							-}
-				-if(session && session.role == 'admin')
+				-if(session && (session.role == 'admin' || session.Id == 'superadmin'))
 					div(style="text-align: right;top: 15;position: relative;")
 						a(href="/board/usermanual")
 							[게시판으로 이동]
@@ -104,13 +106,14 @@ html
 			#boardTitle 개발자 메뉴얼
 		#boardMiddle
 			#boardList
-				table(cellspacing='0', style='margin-left:10px;margin-right:10px;padding-top:15px;')
+				table(cellspacing='0')
 					tr
 						th.left
 						th.title 파일 이름
 						th.download 다운로드
 						th.time 날짜
 						th.readNum 조회수
+						th.right
 						-for(var i=0; i<paging; i++)
 							-if(docs[i]){
 								tr
@@ -119,7 +122,7 @@ html
 										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 									td.author
 										ul
-											-if(typeof(docs1[i].file.length != "undefined"))
+											-if(typeof(docs1[i].file.length) != "undefined")
 												-for(var j=0; j<docs[i].file.length; j++)
 													li(style="list-style:none")
 														a(href='#{docs[i].file[j]}', style="color:black;")
@@ -127,8 +130,9 @@ html
 									td.time
 										div('id'='time'+i)
 									td.readNum #{docs[i].hit}
+									td.right
 							-}
-				-if(session && session.role == 'admin')
+				-if(session && (session.role == 'admin' || session.Id == 'superadmin'))
 					div(style="text-align: right;top: 15;position: relative;")
 						a(href="/board/developermanual")
 							[게시판으로 이동]
