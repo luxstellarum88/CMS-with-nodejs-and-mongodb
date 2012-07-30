@@ -188,7 +188,11 @@ var self = module.exports =  {
 									self.authenticate(user.idForm, user.pwForm, function(user){			
 										if ( user ) {
 											req.session.user = user;
-											res.redirect('/');
+											res.render('mypage/welcome', {
+												title:'환영합니다 !  ' + user.Id + ' 님',
+												session: user,
+												user_id: user.Id
+											}); // welcome page
 										}
 									});//end of authenticate
 								}								
