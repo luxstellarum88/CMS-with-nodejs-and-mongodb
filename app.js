@@ -5,8 +5,9 @@ var express = require('express')
   , fs = require('fs')
   , routes = require('./routes');
 // Session
-var SessionMemory = require('connect-redis')(express);
 var app = module.exports = express.createServer();
+var mongo_store = require('connect-mongodb');
+
 
 // alert
 var alert = require('./modules/alert/alert');
@@ -22,9 +23,10 @@ app.configure(function(){
   app.use(express.bodyParser({uploadDir:'./public/uploads'}));
   app.use(express.cookieParser());  
   app.use(express.session({
-  	secret: 'key',
-  	maxAge : new Date(Date.now() + 3600000), //1hours (session's life time) _ (JH/120703) 
-  	store: new SessionMemory
+  			 secret : 'skima_cms_version_1'
+  			,store : new mongo_store({url : 'mongodb://localhost/testboard', maxAge : 1800000})
+  			,maxAge : new Date(Date.now() + 1800000)
+  			,cookie : {maxAge : 1800000}
   }));
   app.use(express.methodOverride());
   app.use(app.router);
