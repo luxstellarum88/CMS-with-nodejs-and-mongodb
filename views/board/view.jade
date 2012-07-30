@@ -15,7 +15,13 @@ html
 		
 		include ../common/header
 		include ../common/mainMenu
-		include ../common/subMenu/subMenu03.jade
+		
+		-if(board_id=="usermanual" || board_id=="developermanual")
+			include ../common/subMenu/subMenu04.jade
+		-else if(board_id=="source" || board_id=="skin" || board_id=="plugin")
+			include ../common/subMenu/subMenu05.jade
+		-else
+			include ../common/subMenu/subMenu03.jade
 		
 		script
 			function submit_enter_search(field,e){
