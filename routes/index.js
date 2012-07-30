@@ -35,7 +35,8 @@ exports.html_sub2_1 = function(req, res){
 	res.render('sub02/sub01', { title: '지원 > 기술지원' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub2_2 = function(req, res){
-	res.render('sub02/sub02', { title: '지원 > 자주 묻는 질문' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board/faq');
+//	res.render('sub02/sub02', { title: '지원 > 자주 묻는 질문' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 
