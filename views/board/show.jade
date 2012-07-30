@@ -212,6 +212,14 @@ html
 						-if(session!=-1)
 							div#readNum 조회 수 : #{board.hit}
 				div#readMiddle
+					div#boardList
+						-if(typeof(board.file.length)!="undefined")
+							-for( var i = 0; i < board.file.length; i++)  
+								.attach
+									첨부파일 ##{i+1} :&nbsp; 
+									img(src="/lib/daumeditor-7.3.19/images/icon/editor/p_etc_s.gif", style="margin-right:5px")
+									!{board.file[i].substring(9)}&nbsp;&nbsp;
+									a(href='#{board.file[i]}')[다운로드]
 					div#readContent
 						!{board.content}
 					div#readButton

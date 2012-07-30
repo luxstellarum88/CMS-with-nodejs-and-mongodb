@@ -642,7 +642,6 @@ var self = module.exports = {
 				model.find({notice : false, deleted : false, board_id : board_id})
 					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 						docs1 = docs;
-						console.log("board.js 645 docs1: " + docs1);
 						if ( !err ) {
 							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
 								length1 = length;
