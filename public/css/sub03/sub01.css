@@ -32,7 +32,7 @@
 #boardMiddle #boardList th.readNum { 
 	width: 74px; 
 	text-align: center; 
-	background: url("../../images/boardHeadBackground_right.png")
+	background: url("/images/boardHeadBackground_right.png")
 }
 
 #boardMiddle #boardList tbody tr:hover{

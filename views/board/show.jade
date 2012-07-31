@@ -134,8 +134,8 @@ html
 		script(type='text/javascript')
 			$(document).ready(function(){
 				var data = eval(!{JSON.stringify(comment)});
-				
-				if(typeof(comment) === 'undefined')
+
+				if(data.length === 0)
 					$('#readCommentList').css('display', 'none');
 				
 				$.each(data, function(index, value){
