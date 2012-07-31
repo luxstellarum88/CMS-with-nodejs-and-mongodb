@@ -45,12 +45,31 @@ html
 		include ../common/header.jade
 		include ../common/mainMenu.jade
 		
+		
+		#detail01
+			#boardTop
+				#boardTitle  회원정보수정
+			#boardMiddle
+				#boardMenu.leftMenu
+					form(method='post', id='mypage_menu', name='mypage_menu')
+						#mypage_menu1.menuText.select 회원정보수정
+						#mypage_menu2.menuText 작성 글 목록
+						#mypage_menu3.menuText 작성 코멘트 목록
+				#contents.contents.topPadding
+					#message
+						회원 인증을 위해 비밀번호를 입력해주세요.
+					form(method='post', action='/mypage/auth')
+						비밀번호 
+						input(type='password', id='mypage_password', name='mypage_password')
+						input(type='submit', id='mypage_submit_button', name='mypage_submit_button', value='확인', class='clickable')
+			#boardBottom
+
 
 		#detail01
 			#detail01Text
-				#title 회원 정보
+				#title 구름 오픈소스 라이센스
 				#contents
-					| 회원 정보 수정과 지금까지 작성한 글 및 코멘트를 확인 할 수 있습니다.
+					| 구름은 채택한 GPLv3에 대한 정보와 주요 오픈소스 라이센스의 내용을 확인할 수 있습니다.
 		#detail02
 			#boardTop
 				form(method='post', id='mypage_menu', name='mypage_menu')
@@ -58,13 +77,12 @@ html
 					#mypage_menu2.menuText 작성 글 목록
 					#mypage_menu3.menuText 작성 코멘트 목록
 			#boardMiddle
-				#wrap
-					#message
-						회원 인증을 위해 비밀번호를 입력해주세요.
-					form(method='post', action='/mypage/auth')
-						비밀번호 
-						input(type='password', id='mypage_password', name='mypage_password')
-						input(type='submit', id='mypage_submit_button', name='mypage_submit_button', value='확인', class='clickable')
+				#message
+					회원 인증을 위해 비밀번호를 입력해주세요.
+				form(method='post', action='/mypage/auth')
+					비밀번호 
+					input(type='password', id='mypage_password', name='mypage_password')
+					input(type='submit', id='mypage_submit_button', name='mypage_submit_button', value='확인', class='clickable')
 			#boardBottom
 
 
