@@ -90,7 +90,7 @@ html
 			#boardMiddleJoin
 				#contents
 					form(method='post', action='/makeAccount', id='frm', autocomplete="off")
-						table.info(border='1',cellspacing='0',style='font-size:12px;')
+						table.info(border='1',cellspacing='0')
 							caption
 								span.c1
 									span.c2 기본정보
@@ -160,6 +160,7 @@ html
 								,name = 'loginButton'
 								,id = 'loginButton2'
 								,value = '회원가입'
+								,class = 'clickable'
 							)
 			#boardBottom
 		include common/footer.jade

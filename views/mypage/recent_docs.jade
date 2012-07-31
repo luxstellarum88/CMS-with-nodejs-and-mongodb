@@ -13,24 +13,24 @@ html
 		script
 			$(document).ready(function(){
 				if( 101 == #{authed} ) {
-					$('#mypage_menu1').click(function(){
+					$('#boardTitle1').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
-					$('#mypage_menu2').click(function(){
+					$('#boardTitle2').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
-					$('#mypage_menu3').click(function(){
+					$('#boardTitle3').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
-					$('#mypage_menu1').click(function(){
+					$('#boardTitle1').click(function(){
 						location.href='/mypage';
 					});
-					$('#mypage_menu2').click(function(){
+					$('#boardTitle2').click(function(){
 						location.href='/mypage';
 					});
-					$('#mypage_menu3').click(function(){
+					$('#boardTitle3').click(function(){
 						location.href='/mypage';
 					});
 				}
@@ -81,13 +81,15 @@ html
 			
 		div#detail03
 			div#boardTop
-				div#boardTitle 작성 글 목록
+				#boardTitle1.menuText  회원정보수정
+				#boardTitle2.menuText.select  작성 글 목록
+				#boardTitle3.menuText  작성 코멘트 목록
 			div#boardMiddle
-				#boardMenu.leftMenu
-					form(method='post', id='mypage_menu', name='mypage_menu')
+				//
+					#boardMenu.leftMenu
 						#mypage_menu1.menuText 회원정보수정
 						#mypage_menu2.menuText 작성 글 목록
-						#mypage_menu3.menuText 작성 코멘트 목록
+						#mypage_menu3.menuText 작성 댓글 목록
 				div#boardList.contents
 					table(cellspacing='0')
 						tr
@@ -139,7 +141,8 @@ html
 								-if(last>0)
 									#pages(onClick='goto_page(#{last})', style='display:inline;cursor:hand;')
 										span | 마지막 페이지
-										img(src='../images/board/button_backward.png')
+										img(src='../images/board/button_backward.png')					
+				form(method='post', id='mypage_menu', name='mypage_menu')
 			div#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

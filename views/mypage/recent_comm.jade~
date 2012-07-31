@@ -13,24 +13,24 @@ html
 		script
 			$(document).ready(function(){
 				if( 101 == #{authed} ) {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						location.href='/mypage';
 					});
 				}
@@ -81,23 +81,21 @@ html
 			
 		div#detail03
 			div#boardTop
-				#boardTitle1.menuText  회원정보수정
-				#boardTitle2.menuText  작성 글 목록
-				#boardTitle3.menuText.select  작성 코멘트 목록
+				div#boardTitle 작성 댓글 목록
 			div#boardMiddle
-				//
-					#boardMenu.leftMenu
+				#boardMenu.leftMenu
+					form(method='post', id='mypage_menu', name='mypage_menu')
 						#mypage_menu1.menuText 회원정보수정
 						#mypage_menu2.menuText 작성 글 목록
-						#mypage_menu3.menuText 작성 댓글 목록
+						#mypage_menu3.menuText 작성 코멘트 목록
 				div#boardList.contents
 					table(cellspacing='0')
 						tr
 							th.no 번호
 							th.author 게시판
-							th.time(style="width:170") 글 제목
-							th.time 댓글 내용
-							th.readNum 날짜
+							th.no 글 제목
+							th.title 댓글 내용
+							th.time 날짜
 							-for(var i=0; i<docs.length; i++)
 								-if(docs[i]){
 									tr
@@ -108,7 +106,7 @@ html
 											a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{post_subject[i]}
 										td.title
 											a(href='/board/#{docs[i].board_id}/#{docs[i].post_index}', style="color:black;") #{docs[i].content}
-										td.readNum(style="font-size:9px")
+										td.time
 											div('id'='time'+i)
 								-}			
 				div#boardFooter
@@ -142,7 +140,6 @@ html
 									#pages(onClick='goto_page(#{last})', style='display:inline;cursor:hand;')
 										span | 마지막 페이지
 										img(src='../images/board/button_backward.png')
-				form(method='post', id='mypage_menu', name='mypage_menu')
 			div#boardBottom
 		include ../common/footer
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

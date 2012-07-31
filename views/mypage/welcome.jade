@@ -4,9 +4,8 @@ html
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
-		link(rel='stylesheet', type='text/css', href='../css/mypage.css')
+		link(rel='stylesheet', type='text/css', href='../css/welcome.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
@@ -15,11 +14,25 @@ html
 			#world
 		include ../common/header.jade
 		include ../common/mainMenu.jade
-
-		#detail03
+		#detail01
+			#detail01Text
+				#title 환영합니다!
+				#contents
+					| 회원가입이 성공적으로 이루어졌습니다. 지금부터 모든 구름 서비스를 이용하실 수 있습니다.
+		#detail02
 			#boardTop
+				#boardTitle 회원가입 완료
 			#boardMiddle
-				!{user_id}
+				#wrap1 
+					가입하신 아이디는 
+					span#userID 
+						!{user_id} 
+					입니다
+				#wrap2
+					#getStarted
+						input(type='image', id = 'getStartedButton', name = 'getStarted', src='/images/getStartedButton.png', onclick="location.href=''")
+					#goToMain
+						input(type='image', id = 'goToMainButton', name = 'goToMain', src='/images/button_goToMain.png', onclick="location.href=''")				
 			#boardBottom
 
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')

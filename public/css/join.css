@@ -1,42 +1,47 @@
 #contents .info {
-	width : 100%;
+	width : 771px;
 	color : #666;
 	border : 0;
-	border-bottom : 1px solid #c2c2c2;
-	margin : 0 0 15px 0;
+	font-family: 'NanumGothicWeb';
+	font-size: 9pt
+
 }
 #contents .info caption {
-	padding : 0;
+	padding : 10px 0 0;
 	text-align : left;
-	color : #fff;
+	color : black;
 	font-weight : bold;
-}
-#contents .info caption .c1, #contents .info caption .c2 {
-	display : block;
-	background : #6d6e72;
+	font-size: 9pt;
+	
 }
 #contents .info caption .c1 {
-	padding : 1px 0;
-	margin : 0 1px;
+/* 	padding : 1px 0; */
+/* 	margin : 0 1px; */
+	background: url("../../images/boardHeadBackground.png");
+	display : block;
 }
 #contents .info caption .c2 {
-	padding : 8px 15px;
-	margin : 0 -1px;
+	display : block;
+	padding : 10px 0 11px 20px;
+/* 	margin : 0 -1px; */
 }
 #contents .info caption .required {
-	margin : 0 0 0 15px;
 	font-weight : normal;
 }
+#contents .info tr {
+	border-bottom: 1px solid #eee
+}
+
 #contents .info tr.odd {
-	background : #f4f4f4;
+	background : #FAFAFA;
 }
 #contents .info th {
-	width : 160px;
+	width : 140px;
 	text-align : left;
 }
 #contents .info th, #contents .info td {
 	border : 0;
-	padding : 10px 15px;
+	padding : 7px 20px;
 }
 #contents .info th em.require {
 	color : #624cd4;
