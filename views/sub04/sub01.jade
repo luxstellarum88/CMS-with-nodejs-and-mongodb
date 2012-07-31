@@ -4,7 +4,7 @@ html
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
+		link(rel='stylesheet', type='text/css', href='../css/sub04/sub01.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
@@ -19,12 +19,123 @@ html
 				$("#menu4_1").attr("style", "opacity:1");
 			});
 
-		#detail03
+		#detail01
+			#detail01Text
+				#title 설치하여 실행하기
+				#contents goorm.org에서는 직접 설치가 가능한 최신 버전을 제공하고 있습니다. 구름을 직접 설치하여 사용하는 경우 프로젝트는 로컬에 저장됩니다.
+
+		#detail02
 			#boardTop
+				#boardTitle 필요사양
 			#boardMiddle
-				#content
-					준비 중입니다.
+				#wrap
+					#contents
+						| 구름을 직접 설치하여 사용하기 위해서는 다음과 같은 사양이 필요합니다. 이 중에서 node.js와 Redis, 기타 npm 패키지들은 실시간 협업 기능을 사용하지 않는다면 꼭 필요한 것은 아닙니다.
+				#wrap
+					#title 주요 오픈소스 라이센스 비교
+					#contents
+						table.requirements(cellspacing=0)
+							tr 
+								th.program(width=200) 프로그램 
+								th(width=200)
+								th(width=256) 필수/선택
+							tr
+								td.program Apache 2.0 이상
+								td 웹서버 
+								td 필수
+							tr
+								td.program PHP 3.0 이상
+								td 
+								td 필수
+
+							tr
+								td.program(rowspan=2) PHP 라이브러리
+								td.inner subversion
+								td.inner 선택 (SVN 플러그인 사용 시)
+							tr
+								td 
+								td 필수
+
+							tr
+								td.program Redis 
+								td 
+								td 선택 (협업 서버 구동 시 )
+
+							tr
+								td.program Node.js
+								td 
+								td 선택 (협업 서버 구동 시 )
+
+							tr
+								td.program(rowspan=3) Node.js NPM Package
+								td.inner redis
+								td.inner 선택 (협업 서버 구동 시 )
+							tr
+								td.inner redis-client
+								td.inner 선택 (협업 서버 구동 시 )
+							tr
+								td websocket-server
+								td 선택 (협업 서버 구동 시 )
 			#boardBottom
 
+
+		#detail03
+			#boardTop
+				#boardTitle Step1
+			#boardMiddle
+				#wrap1
+					#title Apache + PHP 설치하기
+					#contents 구름은 기본적으로 Apache와 PHP가 동작하는 웹서 환경에서 동작하기 때문에 OS별로 간단히 Apache와 PHP를 설치하는 방법을 안내합니다. 구름은 OS를 구분치 않고 동작하지만, Windows의 경우 몇가지 기능의 제한이 발생할 수도 있으니 참고바랍니다.
+				#wrap2
+					#subtitle 1) Linux(Ubuntu)
+					#contents
+						| Linux는 Ubuntu를 기준으로 설명합니다. apt-get 명령을 통해 쉽게 설치할 수 있습니다.
+				#wrap3
+					#subtitle ▪ Apache 설치
+					#contents
+						| 다음과 같은 커맨드를 통해 Apache 웹서버를 설치할 수 있습니다.
+						#command sudo apt-get install apache2	
+				#wrap3
+					#subtitle ▪ PHP 설치
+					#contents
+						| 마찬가지로 Apache에 동작하는 PHP 모듈을 설치할 수 있습니다.
+						#command sudo apt-get install php5-common php5 libapache2-mod-php5	
+				#wrap3
+					#subtitle ▪ Apache 재시작
+					#contents
+						| PHP 모듈을 동작하도록 하기 위해 Apache 서버를 다시 시작합니다.
+						#command sudo /etc/init.d/apache2 restart
+				#wrap2
+					#subtitle 2) Mac OS X
+					#contents
+						| Mac OS X에서는 Apache와 PHP의 소스코드를 다운로드 받아 직접 설치하는 방법도 있지만, 여기에서는 MAMP라는 자동 설치 프로그램을 추천해드립니다.
+				#wrap3
+					#subtitle ▪ MAMP 설치
+					#contents
+						| MAMP는 Mac OS X 환경에서 APM(Apache, PHP, MySQL)을 사용할 수 있도록 자동으로 설치, 설정 해주는 프로그램입니다. 
+						span.link(onclick="location.href='http://www.mamp.info/en/index.html'") http://www.mamp.info/en/index.html 
+						|에서 다운로드를 통하여 간편하게 설치 및 실행이 이루어 집니다.
+
+
+			#boardBottom
+
+
+		#detail04Image
+			img(src='../images/sub01/detailImage01.png')
+		#detail04
+			#boardTop
+				#boardTitle 특징
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#left
+						#icon
+					#title 자신만의 클라우드 통합 개발 환경 구축!
+					#contents
+						| 개인 서버에 설치하거나 goorm.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+			#boardBottom
+
+
+ 
+ 
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade

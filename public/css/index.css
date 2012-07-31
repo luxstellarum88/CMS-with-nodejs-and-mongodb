@@ -198,28 +198,32 @@
 	height : 55px;
 	width : 370px;
 }
-#detail04 #boardTop #boardTitle.first,#boardTitleNotice.first,#boardTitleNews.first {
+#detail04 #boardTop #boardTitleNotice {
 	font-size : 11pt;
 	color : #999999;
 	font-family : 'NanumGothicWeb';
-	width : 56px;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
 }
-#detail04 #boardTop #boardTitle.select,#boardTitleNotice.select,#boardTitleNews.select {
+#detail04 #boardTop #boardTitleNotice.select{
 	color : black;
 	background : url('/images/boardTitleBackground.png') no-repeat;
 	background-position : center;
 	cursor : default;
 }
-#detail04 #boardTop #boardTitle,#boardTitleNotice,#boardTitleNews {
+#detail04 #boardTop #boardTitleNews.select {
+	color : black;
+	background : url('/images/boardTitleBackground.png') no-repeat;
+	background-position : center;
+	cursor : default;
+}
+#detail04 #boardTop #boardTitleNews {
 	font-size : 11pt;
 	color : #999999;
 	font-family : 'NanumGothicWeb';
-	width : 56px;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
