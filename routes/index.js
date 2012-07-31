@@ -72,13 +72,16 @@ exports.html_sub4_2 = function(req, res){
 
 
 exports.html_sub5_1 = function(req, res){
-	res.render('sub05/sub01', { title: '다운로드 > 소스코드' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render('sub05/sub01', { title: '다운로드 > 소스코드' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board2/source');
 }
 exports.html_sub5_2 = function(req, res){
-	res.render('sub05/sub02', { title: '다운로드 > 플러그인' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render('sub05/sub02', { title: '다운로드 > 플러그인' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board2/plugin');
 }
 exports.html_sub5_3 = function(req, res){
-	res.render('sub05/sub03', { title: '다운로드 > 스킨' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render('sub05/sub03', { title: '다운로드 > 스킨' , session: req.session.user, cookie_id: req.cookies.id });
+	res.redirect('/board2/skin');
 }
 
 
@@ -269,6 +272,10 @@ exports.board_insert = function(req, res){
 
 exports.board_post_list = function(req, res){
 	board.post_list(req,res);
+}
+
+exports.board_post_list2 = function(req, res){
+	board.post_list2(req,res);
 }
 
 exports.board_contents = function(req, res){	

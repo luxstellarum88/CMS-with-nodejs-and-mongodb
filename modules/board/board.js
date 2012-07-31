@@ -448,7 +448,56 @@ var self = module.exports = {
 	/*
 		2012. 7. 20. by JH
 	*/
-	display_result2 : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
+	display_result2 : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content){	
+		var comment = require('../comment/comment');
+		var i = 0;
+		var j = 0;
+		var k = 0;
+		var evt = new event_emitter();
+		
+		console.log("in board.js display : " + docs.length);
+	
+			res.render('board/view2', {
+				board_id: board_id,
+				title: title,
+				docs: docs,
+				current_page: current_page,
+				paging: paging_size,
+				length: length,
+				sessionId: sessionId,
+				type: type,
+				content: content,
+				session: req.session.user
+			});//end of render
+
+		evt.emit('notice_comment_counting', evt, i);
+		evt.emit('subject_cutting',evt,k);		
+	},//end of display_result
+
+	get_board_data : function(id, limit, callback){
+		var model = db.get_model();
+		var list_model = list_db.get_model();
+		var limit_size = limit || 5;
+		
+		
+		model.find({board_id : id, deleted : false}).sort('insert_date',-1).limit(limit_size).exec(function(err, docs){
+			if(!err) {
+				if(docs) {
+					callback(docs);
+				}
+				else {
+					callback(null);
+				}
+				
+			}
+			else {
+				console.log('in board.js, get_board_data : error(01)');
+				callback('error');
+			}
+		});//end of find
+	},//end of get_board_data
+	
+	display_manual : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
@@ -610,6 +659,58 @@ var self = module.exports = {
 		});//end of findOne
 	},//end of post
 
+	post_list2 : function(req, res) {
+		
+		var model = db.get_model();
+		var list_model = list_db.get_model();
+		var board_id = req.params.id; 
+		/*
+			posts part
+		*/
+		list_model.findOne({id : board_id}, function(err, board){		
+			if ( !err && board ) {
+				var current_page = req.query.page || 1;
+				var type = req.query.type || "";
+				var content = req.query.content || "";
+								
+				var title = board.name || "";
+				var paging_size = board.paging; 
+						
+				var skip_size = (current_page * paging_size) - paging_size;
+				
+				var session_id = "";
+				if(req.session.user)
+					session_id = req.session.user.Id;
+				
+				var search_reg_exp = new RegExp(content);
+												
+				model.find({notice : false, deleted : false, board_id : board_id})
+					.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
+						if ( !err ) {
+							model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
+							self.display_result2(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content);
+							});//end of count
+						}//end of if
+						else {
+							console.log('in view.js : error (06)');
+						}//end of else
+					});//end of find
+				}
+			});//end of findOne
+	},//end of post
+	
+	check_update_condition : function(req, res) {
+		if ( (""!=self.trim(req.body.subject)) && (""!=self.trim(req.body.memoForm)) ) {
+			self.update(req, res);
+		}
+		else {
+			var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
+			res.render('alert', {
+				title : 'Error',
+				alert : alert_script
+			}) ;
+		}
+	}, // end of check_update_condition
 	manual : function(req, res) {
 		
 		var model = db.get_model();
@@ -668,7 +769,7 @@ var self = module.exports = {
 											.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 												if ( !err ) {
 													model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
-														self.display_result2(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
+														self.display_manual(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
 													});//end of count
 												}//end of if
 												else {

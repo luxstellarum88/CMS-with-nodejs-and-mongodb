@@ -241,6 +241,7 @@ app.get('/write/:id', requiresLogin, requiresWriteCheck, routes.board_write_page
 
 app.get('/board/:id/:num([0-9]+)', routes.board_contents);
 app.get('/board/:id', requiresViewCheck, routes.board_post_list);
+app.get('/board2/:id', routes.board_post_list2);
 app.post('/board_write', requiresLogin, routes.board_insert);
 app.get('/board_modify/:id/:num', requiresLogin, routes.board_modify_page);
 app.post('/board_modify_ajax', requiresLogin, routes.board_modify_ajax);
