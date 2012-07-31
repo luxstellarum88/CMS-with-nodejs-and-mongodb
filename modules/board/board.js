@@ -423,7 +423,6 @@ var self = module.exports = {
 				});//end of counter			
 			}//end of if
 			else {
-				console.log("board.js 426 display_result : " + docs.file);
 				res.render('board/view', {
 					board_id: board_id,
 					title: title,

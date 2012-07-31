@@ -131,11 +131,11 @@ html
 							-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
 								-if(j>0 && j<= last)
 									-if( j == current_page && j != last)
-										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}', class='select')
 											b #{j} 
-											|
+										|
 									-else if( j == current_page && j == last )
-										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}')
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}', class='select')
 											b #{j}
 									-else if( j != last )
 										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') #{j} |
