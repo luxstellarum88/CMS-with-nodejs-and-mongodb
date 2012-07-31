@@ -16,6 +16,9 @@ var board = require('../modules/board/board');
 var comment = require('../modules/comment/comment');
 //my page (user information page)
 var mypage = require('../modules/mypage/mypage');
+//find_account
+var find_account = require('../modules/account/find_account');
+
 
 exports.html_sub1_1 = function(req, res){
 	res.render('sub01/sub01', { title: 'goorm 소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
@@ -348,6 +351,22 @@ exports.mypage_recent_docs = function(req, res) {
 
 exports.mypage_recent_comm = function(req, res) {
 	mypage.recent_comm_page(req, res);
+}
+
+exports.find_id = function(req, res) {
+	find_account.find_id_page(req, res);
+}
+
+exports.find_password = function(req, res) {
+	find_account.find_password_page(req, res);
+}
+
+exports.find_id_result = function(req, res) {
+	find_account.find_id_result_page(req, res);
+}
+
+exports.find_password_result = function(req, res) {
+	find_account.find_password_result_page(req, res);
 }
 
 //------------------------------------------------------수정완료

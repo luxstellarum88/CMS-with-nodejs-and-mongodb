@@ -88,16 +88,27 @@ var self = module.exports =  {
 	check_email : function(req, res) {
 		var regular_expression_email = /^([0-9a-zA-Z._-]+)@([0-9a-zA-Z_-]+)(\.[a-zA-Z0-9]+)(\.[a-zA-Z]+)?$/;
 		var email = req.body.ajax_email_form;
-		if(regular_expression_email.test(email)) {
-			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바른 양식입니다.', color : 'green'}));
-			res.end('\n');
-		}//end of if
-		else {
-			res.writeHead(200, {'content-type':'text/json'});
-			res.write(JSON.stringify({content:'올바르지 않은 양식입니다(예) goorm@skima.co.kr).', color : 'red'}));
-			res.end('\n');
-		} // end of else
+		var model = dbModel.tossUserModel();
+		
+		model.count({email:email}, function(err, count){
+			if(0 === count){
+				if(regular_expression_email.test(email)) {
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'올바른 양식입니다.', color : 'green'}));
+					res.end('\n');
+				}//end of if
+				else {
+					res.writeHead(200, {'content-type':'text/json'});
+					res.write(JSON.stringify({content:'올바르지 않은 양식입니다(예) goorm@skima.co.kr).', color : 'red'}));
+					res.end('\n');
+				} // end of else
+			}//end of if
+			else{
+				res.writeHead(200, {'content-type':'text/json'});
+				res.write(JSON.stringify({content:'동일한 email주소가 존재합니다.', color : 'red'}));
+				res.end('\n');
+			}//end of else
+		});//end of count
 	},
 	
 	check_sign_up_condition : function(user, evt) {
@@ -176,29 +187,41 @@ var self = module.exports =  {
 				case 0:
 					user_model.count({Id:user.idForm}, function(err, docs){
 						if ( 0 === docs ) {
-							useridentity.Id = user.idForm;
-							useridentity.password = user.pwForm;
-							useridentity.name = user.nameForm;
-							useridentity.email = user.emailForm;
-							useridentity.role = 'Guest';
-							
-							useridentity.save(function(err){
-								if ( !err ) {
-									console.log('User_inser_success');
-									self.authenticate(user.idForm, user.pwForm, function(user){			
-										if ( user ) {
-											req.session.user = user;
-											res.render('mypage/welcome', {
-												title:'환영합니다 !  ' + user.Id + ' 님',
-												session: user,
-												user_id: user.Id
-											}); // welcome page
-										}
-									});//end of authenticate
-								}								
-								else
-									res.redirect('/');
-							});//end of save
+							//add to check email-overlapping
+							user_model.count({email : user.emailForm}, function(err, cnt) {
+								if( 0 === cnt) {
+									useridentity.Id = user.idForm;
+									useridentity.password = user.pwForm;
+									useridentity.name = user.nameForm;
+									useridentity.email = user.emailForm;
+									useridentity.role = 'Guest';
+									
+									useridentity.save(function(err){
+										if ( !err ) {
+											console.log('User_inser_success');
+											self.authenticate(user.idForm, user.pwForm, function(user){			
+												if ( user ) {
+													req.session.user = user;
+													res.render('mypage/welcome', {
+														title:'환영합니다 !  ' + user.Id + ' 님',
+														session: user,
+														user_id: user.Id
+													}); // welcome page
+												}
+											});//end of authenticate
+										}								
+										else
+											res.redirect('/');
+									});//end of save
+								}//end of if
+								else{
+									var alert_script = alert.makeAlert("이미 존재하는 e-Mail입니다.");
+										res.render('alert',{
+											title : 'error',
+											alert : alert_script
+										});
+								}
+							});//end of count(email)
 						}//end of if
 						else {
 							var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");

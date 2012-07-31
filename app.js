@@ -298,6 +298,13 @@ app.post('/mypage/update', mypageRequiresLogin, routes.mypage_update);
 app.post('/mypage/recent_docs', mypageRequiresLogin, routes.mypage_recent_docs);
 app.post('/mypage/recent_comm', mypageRequiresLogin, routes.mypage_recent_comm);
 
+
+// find account
+app.get('/find_id', routes.find_id);
+app.get('/find_password', routes.find_password);
+app.post('/find_id/result', routes.find_id_result);
+app.post('/find_password/result', routes.find_password_result);
+
 app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

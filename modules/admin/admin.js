@@ -25,8 +25,8 @@ var self = module.exports = {
 		    subject : subject,
 		    body: content,
 		    authentication : "login",        // auth login is supported; anything else $
-		    username : 'nys3909@gmail.com',
-		    password : 'nys3909'
+		    username : 'luxstellarum@skima.co.kr',
+		    password : 'qufqlc12'
 		    },
 		    function(err, result){
 		      if ( err ) {

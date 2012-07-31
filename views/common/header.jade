@@ -56,6 +56,11 @@ script(type="text/javascript")
 #topMenu
 	- if(!session)
 		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();', autocomplete="off")
+			a(href='/find_id')
+				아이디 찾기
+			/
+			a(href='/find_password')
+				비밀번호 찾기
 			- if (typeof(cookie_id) == 'undefined')
 				input#idInputBox(type='text', name='id', value='')
 			- else
