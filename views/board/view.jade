@@ -109,6 +109,8 @@ html
 										td.title
 											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
 											a.replyNum [#{comment_number[i]}]
+											-if(docs[i].file[0])	
+												img(src="/lib/daumeditor-7.3.19/images/icon/editor/p_etc_s.gif", style="margin: 0 5 -4 2;")
 										td.author
 											a #{docs[i].user_name}
 										td.time
