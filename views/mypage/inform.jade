@@ -101,14 +101,12 @@ html
 		#detail02
 			#boardTop
 				#boardTitle  회원정보수정
-				#boardTitle  회원정보수정
-				#boardTitle  회원정보수정
 			#boardMiddleJoin
 				#boardMenu.leftMenu
 					form(method='post', id='mypage_menu', name='mypage_menu')
 						#mypage_menu1.menuText 회원정보수정
 						#mypage_menu2.menuText 작성 글 목록
-						#mypage_menu3.menuText 작성 코멘트 목록
+						#mypage_menu3.menuText 작성 댓글 목록
 				#contents.contents
 					form(method='post', action='/mypage/update', name='frm')
 						table.info(border='1',cellspacing='0',style='font-size:12px;')
@@ -178,7 +176,8 @@ html
 						input(type='button', 
 								name='user_modify', 
 								value='수정', 
-								onClick='call_confirm_post("수정하시겠습니까?","frm")')
+								onClick='call_confirm_post("수정하시겠습니까?","frm")',
+								class = 'clickable')
 			#boardBottom
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade
