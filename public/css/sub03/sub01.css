@@ -30,7 +30,7 @@
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
 #boardMiddle #boardList th.readNum { 
-	width: 74px; 
+	width: 75px; 
 	text-align: center; 
 	background: url("/images/boardHeadBackground_right.png")
 }
@@ -96,14 +96,13 @@
 }
 
 #boardMiddle #boardList td.readNum { 
-	text-align: center
+	text-align: center;
 }
 
 #boardFooter { 
 	margin-top: 20px;
 	color:black; 
-	font-family: 'NanumGorhicWeb'; 
-	font-size: 3pt;
+	font-family: 'NanumGorhicWeb';
 	text-align:center;
 }
 

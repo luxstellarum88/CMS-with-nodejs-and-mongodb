@@ -4,7 +4,6 @@ html
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
 		link(rel='stylesheet', type='text/css', href='../css/index.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
 		link(rel='stylesheet', type='text/css', href='../css/join.css')
@@ -70,24 +69,24 @@ html
 				});
 				
 				if( 101 == #{authed} ) {
-					$('#mypage_menu1').click(function(){
+					$('#boardTitle1').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
-					$('#mypage_menu2').click(function(){
+					$('#boardTitle2').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
-					$('#mypage_menu3').click(function(){
+					$('#boardTitle3').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
-					$('#mypage_menu1').click(function(){
+					$('#boardTitle1').click(function(){
 						location.href='/mypage';
 					});
-					$('#mypage_menu2').click(function(){
+					$('#boardTitle2').click(function(){
 						location.href='/mypage';
 					});
-					$('#mypage_menu3').click(function(){
+					$('#boardTitle3').click(function(){
 						location.href='/mypage';
 					});
 				}
@@ -100,12 +99,12 @@ html
 		
 		#detail02
 			#boardTop
-				#boardTitle  회원정보수정
-				#boardTitle  회원정보수정
-				#boardTitle  회원정보수정
+				#boardTitle1.menuText.select  회원정보수정
+				#boardTitle2.menuText  작성 글 목록
+				#boardTitle3.menuText  작성 코멘트 목록
 			#boardMiddleJoin
-				#boardMenu.leftMenu
-					form(method='post', id='mypage_menu', name='mypage_menu')
+				//
+					#boardMenu.leftMenu
 						#mypage_menu1.menuText 회원정보수정
 						#mypage_menu2.menuText 작성 글 목록
 						#mypage_menu3.menuText 작성 코멘트 목록
@@ -173,7 +172,8 @@ html
 										,style = 'display:inline;'			
 									)
 									br
-									#check_email(style = 'display : inline;') 예) goorm@skima.co.kr												
+									#check_email(style = 'display : inline;') 예) goorm@skima.co.kr			
+					form(method='post', id='mypage_menu', name='mypage_menu')									
 					#join_button(align='center')
 						input(type='button', 
 								name='user_modify', 
