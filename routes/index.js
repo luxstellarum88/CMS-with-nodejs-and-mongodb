@@ -27,8 +27,19 @@ exports.html_sub1_3 = function(req, res){
 	res.render('sub01/sub03', { title: 'goorm 소개 > 데모' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_4 = function(req, res){
-	res.render('sub01/sub04', { title: 'goorm 소개 > 라이센' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub04', { title: 'goorm 소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
 }
+
+exports.html_sub1_5 = function(req, res){
+	res.redirect('/board/notice');
+//	res.render('sub01/sub04', { title: 'goorm 소개 > 공지사항' , session: req.session.user, cookie_id: req.cookies.id });
+}
+
+exports.html_sub1_6 = function(req, res){
+	res.redirect('/board/news');
+//	res.render('sub01/sub04', { title: 'goorm 소개 > 보도사항' , session: req.session.user, cookie_id: req.cookies.id });
+}
+
 
 
 exports.html_sub2_1 = function(req, res){

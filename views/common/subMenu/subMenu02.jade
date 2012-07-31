@@ -4,3 +4,10 @@ script(type="text/javascript")
 		$("#subMenu2").attr("style", "display: block");
 		$(".mainmenu a#menu2").attr("style", "background-image: url('/images/menu/menu02_p.png')");
 	});
+
+-if(typeof(board_id) != 'undefined')
+	script
+		$("document").ready(function() {
+			if("!{board_id}"=="faq")
+				$("#menu2_2").attr("style", "opacity:1");
+		});	

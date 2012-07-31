@@ -153,6 +153,9 @@ app.get('/intro/overview', routes.html_sub1_1); // OverView
 app.get('/intro/features', routes.html_sub1_2); // Features
 app.get('/intro/demos', routes.html_sub1_3); // Demos
 app.get('/intro/license', routes.html_sub1_4); // Licensing
+app.get('/intro/notice', routes.html_sub1_5); // Demos
+app.get('/intro/news', routes.html_sub1_6); // Licensing
+
 
 // support
 app.get('/support/care', routes.html_sub2_1); // 
