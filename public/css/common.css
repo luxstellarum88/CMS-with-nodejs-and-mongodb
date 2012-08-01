@@ -21,12 +21,12 @@ input:-webkit-autofill{
 	position : relative;
 }
 #topMenu {
-	width : 426px;
+	width : 575px;
 	height : 25px;
 	position : absolute;
 	left : 50%;
 	margin-top : -31px;
-	margin-left : -30px;
+	margin-left : -170px;
 	color : white;
 	text-align : right;
 	font-size : 13px;
@@ -34,6 +34,14 @@ input:-webkit-autofill{
 #topMenu p {
 	text-align : right;
 	color : white;
+}
+#topMenu #findUserInfo #findId,#findPw {
+	color : white;
+	font-size: 9pt;
+	text-decoration: none;
+	line-height: 27px;
+	
+	
 }
 #idInputBox {
 	background : url('/images/idInputBox.png') no-repeat;

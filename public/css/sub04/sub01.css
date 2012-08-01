@@ -146,40 +146,63 @@
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 100px }
 #detail03 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
 #detail03 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb'; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
-#detail03 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:670px; width:776px; padding: 0 50px }
+#detail03 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:535px; width:776px; padding: 0 50px }
 #detail03 #boardMiddle #wrap1 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
 #detail03 #boardMiddle #wrap1 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
 #detail03 #boardMiddle #wrap1 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
 #detail03 #boardMiddle #wrap1 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
 #detail03 #boardMiddle #wrap1 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
 #detail03 #boardMiddle #wrap1 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
-#detail03 #boardMiddle #wrap2 { width: 726px; margin-left: 10px; float: left; padding: 10px 15px }
+#detail03 #boardMiddle #wrap2 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
 #detail03 #boardMiddle #wrap2 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
 #detail03 #boardMiddle #wrap2 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
 #detail03 #boardMiddle #wrap2 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
 #detail03 #boardMiddle #wrap2 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
 #detail03 #boardMiddle #wrap2 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
-#detail03 #boardMiddle #wrap3 { width: 696px; margin-left: 10px; float: left; padding: 10px 30px }
+#detail03 #boardMiddle #wrap3 { width: 716px; margin-left: 10px; float: left; padding: 10px 20px }
 #detail03 #boardMiddle #wrap3 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
 #detail03 #boardMiddle #wrap3 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
 #detail03 #boardMiddle #wrap3 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
-#detail03 #boardMiddle #wrap3 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail03 #boardMiddle #wrap3 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4; cursor: pointer}
 #detail03 #boardMiddle #wrap3 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
 #detail03 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}
  
-
-
-#detail04Image{width:783px; margin: 0 auto; margin-top:100px; border: 1px solid #999999}
-
-#detail04{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: -170px }
+#detail04{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 100px }
 #detail04 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
 #detail04 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb'; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
-#detail04 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:670px; width:776px; padding: 0 50px }
-#detail04 #boardMiddle #wrap { width: 350px; margin-left: 63px; float: left; padding-top: 10px; padding-bottom: 10px }
-#detail04 #boardMiddle #wrap #left { width:42px; height: 96px; margin-right: 10px; float: left}
-#detail04 #boardMiddle #wrap #left #icon{ width:40px; height: 40px; margin-top: 12px; border:1px solid #dfdfdf; float: left}
-#detail04 #boardMiddle #wrap #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; height: 40px; vertical-align: middle; display: table-cell  }
-#detail04 #boardMiddle #wrap #contents { float:right; width: 298px; color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; height: 70px; line-height:1.4}
+#detail04 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:560px; width:776px; padding: 0 50px }
+#detail04 #boardMiddle #wrap1 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
+#detail04 #boardMiddle #wrap1 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
+#detail04 #boardMiddle #wrap1 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
+#detail04 #boardMiddle #wrap1 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail04 #boardMiddle #wrap1 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail04 #boardMiddle #wrap1 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
+#detail04 #boardMiddle #wrap2 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
+#detail04 #boardMiddle #wrap2 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
+#detail04 #boardMiddle #wrap2 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
+#detail04 #boardMiddle #wrap2 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail04 #boardMiddle #wrap2 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail04 #boardMiddle #wrap2 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
+#detail04 #boardMiddle #wrap3 { width: 716px; margin-left: 10px; float: left; padding: 10px 20px }
+#detail04 #boardMiddle #wrap3 #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; margin-bottom: 3px;}
+#detail04 #boardMiddle #wrap3 #subtitle { font-weight: bold; color:black; font-family: 'NanumGothicWeb'; font-size: 10pt; margin-bottom: 3px;  }
+#detail04 #boardMiddle #wrap3 #contents { color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4}
+#detail04 #boardMiddle #wrap3 #contents .link{ color:#334d66; cursor:pointer; font-family: 'NanumGothicWeb'; font-size: 9pt; line-height:1.4; cursor: pointer}
+#detail04 #boardMiddle #wrap3 #contents #command{ padding: 2px 10px; color:white; background:black; font-weight: bold; margin-top: 2px}
 #detail04 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}
+
+
+#detail05Image{width:783px; margin: 0 auto; margin-top:100px; border: 1px solid #999999}
+
+#detail05{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: -170px }
+#detail05 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
+#detail05 #boardTop #boardTitle {font-size:11pt; color: black; font-family:'NanumGothicWeb'; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
+#detail05 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:670px; width:776px; padding: 0 50px }
+#detail05 #boardMiddle #wrap { width: 350px; margin-left: 63px; float: left; padding-top: 10px; padding-bottom: 10px }
+#detail05 #boardMiddle #wrap #left { width:42px; height: 96px; margin-right: 10px; float: left}
+#detail05 #boardMiddle #wrap #left #icon{ width:40px; height: 40px; margin-top: 12px; border:1px solid #dfdfdf; float: left}
+#detail05 #boardMiddle #wrap #title { font-weight: bold; color:#334d66; font-family: 'NanumGothicWeb'; font-size: 11pt; height: 40px; vertical-align: middle; display: table-cell  }
+#detail05 #boardMiddle #wrap #contents { float:right; width: 298px; color:black; font-family: 'NanumGothicWeb'; font-size: 9pt; height: 70px; line-height:1.4}
+#detail05 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}
  
 
