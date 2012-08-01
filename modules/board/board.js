@@ -444,9 +444,7 @@ var self = module.exports = {
 		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
 
-	/*
-		2012. 7. 20. by JH
-	*/
+
 	display_result2 : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content){	
 		var comment = require('../comment/comment');
 		var i = 0;

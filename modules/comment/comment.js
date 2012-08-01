@@ -30,7 +30,7 @@ var self = module.exports = {
 		
 		model.count({deleted : false, post_index : post_index}, function(err, counter) {
 			if ( !err ) {
-				model.find({deleted : false, post_index : post_index}).sort('insert_date', -1)
+				model.find({deleted : false, post_index : post_index}).sort('insert_date', 1)
 					.skip(skip_size).limit(paging_size).exec( function(err, docs){
 					if ( !err ) {
 						callback(docs, counter/paging_size);
