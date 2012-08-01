@@ -202,7 +202,7 @@ var self = module.exports = {
 					if(i < docs.length) {
 						comment.counter(docs[i].index, function(result){
 							board.get_board_name(docs[i].board_id, function(name_result){
-								board.getSubject(docs[i].subject, function(subject_result){
+								board.getSubject(docs[i].subject, 60, function(subject_result){
 									comm_count[i] = result;
 									board_name[i] = name_result;
 									docs[i].subject = subject_result;
@@ -267,8 +267,8 @@ var self = module.exports = {
 					if(i < docs.length) {
 						board.get_post_subject(docs[i].post_index, function(subject){
 							board.get_board_name(docs[i].board_id, function(name){
-								board.getSubject(subject, function(short_subject){
-									board.getSubject(docs[i].content, function(short_content){
+								board.getSubject(subject, 60, function(short_subject){
+									board.getSubject(docs[i].content, 60, function(short_content){
 										post_subject[i] = short_subject;
 										board_name[i] = name;
 										docs[i].content = short_content;
