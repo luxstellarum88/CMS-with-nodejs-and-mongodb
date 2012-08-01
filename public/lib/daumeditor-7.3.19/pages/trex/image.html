@@ -12,8 +12,6 @@
 		if (typeof(execAttach) == 'undefined') { //Virtual Function
 	        return;
 	    }
-	    
-	    
 		
 		var url = document.getElementById('thumbnail');
 		var file = url.files[0]
@@ -28,7 +26,10 @@
 			'thumburl': dir
 		};
 		execAttach(_mockdata);
+		
+		var frm = document.getElementById('uploader');
 		closeWindow();
+		frm.submit();
 	}
 
 	function initUploader(){
@@ -66,9 +67,9 @@
 		</ul>
 	</div>
 </div> -->
-<form method='post' id='uploader' enctype="multipart/form-data" action="/image_upload" onsubmit="return done();">
+<form method='post' id='uploader' enctype="multipart/form-data" action="/image_upload">
 	<input type="file" id="thumbnail" name="thumbnail"/>
-	<input type="submit" id="submit"/>
+	<input type="button" id="submit", value="제출", onclick="javascript:done();"/>
 </form>
 </body>
 </html>
