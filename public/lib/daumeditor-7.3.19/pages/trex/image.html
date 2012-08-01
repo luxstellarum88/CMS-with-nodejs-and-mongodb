@@ -14,7 +14,13 @@
 	    }
 		
 		var url = document.getElementById('thumbnail');
-		var file = url.files[0]
+		var file = url.files[0];
+		
+		if(typeof(file)=='undefined'){
+			alert("이미지를 첨부해주세요.");
+			return;
+		}
+		
 		var dir = '/images/' + file.name;
 		
 		var _mockdata = {
@@ -69,7 +75,7 @@
 </div> -->
 <form method='post' id='uploader' enctype="multipart/form-data" action="/image_upload">
 	<input type="file" id="thumbnail" name="thumbnail"/>
-	<input type="button" id="submit", value="제출", onclick="javascript:done();"/>
+	<input type="button" id="submit" value="제출" onclick="javascript:done();" class='clickable'/>
 </form>
 </body>
 </html>
