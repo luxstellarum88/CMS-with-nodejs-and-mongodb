@@ -6,24 +6,49 @@ html
 		link(rel='stylesheet', type='text/css', href='../css/common.css')
 		link(rel='stylesheet', type='text/css', href='../css/ready.css')
 		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
-		link(rel='stylesheet', type='text/css', href='../css/mypage.css')
+		link(rel='stylesheet', type='text/css', href='../css/findUserInfo.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+		script
+			$(document).ready(function(){
+
+				$('#findUserId').click(function(){
+					console.log("tqtqt");
+					$('#findUserInfoForm').attr('action', '/find_id').submit();
+				});
+				$('#findUserPw').click(function(){
+					console.log("tqtqt23232");
+					$('#findUserInfoForm').attr('action', '/find_password').submit();
+				});
+
+				$('#email').focus();
+			});
 	body
 		#viewport
 			#world
 		include ../common/header.jade
 		include ../common/mainMenu.jade
+		
 
-		#detail03
+		#detail01
+			#detail01Text
+				#title 회원 정보 찾기
+				#contents
+					| 아이디 혹은 비밀번호를 잊어버리셨다구요?
+		#detail02
 			#boardTop
+				form(method='get', id='findUserInfoForm', name='findUserInfoForm')
+					#findUserId.menuText.select 아이디 찾기
+					#findUserPw.menuText 비밀번호 찾기
 			#boardMiddle
-				가입하실 때 입력하신 이메일 주소를 입력해 주세요. ( 예)goorm@skima.co.kr )
-				form(method='post', action='/find_id/result')
-					e-Mail 주소
-					input(type='text', id='email', name='email')
-					input(type='submit', id='find_id_submit', name='find_id_submit', value='확인', class='clickable')
+				#wrap
+					가입하실 때 입력하신 이메일 주소를 입력해 주세요. ( 예)goorm@skima.co.kr )
+					form(method='post', action='/find_id/result')
+						br
+						#userEmail 이메일 주소&nbsp&nbsp
+							input(type='text', id='email', name='email')
+						input(type='submit', id='find_id_submit', name='find_id_submit', value='확인', class='clickable')
 			#boardBottom
 
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')

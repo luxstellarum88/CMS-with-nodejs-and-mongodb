@@ -30,55 +30,62 @@
 	line-height:1.3
 }
 
-#detail02, #detail03 {
+#detail02{
 	width : 876px;
 	position : relative;
 	left : 50%;
 	margin-left : -438px;
 	margin-top : 30px;
 }
-#detail02 #boardTop, #detail03 #boardTop {
+#detail02 #boardTop{
 	background-image : url('../images/boardTop_870px.png');
 	height : 55px;
 	width : 876px;
 }
-#detail02 #boardTop .menuText, #detail03 #boardTop .menuText {
+#detail02 #boardTop #boardTitle{
+	color : black;
+	background : url('../images/boardTitleBackground.png') no-repeat;
+	background-position : center;
 	font-size : 11pt;
-	color : #999999;
 	font-family : 'NanumGothicWeb';
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
-	cursor: pointer
+
 }
-#detail02 #boardTop .menuText.select, #detail03 #boardTop .menuText.select {
-	color : black;
-	background : url('../images/boardTitleBackground.png') no-repeat;
-	background-position : center;
-	cursor : default;
-}
-#detail02 #boardMiddle, #detail03 #boardMiddle {
+#detail02 #boardMiddle{
 	background-image : url('../images/boardMiddle_870px.png');
 	height : 300px;
 	width : 776px;
 	padding : 0 50px;
 }
-#detail02 #boardMiddleJoin, #detail03 #boardMiddleJoin{
-	background-image : url('../images/boardMiddle_870px.png');
-	width : 776px;
-	padding : 0 50px;
-}
-#detail02 #boardMiddle #wrap, #detail03 #boardMiddle #wrap {
+#detail02 #boardMiddle #wrap1 {
 	text-align: center;
 	padding-top: 110px;
 	font-size: 9pt;
 }
-#detail02 #boardMiddle #wrap #message, #detail03 #boardMiddle #wrap #message {
-	margin-bottom: 10px;
+#detail02 #boardMiddle #wrap1 #userID {
+	color: #334D66;	
+	font-weight: bold;
 }
-#detail02 #boardBottom, #detail03 #boardBottom {
+#detail02 #boardMiddle #wrap2 {
+	width: 266px;
+	position: relative;
+	left: 50%;
+	float: left;
+	margin-top: 20px;
+	margin-left: -133px;
+}
+#detail02 #boardMiddle #wrap2 #goToMain {
+	float: left;
+}
+#detail02 #boardMiddle #wrap2 #findPw{
+	float: left;
+	margin-right: 20px;
+}
+#detail02 #boardBottom{
 	background-image : url('../images/boardBottom_870px.png');
 	height : 34px;
 	width : 876px;
