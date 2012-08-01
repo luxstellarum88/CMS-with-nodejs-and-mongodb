@@ -45,6 +45,7 @@ var self = module.exports = {
 				make_model.update_date = new Date();
 				make_model.deleted = false;
 				make_model.file = req.body.tx_attach_file;
+				make_model.image = req.body.tx_attach_image;
 				
 				make_model.save(function(err) {
 					if ( !err ) {
@@ -444,9 +445,7 @@ var self = module.exports = {
 		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
 
-	/*
-		2012. 7. 20. by JH
-	*/
+
 	display_result2 : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content){	
 		var comment = require('../comment/comment');
 		var i = 0;
