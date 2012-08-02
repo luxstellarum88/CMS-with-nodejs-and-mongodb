@@ -2,9 +2,9 @@ body {
 	background : url('/images/background.png') repeat-x;
 	background-color : #779ec7;
 	margin : 0;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	font-size : 10pt;
-	line-height: 1.4;
+	line-height: 1.2;
 }
 table{
 	border-collapse: collapse;
@@ -263,7 +263,7 @@ li.submenu {
 	position : relative;
 	bottom : 0;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	font-size : 10pt;
 	padding-top : 20px;
 	margin-top : 36px;
@@ -297,7 +297,7 @@ li.submenu {
 	z-index: 9999;
 	font-size: 11pt;
 	color: #ACC6E3;
-	font-family: 'NanumGothicWeb';
+	font-family: gulim, 굴림, sans-serif;
 	margin-bottom: 20px;
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 	cursor : hand;
