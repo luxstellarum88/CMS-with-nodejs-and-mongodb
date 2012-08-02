@@ -74,6 +74,16 @@ html
 											, onKeyPress='return submit_enter(this,event)'
 										)
 								tr
+									td.content Comment Paging Size
+									td.content
+										input(
+											type='textbox'
+											,id = 'comm_paging'
+											,name = 'comm_paging'
+											,value = docs.comm_paging
+											, onKeyPress='return submit_enter(this,event)'
+										)
+								tr
 									td.content Date
 									td.content
 										#{docs.date}

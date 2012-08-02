@@ -2,6 +2,7 @@
 	2012. 07. 13. by JH
 */
 var db = require('../Database/board/comment_db');
+var list_db = require('../Database/board/board_list_db');
 var alert = require('../alert/alert');
 var self = module.exports = {
 	counter : function(condition, callback) {
@@ -19,32 +20,65 @@ var self = module.exports = {
 		});//end of count	
 	},//end of counter
 	
-	list : function(req, res, callback) {
+	get_paging_size : function(post_index, callback) {
+		db.connect();
+		list_db.connect();
+		var comm_model = db.get_model();
+		var list_model = list_db.get_model();
+		comm_model.findOne({post_index : post_index}, function(err, doc){
+			if(!err && doc) {
+				list_model.findOne({id : doc.board_id}, function(err, board) {
+					if(!err) {
+						if(board) {
+							callback(board.comm_paging);	
+						}//end of if
+						else {
+							console.log('in comment.js, get_paging_size :  error(03)');
+							callback(false);
+						}//end of else
+					}//end of if
+					else {
+						console.log('in comment.js, get_paging_size :  error(02)');
+						callback(false);
+					}//end of else
+				});//end of findOne
+			}
+			else {
+				console.log('in comment.js, get_paging_size :  error(01)');
+				callback(false);
+			}
+		});//end of findOne
+	}
+	
+	,list : function(req, res, callback) {
 		db.connect();
 		var model = db.get_model();
 		var post_index = req.params.num;
 		
 		var current_page = req.query.comm_page || 1;
-		var paging_size = 5;
-		var skip_size = (paging_size * current_page) - paging_size;
-		
-		model.count({deleted : false, post_index : post_index}, function(err, counter) {
-			if ( !err ) {
-				model.find({deleted : false, post_index : post_index}).sort('insert_date', 1)
-					.skip(skip_size).limit(paging_size).exec( function(err, docs){
-					if ( !err ) {
-						callback(docs, counter/paging_size);
-					}//end of if
-					else {
-						console.log('in comment/view.js : error(01)');
-						callback(null, null);
-					}//end of else
-				});//end of find
-			}//end of if
-			else {
-				console.log('in comment/view.js : error (02)');
-			}
-		});//end of count	
+				
+		self.get_paging_size(post_index, function(result){
+			var paging_size = result || 5;
+			var skip_size = (paging_size * current_page) - paging_size;
+			
+			model.count({deleted : false, post_index : post_index}, function(err, counter) {
+				if ( !err ) {
+					model.find({deleted : false, post_index : post_index}).sort('insert_date', 1)
+						.skip(skip_size).limit(paging_size).exec( function(err, docs){
+						if ( !err ) {
+							callback(docs, counter/paging_size);
+						}//end of if
+						else {
+							console.log('in comment/view.js : error(01)');
+							callback(null, null);
+						}//end of else
+					});//end of find
+				}//end of if
+				else {
+					console.log('in comment/view.js : error (02)');
+				}
+			});//end of count	
+		});//end of get_paging_size
 	},//end of list
 	
 	get_count : function(board_id, post_index, callback){

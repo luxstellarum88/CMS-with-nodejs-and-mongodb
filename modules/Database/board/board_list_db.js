@@ -8,6 +8,7 @@ var schema = new Schema({
 	id : String,
 	name : String,
 	paging : Number,
+	comm_paging : Number,
 	date : Date
 });//end of board_list_schema
 

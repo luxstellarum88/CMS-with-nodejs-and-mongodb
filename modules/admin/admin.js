@@ -63,6 +63,7 @@ var self = module.exports = {
 		model.id = board.id;
 		model.name = board.name;
 		model.paging = board.pagingNumber;
+		model.comm_paging = board.comm_paging_number; //add at 12.08.01
 		model.date = new Date();
 		
 		model.save(function(err){
@@ -129,10 +130,12 @@ var self = module.exports = {
 		var id  = req.params.id;
 		var name = req.body.name;
 		var paging_size = req.body.paging;
+		var comm_paging_size = req.body.comm_paging; //add at 12.08.01
 		var condition = { id : id };
 		var update = { $set : {
 							name : name,
 							paging : paging_size,
+							comm_paging : comm_paging_size,
 							update_date : new Date()
 						}};//end of update-state
 		model.update(condition, update, null, function(err) {
