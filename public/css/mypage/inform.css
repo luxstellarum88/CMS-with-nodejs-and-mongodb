@@ -63,21 +63,17 @@
 
 #detail02 #boardMiddle{
 	background-image : url('/images/boardMiddle_870px.png');
-	min-height : 300px;
-	width : 776px;
-	padding : 0 50px 10px;
-}
-#detail02 #boardMiddleJoin{
-	background-image : url('/images/boardMiddle_870px.png');
 	width : 776px;
 	padding : 0 50px;
 }
 #detail02 #boardMiddle #wrap{
+/*
 	text-align: center;
 	padding-top: 110px;
 	font-size: 9pt;
 	width: 236px;
 	margin: 0 auto;
+*/
 }
 #detail02 #boardBottom{
 	background-image : url('/images/boardBottom_870px.png');
@@ -86,7 +82,7 @@
 }
 
 
-#mypage_password {
+#detail02 #boardMiddle #contents .mypage_textbox{
 	background : url('/images/input_textbox_type2.png') no-repeat;
 	width : 167px;
 	height : 25px;
@@ -95,4 +91,8 @@
 	float : left;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+.mypage_text{
+	margin-top: 5px;
+	margin-left: 5px;
 }
