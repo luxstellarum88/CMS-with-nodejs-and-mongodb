@@ -61,9 +61,9 @@
 }
 #detail02 #boardMiddle, #detail03 #boardMiddle {
 	background-image : url('../images/boardMiddle_870px.png');
-	height : 300px;
+	min-height : 300px;
 	width : 776px;
-	padding : 0 50px;
+	padding : 0 50px 10px;
 }
 #detail02 #boardMiddleJoin, #detail03 #boardMiddleJoin{
 	background-image : url('../images/boardMiddle_870px.png');
