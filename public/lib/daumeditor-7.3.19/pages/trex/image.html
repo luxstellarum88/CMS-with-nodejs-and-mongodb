@@ -20,6 +20,12 @@
 
 		var url = document.getElementById('thumbnail');
 		var file = url.files[0];
+		
+		if(typeof(file)=='undefined'){
+			alert("이미지를 첨부해주세요.");
+			return;
+		}
+		
 		var dir = '/images/' + file.name;
 		
 		if(imgWidth > 600)

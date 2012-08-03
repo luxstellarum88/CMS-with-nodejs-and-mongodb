@@ -86,27 +86,19 @@
 }
 
 #boardMiddle #readMiddle #readButton #list{
-	float: left;
-	margin-left: 3px;
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	left: 53px; */
+	margin-top: -2px;
+	float:left;
+	margin-left: 12px;
 }
 
 #boardMiddle #readMiddle #readButton #modify{
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	right:83px; */
 	float: right;
-	margin-right: 3px;
+	margin-right: 12px;
 }
 
 #boardMiddle #readMiddle #readButton #delete{
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	right:129px; */
 	float: right;
-	margin-right: 3px;
+	margin-right: 12px;
 }
 
 #boardMiddle #readMiddle #readCommentList {

@@ -239,14 +239,14 @@ html
 					div#readButton
 						-if(session!=-1)
 							div#list
-								img(src='../../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'", class='clickable')
+								img(src='../../images/board/button_list.png', id='listButton', onClick="location.href='/board/#{board_id}'", class='clickable')
 
 
 						-if((session!=-1 && sessionId == board.user_id) || (session!=-1 && sessionRole=='admin'))
 							div#delete
-								img(src='../../images/board/button_delete.png', id='delete', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
+								img(src='../../images/board/button_delete.png', id='deleteButton', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 							div#modify
-								img(src='../../images/board/button_modify.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
+								img(src='../../images/board/button_modify.png', id='modifyButton', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
 
 
 

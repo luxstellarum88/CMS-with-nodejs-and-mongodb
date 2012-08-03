@@ -23,7 +23,7 @@
 	width:556px; 
 	font-size:11pt; 
 	color: #acc6e3; 
-	font-family:'NanumGothicWeb'; 
+	font-family:gulim, 굴림, sans-serif; 
 	margin-bottom: 20px; 
 	padding:0 160px; 
 	text-shadow: 1px 1px rgba(0,0,0,0.5); 
@@ -45,7 +45,7 @@
 #detail02 #boardTop .menuText, #detail03 #boardTop .menuText {
 	font-size : 11pt;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;

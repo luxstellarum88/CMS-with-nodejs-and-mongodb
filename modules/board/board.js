@@ -245,14 +245,14 @@ var self = module.exports = {
 		});//end of find
 	}, //end of update
 	
-	getSubject : function(subject, callback){
+	//add length parameter (12.08.01)
+	getSubject : function(subject, length, callback){
 		var p = 0;
 		var len = 0;
 		var str;
 		var evt2 = new event_emitter();
-				
 		evt2.on('string_length', function(evt2, p){
-			if( len < 60 && p<subject.length ) {
+			if( len < ( length ) && p<subject.length ) {
 				if( subject.charCodeAt(p) > 255) len+=2;
 				else len+=1;
 				evt2.emit('string_length', evt2, ++p);
@@ -355,7 +355,7 @@ var self = module.exports = {
 										docs_arr[count] = docs[i+j];
 										comment_number[count] = length || 0;
 										
-										self.getSubject(docs_arr[count].subject, function(string){
+										self.getSubject(docs_arr[count].subject, 60, function(string){
 											docs_arr[count].subject = string;
 										});
 									
@@ -397,7 +397,7 @@ var self = module.exports = {
 		
 		evt.on('subject_cutting', function(evt, k){
 			if ( k < docs.length ) {
-				self.getSubject(docs[k].subject, function(str){
+				self.getSubject(docs[k].subject, 60, function(str){
 					docs[k].subject = str;
 				});
 				evt.emit('subject_cutting', evt, ++k);
@@ -476,23 +476,35 @@ var self = module.exports = {
 		var model = db.get_model();
 		var list_model = list_db.get_model();
 		var limit_size = limit || 5;
-		
-		
+		var evt = new event_emitter();
+		var k = 0;
 		model.find({board_id : id, deleted : false}).sort('insert_date',-1).limit(limit_size).exec(function(err, docs){
 			if(!err) {
 				if(docs) {
-					callback(docs);
+					evt.on('cut_subject', function(evt, k){
+						if ( k < docs.length ) {
+							self.getSubject(docs[k].subject, 44, function(str){
+								docs[k].subject = str;
+							});
+							evt.emit('cut_subject', evt, ++k);
+						}
+						else {
+							callback(docs);
+						}
+					});//end of evt.on	
+					
+					evt.emit('cut_subject', evt, k);				
 				}
 				else {
 					callback(null);
 				}
-				
 			}
 			else {
 				console.log('in board.js, get_board_data : error(01)');
 				callback('error');
-			}
+			}			
 		});//end of find
+		
 	},//end of get_board_data
 	
 	display_manual : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
@@ -524,28 +536,30 @@ var self = module.exports = {
 		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
 
+	/*
 	get_board_data : function(id, limit, callback){
-		var model = db.get_model();
-		var list_model = list_db.get_model();
-		var limit_size = limit || 5;
-		
-		
-		model.find({board_id : id, deleted : false}).sort('insert_date',-1).limit(limit_size).exec(function(err, docs){
-			if(!err) {
-				if(docs) {
-					callback(docs);
+			var model = db.get_model();
+			var list_model = list_db.get_model();
+			var limit_size = limit || 5;
+			
+			
+			model.find({board_id : id, deleted : false}).sort('insert_date',-1).limit(limit_size).exec(function(err, docs){
+				if(!err) {
+					if(docs) {
+						callback(docs);
+					}
+					else {
+						callback(null);
+					}
+					
 				}
 				else {
-					callback(null);
+					console.log('in board.js, get_board_data : error(01)');
+					callback('error');
 				}
-				
-			}
-			else {
-				console.log('in board.js, get_board_data : error(01)');
-				callback('error');
-			}
-		});//end of find
-	},//end of get_board_data
+			});//end of find
+		},//end of get_board_data*/
+	
 	
 	post_list : function(req, res) {
 		
