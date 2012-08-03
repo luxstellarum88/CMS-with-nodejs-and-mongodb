@@ -30,7 +30,7 @@
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
 #boardMiddle #boardList th.readNum { 
-	width: 75px; 
+	width: 74px; 
 	text-align: center; 
 	background: url("/images/boardHeadBackground_right.png")
 }
