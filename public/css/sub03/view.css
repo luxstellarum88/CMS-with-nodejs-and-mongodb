@@ -201,6 +201,7 @@
 
 #boardMiddle #readMiddle #readCommentList .lastComment #readCommentListBottom {
 	border-bottom: none;
+	word-break: break-all;
 	
 }
 

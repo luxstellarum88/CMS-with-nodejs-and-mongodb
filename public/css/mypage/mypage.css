@@ -60,15 +60,10 @@
 	background-position : center;
 	cursor : default;
 }
-<<<<<<< HEAD:public/css/mypage.css
-#detail02 #boardMiddle, #detail03 #boardMiddle {
-	background-image : url('../images/boardMiddle_870px.png');
-	min-height : 300px;
-=======
+
 #detail02 #boardMiddle{
 	background-image : url('/images/boardMiddle_870px.png');
-	height : 300px;
->>>>>>> edit my page css jade and commit for merge:public/css/mypage/mypage.css
+	min-height : 300px;
 	width : 776px;
 	padding : 0 50px 10px;
 }
