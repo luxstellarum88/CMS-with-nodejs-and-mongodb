@@ -121,6 +121,7 @@
 	width : 771px;
 	height : 35px;
 	line-height: 35px;
+	margin-bottom: 10px;
 	text-align: center;
 	background : url("../../images/board/boardCommentBackground_bottom.png");
 	
@@ -169,7 +170,7 @@
 	width: 711px;
 	line-height: 20px;
 	padding: 0 10px 12px;
-	border-bottom: 1px dotted gray;
+	border-bottom: 1px dotted #e4e4e4;
 	font-size: 9pt;
 	color: black;
 }

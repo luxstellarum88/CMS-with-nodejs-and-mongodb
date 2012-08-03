@@ -3,11 +3,10 @@ html
 		title
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/index.css')
-		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
-		link(rel='stylesheet', type='text/css', href='../css/join.css')
-		link(rel='stylesheet', type='text/css', href='../css/mypage.css')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(rel='stylesheet', type='text/css', href='/css/join.css')
+		link(rel='stylesheet', type='text/css', href='/css/mypage/mypage.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
@@ -103,11 +102,6 @@ html
 				#boardTitle2.menuText  작성 글 목록
 				#boardTitle3.menuText  작성 코멘트 목록
 			#boardMiddleJoin
-				//
-					#boardMenu.leftMenu
-						#mypage_menu1.menuText 회원정보수정
-						#mypage_menu2.menuText 작성 글 목록
-						#mypage_menu3.menuText 작성 댓글 목록
 				#contents.contents
 					form(method='post', action='/mypage/update', name='frm')
 						table.info(border='1',cellspacing='0',style='font-size:12px;')

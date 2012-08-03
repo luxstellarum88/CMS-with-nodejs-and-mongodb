@@ -3,9 +3,9 @@ html
 		title
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
-		link(rel='stylesheet', type='text/css', href='../css/mypage.css')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(rel='stylesheet', type='text/css', href='/css/mypage/auth.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
@@ -61,10 +61,10 @@ html
 				#wrap
 					#message
 						회원 인증을 위해 비밀번호를 입력해주세요.
-					form(method='post', action='/mypage/auth')
-						비밀번호 
+
+					form#loginFrm(method='post', action='/mypage/auth')
 						input(type='password', id='mypage_password', name='mypage_password')
-						input(type='submit', id='mypage_submit_button', name='mypage_submit_button', value='확인', class='clickable')
+						input(type='submit', id='mypage_submit_button', name='mypage_submit_button', value='', class='clickable')
 			#boardBottom
 
 

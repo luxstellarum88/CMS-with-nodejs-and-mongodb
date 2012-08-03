@@ -108,13 +108,13 @@
 
 
 #boardFooter #list{
-	margin-top: -2px;
+	margin-top: -4px;
 	float:left;
 	margin-left: 12px;
 }
 
 #boardFooter #write{
-	margin-top: -2px;
+	margin-top: -4px;
 	float:right;
 	margin-right: 12px;
 }
