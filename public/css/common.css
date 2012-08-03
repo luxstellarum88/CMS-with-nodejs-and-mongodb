@@ -29,7 +29,7 @@ input:-webkit-autofill{
 	margin-left : -170px;
 	color : white;
 	text-align : right;
-	font-size : 13px;
+	font-size : 10px;
 }
 #topMenu p {
 	text-align : right;
@@ -72,6 +72,13 @@ input:-webkit-autofill{
 }
 #logoutButton {
 	background : url('/images/logoutButton.png');
+	width : 77px;
+	height : 25px;
+	float : right;
+	margin-left : 10px;
+}
+#adminButton {
+	background : url('/images/adminButton.png');
 	width : 77px;
 	height : 25px;
 	float : right;
