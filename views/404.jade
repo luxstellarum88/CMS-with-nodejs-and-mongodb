@@ -13,18 +13,18 @@ html
 		#viewport
 			#world
 		
-		include common/header
-		include common/mainMenu	
-		include common/subMenu/subMenu01
+		include /common/header
+		include /common/mainMenu	
+		include /common/subMenu/subMenu01
 		
 		#detail02
 			#boardTop
-				#boardTitle 에러 페이
+				#boardTitle 404
 			#boardMiddle
 				#wrap(style='margin-left: 10px;')
 					#contents
 						p 페이지를 찾을 수 없습니다.
 						p #{url}
 			#boardBottom
-		include common/footer
-		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
+		include /common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
