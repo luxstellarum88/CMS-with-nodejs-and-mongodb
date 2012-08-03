@@ -45,6 +45,7 @@ var self = module.exports = {
 				make_model.update_date = new Date();
 				make_model.deleted = false;
 				make_model.file = req.body.tx_attach_file;
+				console.log(req.body.tx_attach_file);
 				
 				make_model.save(function(err) {
 					if ( !err ) {

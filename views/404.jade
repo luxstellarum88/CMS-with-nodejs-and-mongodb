@@ -1,0 +1,30 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/index.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include common/header
+		include common/mainMenu	
+		include common/subMenu/subMenu01
+		
+		#detail02
+			#boardTop
+				#boardTitle 에러 페이
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#contents
+						p 페이지를 찾을 수 없습니다.
+						p #{url}
+			#boardBottom
+		include common/footer
+		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
