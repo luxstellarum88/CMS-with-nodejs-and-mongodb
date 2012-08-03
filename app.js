@@ -268,10 +268,15 @@ app.post('/board_preview', routes.boardPreview);	// preview contents in a write 
 app.post('/image_upload', function(req, res, next){
 	var tmp_path = req.files.thumbnail.path;
 	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
+	
+	console.log('path : ' + req.files.thumbnail.path);
+	console.log('name : ' + req.files.thumbnail.name);
+	
 	fs.rename(tmp_path, target_path, function(err){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
 			if(err) throw err;
+			console.log('image rename success');
 			res.send('image rename success');
 		});
 	});
@@ -280,6 +285,7 @@ app.post('/image_upload', function(req, res, next){
 app.post('/file_upload', function(req, res, next){	
 	var tmp_path = req.files.file.path;	
 	var target_path = __dirname +'/public/uploads/' + req.files.file.name;
+
 	fs.rename(tmp_path, target_path, function(err){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
