@@ -220,7 +220,7 @@ app.get('/admin/recent_comment_view', requiresAdminLogin, routes.recent_comment_
 app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_view);
 
 app.post('/admin/main', routes.admin_check);
-app.get('/admin/main', requiresSuperUserLogin, routes.admin_view);
+app.get('/admin/main', requiresAdminLogin, routes.admin_view);
 app.get('/admin', routes.admin);
 
 app.post('/admin/board_make', routes.make_board);
