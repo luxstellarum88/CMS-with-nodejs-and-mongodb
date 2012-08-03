@@ -379,7 +379,7 @@ exports.boardPreview = function(req, res){
 	boardObj.content = req.body.tx_content;
 	var k=-1;
 	
-	board.getSubject(boardObj.subject, function(string){
+	board.getSubject(boardObj.subject, 60, function(string){
 		boardObj.subject = string;
 	});
 	

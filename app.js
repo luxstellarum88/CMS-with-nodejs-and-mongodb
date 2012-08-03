@@ -309,6 +309,6 @@ app.get('/find_password', routes.find_password);
 app.post('/find_id/result', routes.find_id_result);
 app.post('/find_password/result', routes.find_password_result);
 
-app.listen(8080, function(){
+app.listen(80, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
