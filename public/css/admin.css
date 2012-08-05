@@ -1,0 +1,78 @@
+#detail02{
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 30px;
+}
+#detail02 #boardTop{
+	background-image : url('../images/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+#detail02 #boardTop #boardTitle{
+	font-size : 11pt;
+	color : black;
+	background : url('../images/boardTitleBackground.png') no-repeat;
+	background-position : center;
+	cursor : default;
+	font-family : gulim, 굴림, sans-serif;
+	text-align : center;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 47px;
+	float : left;
+
+}
+#detail02 #boardMiddle{
+	background-image : url('../images/boardMiddle_870px.png');
+	height : 300px;
+	width : 776px;
+	padding : 0 50px;
+}
+#detail02 #boardMiddle #wrap {
+	text-align: center;
+	padding-top: 110px;
+	font-size: 9pt;
+}
+#detail02 #boardMiddle #wrap #message {
+	margin-bottom: 10px;
+}
+#detail02 #boardMiddle #wrap #adminLoginForm{
+	width: 167px;
+	height: 53px;
+	margin: 0 auto;	
+}
+#detail02 #boardMiddle #wrap #adminLoginForm #adminId {
+	background : url('/images/input_textbox_type2.png') no-repeat;
+	width : 167px;
+	height : 25px;
+	border : 0px;
+	outline : none;
+	float:left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#detail02 #boardMiddle #wrap #adminLoginForm #adminPassword {
+	background : url('/images/input_textbox_type2.png') no-repeat;
+	width : 113px;
+	height : 25px;
+	border : 0px;
+	outline : none;
+	float:left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#detail02 #boardMiddle #wrap #adminLoginForm #adminLoginButton {
+	background : url('/images/button_login_type2.png');
+	width : 54px;
+	height : 25px;
+	border : 0px;
+	float:left;
+	cursor : hand;
+}
+#detail02 #boardBottom {
+	background-image : url('../images/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}
