@@ -3,10 +3,9 @@ html
 		title
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-		link(rel='stylesheet', type='text/css', href='../css/common.css')
-		link(rel='stylesheet', type='text/css', href='../css/ready.css')
-		link(rel='stylesheet', type='text/css', href='../css/cloud.css')
-		link(rel='stylesheet', type='text/css', href='../css/findUserInfo.css')
+		link(rel='stylesheet', type='text/css', href='/css/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
+		link(rel='stylesheet', type='text/css', href='/css/findUserInfo.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
@@ -43,12 +42,11 @@ html
 					#findUserPw.menuText 비밀번호 찾기
 			#boardMiddle
 				#wrap
-					가입하실 때 입력하신 이메일 주소를 입력해 주세요. ( 예)goorm@skima.co.kr )
-					form(method='post', action='/find_id/result')
-						br
-						#userEmail 이메일 주소&nbsp&nbsp
-							input(type='text', id='email', name='email')
-						input(type='submit', id='find_id_submit', name='find_id_submit', value='확인', class='clickable')
+					#message
+						가입하실 때 입력하신 이메일 주소를 입력해 주세요. ( 예)goorm@skima.co.kr )
+					form#findInfoForm(method='post',action='/find_id/result')
+						input(type='text', id='find_email', name='email')
+						input(type='submit', id='find_password', name='find_id_submit', value='', class='clickable')
 			#boardBottom
 
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')

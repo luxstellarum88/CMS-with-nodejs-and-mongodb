@@ -34,7 +34,7 @@
 #detail01Text #contents {
 	font-size:11pt; 
 	color: #acc6e3; 
-	font-family:'NanumGothicWeb'; 
+	font-family:gulim, 굴림, sans-serif; 
 	margin-bottom: 20px; 
 	text-shadow: 1px 1px rgba(0,0,0,0.5)
 }
@@ -54,7 +54,7 @@
 #detail02 #boardTop #boardTitle {
 	font-size : 11pt;
 	color : black;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
@@ -86,8 +86,6 @@
 	font-family : 'NanumGorhicWeb';
 	font-size : 11pt;
 	height : 40px;
-	vertical-align : middle;
-	display : table-cell;
 	font-weight: bold;
 }
 #detail02 #boardMiddle #wrap #images {
@@ -100,6 +98,7 @@
 	color : black;
 	font-family : 'NanumGorhicWeb';
 	font-size : 9pt;
+	text-align: justify;
 }
 #detail02 #boardBottom {
 	background-image : url('/images/boardBottom_870px.png');
@@ -126,7 +125,7 @@
 #detail03 #boardTop #boardTitle {
 	font-size : 11pt;
 	color : black;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
@@ -201,7 +200,7 @@
 #detail04 #boardTop #boardTitleNotice {
 	font-size : 11pt;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
@@ -223,7 +222,7 @@
 #detail04 #boardTop #boardTitleNews {
 	font-size : 11pt;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;

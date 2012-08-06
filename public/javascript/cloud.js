@@ -1,3 +1,9 @@
+	// animation settings
+	var goorm_count = 5;		//default = 5
+	var goorm_speed = .1;		//default = .1
+	var goorm_sensitivity = 1;	//default = 1
+	
+	
 	(function() {
 		var lastTime = 0;
 		var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -76,7 +82,7 @@
 				z: z,
 				a: a,
 				s: s,
-				speed: .1 * Math.random()
+				speed: goorm_speed * Math.random()
 			};
 			var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px ) rotateZ( ' + a + 'deg ) scale( ' + s + ' )';
 			cloud.style.webkitTransform = t;
@@ -94,8 +100,8 @@
 	window.addEventListener( 'DOMMouseScroll', onContainerMouseWheel ); 
 
 	window.addEventListener( 'mousemove', function( e ) {
-		worldYAngle = -( .5 - ( e.clientX / window.innerWidth ) ) * 180;
-		worldXAngle = ( .5 - ( e.clientY / window.innerHeight ) ) * 180;
+		worldYAngle = -( .5 - ( e.clientX / window.innerWidth ) ) * 180 * goorm_sensitivity;
+		worldXAngle = ( .5 - ( e.clientY / window.innerHeight ) ) * 180 * goorm_sensitivity;
 		updateView();
 	} );
 	
@@ -106,7 +112,8 @@
 				world.removeChild( world.firstChild );       
 			} 
 		}
-		for( var j = 0; j < 5; j++ ) {
+		//for( var j = 0; j < 5; j++ ) {
+		for( var j = 0; j < goorm_count; j++ ) {
 			objects.push( createCloud() );
 		}
 	}

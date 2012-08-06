@@ -2,13 +2,14 @@ body {
 	background : url('/images/background.png') repeat-x;
 	background-color : #779ec7;
 	margin : 0;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	font-size : 10pt;
-	line-height: 1.4;
+	line-height: 1.2;
 }
 table{
 	border-collapse: collapse;
-	
+	table-layout: fixed;
+	word-break: break-all;
 }
 input:-webkit-autofill{
 	color: transparent !important;
@@ -21,7 +22,7 @@ input:-webkit-autofill{
 	position : relative;
 }
 #topMenu {
-	width : 575px;
+	width : 590px;
 	height : 25px;
 	position : absolute;
 	left : 50%;
@@ -29,7 +30,7 @@ input:-webkit-autofill{
 	margin-left : -170px;
 	color : white;
 	text-align : right;
-	font-size : 13px;
+	font-size : 10px;
 }
 #topMenu p {
 	text-align : right;
@@ -72,6 +73,13 @@ input:-webkit-autofill{
 }
 #logoutButton {
 	background : url('/images/logoutButton.png');
+	width : 77px;
+	height : 25px;
+	float : right;
+	margin-left : 10px;
+}
+#adminButton {
+	background : url('/images/adminButton.png');
 	width : 77px;
 	height : 25px;
 	float : right;
@@ -263,8 +271,8 @@ li.submenu {
 	position : relative;
 	bottom : 0;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
-	font-size : 10pt;
+	font-family : gulim, 굴림, sans-serif;
+	font-size : 8pt;
 	padding-top : 20px;
 	margin-top : 36px;
 }
@@ -297,7 +305,7 @@ li.submenu {
 	z-index: 9999;
 	font-size: 11pt;
 	color: #ACC6E3;
-	font-family: 'NanumGothicWeb';
+	font-family: gulim, 굴림, sans-serif;
 	margin-bottom: 20px;
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 	cursor : hand;

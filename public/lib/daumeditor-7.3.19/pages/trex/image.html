@@ -5,8 +5,13 @@
 <title>Daum에디터 - 이미지 첨부</title> 
 <script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" href="../../css/popup.css" type="text/css"  charset="utf-8"/>
+<script src='http://code.jquery.com/jquery-1.7.2.min.js' type="text/javascript" charset="utf-8" ></script>
+<script src='/lib/jquery.form.js' type="text/javascript" charset="utf-8" ></script>
 <script type="text/javascript">
 // <![CDATA[
+	var _URL = window.URL || window.webkitURL;
+	var imageWidth;
+	var imageHeight;
 	
 	function done() {
 		if (typeof(execAttach) == 'undefined') { //Virtual Function
@@ -23,19 +28,20 @@
 		
 		var dir = '/images/' + file.name;
 		
+		if(imgWidth > 600)
+			imgWidth = 600;
+		
 		var _mockdata = {
 			'imageurl': dir,
 			'filename': file.name,
 			'filesize': file.size,
 			'imagealign': 'C',
 			'originalurl': dir,
-			'thumburl': dir
+			'thumburl': dir,
+			'width' : imgWidth
 		};
 		execAttach(_mockdata);
-		
-		var frm = document.getElementById('uploader');
 		closeWindow();
-		frm.submit();
 	}
 
 	function initUploader(){
@@ -48,10 +54,58 @@
 	    var _attacher = getAttacher('image', _opener);
 	    registerAction(_attacher);
 	}
-// ]]>
+// ]]>	
+	function FileuploadCallback(data, state){
+		if(data == "error"){
+			alert('fail');
+			return false;
+		}	
+		done();
+	};
+		
+	function FileUpload(){
+		if(!$('#thumbnail').val()){
+			alert('파일을 선택해주세요');
+			$('#thumbnail').fucus();
+			return
+		}
+
+		$('#uploader').submit();
+	}
+	
+	$(document).ready(function(){
+		initUploader();
+		
+		$(function(){
+			var frm = $('#uploader');
+			frm.ajaxForm(FileuploadCallback);
+			frm.submit(function(){return false});
+		});
+
+		$('#thumbnail').change(function(){
+			var file, img;
+			
+			if((file = this.files[0])){
+				img = new Image();
+				img.onload = function() {
+					imgWidth = this.width;
+					imgHeight = this.height;
+				};
+				img.onerror = function(){
+					alert('error');
+				};
+				img.src = _URL.createObjectURL(file);
+			}
+			
+		});		
+				
+		$('#submitBtn').click(function(){
+			FileUpload();
+		});
+	});
 </script>
 </head>
-<body onload="initUploader();">
+<body>
 <!-- <div class="wrapper">
 	<div class="header">
 		<h1>사진 첨부</h1>
@@ -73,9 +127,9 @@
 		</ul>
 	</div>
 </div> -->
-<form method='post' id='uploader' enctype="multipart/form-data" action="/image_upload">
+<form method='post' id='uploader' name='uploader' enctype="multipart/form-data" action="/image_upload">
 	<input type="file" id="thumbnail" name="thumbnail"/>
-	<input type="button" id="submit" value="제출" onclick="javascript:done();" class='clickable'/>
+	<input type="button" id="submitBtn", value="제출" />
 </form>
 </body>
 </html>

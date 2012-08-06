@@ -1,3 +1,4 @@
+
 #detail01{ 
 	width:876px; 
 	position:relative;
@@ -23,29 +24,29 @@
 	width:556px; 
 	font-size:11pt; 
 	color: #acc6e3; 
-	font-family:'NanumGothicWeb'; 
+	font-family:gulim, 굴림, sans-serif; 
 	margin-bottom: 20px; 
 	padding:0 160px; 
 	text-shadow: 1px 1px rgba(0,0,0,0.5); 
 	line-height:1.3
 }
 
-#detail02, #detail03 {
+#detail02{
 	width : 876px;
 	position : relative;
 	left : 50%;
 	margin-left : -438px;
 	margin-top : 30px;
 }
-#detail02 #boardTop, #detail03 #boardTop {
-	background-image : url('../images/boardTop_870px.png');
+#detail02 #boardTop{
+	background-image : url('/images/boardTop_870px.png');
 	height : 55px;
 	width : 876px;
 }
-#detail02 #boardTop .menuText, #detail03 #boardTop .menuText {
+#detail02 #boardTop .menuText{
 	font-size : 11pt;
 	color : #999999;
-	font-family : 'NanumGothicWeb';
+	font-family : gulim, 굴림, sans-serif;
 	text-align : center;
 	height : 40px;
 	padding-top : 15px;
@@ -53,33 +54,45 @@
 	float : left;
 	cursor: pointer
 }
-#detail02 #boardTop .menuText.select, #detail03 #boardTop .menuText.select {
+#detail02 #boardTop .menuText.select{
 	color : black;
-	background : url('../images/boardTitleBackground.png') no-repeat;
+	background : url('/images/boardTitleBackground.png') no-repeat;
 	background-position : center;
 	cursor : default;
 }
-#detail02 #boardMiddle, #detail03 #boardMiddle {
-	background-image : url('../images/boardMiddle_870px.png');
-	height : 300px;
+
+#detail02 #boardMiddle{
+	background-image : url('/images/boardMiddle_870px.png');
 	width : 776px;
 	padding : 0 50px;
 }
-#detail02 #boardMiddleJoin, #detail03 #boardMiddleJoin{
-	background-image : url('../images/boardMiddle_870px.png');
-	width : 776px;
-	padding : 0 50px;
-}
-#detail02 #boardMiddle #wrap, #detail03 #boardMiddle #wrap {
+#detail02 #boardMiddle #wrap{
+/*
 	text-align: center;
 	padding-top: 110px;
 	font-size: 9pt;
+	width: 236px;
+	margin: 0 auto;
+*/
 }
-#detail02 #boardMiddle #wrap #message, #detail03 #boardMiddle #wrap #message {
-	margin-bottom: 10px;
-}
-#detail02 #boardBottom, #detail03 #boardBottom {
-	background-image : url('../images/boardBottom_870px.png');
+#detail02 #boardBottom{
+	background-image : url('/images/boardBottom_870px.png');
 	height : 34px;
 	width : 876px;
+}
+
+
+#detail02 #boardMiddle #contents .mypage_textbox{
+	background : url('/images/input_textbox_type2.png') no-repeat;
+	width : 167px;
+	height : 25px;
+	border : 0px;
+	outline : none;
+	float : left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.mypage_text{
+	margin-top: 5px;
+	margin-left: 5px;
 }

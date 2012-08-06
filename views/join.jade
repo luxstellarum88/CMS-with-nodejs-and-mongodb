@@ -104,9 +104,11 @@ html
 										type = 'textbox'
 										,name = 'idForm'
 										,id = 'idForm'			
+										,class = 'textbox'
 									)
 									br
-									#check_id(style = 'display : inline;') 4~15자리, 알파벳+숫자
+									br
+									#check_id.text(style = 'display : inline;') 4~15자리, 알파벳+숫자
 							tr.odd
 								th 비밀번호
 									em.require(style='color:red')	 *
@@ -115,9 +117,11 @@ html
 										type = 'password'
 										,name = 'pwForm'
 										,id = 'pwForm'			
+										,class = 'textbox'
 									)
 									br
-									#check_password(style = 'display : inline;') 8~15자리, 알파벳과 숫자의 조합
+									br
+									#check_password.text(style = 'display : inline;') 8~15자리, 알파벳과 숫자의 조합
 							tr
 								th 비밀번호 확인
 									em.require(style='color:red')	 *
@@ -126,10 +130,12 @@ html
 										type = 'password'
 										,name = 'confirmForm'
 										,id = 'confirmForm'
+										,class = 'textbox'
 										,style = 'display : "inline";'			
 									)
 									br
-									#check_confirm(style = 'display : inline;') 비밀번호를 다시 한 번 입력해 주세요.
+									br
+									#check_confirm.text(style = 'display : inline;') 비밀번호를 다시 한 번 입력해 주세요.
 							tr.odd
 								th 이름
 									em.require(style='color:red')	 *
@@ -138,10 +144,12 @@ html
 										type = 'textbox'
 										,name = 'nameForm'
 										,id = 'nameForm'
+										,class = 'textbox'
 										,style = 'display : inline;'			
 									)
 									br
-									#check_name(style = 'display : inline;') 3~15자리, 한글/알파벳/숫자/특수문자(-/_/.)						
+									br
+									#check_name.text(style = 'display : inline;') 3~15자리, 한글/알파벳/숫자/특수문자(-/_/.)						
 							tr
 								th 이메일
 									em.require(style='color:red')	 *
@@ -150,10 +158,12 @@ html
 										type = 'textbox'
 										,name = 'emailForm'
 										,id = 'emailForm'
+										,class = 'textbox'
 										,style = 'display:inline;'			
 									)
 									br
-									#check_email(style = 'display : inline;') 예) goorm@skima.co.kr												
+									br
+									#check_email.text(style = 'display : inline;') 예) goorm@skima.co.kr												
 						#join_button(align='center')
 							input(
 								type = 'submit'
@@ -164,4 +174,4 @@ html
 							)
 			#boardBottom
 		include common/footer.jade
-		script(src='/javascript/cloud_root.js', type='text/javascript', charset='utf-8')
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

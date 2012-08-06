@@ -31,6 +31,11 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  
+  app.use(function(req, res, next){
+  	res.status(404);
+  	res.render('404', {title:"404 - 페이지를 찾을 수 없습니다.", session: req.session.user, url: req.url});
+  })
 });
 
 app.configure('development', function(){
@@ -215,7 +220,7 @@ app.get('/admin/recent_comment_view', requiresAdminLogin, routes.recent_comment_
 app.get('/admin/board_modify/:id', requiresSuperUserLogin, routes.admin_board_modify_view);
 
 app.post('/admin/main', routes.admin_check);
-app.get('/admin/main', requiresSuperUserLogin, routes.admin_view);
+app.get('/admin/main', requiresAdminLogin, routes.admin_view);
 app.get('/admin', routes.admin);
 
 app.post('/admin/board_make', routes.make_board);
@@ -263,10 +268,15 @@ app.post('/board_preview', routes.boardPreview);	// preview contents in a write 
 app.post('/image_upload', function(req, res, next){
 	var tmp_path = req.files.thumbnail.path;
 	var target_path = __dirname +'/public/images/' + req.files.thumbnail.name;
+	
+	console.log('path : ' + req.files.thumbnail.path);
+	console.log('name : ' + req.files.thumbnail.name);
+	
 	fs.rename(tmp_path, target_path, function(err){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
 			if(err) throw err;
+			console.log('image rename success');
 			res.send('image rename success');
 		});
 	});
@@ -275,6 +285,7 @@ app.post('/image_upload', function(req, res, next){
 app.post('/file_upload', function(req, res, next){	
 	var tmp_path = req.files.file.path;	
 	var target_path = __dirname +'/public/uploads/' + req.files.file.name;
+
 	fs.rename(tmp_path, target_path, function(err){
 		if(err) throw err;
 		fs.unlink(tmp_path, function(){
@@ -305,6 +316,6 @@ app.get('/find_password', routes.find_password);
 app.post('/find_id/result', routes.find_id_result);
 app.post('/find_password/result', routes.find_password_result);
 
-app.listen(80, function(){
+app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

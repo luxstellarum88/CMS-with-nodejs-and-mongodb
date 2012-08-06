@@ -2,7 +2,7 @@
 	width : 771px;
 	color : #666;
 	border : 0;
-	font-family: 'NanumGothicWeb';
+	font-family: gulim, 굴림, sans-serif;
 	font-size: 9pt
 
 }
@@ -49,4 +49,20 @@
 }
 #frm{
 	margin-bottom : 0px;
+}
+
+
+#contents .textbox{
+	background : url('/images/input_textbox_type2.png') no-repeat;
+	width : 167px;
+	height : 25px;
+	border : 0px;
+	outline : none;
+	float : left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#contents .text{
+	margin-top: 5px;
+	margin-left: 5px;
 }

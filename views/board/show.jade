@@ -143,7 +143,7 @@ html
 					$('#readCommentList').css('display', 'none');
 				
 				$.each(data, function(index, value){
-					$('#readCommentList #commentMiddle').append(makeCommentDiv(index, value));
+					$('#readCommentList #commentListMiddle').append(makeCommentDiv(index, value));
 				});
 				
 				var listdata = eval(!{JSON.stringify(docs)});
@@ -152,7 +152,7 @@ html
 					$('#time'+index).append('<p>' + __time + '</p>');
 				});
 				
-				$('#readCommentList #commentMiddle').children(':last').addClass("lastComment");
+				$('#readCommentList #commentListMiddle').children(':last').addClass("lastComment");
 				
 				var __time = getTimeStamp('#{board.insert_date}');
 				$('#titleWrap #time').append('<div>' + __time + '</div>');
@@ -239,45 +239,56 @@ html
 					div#readButton
 						-if(session!=-1)
 							div#list
-								img(src='../../images/board/button_list.png', id='list', onClick="location.href='/board/#{board_id}'", class='clickable')
+								img(src='../../images/board/button_list.png', id='listButton', onClick="location.href='/board/#{board_id}'", class='clickable')
 
 
 						-if((session!=-1 && sessionId == board.user_id) || (session!=-1 && sessionRole=='admin'))
 							div#delete
-								img(src='../../images/board/button_delete.png', id='delete', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
+								img(src='../../images/board/button_delete.png', id='deleteButton', onClick="call_confirm_get('정말 삭제하시겠습니까?','/board_delete/#{board_id}/#{board.index}')", class='clickable')
 							div#modify
-								img(src='../../images/board/button_modify.png', id='modify', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
+								img(src='../../images/board/button_modify.png', id='modifyButton', onClick="location.href='/board_modify/#{board_id}/#{board.index}'", class='clickable')
 
 
 
-					-if(session!=-1)
+					-if(session!=-1 && sessionId)
 						div#readCommentList
-							div#commentTop
-							div#commentMiddle
-							div#commentBottom
-								-if(session!=-1)
-									div#readCommentPaging
-										-for(var i=0; i<length; i++)
-											-if(current_comment==i+1)
-												a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}', class='select') #{i+1}
-											-else
+							div#commentListTop
+							div#commentListMiddle
+							div#commentListBottom.loggedIn
+								div#readCommentPaging
+									-for(var i=0; i<length; i++)
+										-if(current_comment==i+1)
+											a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}', class='select') #{i+1}
+										-else
 												a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}') #{i+1}
+							div#newComment
+								#newCommentMiddle
+									form(method='post', action='/comment_write', id='newCommentForm', name='commentWrite', onsubmit="return check()")
+										#newCommentFormHeader
+											#commentUser(style='float:left') #{sessionId}
+											#commentRemain(style='float:right') 200자 남음
+										#newCommentFormMiddle
+											textarea(id='commentForm', name='commentForm', rows='3', cols='60', style="width:500px; border:0 none; outline-style:none; resize: none")
+											input(type='image', id = 'commentWriteButton', name = 'submit', src='/images/board/button_comment.png')																
+											input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
+											input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
+											input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')	
+								#newCommentBottom
 
 
-				-if(session!=-1 && sessionId)
-					div#readFooter
-						form(method='post', action='/comment_write', id='commentWrite', name='commentWrite', onsubmit="return check()")
-							table#CommentAttach
-								tr
-									td.content(id='commentUser') #{sessionId}
-									td.content(id='commentContent', colspan='3')
-										textarea(id='commentForm', name='commentForm', style="margin-right:6px;")
-										input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
-										input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
-										input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')
 
-									td.content(id='commentSubmit')
-										input(type='image', id = 'commentWriteButton', name = 'submit', src='/images/board/button_comment.png')																
+					-else
+						div#readCommentList
+							div#commentListTop
+							div#commentListMiddle
+							div#commentListBottom
+								div#readCommentPaging
+									-for(var i=0; i<length; i++)
+										-if(current_comment==i+1)
+											a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}', class='select') #{i+1}
+										-else
+											a(href='/board/#{board_id}/#{board.index}?comm_page=#{i+1}') #{i+1}
+											
 
 				div#boardList
 					-if(session!=-1)
@@ -285,7 +296,7 @@ html
 							tr
 								th.no 번호
 								th.title 제목
-								th.author 글쓴이
+								th.author 글쓴이; re
 								th.time 날짜
 								th.readNum 조회수
 								-for(var i=0; i<docs.length; i++)

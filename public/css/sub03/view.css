@@ -86,27 +86,19 @@
 }
 
 #boardMiddle #readMiddle #readButton #list{
-	float: left;
-	margin-left: 3px;
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	left: 53px; */
+	margin-top: -2px;
+	float:left;
+	margin-left: 12px;
 }
 
 #boardMiddle #readMiddle #readButton #modify{
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	right:83px; */
 	float: right;
-	margin-right: 3px;
+	margin-right: 12px;
 }
 
 #boardMiddle #readMiddle #readButton #delete{
-/* 	cursor:hand; */
-/* 	position: absolute; */
-/* 	right:129px; */
 	float: right;
-	margin-right: 3px;
+	margin-right: 12px;
 }
 
 #boardMiddle #readMiddle #readCommentList {
@@ -114,39 +106,72 @@
 	width : 771px;
 
 }
-#boardMiddle #readMiddle #readCommentList #commentTop {
+#boardMiddle #readMiddle #readCommentList #commentListTop {
 	width : 771px;
 	height : 11px;
 	background : url("../../images/board/boardCommentBackground_top.png");
 }
-#boardMiddle #readMiddle #readCommentList #commentMiddle {
+#boardMiddle #readMiddle #readCommentList #commentListMiddle {
 	width : 731px;
 	padding : 0 20px;
 	background : url("../../images/board/boardCommentBackground_middle.png") repeat-y;
 	
 }
-#boardMiddle #readMiddle #readCommentList #commentBottom {
+#boardMiddle #readMiddle #readCommentList #commentListBottom {
 	width : 771px;
 	height : 35px;
 	line-height: 35px;
+	margin-bottom: 10px;
 	text-align: center;
 	background : url("../../images/board/boardCommentBackground_bottom.png");
+}
+#boardMiddle #readMiddle #readCommentList #commentListBottom.loggedIn {
+	height: 32px;
+	margin-bottom: 0;
+	background : url("../../images/board/boardCommentLoggedInBackground_bottom.png");
+}
+#boardMiddle #readMiddle #readCommentList #newCommentMiddle {
+	width : 731px;
+	padding : 0 20px;
+	background : url("../../images/board/boardCommentBackground_middle.png") repeat-y;
 	
 }
+#boardMiddle #readMiddle #readCommentList #newCommentMiddle #newCommentForm {
+	width : 731px;
+	padding : 15px 0;
+	margin-bottom: 0px;
+}
+#boardMiddle #readMiddle #readCommentList #newCommentMiddle #newCommentForm #newCommentFormHeader{	
+	width:731px; 
+	height:20px; 
+	border: 1px solid #eee;
+	border-bottom: none;
+}
+#boardMiddle #readMiddle #readCommentList #newCommentMiddle #newCommentForm #newCommentFormMiddle{	
+	width:731px; 
+	border: 1px solid #eee;
+}
+#boardMiddle #readMiddle #readCommentList #newCommentBottom {
+	width : 771px;
+	height : 35px;
+	line-height: 35px;
+	margin-bottom: 10px;
+	text-align: center;
+	background : url("../../images/board/boardCommentBackground_bottom.png");
+
+}
+
 #boardMiddle #readMiddle #readCommentList #readCommentListTop {
-/* 	padding:10px; */
+
 	width: 711px;
 	height: 25px;
 	line-height: 25px;
 	padding: 8px 10px 0;
 
-/* 	height: 30px; */
-/* 	margin-top: 10px; */
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentUser {
-/* 	width: 310px; */
-/* 	height: 30px; */
+
 	font-size: 10pt;
 	float : left;
 	color: #ED2B0B;
@@ -157,19 +182,14 @@
 
 	font-size: 9pt;
 	color: gray;
-/* 	height: 30px;	 */
 	float : left;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentModify {
-/* 	width:50px; */
-/* 	height: 30px; */
 	float : right;
 }
 
 #boardMiddle #readMiddle #readCommentList #readCommentListTop #CommentDelete {
-/* 	width:50px; */
-/* 	height: 30px; */
 	float : right;
 }
 
@@ -177,7 +197,7 @@
 	width: 711px;
 	line-height: 20px;
 	padding: 0 10px 12px;
-	border-bottom: 1px dotted gray;
+	border-bottom: 1px dotted #e4e4e4;
 	font-size: 9pt;
 	color: black;
 }
@@ -208,6 +228,7 @@
 
 #boardMiddle #readMiddle #readCommentList .lastComment #readCommentListBottom {
 	border-bottom: none;
+	word-break: break-all;
 	
 }
 
@@ -220,7 +241,7 @@
 	width: 750px; 
 	height:117px; 
 	padding: 20px 0; 
-	background: black;
+	background: #eees;
 	margin: 0 auto; 
 	margin-top: -4px; 
 	opacity: 0.6; 
