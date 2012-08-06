@@ -107,7 +107,7 @@ var self = module.exports = {
 				else {
 					callback(false);					
 				}//end of else
-			}//end of ifhttp://thyword.egloos.com/1368032
+			}//end of if
 			else {
 				console.log('in find_accout.js, find_password : error(02)');
 			}//end of else
