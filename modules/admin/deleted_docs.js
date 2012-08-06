@@ -1,6 +1,9 @@
 var board_db = require('../Database/board/board_db');
 var comment_db = require('../Database/board/comment_db');
 
+board_db.connect();
+comment_db.connect();
+
 var self = module.exports = {
 	init : function () {
 		
@@ -53,17 +56,65 @@ var self = module.exports = {
 	}//end of get_comment
 	
 	,restore_post : function(index, callback) {
+		var model = board_db.get_model();
+		var condition = { index : index };
+		var update = { deleted : false };
+		
+		model.update(condition, update, null, function(err){
+			if(!err) {
+				callback(true);
+			}//end of if
+			else {
+				callback(false);
+			}//end of else
+		});//end of update
 	}//end of restore_post
 	
 	,restore_comment : function(index, callback) {
+		var model = comment_db.get_model();
+		var condition = { index : index };
+		var update = { deleted : false };
+		
+		model.update(condition, update, null, function(err){
+			if(!err) {
+				callback(true);
+			}//end of if
+			else {
+				callback(false);
+			}//end of else
+		});//end of update
 	}//end of restore_comment
 		
 	,show_deleted_post : function(req, res) {
-	
+		self.get_post(req, function(docs){
+			if(docs){
+				res.render('', {
+					 title : '삭제 게시물'
+					,docs : docs
+					,session : req.session.user
+					,current_page : req.query.current_page || 1
+				});//end of render
+			}//end of if
+			else{
+				console.log('in deleted docs, show_deleted_post : error(01)');
+			}//end of else
+		});//end of get_post
 	}//end of show_deleted_post
 	
 	,show_deleted_comment : function(req, res) {
-	
+		self.get_comment(req, function(docs){
+			if(docs){
+				res.render('', {
+					 title : '삭제 댓글'
+					,docs : docs
+					,session : req.session.user
+					,current_page : req.query.current_page || 1
+				});//end of render
+			}//end of if
+			else{
+				console.log('in deleted docs, show_deleted_post : error(01)');
+			}//end of else
+		});//end of get_post
 	}//end of show_deleted_comment
 	
 }// end of module export
