@@ -21,16 +21,16 @@ var find_account = require('../modules/account/find_account');
 
 
 exports.html_sub1_1 = function(req, res){
-	res.render('sub01/sub01', { title: 'goorm 소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub01', { title: '프로젝트 구름 :: 구름소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_2 = function(req, res){
-	res.render('sub01/sub02', { title: 'goorm 소개 > 특징' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub02', { title: '프로젝트 구름 :: 구름소개 > 특징' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_3 = function(req, res){
-	res.render('sub01/sub03', { title: 'goorm 소개 > 데모' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub03', { title: '프로젝트 구름 :: 구름소개 > 데모' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_4 = function(req, res){
-	res.render('sub01/sub04', { title: 'goorm 소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub04', { title: '프로젝트 구름 :: 구름소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 exports.html_sub1_5 = function(req, res){
@@ -46,7 +46,7 @@ exports.html_sub1_6 = function(req, res){
 
 
 exports.html_sub2_1 = function(req, res){
-	res.render('sub02/sub01', { title: '지원 > 기술지원' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub02/sub01', { title: '프로젝트 구름 :: 지원 > 기술지원' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub2_2 = function(req, res){
 	res.redirect('/board/faq');
@@ -71,7 +71,7 @@ exports.html_sub3_3 = function(req, res){
 
 
 exports.html_sub4_1 = function(req, res){
-	res.render('sub04/sub01', { title: '사용방법 > 설치' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub04/sub01', { title: '프로젝트 구름 :: 사용방법 > 설치' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub4_2 = function(req, res){
 //	res.render('sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user, cookie_id: req.cookies.id });
