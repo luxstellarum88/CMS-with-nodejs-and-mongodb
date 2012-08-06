@@ -86,6 +86,9 @@ html
 				div#boardMiddle
 					div#editorHeader
 						input(type='text',value='제목을 입력하세요', id='subject', name='subject', onfocus="clearContents(this);")
+						-if('admin' == session.role || 'superadmin' == session.Id)
+							input(type='checkbox',id='write_type', name='write_type', style='margin_left:250px;')
+							공지사항 
 					div#editorMiddle
 						include ../../public/lib/daumeditor-7.3.19/editor_container
 					div#editorFooter(style="height:50px;width:200px;text-align:center;")

@@ -100,6 +100,13 @@ html
 				#boardMiddle
 					#editorHeader
 						input(type='text',value=docs.subject, id='subject', name='subject', onFocus='form_delete()')
+						-if('admin' == session.role || 'superadmin' == session.Id)
+							-if(true == docs.notice)
+								input(type='checkbox',id='write_type', name='write_type', checked, style='margin-left:250px;')
+							-else
+								input(type='checkbox',id='write_type', name='write_type', style='margin-left:250px;')
+							공지사항
+						
 					#editorMiddle
 						include ../../public/lib/daumeditor-7.3.19/editor_container
 					#editorFooter

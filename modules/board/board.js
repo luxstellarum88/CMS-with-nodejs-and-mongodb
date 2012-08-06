@@ -206,10 +206,11 @@ var self = module.exports = {
 		var board_id = req.body.board_id;
 		var board_index = req.body.index;
 		var subject = req.body.subject;
+		var notice = req.body.write_type || false;
 		var content = req.body.tx_content; // content id in daum-editor
 		
 		var condition = {board_id : board_id, index : board_index};
-		var update = {subject : subject, content : content, update_date : new Date()};
+		var update = {subject : subject, content : content, notice : notice, update_date : new Date()};
 		
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
