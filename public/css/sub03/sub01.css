@@ -1,6 +1,6 @@
-
 #boardMiddle #boardList {
-	margin-left:3px;
+	margin:0 3px;
+	width: 766px;
 }
 #boardMiddle #boardList th {
 	padding: 10px 0 11px 0 ;
@@ -20,12 +20,12 @@
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
 #boardMiddle #boardList th.author { 
-	width: 101px; 
+	width: 100px; 
 	text-align: center;
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
 #boardMiddle #boardList th.time { 
-	width: 91px; 
+	width: 96px; 
 	text-align: center;
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
@@ -203,7 +203,7 @@
 }
 #detail03 #boardMiddle {
 	background-image:url('../../images/boardMiddle_870px.png'); 
-	width:771px; 
+	width:772px; 
 	padding: 0 52px 30px 52px  
 }
 #detail03 #boardBottom {

@@ -64,13 +64,8 @@
 #detail02 #boardMiddle{
 	background-image : url('/images/boardMiddle_870px.png');
 	min-height : 300px;
-	width : 776px;
-	padding : 0 50px 10px;
-}
-#detail02 #boardMiddleJoin{
-	background-image : url('/images/boardMiddle_870px.png');
-	width : 776px;
-	padding : 0 50px;
+	width : 772px;
+	padding : 0 52px 10px;
 }
 #detail02 #boardMiddle #wrap{
 	text-align: center;
@@ -100,7 +95,8 @@
 /* -------------------------------------------------------------------------------------- */
 
 #boardMiddle #boardList {
-	margin-left:3px;
+	margin: 0 3px;
+	width: 766px
 }
 #boardMiddle #boardList th {
 	padding: 10px 0 11px 0 ;
@@ -114,26 +110,27 @@
 	text-align: center; 
 	background: url("../../images/boardHeadBackground_left.png")
 }
+#boardMiddle #boardList th.board { 
+	width: 100px; 
+	text-align: center;
+	background: url("../../images/boardHeadBackground_middle.png") repeat-x
+}
 #boardMiddle #boardList th.title { 
-	width: 440px; 
+	width: 200px; 
 	text-align: center; 
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
-#boardMiddle #boardList th.author { 
-	width: 101px; 
-	text-align: center;
-	background: url("../../images/boardHeadBackground_middle.png") repeat-x
+#boardMiddle #boardList th.comment { 
+	width: 314px; 
+	text-align: center; 
+	background: url("/images/boardHeadBackground_middle.png")
 }
 #boardMiddle #boardList th.time { 
-	width: 91px; 
+	width: 96px; 
 	text-align: center;
 	background: url("../../images/boardHeadBackground_middle.png") repeat-x
 }
-#boardMiddle #boardList th.readNum { 
-	width: 74px; 
-	text-align: center; 
-	background: url("/images/boardHeadBackground_right.png")
-}
+
 
 #boardMiddle #boardList tbody tr:hover{
 	background: #fafafa

@@ -265,11 +265,12 @@ html
 								#newCommentMiddle
 									form(method='post', action='/comment_write', id='newCommentForm', name='commentWrite', onsubmit="return check()")
 										#newCommentFormHeader
-											#commentUser(style='float:left') #{sessionId}
-											#commentRemain(style='float:right') 200자 남음
+											div(style='float:left;') 댓글 달기&nbsp&nbsp|&nbsp&nbsp
+											#commentUser #{sessionId}
+											#commentRemain 200자 남음
 										#newCommentFormMiddle
-											textarea(id='commentForm', name='commentForm', rows='3', cols='60', style="width:500px; border:0 none; outline-style:none; resize: none")
-											input(type='image', id = 'commentWriteButton', name = 'submit', src='/images/board/button_comment.png')																
+											textarea(id='newCommentTextarea', name='newCommentTextarea', rows='3', cols='60')
+											input(type='image', id = 'commentWriteButton', name = 'submit', src='/images/board/button_comment.png', style='margin-bottom:7px')
 											input(type='hidden', id='board_id', name='board_id', value='#{board_id}')
 											input(type='hidden', id='board_index', name='board_index', value='#{board.index}')
 											input(type='hidden', id='board_subject', name='board_subject', value='#{board.subject}')	
@@ -296,7 +297,7 @@ html
 							tr
 								th.no 번호
 								th.title 제목
-								th.author 글쓴이; re
+								th.author 글쓴이
 								th.time 날짜
 								th.readNum 조회수
 								-for(var i=0; i<docs.length; i++)

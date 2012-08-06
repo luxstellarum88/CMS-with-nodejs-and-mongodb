@@ -177,11 +177,7 @@ html
 									#check_email.text(style = 'display : inline;') 예) goorm@skima.co.kr			
 					form(method='post', id='mypage_menu', name='mypage_menu')									
 					#join_button(align='center')
-						input(type='button', 
-								name='user_modify', 
-								value='수정', 
-								onClick='call_confirm_post("수정하시겠습니까?","frm")',
-								class = 'clickable')
+						input(type='image', id = '', name = 'user_modify', src='/images/button_confirm.png', onClick='call_confirm_post("수정하시겠습니까?","frm")')
 			#boardBottom
 		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
 		include ../common/footer.jade
