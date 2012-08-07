@@ -13,6 +13,10 @@ function show_news() {
 	
 }//end of show_news
 
+function goto_download() {
+	location.href = '/board2/source';
+}
+
 function goto_notice() {
 	location.href = '/board/notice';
 }
