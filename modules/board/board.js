@@ -425,22 +425,120 @@ var self = module.exports = {
 				});//end of counter			
 			}//end of if
 			else {
-				res.render('board/view', {
-					board_id: board_id,
-					title: title,
-					headerTitle: headerTitle,
-					docs: docs,
-					notice : notice,
-					current_page: current_page,
-					paging: paging_size,
-					length: length,
-					sessionId: sessionId,
-					type: type,
-					content: content,
-					comment_number : comment_number,
-					notice_comment_number : notice_comment_number 
-					, session: req.session.user, cookie_id: req.cookies.id
-				});//end of render
+				if(title=="faq"){
+					res.render('sub02/sub02', {
+						board_id: board_id,
+						title: "자주 묻는 질문",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
+				else if(title=="freeboard"){
+					res.render('sub03/sub01', {
+						board_id: board_id,
+						title: "자유 게시판",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
+				else if(title=="qna"){
+					res.render('sub03/sub02', {
+						board_id: board_id,
+						title: "질문 게시판",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
+				else if(title=="tip"){
+					res.render('sub03/sub03', {
+						board_id: board_id,
+						title: "팁/노하우",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
+				else if(title=="notice"){
+					res.render('sub03/sub04', {
+						board_id: board_id,
+						title: "공지사항",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
+				else if(title=="news"){
+					res.render('sub03/sub05', {
+						board_id: board_id,
+						title: "보도자료",
+						headerTitle: headerTitle,
+						docs: docs,
+						notice : notice,
+						current_page: current_page,
+						paging: paging_size,
+						length: length,
+						sessionId: sessionId,
+						type: type,
+						content: content,
+						comment_number : comment_number,
+						notice_comment_number : notice_comment_number 
+						, session: req.session.user, cookie_id: req.cookies.id
+					});//end of render
+				}
+				
 			}//end of else
 		});//end of evt on
 		evt.emit('notice_comment_counting', evt, i);
@@ -540,7 +638,7 @@ var self = module.exports = {
 		
 	},//end of get_board_data
 	
-	display_manual : function(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
+	display_manual : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
@@ -553,7 +651,6 @@ var self = module.exports = {
 			res.render('sub04/sub02', {
 				board_id: board_id,
 				title: title,
-				headerTitle: headerTitle,
 				docs: docs,
 				docs1: docs1,
 				current_page: current_page,
@@ -802,7 +899,6 @@ var self = module.exports = {
 										var content = req.query.content || "";
 														
 										var title = board.name || "";
-										var headerTitle = "구름 프로젝트 :: 메뉴얼 > "+board.name;
 										var paging_size = board.paging; 
 												
 										var skip_size = (current_page * paging_size) - paging_size;
@@ -817,7 +913,7 @@ var self = module.exports = {
 											.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 												if ( !err ) {
 													model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
-														self.display_manual(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
+														self.display_manual(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
 													});//end of count
 												}//end of if
 												else {
