@@ -387,7 +387,7 @@ var self = module.exports = {
 		2012. 07. 13. by JH
 	*/
 	
-	display_result : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
+	display_result : function(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, sessionId, type, content, notice){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
@@ -428,6 +428,7 @@ var self = module.exports = {
 				res.render('board/view', {
 					board_id: board_id,
 					title: title,
+					headerTitle: headerTitle,
 					docs: docs,
 					notice : notice,
 					current_page: current_page,
@@ -455,10 +456,11 @@ var self = module.exports = {
 		var evt = new event_emitter();
 		
 		console.log("in board.js display : " + docs.length);
-	
-			res.render('board/view2', {
+		
+		if(title=="source"){
+			res.render('sub05/sub01', {
 				board_id: board_id,
-				title: title,
+				title: "소스코드",
 				docs: docs,
 				current_page: current_page,
 				paging: paging_size,
@@ -468,7 +470,37 @@ var self = module.exports = {
 				content: content,
 				session: req.session.user
 			});//end of render
-
+		}
+		else if(title=="plugin"){
+			res.render('sub05/sub02', {
+				board_id: board_id,
+				title: "플러그인",
+				docs: docs,
+				current_page: current_page,
+				paging: paging_size,
+				length: length,
+				sessionId: sessionId,
+				type: type,
+				content: content,
+				session: req.session.user
+			});//end of render
+		}
+		
+		else if(title=="skin"){
+			res.render('sub05/sub03', {
+				board_id: board_id,
+				title: "스킨",
+				docs: docs,
+				current_page: current_page,
+				paging: paging_size,
+				length: length,
+				sessionId: sessionId,
+				type: type,
+				content: content,
+				session: req.session.user
+			});//end of render
+		}
+		
 		evt.emit('notice_comment_counting', evt, i);
 		evt.emit('subject_cutting',evt,k);		
 	},//end of display_result
@@ -508,7 +540,7 @@ var self = module.exports = {
 		
 	},//end of get_board_data
 	
-	display_manual : function(req, res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
+	display_manual : function(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, sessionId, type, content, docs1, length1){	
 		var comment = require('../comment/comment');
 		var i = 0;
 		var j = 0;
@@ -521,6 +553,7 @@ var self = module.exports = {
 			res.render('sub04/sub02', {
 				board_id: board_id,
 				title: title,
+				headerTitle: headerTitle,
 				docs: docs,
 				docs1: docs1,
 				current_page: current_page,
@@ -590,6 +623,7 @@ var self = module.exports = {
 				var content = req.query.content || "";
 								
 				var title = board.name || "";
+				var headerTitle = "프로젝트 구름 :: 커뮤니티 > "+board.name;
 				var paging_size = board.paging; 
 						
 				var skip_size = (current_page * paging_size) - paging_size;
@@ -605,7 +639,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
 								model.count({notice : false, deleted : false, board_id : board_id, $or : [ { 'subject' : search_reg_exp } , { 'content' : search_reg_exp } ]}, function(err, length){
-									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -618,7 +652,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
 								model.count({notice : false, deleted : false, user_name : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -631,7 +665,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
 								model.count({notice : false, deleted : false, subject : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -644,7 +678,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
 								model.count({notice : false, deleted : false, content : search_reg_exp, board_id : board_id}, function(err, length){
-									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -657,7 +691,7 @@ var self = module.exports = {
 						.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 							if ( !err ) {
 								model.count({notice : false, deleted : false, board_id : board_id}, function(err, length){
-									self.display_result(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, notice);
+									self.display_result(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, notice);
 								});//end of count
 							}//end of if
 							else {
@@ -768,6 +802,7 @@ var self = module.exports = {
 										var content = req.query.content || "";
 														
 										var title = board.name || "";
+										var headerTitle = "구름 프로젝트 :: 메뉴얼 > "+board.name;
 										var paging_size = board.paging; 
 												
 										var skip_size = (current_page * paging_size) - paging_size;
@@ -782,7 +817,7 @@ var self = module.exports = {
 											.sort('insert_date', -1).skip(skip_size).limit(paging_size).exec(function(err, docs){
 												if ( !err ) {
 													model.count({notice : false, deleted : false, board_id : board_id2}, function(err, length){
-														self.display_manual(req, res, board_id, title, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
+														self.display_manual(req, res, board_id, title, headerTitle, docs, current_page, paging_size, length, session_id, type, content, docs1, length1);
 													});//end of count
 												}//end of if
 												else {
