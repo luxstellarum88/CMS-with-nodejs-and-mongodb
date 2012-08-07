@@ -215,7 +215,7 @@ li.mainmenu {
 	background-position-x : center;
 }
 ul.submenu {
-	width : 432px;
+	width : 532px;
 	float : left;
 	margin-top : 66px;
 	position : relative;
@@ -239,14 +239,15 @@ li.submenu {
 .submenu a#menu1_3 {width: 24px; height: 12px; background-image : url('/images/submenu/submenu01_03.png'); }
 .submenu a#menu1_4 {width: 49px; height: 12px; background-image : url('/images/submenu/submenu01_04.png'); }
 .submenu a#menu1_5 {width: 49px; height: 12px; background-image : url('/images/submenu/submenu01_05.png'); }
-.submenu a#menu1_6 {width: 49px; height: 12px; background-image : url('/images/submenu/submenu01_06.png'); }
 
 .submenu a#menu2_1 {margin-left: 40px; width: 49px; height: 12px; background-image : url('/images/submenu/submenu02_01.png'); }
 .submenu a#menu2_2 {width: 87px; height: 12px; background-image : url('/images/submenu/submenu02_02.png'); }
 
-.submenu a#menu3_1 {margin-left: 60px; width: 68px; height: 12px; background-image : url('/images/submenu/submenu03_01.png'); }
+.submenu a#menu3_1 {margin-left: 0px; width: 68px; height: 12px; background-image : url('/images/submenu/submenu03_01.png'); }
 .submenu a#menu3_2 {width: 68px; height: 12px; background-image : url('/images/submenu/submenu03_02.png'); }
 .submenu a#menu3_3 {width: 100px; height: 12px; background-image : url('/images/submenu/submenu03_03.png'); }
+.submenu a#menu3_4 {width: 49px; height: 12px; background-image : url('/images/submenu/submenu03_04.png'); }
+.submenu a#menu3_5 {width: 49px; height: 12px; background-image : url('/images/submenu/submenu03_05.png'); }
 
 .submenu a#menu4_1 {margin-left: 225px; width: 24px; height: 12px; background-image : url('/images/submenu/submenu04_01.png'); }
 .submenu a#menu4_2 {width: 36px; height: 12px; background-image : url('/images/submenu/submenu04_02.png'); }

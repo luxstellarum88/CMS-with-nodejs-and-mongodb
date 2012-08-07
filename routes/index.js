@@ -27,22 +27,14 @@ exports.html_sub1_2 = function(req, res){
 	res.render('sub01/sub02', { title: '프로젝트 구름 :: 구름소개 > 특징' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_3 = function(req, res){
-	res.render('sub01/sub03', { title: '프로젝트 구름 :: 구름소개 > 데모' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub03', { title: '프로젝트 구름 :: 구름소개 > 동영상' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_4 = function(req, res){
 	res.render('sub01/sub04', { title: '프로젝트 구름 :: 구름소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
 }
-
 exports.html_sub1_5 = function(req, res){
-	res.redirect('/board/notice');
-//	res.render('sub01/sub04', { title: 'goorm 소개 > 공지사항' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render('sub01/sub05', { title: '프로젝트 구름 :: 구름소개 > 히스토리' , session: req.session.user, cookie_id: req.cookies.id });
 }
-
-exports.html_sub1_6 = function(req, res){
-	res.redirect('/board/news');
-//	res.render('sub01/sub04', { title: 'goorm 소개 > 보도사항' , session: req.session.user, cookie_id: req.cookies.id });
-}
-
 
 
 exports.html_sub2_1 = function(req, res){
@@ -68,6 +60,17 @@ exports.html_sub3_3 = function(req, res){
 	res.redirect('/board/tip');
 //	res.render('sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user, cookie_id: req.cookies.id });
 }
+
+exports.html_sub3_4 = function(req, res){
+	res.redirect('/board/notice');
+//	res.render('sub01/sub04', { title: 'goorm 소개 > 공지사항' , session: req.session.user, cookie_id: req.cookies.id });
+}
+
+exports.html_sub3_5 = function(req, res){
+	res.redirect('/board/news');
+//	res.render('sub01/sub04', { title: 'goorm 소개 > 보도사항' , session: req.session.user, cookie_id: req.cookies.id });
+}
+
 
 
 exports.html_sub4_1 = function(req, res){
