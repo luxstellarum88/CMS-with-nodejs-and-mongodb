@@ -4,7 +4,6 @@ html
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='css/common.css')
-		link(rel='stylesheet', type='text/css', href='css/index.css')
 		link(rel='stylesheet', type='text/css', href='css/cloud.css')
 		link(rel='stylesheet', type='text/css', href='css/join.css')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
@@ -87,7 +86,7 @@ html
 		#detail02
 			#boardTop
 				#boardTitle 회원가입
-			#boardMiddleJoin
+			#boardMiddle
 				#contents
 					form(method='post', action='/makeAccount', id='frm', autocomplete="off")
 						table.info(border='1',cellspacing='0')
@@ -164,14 +163,9 @@ html
 									br
 									br
 									#check_email.text(style = 'display : inline;') 예) goorm@skima.co.kr												
-						#join_button(align='center')
-							input(
-								type = 'submit'
-								,name = 'loginButton'
-								,id = 'loginButton2'
-								,value = '회원가입'
-								,class = 'clickable'
-							)
+					#join_button(align='center')
+						input(type='image', src='/images/button_join.png',class = 'clickable', onClick='document.frm.submit()')
+
 			#boardBottom
 		include common/footer.jade
 		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

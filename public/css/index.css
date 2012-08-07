@@ -6,11 +6,11 @@
 
 #detail01{ 
 	width:870px; 
-	height: 356px; 
+	height: 323px; 
 	position:relative; 
 	left:50%; 
 	margin-left:-435px; 
-	margin-top: 36px 
+	margin-top: 75px;
 }
 #detail01Text{
 	float:left; 
@@ -28,15 +28,25 @@
 	font-size: 40pt; 
 	font-family:'NanumPenWeb'; 
 	color: white; 
-	margin-top:40px ;
-	margin-bottom:10px
+	margin-top: 0px ;
+	margin-bottom:10px;
 }
 #detail01Text #contents {
+	width: 368px;
+	height: 162px;
 	font-size:11pt; 
-	color: #acc6e3; 
+	color: #d2e7ff; 
 	font-family:gulim, 굴림, sans-serif; 
 	margin-bottom: 20px; 
-	text-shadow: 1px 1px rgba(0,0,0,0.5)
+	text-shadow: 1px 1px rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.1);
+	padding: 15px;
+	margin-left: -20px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px; 
+	text-align: justify;
+	border: 1px solid rgba(255,255,255,0.2);
 }
 
 #detail02 {
@@ -44,7 +54,7 @@
 	position : relative;
 	left : 50%;
 	margin-left : -438px;
-	margin-top : 30px;
+	margin-top : 40px;
 }
 #detail02 #boardTop {
 	background-image : url('/images/boardTop_870px.png');
@@ -69,11 +79,7 @@
 	width : 776px;
 	padding : 0 50px;
 }
-#detail02 #boardMiddleJoin{
-	background-image : url('/images/boardMiddle_870px.png');
-	width : 776px;
-	padding : 0 50px;
-}
+
 #detail02 #boardMiddle #wrap {
 	width : 230px;
 	margin-left : 33px;

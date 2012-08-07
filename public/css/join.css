@@ -3,7 +3,7 @@
 	color : #666;
 	border : 0;
 	font-family: gulim, 굴림, sans-serif;
-	font-size: 9pt
+	font-size: 9pt;
 
 }
 #contents .info caption {
@@ -47,10 +47,6 @@
 	color : #624cd4;
 	font-style : normal;
 }
-#frm{
-	margin-bottom : 0px;
-}
-
 
 #contents .textbox{
 	background : url('/images/input_textbox_type2.png') no-repeat;
@@ -66,3 +62,66 @@
 	margin-top: 5px;
 	margin-left: 5px;
 }
+
+#detail02 {
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 30px;
+}
+#detail02 #boardTop {
+	background-image : url('/images/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+#detail02 #boardTop #boardTitle {
+	font-size : 11pt;
+	color : black;
+	font-family : gulim, 굴림, sans-serif;
+	text-align : center;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 60px;
+	float : left;
+	background : url('/images/boardTitleBackground.png') no-repeat;
+	background-position : center;
+}
+#detail02 #boardMiddle {
+	background-image : url('/images/boardMiddle_870px.png');
+	width : 776px;
+	padding : 10px 50px;
+}
+
+#detail02 #boardMiddle #wrap {
+	width : 230px;
+	margin-left : 33px;
+	float : left;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+#detail02 #boardMiddle #wrap #title {
+	color : #334d66;
+	font-family : 'NanumGorhicWeb';
+	font-size : 11pt;
+	height : 40px;
+	font-weight: bold;
+}
+#detail02 #boardMiddle #wrap #images {
+	width : 228px;
+	height : 38px;
+	border : #dfdfdf solid 1px;
+	margin : 5px 0 10px 0;
+}
+#detail02 #boardMiddle #wrap #contents {
+	color : black;
+	font-family : 'NanumGorhicWeb';
+	font-size : 9pt;
+	text-align: justify;
+}
+#detail02 #boardBottom {
+	background-image : url('/images/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}
+

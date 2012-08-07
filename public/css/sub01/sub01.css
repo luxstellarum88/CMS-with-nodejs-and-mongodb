@@ -1,14 +1,43 @@
 #getStartedButton { background: url('../../images/getStartedButton.png'); width:113px ;height:36px;}
-#detail01{ width:870px; height: 356px; position:relative; left:50%; margin-left:-435px; margin-top: 36px }
+#detail01{ 
+	width:870px; 
+	height: 323px; 
+	position:relative; 
+	left:50%; 
+	margin-left:-435px; 
+}
+
 #detail01Text{float:left; width:368px; padding-left: 30px; padding-right: 30px;	text-shadow: 0 -1px 0 rgba( 0, 0, 0, .2 );}
 #detail01Image{float:right; width:397px; margin-right: 45px}
-#detail01Text #title {font-size: 40pt; font-family:'NanumPenWeb'; color: white; margin-top:40px ;margin-bottom:10px;}
-#detail01Text #contents {font-size:11pt; color: #acc6e3; font-family:gulim, 굴림, sans-serif; margin-bottom: 20px; text-shadow: 1px 1px rgba(0,0,0,0.5)}
+#detail01Text #title {
+	font-size: 40pt; 
+	font-family:'NanumPenWeb'; 
+	color: white; 
+	margin-top: 0px ;
+	margin-bottom:10px;
+}
 
+#detail01Text #contents {
+	width: 368px;
+	height: 162px;
+	font-size:11pt; 
+	color: #d2e7ff; 
+	font-family:gulim, 굴림, sans-serif; 
+	margin-bottom: 20px; 
+	text-shadow: 1px 1px rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.1);
+	padding: 15px;
+	margin-left: -20px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px; 
+	text-align: justify;
+	border: 1px solid rgba(255,255,255,0.2);
+}
 #detail02{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 100px }
 #detail02Text{width:876px; padding-left: 30px; padding-right: 30px;	text-shadow: 0 -1px 0 rgba( 0, 0, 0, .2 ); text-align: center; margin-top:0px; z-index: 3;}
 #detail02Text #title {font-size: 40pt; font-family:'NanumPenWeb'; color: white; margin-top:0px ;margin-bottom:10px;}
-#detail02Text #contents {width:556px; font-size:11pt; color: #acc6e3; font-family:gulim, 굴림, sans-serif; margin-bottom: 20px; padding:0 160px; text-shadow: 1px 1px rgba(0,0,0,0.5)}
+#detail02Text #contents {width:556px; font-size:11pt; color: #acc6e3; font-family:gulim, 굴림, sans-serif; margin-bottom: 20px; padding:0 160px; text-shadow: 1px 1px rgba(0,0,0,0.5); text-align: justify}
 #detail02Image{width:783px; margin: 0 auto; margin-top:50px; border: 1px solid #999999}
 
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: -160px }
@@ -23,11 +52,11 @@
 #detail03 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}
 
 #detail04Image{ width:397px; height:356px; float: left; margin-top: -120px}
-#detail04{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 170px }
+#detail04{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 150px }
 #detail04 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
 #detail04 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
 #detail04 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:250px; width:776px; padding: 0 50px }
 #detail04 #boardMiddle #wrap { width: 366px; margin-left: 10px; float: right; padding-top: 10px; padding-bottom: 10px }
 #detail04 #boardMiddle #wrap #title {font-size: 40pt; font-family:'NanumPenWeb'; color: #334d66; margin-top:0px ;margin-bottom:10px; padding-left: 20px}
-#detail04 #boardMiddle #wrap #contents { color:black; font-family: gulim, 굴림, sans-serif; font-size: 9pt; padding-left: 20px; padding-right:10px; line-height: 1.2}
+#detail04 #boardMiddle #wrap #contents { color:black; font-family: gulim, 굴림, sans-serif; font-size: 9pt; padding-left: 20px; padding-right:10px; line-height: 1.2; text-align: justify}
 #detail04 #boardBottom {background-image:url('../../images/boardBottom_870px.png'); height:34px; width:876px;}

@@ -22,12 +22,12 @@ input:-webkit-autofill{
 	position : relative;
 }
 #topMenu {
-	width : 590px;
+	width : 580px;
 	height : 25px;
 	position : absolute;
 	left : 50%;
 	margin-top : -31px;
-	margin-left : -170px;
+	margin-left : -165px;
 	color : white;
 	text-align : right;
 	font-size : 10px;
@@ -44,7 +44,7 @@ input:-webkit-autofill{
 	
 	
 }
-#idInputBox {
+#topMenu #loginFrm #idInputBox {
 	background : url('/images/idInputBox.png') no-repeat;
 	width : 167px;
 	height : 25px;
@@ -53,7 +53,7 @@ input:-webkit-autofill{
 	outline : none;
 	float : left;
 }
-#pwInputBox {
+#topMenu #loginFrm #pwInputBox {
 	background : url('/images/idInputBox.png') no-repeat;
 	width : 113px;
 	height : 25px;
@@ -63,7 +63,7 @@ input:-webkit-autofill{
 	float : left;
 	margin-left : 5px;
 }
-#loginButton {
+#topMenu #loginFrm #loginButton {
 	background : url('/images/loginButton.png');
 	width : 54px;
 	height : 25px;
@@ -71,34 +71,35 @@ input:-webkit-autofill{
 	border : 0px;
 	cursor : hand;
 }
-#logoutButton {
+#topMenu #loginFrm #logoutButton {
 	background : url('/images/logoutButton.png');
 	width : 77px;
 	height : 25px;
 	float : right;
 	margin-left : 10px;
 }
-#adminButton {
+#topMenu #loginFrm #adminButton {
 	background : url('/images/adminButton.png');
 	width : 77px;
 	height : 25px;
 	float : right;
 	margin-left : 10px;
 }
-#myPageButton {
+#topMenu #loginFrm #myPageButton {
 	background : url('/images/button_myPage.png');
 	width : 77px;
 	height : 25px;
 	float : right;
 	margin-left : 10px;
 }
-#signUpButton {
+#topMenu #loginFrm #signUpButton {
 	background : url('/images/signUpButton.png');
-	width : 77px;
-	height : 25px;
+	width : 64px;
+	height : 21px;
 	float : left;
-	margin-left : 10px;
+	margin-left : 13px;
 	border : 0px;
+	margin-top: 3px;
 }
 #mainMenu {
 	background : url('/images/mainMenuBackground.png');
@@ -145,56 +146,51 @@ li.mainmenu {
 	margin-top : 7px;
 }
 .mainmenu a#menu1 {
-	width : 90px;
+	width : 82px;
 	height : 27px;
 	background-image : url('/images/menu/menu01.png');
-	margin-left : 245px;
+	margin-left : 220px;
+	margin-right: 5px;
 }
 .mainmenu a#menu1:hover {
 	background-image : url('/images/menu/menu01_h.png');
 }
-/* #mainMenu a#menu1_select{width:102px; height:36px; background-image:url('/images/menu/menu01_select.jpg')} */
-
 .mainmenu a#menu2 {
 	width : 60px;
 	height : 27px;
 	background-image : url('/images/menu/menu02.png');
+	margin-right: 5px;
 }
 .mainmenu a#menu2:hover {
 	background-image : url('/images/menu/menu02_h.png');
 }
-/* #mainMenu a#menu2_select{width:102px; height:36px; background-image:url('/images/menu/menu02_select.jpg')} */
-
 .mainmenu a#menu3 {
 	width : 82px;
 	height : 27px;
 	background-image : url('/images/menu/menu03.png');
+	margin-right: 5px;
 }
 .mainmenu a#menu3:hover {
 	background-image : url('/images/menu/menu03_h.png');
 }
-/* #mainMenu a#menu3_select{width:102px; height:36px; background-image:url('/images/menu/menu03_select.jpg')} */
-
 .mainmenu a#menu4 {
 	width : 82px;
 	height : 27px;
 	background-image : url('/images/menu/menu04.png');
+	margin-right: 5px;
 }
 .mainmenu a#menu4:hover {
 	background-image : url('/images/menu/menu04_h.png');
 }
-/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
-
 .mainmenu a#menu5 {
 	width : 82px;
 	height : 27px;
 	background-image : url('/images/menu/menu05.png');
+	margin-right: 5px;
 }
 .mainmenu a#menu5:hover {
 	background-image : url('/images/menu/menu05_h.png');
 }
-/* #mainMenu a#menu4_select{width:102px; height:36px; background-image:url('/images/menu/menu04_select.jpg')} */
-
 
 #subMenu1, #subMenu2, #subMenu3, #subMenu4, #subMenu5 {
 	height : 88px;
