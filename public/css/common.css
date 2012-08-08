@@ -71,28 +71,31 @@ input:-webkit-autofill{
 	border : 0px;
 	cursor : hand;
 }
-#topMenu #loginFrm #logoutButton {
+#topMenu #logoutButton {
 	background : url('/images/logoutButton.png');
-	width : 77px;
-	height : 25px;
+	width : 66px;
+	height : 21px;
 	float : right;
 	margin-left : 10px;
+	margin-top: 3px;
 }
-#topMenu #loginFrm #adminButton {
-	background : url('/images/adminButton.png');
-	width : 77px;
-	height : 25px;
+#topMenu #adminButton {
+	background : url('/images/button_admin.png');
+	width : 92px;
+	height : 21px;
 	float : right;
 	margin-left : 10px;
+	margin-top: 3px;
 }
-#topMenu #loginFrm #myPageButton {
+#topMenu #myPageButton {
 	background : url('/images/button_myPage.png');
-	width : 77px;
-	height : 25px;
+	width : 66px;
+	height : 21px;
 	float : right;
 	margin-left : 10px;
+	margin-top: 3px;
 }
-#topMenu #loginFrm #signUpButton {
+#topMenu #signUpButton {
 	background : url('/images/signUpButton.png');
 	width : 64px;
 	height : 21px;
