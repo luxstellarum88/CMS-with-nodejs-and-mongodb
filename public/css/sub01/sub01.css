@@ -5,6 +5,7 @@
 	position:relative; 
 	left:50%; 
 	margin-left:-435px; 
+	margin-top: 70px;
 }
 
 #detail01Text{float:left; width:368px; padding-left: 30px; padding-right: 30px;	text-shadow: 0 -1px 0 rgba( 0, 0, 0, .2 );}
