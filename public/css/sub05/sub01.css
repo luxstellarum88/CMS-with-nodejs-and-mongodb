@@ -3,7 +3,6 @@
 #detail01Text #title {font-size: 40pt; font-family:'NanumPenWeb'; color: white; margin-top:0px ;margin-bottom:10px;}
 #detail01Text #contents {width:556px; font-size:11pt; color: #acc6e3; font-family:gulim, 굴림, sans-serif; margin-bottom: 20px; padding:0 160px; text-shadow: 1px 1px rgba(0,0,0,0.5); line-height:1.2}
 
-
  /* table {width: 100%; } */
 #boardMiddle #boardList th {padding: 10px 0 11px 0 ; text-align: center; color:black; font-family: 'NanumGorhicWeb'; font-size: 9pt; font-weight: bold; }
 
@@ -36,30 +35,34 @@
 #boardMiddle #boardList td.readNum { text-align: center}
 
 #boardMiddle #boardList td.download .downloadButton { width: 63px; height: 22px; background: url("/images/button_download.png") no-repeat; margin: 0 auto}
-/* #boardFooter img {margin-top:-3px} */
-/*
-#boardFooter { margin-top: 20px;text-align: center; color:black; font-family: 'NanumGorhicWeb'; font-size: 3pt;}
 
-#boardFooter #pagination { margin-bottom: 30px}
-#boardFooter #pagination a{ color:black; font-family: 'NanumGorhicWeb'; font-size: 9pt; text-decoration: none; opacity: 0.6; margin: 0 3px}
-#boardFooter #pagination a.select{font-size: 12pt; color: #ed2b0b; font-weight: bold; opacity: 1 }
-#boardFooter #pagination a span{margin-top: -3px}
-#boardFooter #pagination a:hover{opacity: 1}
-
-#boardFooter #pagination img {width: 10px;height: 10px; margin: 0 5px}
-
-
-#boardFooter #search {width: 334px; height: 26px; margin: 0 auto;}
-#boardFooter select {margin-left: 10px; float:left}
-#boardFooter #searchInputBox { width:200px; height:18px; border: 1px solid gray; float: left; margin-left: 10px; margin-top:2px}
-#boardFooter #searchButton {float:left; margin: -2px 0 0 10px}
-
-#boardFooter #writeButton {float:right; margin: 30px 29px 0 0}
-*/
-/* #boardFooter a:link{color:black; text-decoration: none} */
-
-
-
+#repositoryInfo{
+	-moz-border-radius:30px; 
+	-webkit-border-radius:30px; 
+	border-radius:30px; 
+	font-size:9pt; 
+	line-height:30px; 
+	color:white; 
+	position:relative; 
+	left: 50%; 
+	margin-left: -320px; 
+	margin-top:30px; 
+	height:30px; 
+	width:580px; 
+	padding: 0 30px; 
+	background:rgba(0,0,0,0.5);
+}
+#repositoryInfo #title{
+	font-weight:bold; 
+	margin-right:20px;
+}
+#repositoryInfo #copyButtonn{
+	float:right; 
+	height:30px; 
+	line-height:30px; 
+	width:68px; 
+	cursor:pointer
+}
 
 #detail02{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 30px }
 #detail02 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }

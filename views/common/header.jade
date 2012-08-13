@@ -68,10 +68,8 @@ script(type="text/javascript")
 			input#signUpButton(type='button', name='signUp', onclick='join();', class='clickable')
 			#findUserInfo
 				a#findId(href='/find_id')
-					아이디 찾기
-				&nbsp/&nbsp
+				#divider
 				a#findPW(href='/find_password')
-					비밀번호 찾기
 	- else
 		- if(session.role=='admin')
 			div(style='display:inline;position:absolute;top:7px;left:20px;text-align:right;width:315px;font-size:9pt;') !{session.Id} 님이 로그인 하셨습니다.	

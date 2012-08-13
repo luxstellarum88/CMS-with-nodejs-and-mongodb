@@ -10,7 +10,7 @@
 	position:relative; 
 	left:50%; 
 	margin-left:-435px; 
-	margin-top: 30px;
+	margin-top: 70px;
 }
 #detail01Text{
 	float:left; 
@@ -251,3 +251,9 @@
 #detail04 #boardMiddle a:hover { color: gray; text-decoration: none; }
 
 #detail04 #boardMiddle li {list-style:none; border-bottom: #EEE solid 1px;}
+
+.more {
+	background: url('/images/more.png') no-repeat;
+	height: 12px;
+}
+

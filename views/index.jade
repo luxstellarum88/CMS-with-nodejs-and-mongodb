@@ -8,7 +8,6 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(rel='shortcut icon', href='/images/favicon.gif')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
 		script(src='javascript/index.js')
 		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
 		script(type='text/javascript')
@@ -27,6 +26,7 @@ html
 		
 		include common/header
 		include common/mainMenu	
+		include common/subMenu/subMenu.jade
 		
 		#detail01
 			#detail01Text
@@ -64,8 +64,7 @@ html
 			#detail03
 				#boardTop
 					#boardTitle 다운로드
-					#boardDownloadMore(onClick='javascript:goto_download();', style='cursor:hand; width:55px; position: absolute; left: 403; top: 18; font-size: 9pt')
-						+ 더보기
+					#boardDownloadMore.more(onClick='javascript:goto_download();', style='cursor:hand; width:55px; position: absolute; left: 403; top: 18; font-size: 9pt')
 				#boardMiddle
 					#wrap
 						#title
@@ -91,8 +90,7 @@ html
 				#boardMiddle
 					#notice(style='overflow:hidden')
 						ul(style='padding: 0; margin: 0; list-style: none; font-size: 9pt; line-height: 2.5;')
-							#boardNoticeMore(onClick='goto_notice();', style='cursor:hand; width:55px; position: absolute; left: 791; top: 10;')
-								+ 더보기
+							#boardNoticeMore.more(onClick='goto_notice();', style='cursor:hand; width:55px; position: absolute; left: 791; top: 18; line-height:1.2;height:12px')
 							-if( null != notice ) 
 								-for(var i=0; i<notice.length; i++)
 									li 
@@ -103,8 +101,7 @@ html
 										
 					#news(style='display: none; overflow:hidden;')
 						ul(style='padding: 0; margin: 0; list-style: none; font-size: 9pt; line-height: 2.5;')
-							#boardNewsMore(onClick='goto_news();', style='cursor:hand;width:55px; position: absolute; left: 791; top: 10;')
-								+ 더보기
+							#boardNewsMore.more(onClick='goto_news();', style='cursor:hand;width:55px; position: absolute; left: 791; top: 18; line-height:1.2; height:12px')
 							-if( null != news ) 
 								-for(var i=0; i<news.length; i++)
 									li 
