@@ -208,7 +208,7 @@ li.mainmenu {
 	position : relative;
 	margin-top : 10px;
 /* 	background-position : center; */
-	z-index : 0;
+	z-index : 100;
 	display: none;
 }
 #subMenu1{
