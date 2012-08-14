@@ -4,7 +4,7 @@ html
 			!{title}
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		link(rel='stylesheet', type='text/css', href='/css/common.css') 
-		link(rel='stylesheet', type='text/css', href='/css/admin.css')
+		link(rel='stylesheet', type='text/css', href='/css/admin/admin.css')
 		link(rel='stylesheet', type='text/css', href='/css/cloud.css')
 		link(rel='shortcut icon', href='/images/favicon.gif')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
@@ -30,7 +30,7 @@ html
 				#wrap
 					#message
 						관리자 계정으로 로그인 해주세요.
-					form#adminLoginForm(action='/admin/main', method='POST')
+					form#adminLoginForm(action='/admin/main', method='POST', autocomplete='off')
 						input(type='text', id='adminId', name='Id', onKeyPress='return submit_enter(this,event)')
 						br
 						br

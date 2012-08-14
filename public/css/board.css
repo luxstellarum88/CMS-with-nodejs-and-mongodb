@@ -6,7 +6,6 @@
 	padding: 10px 0 11px 0 ;
 	text-align: center;
 	color:black; 
-	font-family: 'NanumGorhicWeb'; 
 	font-size: 9pt; font-weight: bold; 
 }
 #boardMiddle #boardList th.no { 
@@ -42,7 +41,6 @@
 #boardMiddle #boardList td {
 	padding: 8px 10px; 
 	color:black; 
-	font-family: 'NanumGorhicWeb'; 
 	font-size: 9pt; 
 	font-weight: normal; 
 	border-bottom: 1px solid #eee
@@ -102,7 +100,6 @@
 #boardFooter { 
 	margin-top: 20px;
 	color:black; 
-	font-family: 'NanumGorhicWeb';
 	text-align:center;
 }
 
@@ -124,7 +121,6 @@
 }
 #boardFooter #pagination a{ 
 	color:black; 
-	font-family: 'NanumGorhicWeb'; 
 	font-size: 9pt; 
 	text-decoration: none; 
 	opacity: 0.6; 
@@ -188,18 +184,6 @@
 	background-image:url('../../images/boardTop_870px.png'); 
 	height:55px; 
 	width:876px; 
-}
-#detail03 #boardTop #boardTitle {
-	font-size:11pt; 
-	color: black; 
-	font-family:gulim, 굴림, sans-serif; 
-	text-align:center; 
-	height: 40px; 
-	padding-top: 15px; 
-	margin-left: 39px; 
-	float: left; 
-	background:url('../../images/boardTitleBackground.png') no-repeat; 
-	background-position: center
 }
 #detail03 #boardMiddle {
 	background-image:url('../../images/boardMiddle_870px.png'); 

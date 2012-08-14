@@ -16,15 +16,12 @@
 	width : 876px;
 }
 #detail02 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width: 60px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/sub01_03.png') no-repeat;
 	background-position : center;
 }
 #detail02 #boardMiddle {
@@ -118,15 +115,12 @@
 	width : 876px;
 }
 #detail03 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width: 47px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 53px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/sub01_04.png') no-repeat;
 	background-position : center;
 }
 #detail03 #boardMiddle {

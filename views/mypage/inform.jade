@@ -69,24 +69,24 @@ html
 				});
 				
 				if( 101 == #{authed} ) {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						location.href='/mypage';
 					});
 				}
@@ -99,9 +99,9 @@ html
 		
 		#detail02
 			#boardTop
-				#boardTitle1.menuText.select  회원정보수정
-				#boardTitle2.menuText  작성 글 목록
-				#boardTitle3.menuText  작성 코멘트 목록
+				#mypage_menu1.menuText.select 
+				#mypage_menu2.menuText 
+				#mypage_menu3.menuText 
 			#boardMiddle
 				#contents
 					form(method='post', action='/mypage/update', name='frm')

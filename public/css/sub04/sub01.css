@@ -17,15 +17,12 @@
 	width : 876px;
 }
 #detail02 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width:60px; 
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/sub04_01.png') no-repeat;
 	background-position : center;
 }
 #detail02 #boardMiddle {
@@ -116,7 +113,7 @@
 
 #detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 50px }
 #detail03 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
-#detail03 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
+#detail03 #boardTop #boardTitle {width:60px; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/board_title/sub04_02.png') no-repeat; background-position: center}
 #detail03 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:535px; width:776px; padding: 0 50px }
 #detail03 #boardMiddle #wrap1 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
 #detail03 #boardMiddle #wrap1 #title { font-weight: bold; color:#334d66; font-family: gulim, 굴림, sans-serif; font-size: 11pt; margin-bottom: 3px;}
@@ -140,7 +137,7 @@
  
 #detail04{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 50px }
 #detail04 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
-#detail04 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
+#detail04 #boardTop #boardTitle {width:60px; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/board_title/sub04_03.png') no-repeat; background-position: center}
 #detail04 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:560px; width:776px; padding: 0 50px }
 #detail04 #boardMiddle #wrap1 { width: 756px; margin-left: 10px; float: left; padding: 10px 0 }
 #detail04 #boardMiddle #wrap1 #title { font-weight: bold; color:#334d66; font-family: gulim, 굴림, sans-serif; font-size: 11pt; margin-bottom: 3px;}
@@ -167,7 +164,7 @@
 
 #detail05{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: -170px }
 #detail05 #boardTop { background-image:url('../../images/boardTop_870px.png'); height:55px; width:876px; }
-#detail05 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/boardTitleBackground.png') no-repeat; background-position: center}
+#detail05 #boardTop #boardTitle {width:60px; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('../../images/board_title/sub04_03.png') no-repeat; background-position: center}
 #detail05 #boardMiddle {background-image:url('../../images/boardMiddle_870px.png'); height:670px; width:776px; padding: 0 50px }
 #detail05 #boardMiddle #wrap { width: 350px; margin-left: 63px; float: left; padding-top: 10px; padding-bottom: 10px }
 #detail05 #boardMiddle #wrap #left { width:42px; height: 96px; margin-right: 10px; float: left}

@@ -76,15 +76,12 @@
 	width : 876px;
 }
 #detail02 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width: 60px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 60px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/join_01.png') no-repeat;
 	background-position : center;
 }
 #detail02 #boardMiddle {

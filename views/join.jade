@@ -86,7 +86,7 @@ html
 
 		#detail02
 			#boardTop
-				#boardTitle 회원가입
+				#boardTitle 
 			#boardMiddle
 				#contents
 					form(method='post', action='/makeAccount', id='frm', autocomplete="off")
@@ -165,7 +165,7 @@ html
 									br
 									#check_email.text(style = 'display : inline;') 예) goorm@skima.co.kr												
 					#join_button(align='center')
-						input(type='image', src='/images/button_join.png',class = 'clickable', onClick='document.frm.submit()')
+						input(type='image', src='/images/button_join.png',class = 'clickable', onClick='javascript:document.getElementById("frm").submit();')
 
 			#boardBottom
 		include common/footer.jade

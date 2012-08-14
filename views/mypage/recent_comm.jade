@@ -12,24 +12,24 @@ html
 		script
 			$(document).ready(function(){
 				if( 101 == #{authed} ) {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/inform').submit();
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
 					});
 				}
 				else {
-					$('#boardTitle1').click(function(){
+					$('#mypage_menu1').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle2').click(function(){
+					$('#mypage_menu2').click(function(){
 						location.href='/mypage';
 					});
-					$('#boardTitle3').click(function(){
+					$('#mypage_menu3').click(function(){
 						location.href='/mypage';
 					});
 				}
@@ -80,15 +80,10 @@ html
 			
 		div#detail02
 			div#boardTop
-				#boardTitle1.menuText  회원정보수정
-				#boardTitle2.menuText  작성 글 목록
-				#boardTitle3.menuText.select  작성 코멘트 목록
+				#mypage_menu1.menuText 
+				#mypage_menu2.menuText 
+				#mypage_menu3.menuText.select 
 			div#boardMiddle
-				//
-					#boardMenu.leftMenu
-						#mypage_menu1.menuText 회원정보수정
-						#mypage_menu2.menuText 작성 글 목록
-						#mypage_menu3.menuText 작성 댓글 목록
 				div#boardList.contents
 					table(cellspacing='0')
 						tr

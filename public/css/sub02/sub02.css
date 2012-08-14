@@ -1,0 +1,9 @@
+#detail03 #boardTop #boardTitle {
+	width: 100px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('../../images/board_title/sub02_03.png') no-repeat; 
+	background-position: center
+}

@@ -62,15 +62,12 @@
 	width : 876px;
 }
 #detail02 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width: 30px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 60px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/index_01.png') no-repeat;
 	background-position : center;
 }
 #detail02 #boardMiddle {
@@ -89,7 +86,6 @@
 }
 #detail02 #boardMiddle #wrap #title {
 	color : #334d66;
-	font-family : 'NanumGorhicWeb';
 	font-size : 11pt;
 	height : 40px;
 	font-weight: bold;
@@ -102,7 +98,6 @@
 }
 #detail02 #boardMiddle #wrap #contents {
 	color : black;
-	font-family : 'NanumGorhicWeb';
 	font-size : 9pt;
 	text-align: justify;
 }
@@ -129,15 +124,12 @@
 	width : 486px;
 }
 #detail03 #boardTop #boardTitle {
-	font-size : 11pt;
-	color : black;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	width: 60px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+	background : url('/images/board_title/index_02.png') no-repeat;
 	background-position : center;
 }
 #detail03 #boardMiddle {
@@ -155,19 +147,16 @@
 }
 #detail03 #boardMiddle #wrap #title {
 	color : #334d66;
-	font-family : 'NanumGorhicWeb';
 	font-size : 11pt;
 	font-weight: bold;
 }
 #detail03 #boardMiddle #wrap #contents1 {
 	color : black;
-	font-family : 'NanumGorhicWeb';
 	font-size : 9pt;
 	margin-top: 12px;
 }
 #detail03 #boardMiddle #wrap #contents2 {
 	color : #b3b3b3;
-	font-family : 'NanumGorhicWeb';
 	font-size : 7pt;
 	margin-top: 2px;
 }
@@ -180,7 +169,6 @@
 }
 #detail03 #boardMiddle #wrap #versionInfo {
 	color : black;
-	font-family : 'NanumGorhicWeb';
 	font-size : 8pt;
 	text-align: left;
 	float: left;
@@ -204,37 +192,42 @@
 	width : 370px;
 }
 #detail04 #boardTop #boardTitleNotice {
-	font-size : 11pt;
-	color : #999999;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	background : url('/images/board_title/index_03.png') no-repeat;
+	background-position : center;
+	width: 60px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
+	cursor: pointer;
+	opacity: 0.3;
 }
-#detail04 #boardTop #boardTitleNotice.select{
-	color : black;
-	background : url('/images/boardTitleBackground.png') no-repeat;
-	background-position : center;
-	cursor : default;
-}
-#detail04 #boardTop #boardTitleNews.select {
-	color : black;
-	background : url('/images/boardTitleBackground.png') no-repeat;
-	background-position : center;
-	cursor : default;
+#detail04 #boardTop #boardTitleNotice:hover {
+	opacity: 1;
 }
 #detail04 #boardTop #boardTitleNews {
-	font-size : 11pt;
-	color : #999999;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+	background : url('/images/board_title/index_04.png') no-repeat;
+	background-position : center;
+	width: 60px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 20px;
 	float : left;
 	cursor : pointer;
+	opacity: 0.3;
+}
+#detail04 #boardTop #boardTitleNews:hover {
+	opacity: 1;
+}
+#detail04 #boardTop #boardTitleNotice.select{
+	background : url('/images/board_title/index_03_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
+}
+#detail04 #boardTop #boardTitleNews.select {
+	background : url('/images/board_title/index_04_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
 }
 #detail04 #boardMiddle {
 	background-image : url('/images/boardMiddle_370px.png');
@@ -253,7 +246,11 @@
 #detail04 #boardMiddle li {list-style:none; border-bottom: #EEE solid 1px;}
 
 .more {
+	opacity: 0.2;
 	background: url('/images/more.png') no-repeat;
 	height: 12px;
 }
 
+.more:hover{
+	opacity: 0.6;
+}

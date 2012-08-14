@@ -43,22 +43,66 @@
 	height : 55px;
 	width : 876px;
 }
-#detail02 #boardTop .menuText{
-	font-size : 11pt;
-	color : #999999;
-	font-family : gulim, 굴림, sans-serif;
-	text-align : center;
+
+
+
+
+#detail02 #boardTop #mypage_menu1{
+	background : url('/images/board_title/mypage_01.png') no-repeat;
+	background-position : center;
+	width: 95px;
 	height : 40px;
 	padding-top : 15px;
 	margin-left : 47px;
 	float : left;
-	cursor: pointer
+	cursor: pointer;
+	opacity: 0.3;
 }
-#detail02 #boardTop .menuText.select{
-	color : black;
-	background : url('/images/boardTitleBackground.png') no-repeat;
+#detail02 #boardTop #mypage_menu2{
+	background : url('/images/board_title/mypage_02.png') no-repeat;
 	background-position : center;
+	width: 85px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 47px;
+	float : left;
+	cursor: pointer;
+	opacity: 0.3;
+}
+#detail02 #boardTop #mypage_menu3{
+	background : url('/images/board_title/mypage_03.png') no-repeat;
+	background-position : center;
+	width: 115px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 47px;
+	float : left;
+	cursor: pointer;
+	opacity: 0.3;
+}
+#detail02 #boardTop #mypage_menu1:hover{
+	opacity: 1;
+}
+#detail02 #boardTop #mypage_menu2:hover{
+	opacity: 1;
+}
+#detail02 #boardTop #mypage_menu3:hover{
+	opacity: 1;
+}
+#detail02 #boardTop #mypage_menu1.select{
+	background : url('/images/board_title/mypage_01_p.png') no-repeat;
 	cursor : default;
+	opacity: 1;
+}
+#detail02 #boardTop #mypage_menu2.select{
+	background : url('/images/board_title/mypage_02_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
+}
+#detail02 #boardTop #mypage_menu3.select{
+	background : url('/images/board_title/mypage_03_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
 }
 #detail02 #boardMiddle{
 	background-image : url('/images/boardMiddle_870px.png');
