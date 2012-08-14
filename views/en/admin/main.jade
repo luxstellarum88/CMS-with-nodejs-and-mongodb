@@ -1,0 +1,52 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu	
+		include ../common/subMenu/subMenu03.jade
+		#detail03
+			#boardTop
+				#boardTitle 관리자 메인
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#contents
+						div(style='width:760px;')
+							table
+								tr
+									th.content No
+									th.content Id
+									th.content Name
+									th.content pagingNumber
+									th.content date
+									-for(var i=docs.length; i>0; i--)
+										-if(docs[i-1]){
+											tr
+												td.content #{i}
+												td.content 
+													a(href='/admin/board_modify/#{docs[i-1].id}') #{docs[i-1].id}
+												td.content #{docs[i-1].name}
+												td.content #{docs[i-1].paging}
+												td.content #{docs[i-1].date}
+										-}
+						
+						input( type ='button', id='board_make_button', value='게시판 만들기', onClick="location.href='/admin/board_make_form'", class='clickable')
+						input( type ='button', id='logout_button', value='Logout', onClick='location.href="/logout"', class='clickable')
+						br
+						input( type ='button', id='userlist_button', value='유저리스트', onClick="location.href='/admin/userlists/1'", class='clickable')
+						input( type ='button', id='board_recent_button', value='최신글보기', onClick="location.href='/admin/board_recent_view'", class='clickable')
+						input( type ='button', id='recent_comment_button', value='최신덧글보기', onClick="location.href='/admin/recent_comment_view'", class='clickable')
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

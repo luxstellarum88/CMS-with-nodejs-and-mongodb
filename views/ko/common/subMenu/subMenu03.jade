@@ -1,0 +1,21 @@
+include ./subMenu
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#subMenu3").attr("style", "display: block");
+		$(".mainmenu a#menu3").attr("style", "background-image: url('/images/menu/menu03_p.png')");
+	});
+
+-if(typeof(board_id) != 'undefined')
+	script
+		$("document").ready(function() {
+			if("!{board_id}"=="freeboard")
+				$("#menu3_1").attr("style", "opacity:1");
+			else if("!{board_id}"=="qna")
+				$("#menu3_2").attr("style", "opacity:1");
+			else if("!{board_id}"=="tip")
+				$("#menu3_3").attr("style", "opacity:1");
+			else if("!{board_id}"=="notice")
+				$("#menu3_4").attr("style", "opacity:1");
+			else if("!{board_id}"=="news")
+				$("#menu3_5").attr("style", "opacity:1");
+		});

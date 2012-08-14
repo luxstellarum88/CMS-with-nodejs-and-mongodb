@@ -11,7 +11,7 @@ exports.view = function (req, res) {
 	model.find({deleted : false}).sort('date',-1).limit(20).exec(function(err, docs) {
 		
 		if(!err) {
-			res.render('admin/recent_comment_view', {
+			res.render(language+'/'+'admin/recent_comment_view', {
 				title : 'Recent Comments',
 				docs : docs
 			})//end of render

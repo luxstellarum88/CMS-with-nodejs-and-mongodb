@@ -22,14 +22,14 @@ exports.del = function(req, res) {
 				model.update(condition, update, null, function(err){
 					if(!err) {
 						var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board?id='+board_id);
-						res.render('alert', {
+						res.render(language+'/'+'alert', {
 							title : 'Success'
 							,alert : alert_script
 						});//end
 					}//end of if
 					else {
 						var alert_script = alert.makeAlert('오류가 발생했습니다.');
-							res.render('alert', {
+							res.render(language+'/'+'alert', {
 							title : 'Error'
 							,alert : alert_script
 						});//end of alert
@@ -38,7 +38,7 @@ exports.del = function(req, res) {
 			}//end of if
 			else {
 				var alert_script = alert.makeAlert('권한이 없습니다.');
-					res.render('alert', {
+					res.render(language+'/'+'alert', {
 					title : 'Error'
 					,alert : alert_script
 				});//end of alert

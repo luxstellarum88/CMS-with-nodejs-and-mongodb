@@ -15,7 +15,7 @@ exports.contents = function(req, res) {
 	model.findOne({index : board_index, board_id : board_id}, function(err, docs){
 		if(!err){
 			comment.list(req, res, function(comments, length){
-				res.render('board/show', {
+				res.render(language+'/'+'board/show', {
 					title : 'Show Contents',
 					board : docs,
 					board_id : board_id,

@@ -21,83 +21,83 @@ var find_account = require('../modules/account/find_account');
 
 
 exports.html_sub1_1 = function(req, res){
-	res.render('sub01/sub01', { title: '프로젝트 구름 :: 구름소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub01/sub01', { title: '프로젝트 구름 :: 구름소개 > 소개' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_2 = function(req, res){
-	res.render('sub01/sub02', { title: '프로젝트 구름 :: 구름소개 > 특징' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub01/sub02', { title: '프로젝트 구름 :: 구름소개 > 특징' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_3 = function(req, res){
-	res.render('sub01/sub03', { title: '프로젝트 구름 :: 구름소개 > 동영상' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub01/sub03', { title: '프로젝트 구름 :: 구름소개 > 동영상' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_4 = function(req, res){
-	res.render('sub01/sub04', { title: '프로젝트 구름 :: 구름소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub01/sub04', { title: '프로젝트 구름 :: 구름소개 > 라이센스' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub1_5 = function(req, res){
-	res.render('sub01/sub05', { title: '프로젝트 구름 :: 구름소개 > 히스토리' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub01/sub05', { title: '프로젝트 구름 :: 구름소개 > 히스토리' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 
 exports.html_sub2_1 = function(req, res){
-	res.render('sub02/sub01', { title: '프로젝트 구름 :: 지원 > 기술지원' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub02/sub01', { title: '프로젝트 구름 :: 지원 > 기술지원' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub2_2 = function(req, res){
 	res.redirect('/board/faq');
-//	res.render('sub02/sub02', { title: '지원 > 자주 묻는 질문' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub02/sub02', { title: '지원 > 자주 묻는 질문' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 
 // exports.html_sub3_1 = function(req, res){
-	// res.render('sub02/sub01', { title: 'sub2_1' , session: req.session.user });
+	// res.render(language+'/'+'sub02/sub01', { title: 'sub2_1' , session: req.session.user });
 // }
 exports.html_sub3_1 = function(req, res){
 	res.redirect('/board/freeboard');
 }
 exports.html_sub3_2 = function(req, res){
 	res.redirect('/board/qna');
-//	res.render('sub03/sub02', { title: '커뮤니티 > 질문게시판' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub03/sub02', { title: '커뮤니티 > 질문게시판' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub3_3 = function(req, res){
 	res.redirect('/board/tip');
-//	res.render('sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub03/sub03', { title: '커뮤니티 > 사용자 팁/노하우' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 exports.html_sub3_4 = function(req, res){
 	res.redirect('/board/notice');
-//	res.render('sub01/sub04', { title: 'goorm 소개 > 공지사항' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub01/sub04', { title: 'goorm 소개 > 공지사항' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 exports.html_sub3_5 = function(req, res){
 	res.redirect('/board/news');
-//	res.render('sub01/sub04', { title: 'goorm 소개 > 보도사항' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub01/sub04', { title: 'goorm 소개 > 보도사항' , session: req.session.user, cookie_id: req.cookies.id });
 }
 
 
 
 exports.html_sub4_1 = function(req, res){
-	res.render('sub04/sub01', { title: '프로젝트 구름 :: 사용방법 > 설치' , session: req.session.user, cookie_id: req.cookies.id });
+	res.render(language+'/'+'sub04/sub01', { title: '프로젝트 구름 :: 사용방법 > 설치' , session: req.session.user, cookie_id: req.cookies.id });
 }
 exports.html_sub4_2 = function(req, res){
-//	res.render('sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub04/sub02', { title: '사용방법 > 매뉴얼' , session: req.session.user, cookie_id: req.cookies.id });
 	res.redirect('/manual');
 }
 // exports.html_sub4_3 = function(req, res){
-	// res.render('sub04/sub03', { title: 'sub4_3' , session: req.session.user });
+	// res.render(language+'/'+'sub04/sub03', { title: 'sub4_3' , session: req.session.user });
 // }
 // exports.html_sub4_4 = function(req, res){
-	// res.render('sub04/sub04', { title: 'sub4_4' , session: req.session.user });
+	// res.render(language+'/'+'sub04/sub04', { title: 'sub4_4' , session: req.session.user });
 // }
 
 
 exports.html_sub5_1 = function(req, res){
-//	res.render('sub05/sub01', { title: '다운로드 > 소스코드' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub05/sub01', { title: '다운로드 > 소스코드' , session: req.session.user, cookie_id: req.cookies.id });
 	res.redirect('/board2/source');
 }
 exports.html_sub5_2 = function(req, res){
-//	res.render('sub05/sub02', { title: '다운로드 > 플러그인' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub05/sub02', { title: '다운로드 > 플러그인' , session: req.session.user, cookie_id: req.cookies.id });
 	res.redirect('/board2/plugin');
 }
 exports.html_sub5_3 = function(req, res){
-//	res.render('sub05/sub03', { title: '다운로드 > 스킨' , session: req.session.user, cookie_id: req.cookies.id });
+//	res.render(language+'/'+'sub05/sub03', { title: '다운로드 > 스킨' , session: req.session.user, cookie_id: req.cookies.id });
 	res.redirect('/board2/skin');
 }
 
@@ -119,12 +119,12 @@ exports.board_make_form = function(req, res){
 	// 주석 남겨두세요 나중에 스킨 적용할때 쓸 예정 - by Yoon-seop
 	// var skinlist = new Array();
 	// skin_manager.getBoardSkinList(function(skinlist){
-		// res.render('admin/board_make_form', {
+		// res.render(language+'/'+'admin/board_make_form', {
 			// title: 'board_make_form'
 			// , skins: skinlist
 		// });
 	// });
-	res.render('admin/board_make_form', {
+	res.render(language+'/'+'admin/board_make_form', {
 		title: '게시판 생성'
 		, session: req.session.user, cookie_id: req.cookies.id
 	});
@@ -386,7 +386,7 @@ exports.boardPreview = function(req, res){
 		boardObj.subject = string;
 	});
 	
-	res.render('board/show', {
+	res.render(language+'/'+'board/show', {
 		title: '미리보기',
 		session: k,
 		board_id: req.body.id,
@@ -403,7 +403,7 @@ exports.commentDeleteForm = function(req, res){
 	var board_num = req.query.board_num;
 	var comment_id = req.query.comment_id;
 	
-	res.render('commDelete', {
+	res.render(language+'/'+'commDelete', {
 		title: '코멘트 삭제',
 		board_id: board_id,
 		board_num: board_num,

@@ -10,7 +10,7 @@ exports.list = function(req, res) {
 	
 	model.find().sort('date', -1).exec(function(err, docs){
 		if(!err) {
-			res.render('board/main', {
+			res.render(language+'/'+'board/main', {
 				title: 'Board Main',
 				docs: docs
 			});//end of render

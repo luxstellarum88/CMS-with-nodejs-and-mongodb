@@ -22,7 +22,7 @@ var self = module.exports =  {
 	}, //end of logout
 
 	sign_up_page : function(req, res) {
-		res.render('join', {
+		res.render(language+'/'+'join', {
 			title: '회원가입'
 			, session: req.session.user, cookie_id: req.cookies.id
 		});
@@ -202,7 +202,7 @@ var self = module.exports =  {
 											self.authenticate(user.idForm, user.pwForm, function(user){			
 												if ( user ) {
 													req.session.user = user;
-													res.render('mypage/welcome', {
+													res.render(language+'/'+'mypage/welcome', {
 														title:'환영합니다 !  ' + user.Id + ' 님',
 														session: user,
 														user_id: user.Id
@@ -216,7 +216,7 @@ var self = module.exports =  {
 								}//end of if
 								else{
 									var alert_script = alert.makeAlert("이미 존재하는 e-Mail입니다.");
-										res.render('alert',{
+										res.render(language+'/'+'alert',{
 											title : 'error',
 											alert : alert_script
 										});
@@ -225,7 +225,7 @@ var self = module.exports =  {
 						}//end of if
 						else {
 							var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
-							res.render('alert',{
+							res.render(language+'/'+'alert',{
 								title : 'error',
 								alert : alert_script
 							});
@@ -235,7 +235,7 @@ var self = module.exports =  {
 				
 				case 1:
 					alert_script = alert.makeAlert("빈 칸이 있습니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -243,7 +243,7 @@ var self = module.exports =  {
 				
 				case 2:
 					alert_script = alert.makeAlert("아이디는 4~15자, 영문 및 숫자 조합으로 만들어 주시기 바랍니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -251,7 +251,7 @@ var self = module.exports =  {
 				
 				case 3:
 					alert_script = alert.makeAlert("비밀번호가 일치하지 않습니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -259,7 +259,7 @@ var self = module.exports =  {
 				
 				case 4:
 					alert_script = alert.makeAlert("비밀번호는 8~15자, 영문 및 숫자 조합으로 만들어 주시기 바랍니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -267,7 +267,7 @@ var self = module.exports =  {
 				
 				case 5:
 					alert_script = alert.makeAlert("유효한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -275,7 +275,7 @@ var self = module.exports =  {
 				
 				case 6:
 					alert_script = alert.makeAlert("이름은 3~15자로, '.', '-', '_' 이상 세 가지의 특수문자만 허용됩니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script, cookie_id: req.cookies.id
 					});
@@ -287,7 +287,7 @@ var self = module.exports =  {
 	}, //end of insert
 	
 	display_userlist : function(type, content, current_page, length, docs, paging_size, req, res) {
-		res.render('admin/userlist', {
+		res.render(language+'/'+'admin/userlist', {
 			title : "회원 리스트"
 			,session: req.session.user
 			,result : docs
@@ -381,7 +381,7 @@ var self = module.exports =  {
 		var user_model = dbModel.tossUserModel();
 		user_model.findOne({Id:user_id}, function(err, user){
 			if ( user ) {
-				res.render('admin/userinformation', {
+				res.render(language+'/'+'admin/userinformation', {
 					title : '회원 정보'
 					, session: req.session.user
 					, info : user, cookie_id: req.cookies.id
@@ -422,7 +422,7 @@ var self = module.exports =  {
 			}
 			else {
 				var alert_script = alert.makeAlert('존재하지 않는 계정이거나 계정 정보가 잘못되었습니다.');
-				res.render('alert',{
+				res.render(language+'/'+'alert',{
 					title : 'error'
 					,alert : alert_script
 				});
@@ -455,7 +455,7 @@ var self = module.exports =  {
 		});//end of evt.on(get_board_data)
 		
 		evt.on('show_index', function(notice, news) {
-			res.render('index',{
+			res.render(language+'/'+'index',{
 				title : 'goorm'
 				, session : req.session.user
 				, notice : notice

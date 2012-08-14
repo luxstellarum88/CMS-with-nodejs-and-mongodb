@@ -1,0 +1,41 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css') 
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/admin.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+		script(type='text/javascript')
+			$(document).ready(function(){
+				$('#Id').focus();
+			});
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include common/header
+		include common/mainMenu	
+		include common/subMenu/subMenu01
+		
+		#detail02
+			#boardTop
+				#boardTitle 관리자 로그인
+			#boardMiddle
+				#wrap
+					#message
+						관리자 계정으로 로그인 해주세요.
+					form#adminLoginForm(action='/admin/main', method='POST', autocomplete='off')
+						input(type='text', id='adminId', name='Id', onKeyPress='return submit_enter(this,event)')
+						br
+						br
+						input(type='password', id='adminPassword', name='password', onKeyPress='return submit_enter(this,event)')
+						input(type='submit', id='adminLoginButton', name='login', value='', class='clickable')
+			#boardBottom
+		include common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

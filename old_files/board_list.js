@@ -11,7 +11,7 @@ exports.view = function(req, res) {
 	
 	model.find().sort('date', -1).exec(function(err, docs){
 		if(!err) {
-			res.render('admin/main', {
+			res.render(language+'/'+'admin/main', {
 				title: 'admin main',
 				docs: docs
 			});//end of render

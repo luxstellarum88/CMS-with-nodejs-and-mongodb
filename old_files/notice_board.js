@@ -55,7 +55,7 @@ exports.show = function(contents, res, session) {
 	find_model.findOne({no : contents.num}, function(err, docs) {
 		commview.view_notice_comment(contents.id, contents.num, function(comm){
 			if(!err) { //comment 추가 예정
-				res.render('boardShow', {
+				res.render(language+'/'+'boardShow', {
 					title : 'Show Notice',
 					board : docs,
 					board_id : contents.id,
@@ -82,7 +82,7 @@ exports.del = function(contents, session, res) {
 		}//end of if
 		else {
 			var alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 			title : 'Error'
 			,alert : alert_script
 			});
@@ -96,7 +96,7 @@ exports.modify = function(contents, session, res) {
 	
 	find_model.findOne({no : contents.num}, function(err, docs) {
 		if(session === docs.id || session === 'superadmin') {
-			res.render('modify', {
+			res.render(language+'/'+'modify', {
 				title : 'notice modify',
 				docs : docs,
 				id : contents.id,
@@ -105,7 +105,7 @@ exports.modify = function(contents, session, res) {
 		}//end of if
 		else {
 			var alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 			title : 'Error'
 			,alert : alert_script
 			});
@@ -128,7 +128,7 @@ exports.update = function(contents, session, res) {
 		}//end of if
 		else {
 			var alert_script = alert.makeAlert('오류가 발생했습니다.');
-				res.render('alert', {
+				res.render(language+'/'+'alert', {
 					title : 'Error',
 					alert : alert_script
 			});//end of alert

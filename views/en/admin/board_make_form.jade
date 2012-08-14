@@ -1,0 +1,49 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')\
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu	
+		include ../common/subMenu/subMenu03.jade
+		#detail03
+			#boardTop
+				#boardTitle 게시판 생성
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#contents
+						form(action='/admin/board_make', method='POST')
+							label(for='id') Board Id:
+							input(type='text', name='id', id='id', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='name') Board Name:
+							input(type='text', name='name', id='name', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='pagingNumber') Board PagingNumber:
+							input(type='text', name='pagingNumber', id='pagingNumber', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='comm_paging_number') Comment PagingNumber:
+							input(type='text', name='comm_paging_number', id='comm_paging_number', onKeyPress='return submit_enter(this,event)')
+							br
+							label(for='pagingNumber') Board Skin:
+							select
+								//-for(var i=0; i<skins.length; i++)
+									//option(value='#{skins[i]}')
+										//!{skins[i]}
+							br
+							input(type = 'submit', name = 'board_make', id = 'board_make', value = '게시판 생성', class='clickable')br
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

@@ -9,7 +9,7 @@ exports.show = function(req, res) {
 	
 	model.find({deleted : false}).sort('date',-1).limit(20).exec(function(err, docs) {
 		if(!err) {
-			res.render('admin/board_recent_view', {
+			res.render(language+'/'+'admin/board_recent_view', {
 				title : 'Recent Docs',
 				docs : docs,				
 			});//end of render

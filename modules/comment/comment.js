@@ -182,14 +182,14 @@ var self = module.exports = {
 				if ( docs.user_id == user_id || user_role == 'admin' ) {
 					docs.remove();
 					var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id+'/'+board_index);								
-					res.render('alert', {
+					res.render(language+'/'+'alert', {
 						title : 'Success'
 						,alert : alert_script
 					});
 				}
 				else {
 					var alert_script = alert.makeAlert('권한이 없습니다.');
-					res.render('alert', {
+					res.render(language+'/'+'alert', {
 						title: 'Error',
 						alert: alert_script
 					});	
@@ -198,7 +198,7 @@ var self = module.exports = {
 			else {
 				console.log('in comment/delete.js : error(01)');
 				var alert_script = alert.makeAlert('찾지 못하였습니다.');
-					res.render('alert', {
+					res.render(language+'/'+'alert', {
 						title: 'Error',
 						alert: alert_script
 				});

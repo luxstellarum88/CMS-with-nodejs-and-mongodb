@@ -1,0 +1,61 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu	
+		#detail03
+			#boardTop
+				#boardTitle Admin
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 회원 메일 보내기
+					#contents
+						div(style='width:760px;')
+							form( id='frmmail', action='/admin/sendmailAction', method='post')
+								table
+									tr
+										td.content 보내는이
+										td.content
+											input( type='hidden', name='sender', value='#{sender}' )
+											!{sender}
+									tr
+										td.content 받는이
+										td.content
+											-if (Object.prototype.toString.call(addresses) == '[object Array]')
+												ul 
+													each address in addresses
+														li
+															input( type='hidden', name='address', value='#{address}' )
+															!{address}
+												총 !{addresses.length} 명
+											-else
+												ul
+													li
+														input( type='hidden', name='address', value='#{addresses}' )
+														!{addresses}
+									tr
+										td.content 제목
+										td.content
+											input( type='text', name='subject' )
+									tr
+										td.content 내용
+										td.content
+											textarea( name='content', rows='10', cols='60', wrap='virtual' )
+									tr
+										td( colspan=2 ).content
+											input( type='submit', name='btnemail', value='메일보내기' )
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

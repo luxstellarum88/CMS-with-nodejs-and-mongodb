@@ -37,7 +37,7 @@ var self = module.exports = {
 	}, //end of sendmail
 
 	send_mail_view : function(req, res) {
-		res.render('admin/sendmail', {
+		res.render(language+'/'+'admin/sendmail', {
 			title: 'e-mail 보내기'
 			, sender: 'operator@goorm.org'
 			, addresses: req.body.chklist
@@ -48,7 +48,7 @@ var self = module.exports = {
 	send_mail_action : function(req, res) {
 		self.send_mail(req.body.sender, req.body.address, req.body.subject, req.body.content);
 		var alert_script = alert.AlertRedirect('메일이 발송되었습니다.', '/admin/userlists');
-		res.render('alert', {
+		res.render(language+'/'+'alert', {
 			title : 'Mail Sended'
 			,alert : alert_script, cookie_id: req.cookies.id
 		});
@@ -87,7 +87,7 @@ var self = module.exports = {
 		
 		model.find().sort('date', -1).exec(function(err, docs){
 			if ( !err ) {
-				res.render('admin/main', {
+				res.render(language+'/'+'admin/main', {
 					title: '관리자 메인'
 					, docs: docs
 					, session: req.session.user, cookie_id: req.cookies.id
@@ -111,7 +111,7 @@ var self = module.exports = {
 		
 		model.findOne( {id : id}, function(err, docs) {
 			if(!err ) {
-				res.render('admin/board_modify_view', {
+				res.render(language+'/'+'admin/board_modify_view', {
 					title : '게시판 수정'
 					, docs : docs
 					, session: req.session.user, cookie_id: req.cookies.id
@@ -142,7 +142,7 @@ var self = module.exports = {
 			if(!err) {
 				console.log ('in admin.js, board_update : success');
 				var alert_script = alert.AlertRedirect("수정되었습니다.", '/admin/main');
-				res.render('alert', {
+				res.render(language+'/'+'alert', {
 					title : "Success"
 					, alert : alert_script
 				});//need render or redirect
@@ -195,7 +195,7 @@ var self = module.exports = {
 			}
 			//console.log(req.query.id);
 			var alert_script = alert.AlertRedirect('회원정보가 삭제되었습니다.', '/admin/userlists');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Result'
 				, alert : alert_script
 			});			
@@ -258,7 +258,7 @@ var self = module.exports = {
 					}
 					else { // Guest or login fail.
 						var alert_script = alert.makeAlert('존재하지 않는 계정입니다.')
-						res.render('alert', {
+						res.render(language+'/'+'alert', {
 							title : 'error',
 							alert : alert_script
 						});	
@@ -273,13 +273,13 @@ var self = module.exports = {
 			if ( req.session.user.Id === 'superadmin' ) {
 				res.redirect('/admin/main');
 			}	else {
-		  		res.render('admin', {
+		  		res.render(language+'/'+'admin', {
 		  			title: '관리자 페이지'
 		  			, session: req.session.user, cookie_id: req.cookies.id
 		  		});
 		 	}
 	 	}	else {
-	  		res.render('admin', {
+	  		res.render(language+'/'+'admin', {
 	  			title: '관리자 페이지'
 	  			, session: req.session.user, cookie_id: req.cookies.id
 	  		});

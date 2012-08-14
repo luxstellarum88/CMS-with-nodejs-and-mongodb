@@ -4,6 +4,7 @@
 var express = require('express')
   , fs = require('fs')
   , routes = require('./routes');
+
 // Session
 var app = module.exports = express.createServer();
 var mongo_store = require('connect-mongodb');
@@ -11,6 +12,12 @@ var mongo_store = require('connect-mongodb');
 
 // alert
 var alert = require('./modules/alert/alert');
+
+// localization
+var localization = require('./modules/localization/localization');
+
+localization.SetLanguage("en");
+
 
 // Configuration
 app.configure(function(){
@@ -34,7 +41,7 @@ app.configure(function(){
   
   app.use(function(req, res, next){
   	res.status(404);
-  	res.render('404', {title:"404 - 페이지를 찾을 수 없습니다.", session: req.session.user, url: req.url});
+  	res.render(language+'/'+'404', {title:"404 - 페이지를 찾을 수 없습니다.", session: req.session.user, url: req.url});
   })
 });
 
@@ -53,7 +60,7 @@ function requiresLogin(req, res, next){
 	}
 	else {
 		var alert_script = alert.makeAlert('권한이 없습니다.');
-		res.render('alert', {
+		res.render(language+'/'+'alert', {
 			title : 'Error',
 			alert : alert_script
 		});
@@ -67,7 +74,7 @@ function mypageRequiresLogin(req, res, next){
 	}
 	else {
 		var alert_script = alert.AlertRedirect('권한이 없습니다.','/');
-		res.render('alert', {
+		res.render(language+'/'+'alert', {
 			title : 'Error',
 			alert : alert_script
 		});
@@ -83,7 +90,7 @@ function requiresAdminLogin(req, res, next){
 	}
 	else {
 		var alert_script = alert.makeAlert('권한이 없습니다.');
-		res.render('alert', {
+		res.render(language+'/'+'alert', {
 			title : 'Error',
 			alert : alert_script
 		});
@@ -96,7 +103,7 @@ function requiresSuperUserLogin(req, res, next){
 	}
 	else {
 		var alert_script = alert.makeAlert('권한이 없습니다.');
-		res.render('alert', {
+		res.render(language+'/'+'alert', {
 			title : 'Error',
 			alert : alert_script
 		});
@@ -110,7 +117,7 @@ function requiresViewCheck(req, res, next){
 		}
 		else{
 			var alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error',
 				alert : alert_script
 			});			
@@ -128,7 +135,7 @@ function requiresWriteCheck(req, res, next){
 		}
 		else{
 			var alert_script = alert.makeAlert('권한이 없습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error',
 				alert : alert_script
 			});			
@@ -301,7 +308,7 @@ app.get('/mypage', requiresLogin, isSuperAdmin, routes.mypage_auth_page);
 
 // dummy
 app.get('/mypage/welcome', requiresLogin, function(req, res){
-	res.render('mypage/welcome',{title:'환영합니다 ! ', user_id:'USER_ID', session:req.session.user});
+	res.render(language+'/'+'mypage/welcome',{title:'환영합니다 ! ', user_id:'USER_ID', session:req.session.user});
 });
 
 app.post('/mypage/auth', mypageRequiresLogin, routes.mypage_auth);

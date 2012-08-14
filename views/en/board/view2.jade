@@ -1,0 +1,104 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/sub04/sub02.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+		include ../common/subMenu/subMenu05.jade
+		script(type="text/javascript")
+			$("document").ready(function() {
+				if('#{board_id}' == 'source')
+					$("#menu5_1").attr("style", "opacity:1");
+				else if('#{board_id}' == 'plugin')
+					$("#menu5_2").attr("style", "opacity:1");
+				else if('#{board_id}' == 'skin')
+					$("#menu5_3").attr("style", "opacity:1");	
+				else if('#{board_id}' == 'skin')	
+			});
+
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}
+			
+			$(document).ready(function(){
+			
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+				
+			});
+
+	#detail01
+		#detail01Text
+			#title 메뉴얼 다운로드1
+			#contents
+				| 구름에 일반적인 사용에 대한 안내를 위한 구름 사용자 메뉴얼과 플러그인 개발 및 모듈 개발에 대한 안내를 위한 구름 개발자 메뉴얼을 다운 받을 수 있습니다.
+	
+	#detail02.userManual
+		#boardTop
+			#boardTitle= title
+		#boardMiddle
+			#boardList
+				table(cellspacing='0')
+					tr
+						th.left
+						th.title 파일 이름
+						th.download 다운로드
+						th.time 날짜
+						th.readNum 조회수
+						th.right
+						-for(var i=0; i<paging; i++)
+							-if(docs[i]){
+								tr
+									td.left
+									td.title
+										a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+									td.author
+										-if(typeof(docs[i].file.length) != "undefined" && typeof(docs[i].file) != "undefined")
+											-for(var j=0; j<docs[i].file.length; j++)
+												div
+													a(href='#{docs[i].file[j]}', style="color:black;")
+														img#downloadImg(src='/images/en/button_download.png');
+									td.time
+										div('id'='time'+i)
+									td.readNum #{docs[i].hit}
+									td.right
+							-}
+				-if(session && (session.role == 'admin' || session.Id == 'superadmin'))
+					div(style="text-align: right;top: 15;position: relative;")
+						a(href="/board/#{board_id}")
+							[게시판으로 이동]
+		#boardBottom
+			
+			
+	script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+	include ../common/footer.jade

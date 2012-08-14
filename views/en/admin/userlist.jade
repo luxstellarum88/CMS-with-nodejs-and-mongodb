@@ -1,0 +1,106 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+		script(type='text/javascript')
+			$(document).ready(function(){
+				$('#content').focus();
+			});
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+		include ../common/subMenu/subMenu03.jade
+	
+		#detail03
+			script
+				function search() {
+					location.href="/admin/userlists?type="+document.getElementsByName("type")[0].value
+									+"&content="+document.getElementsByName("content")[0].value;
+				}
+				
+				script
+					function submit_enter(field,e){
+						var keycode;
+						if(window.event){
+							keycode = window.event.keyCode;
+						}
+						else if(e){
+							keycode = e.which;
+						}
+						else{
+							return true;
+						}
+						
+						if(keycode == 13){
+							search();
+							return false;
+						}
+						else{
+							return true;
+						}
+					}
+			#boardTop
+				#boardTitle 유저 리스트
+			#boardMiddle
+				#boardList
+					div(style='width:760px;')
+						form( id='frmusers', action='/admin/sendmailView', method='post')
+							table
+								tr
+									th
+									th.content ID
+									th.content NAME
+									th.content Role
+									th.content
+								-for(var i=0; i<result.length; i++)
+									tr
+										td.content
+											input( type='checkbox', name='chklist', value='#{result[i].email}')	
+										td.content 
+											a(href='/user_information/#{result[i].Id}')
+												!{result[i].Id}
+										td.content #{result[i].name}
+										td.content #{result[i].role}
+										td.content
+											a( href='/admin/deleteUser/#{result[i].Id}' ) [삭제]
+							input( type='submit', name='btnemail', value='메일보내기', class='clickable' )br
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
+						center
+							-for(var i=0; i < (length/paging_size); i++)
+								a(href='/admin/userlists/#{i+1}?type=#{type}&content=#{content}') [#{i+1}]
+									
+						div(style='text-align:center;')
+							-if(type == 'role')
+								select(id='type', name='type')
+									option(value='id') 아이디
+									option(value='name') 이름
+									option(value='role', selected) 권한
+								
+							-else if(type == 'name')
+								select(id='type', name='type')
+									option(value='id') 아이디
+									option(value='name', selected) 이름
+									option(value='role') 권한
+								
+							
+							-else
+								select(id='type', name='type')
+									option(value='id', selected) 아이디
+									option(value='name') 이름
+									option(value='role') 권한
+								
+							input(type='text', name='content', id='content', value='#{content}', onKeyPress='return submit_enter(this,event)')	
+							input(type='button', name='search_button', onClick='javascript:search()', value='검색', class='clickable')
+			#boardBottom
+		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+		include ../common/footer.jade

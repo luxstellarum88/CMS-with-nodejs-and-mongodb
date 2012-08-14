@@ -2,7 +2,7 @@ var dbModel = require('../Database/ConnectDB');
 var boardOption = require('../admin/boardoption');
 
 function display_result(res, board_id, title, docs, current_page, paging_size, length, sessionId, type, content, notice){	
-	res.render('boardView', {
+	res.render(language+'/'+'boardView', {
 		board_id: board_id,
 		title: title,
 		docs: docs,

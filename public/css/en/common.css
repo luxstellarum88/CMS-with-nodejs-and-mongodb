@@ -1,0 +1,350 @@
+body {
+	background : url('/images/en/background.png') repeat-x;
+	background-color : #779ec7;
+	margin : 0;
+	font-family : gulim, 굴림, sans-serif;
+	font-size : 10pt;
+	line-height: 1.2;
+}
+table{
+	border-collapse: collapse;
+	table-layout: fixed;
+	word-break: break-all;
+}
+input:-webkit-autofill{
+	color: transparent !important;
+}
+#top {
+	background : black;
+	opacity : 0.699999988079071044921875;
+	height : 33px;
+	padding-top : 4px;
+	position : relative;
+}
+#topMenu {
+	width : 571px;
+	height : 25px;
+	position : absolute;
+	left : 50%;
+	margin-top : -31px;
+	margin-left : -165px;
+	color : white;
+	text-align : right;
+	font-size : 10px;
+}
+#topMenu p {
+	text-align : right;
+	color : white;
+}
+#topMenu #findUserInfo {
+	margin-top: 7px;
+	margin-left: 13px;
+	float:left;
+}
+#topMenu #findUserInfo #findId {
+	background : url('/images/en/findId.png') no-repeat;
+	width: 59px;
+	height: 11px;
+	float: left;
+}
+#topMenu #findUserInfo #divider {
+	background : url('/images/en/divider.png') no-repeat;
+	width: 6px;
+	height: 11px;
+	margin: 0 4px;
+	float: left;
+}
+#topMenu #findUserInfo #findPw {
+	background : url('/images/en/findPw.png') no-repeat;
+	width: 69px;
+	height: 11px;
+	float: left;
+}
+#topMenu #loginFrm #idInputBox {
+	background : url('/images/en/idInputBox.png') no-repeat;
+	width : 167px;
+	height : 25px;
+	border : 0px;
+	padding-left : 20px;
+	outline : none;
+	float : left;
+}
+#topMenu #loginFrm #pwInputBox {
+	background : url('/images/en/idInputBox.png') no-repeat;
+	width : 113px;
+	height : 25px;
+	border : 0px;
+	padding-left : 20px;
+	outline : none;
+	float : left;
+	margin-left : 5px;
+}
+#topMenu #loginFrm #loginButton {
+	background : url('/images/en/loginButton.png');
+	width : 54px;
+	height : 25px;
+	float : left;
+	border : 0px;
+	cursor : hand;
+}
+#topMenu #logoutButton {
+	background : url('/images/en/logoutButton.png');
+	width : 66px;
+	height : 21px;
+	float : right;
+	margin-left : 10px;
+	margin-top: 2px;
+}
+#topMenu #adminButton {
+	background : url('/images/en/button_admin.png');
+	width : 92px;
+	height : 21px;
+	float : right;
+	margin-left : 10px;
+	margin-top: 2px;
+}
+#topMenu #myPageButton {
+	background : url('/images/en/button_myPage.png');
+	width : 66px;
+	height : 21px;
+	float : right;
+	margin-left : 10px;
+	margin-top: 2px;
+}
+#topMenu #signUpButton {
+	background : url('/images/en/signUpButton.png');
+	width : 64px;
+	height : 21px;
+	float : left;
+	margin-left : 13px;
+	border : 0px;
+	margin-top: 2px;
+}
+#mainMenu {
+	background : url('/images/en/mainMenuBackground.png');
+	width : 870px;
+	height : 52px;
+	margin-top : 24px;
+	position : relative;
+	left : 50%;
+	margin-left : -435px;
+	z-index : 1;
+}
+#mainMenu #logo {
+	width : 150px;
+	height : 37px;
+	margin-left:30px;
+	display : block;
+	float : left;
+}
+
+#mainMenu #paddinglogo {
+	width : 150px;
+	height : 37px;
+	margin-top : 0px;
+	display : block;
+	float : left;
+}
+
+ul.mainmenu {
+	float : left;
+	height : 50px;
+	margin-top : -28px;
+	margin-left : 30px;
+	padding : 0;
+}
+li.mainmenu {
+	float : left;
+	border : 0;
+	height : 27px;
+}
+.mainmenu a {
+	display : block;
+	text-indent : -5000px;
+	overflow : hidden;
+	margin-top : 7px;
+}
+.mainmenu a#menu1 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/en/menu/menu01.png');
+	margin-left : 220px;
+	margin-right: 5px;
+}
+.mainmenu a#menu1:hover {
+	background-image : url('/images/en/menu/menu01_h.png');
+}
+.mainmenu a#menu2 {
+	width : 60px;
+	height : 27px;
+	background-image : url('/images/en/menu/menu02.png');
+	margin-right: 5px;
+}
+.mainmenu a#menu2:hover {
+	background-image : url('/images/en/menu/menu02_h.png');
+}
+.mainmenu a#menu3 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/en/menu/menu03.png');
+	margin-right: 5px;
+}
+.mainmenu a#menu3:hover {
+	background-image : url('/images/en/menu/menu03_h.png');
+}
+.mainmenu a#menu4 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/en/menu/menu04.png');
+	margin-right: 5px;
+}
+.mainmenu a#menu4:hover {
+	background-image : url('/images/en/menu/menu04_h.png');
+}
+.mainmenu a#menu5 {
+	width : 82px;
+	height : 27px;
+	background-image : url('/images/en/menu/menu05.png');
+	margin-right: 5px;
+}
+.mainmenu a#menu5:hover {
+	background-image : url('/images/en/menu/menu05_h.png');
+}
+
+#subMenu1, #subMenu2, #subMenu3, #subMenu4, #subMenu5 {
+	position : relative;
+	float:left;
+	z-index: 100;
+	margin-top : 5px;
+	display: none;
+}
+#subMenuTop{
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 6px 6px 6px;
+	border-color: transparent transparent rgba(255,255,255,0.6) transparent;
+	margin: 0 auto;
+}
+#subMenuMiddle{
+	background: rgba(255,255,255,0.6);
+	float: left;
+	padding:9px 10px 9px 30px;
+	height: 12px;
+	-moz-border-radius:15px; 
+	-webkit-border-radius:15px; 
+	border-radius:15px; 
+}
+#subMenu1{
+	margin-left: 427px;
+}
+#subMenu2{
+	margin-left: 556px;
+}
+#subMenu3{
+	margin-left: 504px;
+}
+#subMenu4{
+	margin-left: 759px;
+}
+#subMenu5{
+	margin-left: 804px;
+}
+.submenu a {
+	display : block;
+	text-indent : -5000px;
+	overflow : hidden;
+	opacity : 0.60000002384185791015625;
+	background-repeat: no-repeat;
+	background-position-x : center;
+}
+ul.submenu {
+	margin: 0;
+	padding: 0;
+	float:left;
+}
+li.submenu {
+	float: left;
+	margin-right: 20px;
+}
+
+/* 서브메뉴 페이지별 */
+.submenu a#menu1_1 {width: 24px; height: 12px; background-image : url('/images/en/submenu/submenu01_01.png'); }
+.submenu a#menu1_2 {width: 24px; height: 12px; background-image : url('/images/en/submenu/submenu01_02.png'); }
+.submenu a#menu1_3 {width: 37px; height: 12px; background-image : url('/images/en/submenu/submenu01_03.png'); }
+.submenu a#menu1_4 {width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu01_04.png'); }
+.submenu a#menu1_5 {width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu01_05.png'); }
+
+.submenu a#menu2_1 {/* margin-left: 40px; */ width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu02_01.png'); }
+.submenu a#menu2_2 {width: 87px; height: 12px; background-image : url('/images/en/submenu/submenu02_02.png'); }
+
+.submenu a#menu3_1 {/* margin-left: 0px;  */width: 68px; height: 12px; background-image : url('/images/en/submenu/submenu03_01.png'); }
+.submenu a#menu3_2 {width: 68px; height: 12px; background-image : url('/images/en/submenu/submenu03_02.png'); }
+.submenu a#menu3_3 {width: 100px; height: 12px; background-image : url('/images/en/submenu/submenu03_03.png'); }
+.submenu a#menu3_4 {width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu03_04.png'); }
+.submenu a#menu3_5 {width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu03_05.png'); }
+
+.submenu a#menu4_1 {/* margin-left: 225px; */ width: 24px; height: 12px; background-image : url('/images/en/submenu/submenu04_01.png'); }
+.submenu a#menu4_2 {width: 36px; height: 12px; background-image : url('/images/en/submenu/submenu04_02.png'); }
+
+.submenu a#menu5_1 {/* margin-left: 230px;  */width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu05_01.png'); }
+.submenu a#menu5_2 {width: 49px; height: 12px; background-image : url('/images/en/submenu/submenu05_02.png'); }
+.submenu a#menu5_3 {width: 24px; height: 12px; background-image : url('/images/en/submenu/submenu05_03.png'); }
+
+.submenu a:hover { opacity : 1; }
+
+
+
+.clickable{
+	cursor:hand;
+}
+
+#footer {
+	background : black;
+	opacity : 0.699999988079071044921875;
+	width : 100%;
+	height : 140px;
+	position : relative;
+	bottom : 0;
+	color : #999999;
+	font-family : gulim, 굴림, sans-serif;
+	font-size : 8pt;
+	padding-top : 20px;
+	margin-top : 36px;
+}
+#footer #footerContents01 {
+	width : 870px;
+	position : relative;
+	left : 50%;
+	margin-left : -435px;
+}
+#footer #footerContents02 {
+	width : 870px;
+	position : relative;
+	left : 50%;
+	margin-left : -435px;
+	font-weight : bold;
+	margin-top : 30px;
+}
+#footer #footerLogo {
+	background : url('/images/en/goormLogo.png');
+	width : 94px;
+	height : 33px;
+	position : relative;
+	top : -55px;
+	left : 50%;
+	margin-left : 340px;
+	font-weight : bold;
+}
+#go_top {
+	position: absolute;
+	z-index: 9999;
+	font-size: 11pt;
+	color: #ACC6E3;
+	font-family: gulim, 굴림, sans-serif;
+	margin-bottom: 20px;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+	cursor : hand;
+	text-align: center;
+	font-weight: bold;
+}

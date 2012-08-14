@@ -1,0 +1,113 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/index.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		script(src='javascript/index.js')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+		script(type='text/javascript')
+			$(document).ready(function(){
+				$('#idInputBox').focus();
+				$('#getStartedButton').click(function(){
+					alert('준비 중입니다 !');
+				});
+				$('#latestVersionDownloadButton').click(function(){
+					alert('준비 중입니다 !');
+				});
+			});
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include common/header
+		include common/mainMenu	
+		include common/subMenu/subMenu.jade
+		
+		#detail01
+			#detail01Text
+				#title hello, goorm!
+				#contents
+					| 구름은 웹 기반 통합 개발 환경을 제공하기 위한 오픈 소스 프로젝트입니다. 다양한 오픈 소스 라이브러리를 기반으로 개발되었으며, 다양한 플랫폼과 웹브라우저에서 동작하는 것을 목표로 하고 있습니다. 지원하는 개발 환경은 웹부터 모바일까지 다양하게 지원하며, 플러그인 기능을 통해 얼마든지 확장 가능합니다. 또한 UI 작성 및 UML 작성 도구를 지원하고 실시간 협업 환경을 제공해줌으로써 개발 효율성을 극대화할 수 있다는 장점이 있습니다.
+				a(href='')
+					#getStartedButton
+			#detail01Image
+				img(src='/images/en/detailImage01.png')
+		#detail02
+			#boardTop
+				#boardTitle 
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#title 자신만의 클라우드 통합 개발 환경 구축!
+					#images
+					#contents
+						| 개인 서버에 설치하거나 goorm.org에서 제공하는 서비스를 이용하여 웹에 접속 가능한 환경이면 어디에서나 자신만의 통합 개발 환경을 이용할 수 있습니다.
+				#wrap
+					#title 다양한 플러그인 지원!
+					#images
+					#contents
+						| 다양한 프로그래밍 언어를 지원하는 플러그인 뿐만 아니라 추가적인 기능을 제공하는 다양한 플러그인을 쉽게 설치/관리할 수 있으며, 누구든지 이러한 플러그인을 개발하고 배포할 수 있습니다.
+				#wrap
+					#title
+						| 실시간 협업을 통한 효율적인
+						br
+						| 개발!
+					#images
+					#contents
+						| 실시간 협업 서버를 제공하여, 이를 통해 원격지에 있는 다른 팀원들과 쉽게 협업할 수 있습니다. 채팅 뿐만 아니라 동시에 소스 코드를 편집하거나 UI를 디자인할 수 있습니다.
+			#boardBottom
+		#detailWrap
+			#detail03
+				#boardTop
+					#boardTitle 
+					#boardDownloadMore.more(onClick='javascript:goto_download();', style='cursor:hand; width:55px; position: absolute; left: 403; top: 18; font-size: 9pt')
+				#boardMiddle
+					#wrap
+						#title
+							| 최신 버전의 소스코드를 다운로드 하세요.
+						#contents1
+							| 구름 버전 0.0.0은 플러그인과 실시간 협업, 테마 등 새로운 기능을 지원합니다. 
+						#contents2
+							| 구름은 오픈소스 라이센스인 GNU General Public License Version 3.0(GPLv3)를 채택하고 있습니다. 구름에 적용된 오픈소스 라이센스에 관한 보다 상세한 정보는 구름 라이센스 페이지에서 확인하실 수 있습니다.
+						a(href='')
+							#latestVersionDownloadButton
+						#versionInfo
+
+							| 버전 : 0.0.0(Beta)
+							br
+							| 릴리즈 날짜 : 2012-04-12
+				#boardBottom
+			#detail04
+				#boardTop
+					#boardTitleNotice.first.select(onClick='javascript:show_notice();')
+					#boardTitleNews(onClick='javascript:show_news();')
+				#boardMiddle
+					#notice(style='overflow:hidden')
+						ul(style='padding: 0; margin: 0; list-style: none; font-size: 9pt; line-height: 2.5;')
+							#boardNoticeMore.more(onClick='goto_notice();', style='cursor:hand; width:55px; position: absolute; left: 791; top: 18; line-height:1.2;height:12px')
+							-if( null != notice ) 
+								-for(var i=0; i<notice.length; i++)
+									li 
+										-if( notice[i].subject.length > 28 )
+											a(href='/board/notice/#{notice[i].index}') #{notice[i].subject.substring(0,27)}...
+										-else
+											a(href='/board/notice/#{notice[i].index}') #{notice[i].subject}
+										
+					#news(style='display: none; overflow:hidden;')
+						ul(style='padding: 0; margin: 0; list-style: none; font-size: 9pt; line-height: 2.5;')
+							#boardNewsMore.more(onClick='goto_news();', style='cursor:hand;width:55px; position: absolute; left: 791; top: 18; line-height:1.2; height:12px')
+							-if( null != news ) 
+								-for(var i=0; i<news.length; i++)
+									li 
+										-if( news[i].subject.length > 28 )
+											a(href='/board/news/#{news[i].index}') #{news[i].subject.substring(0,27)}...
+										-else
+											a(href='/board/news/#{news[i].index}') #{news[i].subject}
+				#boardBottom
+		include common/footer 
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')
+		

@@ -1,0 +1,58 @@
+
+#detail02 {
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 70px;
+}
+#detail02 #boardTop {
+	background-image : url('/images/en/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+#detail02 #boardTop #boardTitle {
+	width: 30px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 60px;
+	float : left;
+	background : url('/images/en/board_title/404.png') no-repeat;
+	background-position : center;
+}
+#detail02 #boardMiddle {
+	background-image : url('/images/en/boardMiddle_870px.png');
+	height : 190px;
+	width : 776px;
+	padding : 0 50px;
+}
+
+#detail02 #boardMiddle #wrap {
+	width : 230px;
+	margin-left : 33px;
+	float : left;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+#detail02 #boardMiddle #wrap #title {
+	color : #334d66;
+	font-size : 11pt;
+	height : 40px;
+	font-weight: bold;
+}
+#detail02 #boardMiddle #wrap #images {
+	width : 228px;
+	height : 38px;
+	border : #dfdfdf solid 1px;
+	margin : 5px 0 10px 0;
+}
+#detail02 #boardMiddle #wrap #contents {
+	color : black;
+	font-size : 9pt;
+	text-align: justify;
+}
+#detail02 #boardBottom {
+	background-image : url('/images/en/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}

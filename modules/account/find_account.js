@@ -10,14 +10,14 @@ var self = module.exports = {
 	}//end of init
 	
 	,find_id_page : function(req, res) {
-		res.render('find_account/find_id', {
+		res.render(language+'/'+'find_account/find_id', {
 			title : '아이디 찾기' 
 			,session : req.session.user
 		});
 	}//end of find_id_page
 	
 	,find_password_page : function(req, res) {
-		res.render('find_account/find_password', {
+		res.render(language+'/'+'find_account/find_password', {
 			title : '비밀번호 찾기' 
 			,session : req.session.user
 		});
@@ -26,7 +26,7 @@ var self = module.exports = {
 	,find_id_result_page : function(req, res) {
 		self.find_id(req.body.email, function(result) {
 			if(result != false) {
-				res.render('find_account/id_result', {
+				res.render(language+'/'+'find_account/id_result', {
 					title : '아이디 찾기 결과'
 					,result : result 
 					,session : req.session.user
@@ -34,7 +34,7 @@ var self = module.exports = {
 			}//end of if
 			else {
 				var alert_script = alert.makeAlert('일치하는 계정 정보가 없습니다.');
-				res.render('alert',{
+				res.render(language+'/'+'alert',{
 					title : 'error'
 					,alert : alert_script
 					,session : req.session.user
@@ -46,14 +46,14 @@ var self = module.exports = {
 	,find_password_result_page : function(req, res) {
 		self.find_password(req.body.id, req.body.email, function(result) {
 			if(result != false) {
-				res.render('find_account/password_result', {
+				res.render(language+'/'+'find_account/password_result', {
 					title : '비밀번호 찾기 결과' 
 					,session : req.session.user
 				});//end of render
 			}//end of if
 			else {
 				var alert_script = alert.makeAlert('일치하는 계정 정보가 없습니다.');
-				res.render('alert',{
+				res.render(language+'/'+'alert',{
 					title : 'error'
 					,alert : alert_script
 					,session : req.session.user

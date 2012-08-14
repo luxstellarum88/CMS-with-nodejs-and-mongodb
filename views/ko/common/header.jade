@@ -1,0 +1,84 @@
+script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
+script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')
+script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+
+script
+	function join(){
+		location.href='/join';
+	}
+	function save_url(){
+		document.getElementById('url').value = location.href;
+	}
+	function mypage(){
+		location.href='/mypage';
+	}
+	
+	$("document").ready(function() {
+		$("#go_top").css("top", $(window).height()-100);
+		$("#go_top").css("left", ($(window).width()+1000)/2);
+		var currentPosition = parseInt($("#go_top").css("top"));
+		$(window).resize(function(){
+			$("#go_top").css("top", $(window).height()-100);
+			$("#go_top").css("left", ($(window).width()+1000)/2);
+			currentPosition = parseInt($("#go_top").css("top"));
+		});
+		$(window).scroll(function() {	
+			var position = $(window).scrollTop();
+			$("#go_top").stop().animate({"top":position+currentPosition+"px"},500);
+		});
+	});
+	
+script(type="text/javascript")
+	$("document").ready(function() {
+		$("#mainMenu #menu1").mouseover(function(){
+			$("#subMenu1").attr("style", "display: block");
+			$("#subMenu2, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu2").mouseover(function(){
+			$("#subMenu2").attr("style", "display: block");
+			$("#subMenu1, #subMenu3, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu3").mouseover(function(){
+			$("#subMenu3").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu4, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu4").mouseover(function(){
+			$("#subMenu4").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu5").attr("style", "display: none");
+		});
+		$("#mainMenu #menu5").mouseover(function(){
+			$("#subMenu5").attr("style", "display: block");
+			$("#subMenu1, #subMenu2, #subMenu3, #subMenu4").attr("style", "display: none");
+		});
+	});
+
+#top
+#topMenu
+	- if(!session)
+		form#loginFrm(action='/sessions', method='POST', onsubmit='return save_url();', autocomplete="off")
+
+			- if (typeof(cookie_id) == 'undefined')
+				input#idInputBox(type='text', name='id', value='')
+			- else
+				input#idInputBox(type='text', name='id', value='#{cookie_id}')
+			input#pwInputBox(type='password', name='password')
+			input#pwUrlBox(type='hidden', name='url', id='url', value='')
+
+			input#loginButton(type='submit', name='submit', value='', style='border:0px;')
+			input#signUpButton(type='button', name='signUp', onclick='join();', class='clickable')
+			#findUserInfo
+				a#findId(href='/find_id')
+				#divider
+				a#findPW(href='/find_password')
+	- else
+		- if(session.role=='admin')
+			div(style='display:inline;position:absolute;top:7px;left:20px;text-align:right;width:315px;font-size:9pt;') !{session.Id} 님이 로그인 하셨습니다.	
+		- else
+			div(style='display:inline;position:absolute;top:7px;left:20px;text-align:right;width:400px;font-size:9pt;') !{session.Id} 님이 로그인 하셨습니다.
+			
+		a(href='/logout')
+			#logoutButton
+		- if(session.role=='admin')
+			a(href='/admin/main')
+				#adminButton
+		#myPageButton(onclick='mypage();', class='clickable')

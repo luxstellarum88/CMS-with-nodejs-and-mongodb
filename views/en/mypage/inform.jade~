@@ -1,0 +1,184 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/ready.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/index.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/join.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/mypage.css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+		script
+			$(document).ready(function(){
+				$('#mypage_password').focus();
+				$('#mypage_password').keyup(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_password'
+						, data : {'ajax_password_form' : $('#mypage_password').val() }
+						, success : function(data) {
+								$('#check_password').text(data.content).css('color', data.color);								 
+							}
+						, error : function(data, status, err) {}
+					});
+					if( $('#mypage_password').val() != $('#mypage_confirm').val() ) {
+						$('#check_confirm').text('입력하신 비밀번호와 일치하지 않습니다.').css('color', 'red');
+					}
+					else {
+						$('#check_confirm').text('입력하신 비밀번호와 일치합니다.').css('color', 'green');
+					}
+				});
+				
+				$('#mypage_name').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_name'
+						, data : {'ajax_name_form' : $('#mypage_name').val() }
+						, success : function(data) {
+								$('#check_name').text(data.content).css('color', data.color); 
+							}
+						, error : function(data, status, err){	}
+					});
+				});
+				
+				$('#mypage_email').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_email'
+						, data : {'ajax_email_form' : $('#mypage_email').val() }
+						, success : function(data) {
+								$('#check_email').text(data.content).css('color', data.color); 
+							}
+						, error : function(data, status, err) {}
+					});
+				});	
+				
+				$('#mypage_confirm').focusout(function(){
+					if( $('#mypage_password').val() != $('#mypage_confirm').val() ) {
+						$('#check_confirm').text('입력하신 비밀번호와 일치하지 않습니다.').css('color', 'red');
+					}
+					else {
+						$('#check_confirm').text('입력하신 비밀번호와 일치합니다.').css('color', 'green');
+					}
+				});
+				
+				if( 101 == #{authed} ) {
+					$('#mypage_menu1').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/inform').submit();
+					});
+					$('#mypage_menu2').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/recent_docs').submit();
+					});
+					$('#mypage_menu3').click(function(){
+						$('#mypage_menu').attr('action', '/mypage/recent_comm').submit();
+					});
+				}
+				else {
+					$('#mypage_menu1').click(function(){
+						location.href='/mypage';
+					});
+					$('#mypage_menu2').click(function(){
+						location.href='/mypage';
+					});
+					$('#mypage_menu3').click(function(){
+						location.href='/mypage';
+					});
+				}
+			});
+	body
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+		
+		#detail02
+			#boardTop
+				#boardTitle  회원정보수정
+				#boardTitle  회원정보수정
+				#boardTitle  회원정보수정
+			#boardMiddleJoin
+				#boardMenu.leftMenu
+					form(method='post', id='mypage_menu', name='mypage_menu')
+						#mypage_menu1.menuText 회원정보수정
+						#mypage_menu2.menuText 작성 글 목록
+						#mypage_menu3.menuText 작성 코멘트 목록
+				#contents.contents
+					form(method='post', action='/mypage/update', name='frm')
+						table.info(border='1',cellspacing='0',style='font-size:12px;')
+							caption
+								span.c1
+									span.c2 기본정보
+										span.required
+											strong *
+							tr
+								th 아이디
+								td.wide
+									input(
+										type = 'hidden'
+										,name = 'mypage_id'
+										,id = 'mypage_id'	
+										,value = '#{user.Id}'
+										,style = 'display : "inline";'			
+									)
+									#check_id(style = 'display : inline;') !{user.Id}
+							tr.odd
+								th 비밀번호
+								td.wide
+									input(
+										type = 'password'
+										,name = 'mypage_password'
+										,id = 'mypage_password'			
+										,style = 'display : "inline";'	
+									)
+									br
+									#check_password(style = 'display : inline;') 비밀번호 변경을 윈하실 때만 입력해주세요.
+							tr
+								th 비밀번호 확인
+								td.wide
+									input(
+										type = 'password'
+										,name = 'mypage_confirm'
+										,id = 'mypage_confirm'
+										,style = 'display : "inline";'			
+									)
+									br
+									#check_confirm(style = 'display : inline;') 비밀번호를 다시 한 번 입력해 주세요.
+							tr.odd
+								th 이름
+								td.wide
+									input(
+										type = 'textbox'
+										,name = 'mypage_name'
+										,id = 'mypage_name'
+										,value = '#{user.name}'
+										,style = 'display : inline;'			
+									)
+									br
+									#check_name(style = 'display : inline;') 3~15자리, 한글/알파벳/숫자/특수문자(-/_/.)						
+							tr
+								th 이메일
+								td.wide
+									input(
+										type = 'textbox'
+										,name = 'mypage_email'
+										,id = 'mypage_email'
+										,value = '#{user.email}'
+										,style = 'display:inline;'			
+									)
+									br
+									#check_email(style = 'display : inline;') 예) goorm@skima.co.kr												
+					#join_button(align='center')
+						input(type='button', 
+								name='user_modify', 
+								value='수정', 
+								onClick='call_confirm_post("수정하시겠습니까?","frm")')
+			#boardBottom
+		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+		include ../common/footer.jade

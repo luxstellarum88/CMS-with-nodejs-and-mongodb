@@ -1,0 +1,43 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/ready.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/findUserInfoResult.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+	body
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+
+		#detail01
+			#detail01Text
+				#title 회원 정보 찾기
+				#contents
+					| 아이디 혹은 비밀번호를 잊어버리셨다구요?
+		#detail02
+			#boardTop
+				#boardTitle 아이디 찾기 결과
+			#boardMiddle
+				#wrap1
+					귀하의 아이디는 
+					span#userID 
+						!{result} 
+					입니다
+				#wrap2
+					#findPw
+						input(type='image', id = 'findPwButton', name = 'getStarted', src='/images/en/button_findPw.png', onclick="location.href='/find_password'")
+					#goToMain
+						input(type='image', id = 'goToMainButton', name = 'goToMain', src='/images/en/button_goToMain.png', onclick="location.href=''")				
+
+			#boardBottom
+
+		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+		include ../common/footer.jade

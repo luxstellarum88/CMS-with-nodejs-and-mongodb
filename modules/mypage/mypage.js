@@ -66,35 +66,35 @@ var self = module.exports = {
 					break;
 				case 1:
 					alert_script = alert.makeAlert("빈 칸이 있습니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
 					break;
 				case 2:
 					alert_script = alert.makeAlert("비밀번호가 일치하지 않습니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
 					break;
 				case 3:
 					alert_script = alert.makeAlert("비밀번호는 8~15자, 영문 및 숫자 조합으로 만들어 주시기 바랍니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
 					break;
 				case 4:
 					alert_script = alert.makeAlert("유효한 e-Mail 양식이 아닙니다. (ooo@ooo.oo)");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
 					break;
 				case 5:
 					alert_script = alert.makeAlert("이름은 3~15자로, '.', '-', '_' 이상 세 가지의 특수문자만 허용됩니다.");
-					res.render('alert',{
+					res.render(language+'/'+'alert',{
 						title : 'error',
 						alert : alert_script
 					});
@@ -145,7 +145,7 @@ var self = module.exports = {
 	
 	
 	,index_page : function(req, res) {
-		res.render('mypage/auth', {
+		res.render(language+'/'+'mypage/auth', {
 			 title : '비밀번호'
 			,session : req.session.user, cookie_id: req.cookies.id
 			,authed : 0
@@ -163,7 +163,7 @@ var self = module.exports = {
 
 		model.findOne({Id:id}, function(err, docs) {
 			if(!err) {
-				res.render('mypage/inform', {
+				res.render(language+'/'+'mypage/inform', {
 					 title : '회원정보수정'
 					,session : req.session.user, cookie_id: req.cookies.id
 					,authed : authed
@@ -214,7 +214,7 @@ var self = module.exports = {
 					else{
 						model.count({user_id : id, deleted : false}, function(err, length){
 							if(!err){
-								res.render('mypage/recent_docs', {
+								res.render(language+'/'+'mypage/recent_docs', {
 									 title : '작성 글 목록'
 									,session : req.session.user, cookie_id: req.cookies.id
 									,authed : authed
@@ -282,7 +282,7 @@ var self = module.exports = {
 					else{
 						model.count({user_id:id, deleted:false}, function(err, length){
 							if(!err){						
-								res.render('mypage/recent_comm', {
+								res.render(language+'/'+'mypage/recent_comm', {
 									 title : '작성 댓글 목록'
 									,session : req.session.user, cookie_id: req.cookies.id
 									,authed : authed
@@ -310,7 +310,7 @@ var self = module.exports = {
 	},//end of inform_page
 	
 	mypage_welcome : function(req, res){
-		res.render('welcome', {
+		res.render(language+'/'+'welcome', {
 			title : '환영 합니다 !'
 		});
 	}

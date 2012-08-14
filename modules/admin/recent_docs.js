@@ -11,7 +11,7 @@ var self = module.exports = {
 		
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
 			if ( !err ) {
-				res.render('admin/board_recent_view', {
+				res.render(language+'/'+'admin/board_recent_view', {
 					title : '최근 게시물'
 					, docs : docs
 					, session: req.session.user, cookie_id: req.cookies.id				
@@ -31,7 +31,7 @@ var self = module.exports = {
 		model.find({deleted : false}).sort('insert_date',-1).limit(20).exec(function(err, docs) {
 			
 			if ( !err ) {
-				res.render('admin/recent_comment_view', {
+				res.render(language+'/'+'admin/recent_comment_view', {
 					title : '최근 코멘트'
 					, docs : docs
 					, session: req.session.user, cookie_id: req.cookies.id

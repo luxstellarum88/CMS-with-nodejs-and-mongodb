@@ -1,0 +1,49 @@
+#detail03 #boardTop #boardTitle.sub01 {
+	width: 80px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('/images/en/board_title/sub03_01.png') no-repeat; 
+	background-position: center
+}
+
+#detail03 #boardTop #boardTitle.sub02 {
+	width: 80px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('/images/en/board_title/sub03_02.png') no-repeat; 
+	background-position: center
+}
+
+#detail03 #boardTop #boardTitle.sub03 {
+	width: 100px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('/images/en/board_title/sub02_03.png') no-repeat; 
+	background-position: center
+}
+
+#detail03 #boardTop #boardTitle.sub04 {
+	width: 60px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('/images/en/board_title/sub03_04.png') no-repeat; 
+	background-position: center
+}
+
+#detail03 #boardTop #boardTitle.sub05 {
+	width: 60px;
+	height: 40px; 
+	padding-top: 15px; 
+	margin-left: 39px; 
+	float: left; 
+	background:url('/images/en/board_title/sub03_05.png') no-repeat; 
+	background-position: center
+}

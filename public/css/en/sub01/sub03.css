@@ -1,0 +1,26 @@
+#detail03{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 70px }
+#detail03Text{width:876px; text-shadow: 0 -1px 0 rgba( 0, 0, 0, .2 ); text-align: center; margin-top:0px; z-index: 3;}
+#detail03Text #title {font-size: 40pt; font-family:'NanumPenWeb'; color: white; margin-top:0px ;margin-bottom:10px;}
+#detail03Text #contents {width:556px; font-size:11pt; color: #acc6e3; font-family:gulim, 굴림, sans-serif; margin-bottom: 20px; padding:0 160px; text-shadow: 1px 1px rgba(0,0,0,0.5); line-height:1.1}
+
+ 
+#detail01Image{ width:397px; height:356px; float: left; margin-top: -120px}
+#detail01{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 150px }
+#detail01 #boardTop { background-image:url('/images/en/boardTop_870px.png'); height:55px; width:876px; }
+#detail01 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: right; background:url('/images/en/boardTitleBackground.png') no-repeat; background-position: center}
+#detail01 #boardMiddle {background-image:url('/images/en/boardMiddle_870px.png'); height:250px; width:776px; padding: 0 50px }
+#detail01 #boardMiddle #wrap { width: 366px; margin-left: 10px; float: right; padding-top: 10px; padding-bottom: 10px }
+#detail01 #boardMiddle #wrap #title {font-size: 40pt; font-family:'NanumPenWeb'; color: #334d66; margin-top:0px ;margin-bottom:10px; padding-left: 20px}
+#detail01 #boardMiddle #wrap #contents { color:black; font-family: gulim, 굴림, sans-serif; font-size: 9pt; padding-left: 20px; padding-right:10px; line-height: 1.2; text-align: justify}
+#detail01 #boardBottom {background-image:url('/images/en/boardBottom_870px.png'); height:34px; width:876px;}
+
+ 
+#detail02Image{ width:397px; height:356px; float: right; margin-top: -120px}
+#detail02{ width:876px; position:relative; left:50%; margin-left:-438px; margin-top: 150px }
+#detail02 #boardTop { background-image:url('/images/en/boardTop_870px.png'); height:55px; width:876px; }
+#detail02 #boardTop #boardTitle {font-size:11pt; color: black; font-family:gulim, 굴림, sans-serif; text-align:center; height: 40px; padding-top: 15px; margin-left: 60px; float: left; background:url('/images/en/boardTitleBackground.png') no-repeat; background-position: center}
+#detail02 #boardMiddle {background-image:url('/images/en/boardMiddle_870px.png'); height:250px; width:776px; padding: 0 50px }
+#detail02 #boardMiddle #wrap { width: 366px; margin-left: 10px; float: left; padding-top: 10px; padding-bottom: 10px }
+#detail02 #boardMiddle #wrap #title {font-size: 40pt; font-family:'NanumPenWeb'; color: #334d66; margin-top:0px ;margin-bottom:10px;}
+#detail02 #boardMiddle #wrap #contents { color:black; font-family: gulim, 굴림, sans-serif; font-size: 9pt; padding-right:30px; line-height: 1.2; text-align: justify}
+#detail02 #boardBottom {background-image:url('/images/en/boardBottom_870px.png'); height:34px; width:876px;}

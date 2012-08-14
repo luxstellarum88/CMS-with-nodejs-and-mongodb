@@ -10,7 +10,7 @@ type에 따른 search와 paging 기능을 만들겁니다. paging은 한 번에 
 	
 
 function display_userlist(type, content, current_page, length, docs, paging_size, res) {
-	res.render('admin/userlist', {
+	res.render(language+'/'+'admin/userlist', {
 		title : "UserList"
 		,result : docs
 		,type : type
@@ -102,7 +102,7 @@ exports.user_information = function(user_id, res) {
 	var user_model = dbModel.tossUserModel();
 	user_model.findOne({Id:user_id}, function(err, user){
 		if( user ) {
-			res.render('admin/userinformation', {
+			res.render(language+'/'+'admin/userinformation', {
 				title : 'User_Information'
 				, info : user
 			});//end of render

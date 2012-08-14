@@ -27,7 +27,7 @@ exports.update = function(docs, res){
 				}
 				else{
 					alert_script = alert.makeAlert('오류가 발생했습니다.');
-					res.render('alert', {
+					res.render(language+'/'+'alert', {
 						title : 'Error'
 						, alert : alert_script
 					});
@@ -36,7 +36,7 @@ exports.update = function(docs, res){
 		}
 		else{
 			var alert_script = alert.makeAlert('오류가 발생했습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error'
 				, alert : alert_script
 			});

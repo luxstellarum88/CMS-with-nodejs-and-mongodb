@@ -1,0 +1,256 @@
+#getStartedButton { 
+	background: url('/images/en/getStartedButton.png'); 
+	width:113px ;
+	height:36px;
+}
+
+#detail01{ 
+	width:870px; 
+	height: 323px; 
+	position:relative; 
+	left:50%; 
+	margin-left:-435px; 
+	margin-top: 70px;
+}
+#detail01Text{
+	float:left; 
+	width:368px; 
+	padding-left: 30px; 
+	padding-right: 30px;	
+	text-shadow: 0 -1px 0 rgba( 0, 0, 0, .2 );
+}
+#detail01Image{
+	float:right; 
+	width:397px;
+	margin-right: 45px
+}
+#detail01Text #title {
+	font-size: 40pt; 
+	font-family:'NanumPenWeb'; 
+	color: white; 
+	margin-top: 0px ;
+	margin-bottom:10px;
+}
+#detail01Text #contents {
+	width: 368px;
+	height: 162px;
+	font-size:11pt; 
+	color: #d2e7ff; 
+	font-family:gulim, 굴림, sans-serif; 
+	margin-bottom: 20px; 
+	text-shadow: 1px 1px rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.1);
+	padding: 15px;
+	margin-left: -20px;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px; 
+	border-radius:5px; 
+	text-align: justify;
+	border: 1px solid rgba(255,255,255,0.2);
+}
+
+#detail02 {
+	width : 876px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 40px;
+}
+#detail02 #boardTop {
+	background-image : url('/images/en/boardTop_870px.png');
+	height : 55px;
+	width : 876px;
+}
+#detail02 #boardTop #boardTitle {
+	width: 30px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 60px;
+	float : left;
+	background : url('/images/en/board_title/index_01.png') no-repeat;
+	background-position : center;
+}
+#detail02 #boardMiddle {
+	background-image : url('/images/en/boardMiddle_870px.png');
+	height : 190px;
+	width : 776px;
+	padding : 0 50px;
+}
+
+#detail02 #boardMiddle #wrap {
+	width : 230px;
+	margin-left : 33px;
+	float : left;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+#detail02 #boardMiddle #wrap #title {
+	color : #334d66;
+	font-size : 11pt;
+	height : 40px;
+	font-weight: bold;
+}
+#detail02 #boardMiddle #wrap #images {
+	width : 228px;
+	height : 38px;
+	border : #dfdfdf solid 1px;
+	margin : 5px 0 10px 0;
+}
+#detail02 #boardMiddle #wrap #contents {
+	color : black;
+	font-size : 9pt;
+	text-align: justify;
+}
+#detail02 #boardBottom {
+	background-image : url('/images/en/boardBottom_870px.png');
+	height : 34px;
+	width : 876px;
+}
+#detailWrap {
+	width : 876px;
+	height : 279px;
+	position : relative;
+	left : 50%;
+	margin-left : -438px;
+	margin-top : 20px;
+}
+#detail03 {
+	width : 486px;
+	float : left;
+}
+#detail03 #boardTop {
+	background-image : url('/images/en/boardTop_480px.png');
+	height : 55px;
+	width : 486px;
+}
+#detail03 #boardTop #boardTitle {
+	width: 60px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 47px;
+	float : left;
+	background : url('/images/en/board_title/index_02.png') no-repeat;
+	background-position : center;
+}
+#detail03 #boardMiddle {
+	background-image : url('/images/en/boardMiddle_480px.png');
+	height : 170px;
+	width : 386px;
+	padding : 0 50px;
+}
+#detail03 #boardMiddle #wrap {
+	width : 376px;
+	margin-left : 10px;
+	float : left;
+	padding-top : 10px;
+	padding-bottom : 0;
+}
+#detail03 #boardMiddle #wrap #title {
+	color : #334d66;
+	font-size : 11pt;
+	font-weight: bold;
+}
+#detail03 #boardMiddle #wrap #contents1 {
+	color : black;
+	font-size : 9pt;
+	margin-top: 12px;
+}
+#detail03 #boardMiddle #wrap #contents2 {
+	color : #b3b3b3;
+	font-size : 7pt;
+	margin-top: 2px;
+}
+#detail03 #boardMiddle #wrap #latestVersionDownloadButton { 
+	background: url('/images/en/button_latestVersionDownload.png'); 
+	width:153px;
+	height:36px;
+	margin-top: 14px;
+	float: left;
+}
+#detail03 #boardMiddle #wrap #versionInfo {
+	color : black;
+	font-size : 8pt;
+	text-align: left;
+	float: left;
+	margin-top: 19px;
+	margin-left: 20px;
+}
+
+#detail03 #boardBottom {
+	background-image : url('/images/en/boardBottom_480px.png');
+	height : 34px;
+	width : 486px;
+}
+#detail04 {
+	width : 370px;
+	margin-left : 20px;
+	float : left;
+}
+#detail04 #boardTop {
+	background-image : url('/images/en/boardTop_370px.png');
+	height : 55px;
+	width : 370px;
+}
+#detail04 #boardTop #boardTitleNotice {
+	background : url('/images/en/board_title/index_03.png') no-repeat;
+	background-position : center;
+	width: 60px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 47px;
+	float : left;
+	cursor: pointer;
+	opacity: 0.3;
+}
+#detail04 #boardTop #boardTitleNotice:hover {
+	opacity: 1;
+}
+#detail04 #boardTop #boardTitleNews {
+	background : url('/images/en/board_title/index_04.png') no-repeat;
+	background-position : center;
+	width: 60px;
+	height : 40px;
+	padding-top : 15px;
+	margin-left : 20px;
+	float : left;
+	cursor : pointer;
+	opacity: 0.3;
+}
+#detail04 #boardTop #boardTitleNews:hover {
+	opacity: 1;
+}
+#detail04 #boardTop #boardTitleNotice.select{
+	background : url('/images/en/board_title/index_03_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
+}
+#detail04 #boardTop #boardTitleNews.select {
+	background : url('/images/en/board_title/index_04_p.png') no-repeat;
+	cursor : default;
+	opacity: 1;
+}
+#detail04 #boardMiddle {
+	background-image : url('/images/en/boardMiddle_370px.png');
+	height : 170px;
+	width : 270px;
+	padding : 0 50px;
+}
+#detail04 #boardBottom {
+	background-image : url('/images/en/boardBottom_370px.png');
+	height : 34px;
+	width : 370px;
+}
+#detail04 #boardMiddle a { color: #333333; text-decoration: none; }
+#detail04 #boardMiddle a:hover { color: gray; text-decoration: none; }
+
+#detail04 #boardMiddle li {list-style:none; border-bottom: #EEE solid 1px;}
+
+.more {
+	opacity: 0.2;
+	background: url('/images/en/more.png') no-repeat;
+	height: 12px;
+}
+
+.more:hover{
+	opacity: 0.6;
+}

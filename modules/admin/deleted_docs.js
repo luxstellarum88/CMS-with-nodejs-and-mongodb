@@ -88,7 +88,7 @@ var self = module.exports = {
 	,show_deleted_post : function(req, res) {
 		self.get_post(req, function(docs){
 			if(docs){
-				res.render('', {
+				res.render(language+'/'+'', {
 					 title : '삭제 게시물'
 					,docs : docs
 					,session : req.session.user
@@ -104,7 +104,7 @@ var self = module.exports = {
 	,show_deleted_comment : function(req, res) {
 		self.get_comment(req, function(docs){
 			if(docs){
-				res.render('', {
+				res.render(language+'/'+'', {
 					 title : '삭제 댓글'
 					,docs : docs
 					,session : req.session.user

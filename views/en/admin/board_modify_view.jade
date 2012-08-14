@@ -1,0 +1,102 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		include ../common/subMenu/subMenu03.jade
+		
+		script(src="/javascript/common.js")
+		script
+			function submit_enter(field,e){
+				var keycode;
+				if(window.event){
+					keycode = window.event.keyCode;
+				}
+				else if(e){
+					keycode = e.which;
+				}
+				else{
+					return true;
+				}
+				
+				if(keycode == 13){
+					call_confirm_post("정말 수정하시겠습니까","modify_form");
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+		
+		#detail03
+			#boardTop
+				#boardTitle 게시판 수정
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#contents
+
+						form(method='post', name='modify_form', action ='/admin/board_update/#{docs.id}')
+							table
+								tr
+									td.content ID
+									td.content #{docs.id}
+									
+								tr
+									td.content Name
+									td.content
+										input(
+											type='textbox'
+											,id = 'name'
+											,name = 'name'
+											,value = docs.name
+											, onKeyPress='return submit_enter(this,event)'
+										)
+						
+								tr
+									td.content Paging Size
+									td.content
+										input(
+											type='textbox'
+											,id = 'paging'
+											,name = 'paging'
+											,value = docs.paging
+											, onKeyPress='return submit_enter(this,event)'
+										)
+								tr
+									td.content Comment Paging Size
+									td.content
+										input(
+											type='textbox'
+											,id = 'comm_paging'
+											,name = 'comm_paging'
+											,value = docs.comm_paging
+											, onKeyPress='return submit_enter(this,event)'
+										)
+								tr
+									td.content Date
+									td.content
+										#{docs.date}
+												
+							input(
+								type = 'button'
+								,id = 'modifyButton'
+								,name = 'modifyButton'
+								,value = '수정'
+								,onClick = 'call_confirm_post("정말 수정하시겠습니까","modify_form")'
+								, class='clickable'
+							)
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

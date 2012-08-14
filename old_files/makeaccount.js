@@ -38,7 +38,7 @@ exports.insertUser = function(req, res){
 							res.redirect('/board');
 						}
 						else{
-							res.render('sessions/new', {title: 'login', locals : 
+							res.render(language+'/'+'sessions/new', {title: 'login', locals : 
 								{redir: '/board'}	
 							});
 						}
@@ -47,7 +47,7 @@ exports.insertUser = function(req, res){
 			}//end of if
 			else{
 				var alert_script = alert.makeAlert("이미 존재하는 ID입니다.");
-				res.render('alert',{
+				res.render(language+'/'+'alert',{
 					title : 'error',
 					alert : alert_script
 				});
@@ -56,7 +56,7 @@ exports.insertUser = function(req, res){
 	}//end of if(regExpTest)
 	else {
 		var alert_script = alert.makeAlert("정상적인 e-mail 주소가 아닙니다.");
-		res.render('alert',{
+		res.render(language+'/'+'alert',{
 			title : 'error',
 			alert : alert_script
 		});

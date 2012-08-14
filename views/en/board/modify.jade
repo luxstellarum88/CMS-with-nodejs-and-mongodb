@@ -1,0 +1,126 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/sub03/write.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		link(rel="stylesheet", href="/lib/daumeditor-7.3.19/css/editor.css", type="text/css", charset="utf-8")
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+		script(src="/lib/daumeditor-7.3.19/js/editor_loader.js?environment=development", type="text/javascript", charset="utf-8")
+		script(src='/javascript/editor_config.js', type='text/javascript', charset='utf-8')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		include ../common/subMenu/subMenu03.jade
+		
+		script(src="/javascript/common.js")
+		
+		script(type='text/javascript')
+			function make_action_and_target(url, target){
+				var form = document.createElement('form');
+				form.setAttribute('method', 'post');
+				form.setAttribute('action', url);
+				form.setAttribute('target', target);
+				
+				document.body.appendChild(form);
+				return form;
+			}
+			
+			function add_data(name, value){
+				var input = document.createElement('input');
+				input.setAttribute('type', 'hidden');
+				input.setAttribute('name', name);
+				input.setAttribute('value', value);
+				
+				return input;
+			}
+			
+		script(type='text/javascript')
+			$(document).ready(function(){
+				EditorJSLoader.ready(function(Editor) {
+					var editor = new Editor(config);
+				});
+				
+				
+				$.ajax({
+					type:'post',
+					dataType:"json",
+					url:'/board_modify_ajax',
+					data:{'ajax_id':'#{docs.board_id}', 'ajax_index':#{docs.index}},
+					success: function(data){
+						Editor.modify({
+							content:data.content
+						});
+					},
+					error: function(data, status, err){
+						alert('content load fail!');
+					}
+				});
+				
+				
+				$('#previewButton').click(function(){
+					var content = Editor.getContent();
+					var id = $('#board_id').val();
+					var subject = $('#subject').val();
+					var name = $('#name').val();
+				
+					OpenWindow('', 'newWin', 850, 450);
+					
+					var form = make_action_and_target('/board_preview', 'newWin');
+					
+					form.appendChild(add_data('tx_content', content));
+					form.appendChild(add_data('subject', subject));
+					form.appendChild(add_data('name', name));
+					form.appendChild(add_data('id', id));
+					
+					form.submit();			
+				});
+				
+			});
+			
+			function saveContent() {
+				Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
+			}
+			
+			function submit(){
+				saveContent();
+			}
+
+		form(name="tx_editor_form", id="tx_editor_form", action ='/update', method='post', accept-charset="utf-8")	
+			#detail03
+				#boardTop
+					#boardTitle
+				#boardMiddle
+					#editorHeader
+						input(type='text',value=docs.subject, id='subject', name='subject', onFocus='form_delete()')
+						-if('admin' == session.role || 'superadmin' == session.Id)
+							-if(true == docs.notice)
+								input(type='checkbox',id='write_type', name='write_type', checked, style='margin-left:250px;')
+							-else
+								input(type='checkbox',id='write_type', name='write_type', style='margin-left:250px;')
+							공지사항
+						
+					#editorMiddle
+						include ../../public/lib/daumeditor-7.3.19/editor_container
+					#editorFooter
+						input(type='hidden', name='index', value='#{docs.index}')
+						input(type='hidden', name='board_id', value='#{docs.board_id}')
+						input(type='hidden', name='name', id='name', value='#{docs.user_name}')
+						div#buttonList
+							a
+								img#previewButton(src='/images/en/board/button_preview.png')
+							a(href='javascript:submit();')
+								img#submitButton(src='/images/en/board/button_submit.png')
+							a(href="javascript:location.href='/board/#{docs.board_id}'")
+								img#cancelButton(src='/images/en/board/button_cancel.png')
+				#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

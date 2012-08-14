@@ -1,0 +1,78 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/admin/adminSub.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '년 ' + leadingZeros(d.getMonth() + 1, 2) + '월 ' + leadingZeros(d.getDate(), 2) + '일 ' + leadingZeros(d.getHours(), 2) + '시 ' + leadingZeros(d.getMinutes(), 2) + '분 ' + leadingZeros(d.getSeconds(), 2) + '초';
+				return s;
+			}
+
+			$(document).ready(function(){
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+			});
+			
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu	
+		include ../common/subMenu/subMenu03.jade
+		#detail03
+			#boardTop
+				#boardTitle 최근 글 보기
+			#boardMiddle
+				#wrap(style='margin-left: 10px;')
+					#contents
+						div(style='width:760px;')
+							table
+								tr
+									th.content 번호
+									th.content 게시판 명
+									th.content 이름
+									th.content 제목
+									th.content 날짜
+									-for(var i=0; i<docs.length; i++)
+										-if(docs[i]){
+											tr
+												td.content #{i+1}
+												td.content 
+													a(href='/board/#{docs[i].board_id}', style="color:black;") #{docs[i].board_id}
+												td.content #{docs[i].user_name}	
+												td.content 
+													a(href='/board/#{docs[i].board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+												td.content
+													div(id='time#{i}')
+										-}
+							input(type='button', name='back_button', onClick='javascript:history.go(-1)', value='이전 페이지로', class='clickable')
+			#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

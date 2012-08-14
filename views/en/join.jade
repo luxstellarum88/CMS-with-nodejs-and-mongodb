@@ -1,0 +1,172 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='css/common.css')
+		link(rel='stylesheet', type='text/css', href='css/cloud.css')
+		link(rel='stylesheet', type='text/css', href='css/join.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		include common/header.jade
+		include common/mainMenu.jade
+		
+		script
+			$(document).ready(function(){
+				$('#idForm').focus();
+				$('#idForm').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_id'
+						, data : {'ajax_id_form' : $('#idForm').val() }
+						, success : function(data) {
+								$('#check_id').text(data.content);
+								$('#check_id').css('color', data.color); 
+							}
+						, error : function(data, status, err) {}
+					});
+				});
+				
+				$('#pwForm').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_password'
+						, data : {'ajax_password_form' : $('#pwForm').val() }
+						, success : function(data) {
+								$('#check_password').text(data.content).css('color', data.color);								 
+							}
+						, error : function(data, status, err) {}
+					});
+				});
+				
+				$('#nameForm').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_name'
+						, data : {'ajax_name_form' : $('#nameForm').val() }
+						, success : function(data) {
+								$('#check_name').text(data.content).css('color', data.color); 
+							}
+						, error : function(data, status, err){	}
+					});
+				});
+				
+				$('#emailForm').focusout(function(){
+					$.ajax({
+						type : 'post'
+						, dataType : 'json'
+						, url : '/check_email'
+						, data : {'ajax_email_form' : $('#emailForm').val() }
+						, success : function(data) {
+								$('#check_email').text(data.content).css('color', data.color); 
+							}
+						, error : function(data, status, err) {}
+					});
+				});	
+				
+				$('#confirmForm').focusout(function(){
+					if( $('#pwForm').val() != $('#confirmForm').val() ) {
+						$('#check_confirm').text('입력하신 비밀번호와 일치하지 않습니다.').css('color', 'red');
+					}
+					else {
+						$('#check_confirm').text('입력하신 비밀번호와 일치합니다.').css('color', 'green');
+					}
+				})
+			});
+
+
+
+		#detail02
+			#boardTop
+				#boardTitle 
+			#boardMiddle
+				#contents
+					form(method='post', action='/makeAccount', id='frm', autocomplete="off")
+						table.info(border='1',cellspacing='0')
+							caption
+								span.c1
+									span.c2 기본정보
+										span.required
+											strong *
+							tr
+								th 아이디
+									em.require(style='color:red')	 *
+								td.wide
+									input(
+										type = 'textbox'
+										,name = 'idForm'
+										,id = 'idForm'			
+										,class = 'textbox'
+									)
+									br
+									br
+									#check_id.text(style = 'display : inline;') 4~15자리, 알파벳+숫자
+							tr.odd
+								th 비밀번호
+									em.require(style='color:red')	 *
+								td.wide
+									input(
+										type = 'password'
+										,name = 'pwForm'
+										,id = 'pwForm'			
+										,class = 'textbox'
+									)
+									br
+									br
+									#check_password.text(style = 'display : inline;') 8~15자리, 알파벳과 숫자의 조합
+							tr
+								th 비밀번호 확인
+									em.require(style='color:red')	 *
+								td.wide
+									input(
+										type = 'password'
+										,name = 'confirmForm'
+										,id = 'confirmForm'
+										,class = 'textbox'
+										,style = 'display : "inline";'			
+									)
+									br
+									br
+									#check_confirm.text(style = 'display : inline;') 비밀번호를 다시 한 번 입력해 주세요.
+							tr.odd
+								th 이름
+									em.require(style='color:red')	 *
+								td.wide
+									input(
+										type = 'textbox'
+										,name = 'nameForm'
+										,id = 'nameForm'
+										,class = 'textbox'
+										,style = 'display : inline;'			
+									)
+									br
+									br
+									#check_name.text(style = 'display : inline;') 3~15자리, 한글/알파벳/숫자/특수문자(-/_/.)						
+							tr
+								th 이메일
+									em.require(style='color:red')	 *
+								td.wide
+									input(
+										type = 'textbox'
+										,name = 'emailForm'
+										,id = 'emailForm'
+										,class = 'textbox'
+										,style = 'display:inline;'			
+									)
+									br
+									br
+									#check_email.text(style = 'display : inline;') 예) goorm@skima.co.kr												
+					#join_button(align='center')
+						input(type='image', src='/images/en/button_join.png',class = 'clickable', onClick='javascript:document.getElementById("frm").submit();')
+
+			#boardBottom
+		include common/footer.jade
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

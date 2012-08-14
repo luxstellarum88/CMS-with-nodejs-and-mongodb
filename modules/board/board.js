@@ -16,7 +16,7 @@ var self = module.exports = {
 			}
 		}
 		
-		res.render('board/write', {
+		res.render(language+'/'+'board/write', {
 			title: '게시물 작성'
 			, id : req.params.id
 			, auth : auth
@@ -70,7 +70,7 @@ var self = module.exports = {
 			self.insert(req, res);
 		}	else {
 			var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error',
 				alert : alert_script
 			}) ;
@@ -96,14 +96,14 @@ var self = module.exports = {
 							model.update(condition, update, null, function(err){
 								if ( !err ) {
 									var alert_script = alert.AlertRedirect('삭제되었습니다..', '/board/'+board_id);
-									res.render('alert', {
+									res.render(language+'/'+'alert', {
 										title : 'Success'
 										,alert : alert_script
 									});//end
 								}//end of if
 								else {
 									var alert_script = alert.makeAlert('오류가 발생했습니다.');
-										res.render('alert', {
+										res.render(language+'/'+'alert', {
 										title : 'Error'
 										,alert : alert_script
 									});//end of alert
@@ -112,7 +112,7 @@ var self = module.exports = {
 						}//end of if
 						else {
 							var alert_script = alert.makeAlert('권한이 없습니다.');
-								res.render('alert', {
+								res.render(language+'/'+'alert', {
 								title : 'Error'
 								,alert : alert_script
 							});//end of alert
@@ -134,7 +134,7 @@ var self = module.exports = {
 		
 		model.find().sort('date', -1).exec(function(err, docs){
 			if ( !err ) {
-				res.render('board/main', {
+				res.render(language+'/'+'board/main', {
 					title: '게시판 메인'
 					, docs: docs
 					, session: req.session.user, cookie_id: req.cookies.id
@@ -159,7 +159,7 @@ var self = module.exports = {
 		model.findOne({board_id : board_id, index : board_index},function(err, docs){
 			if ( !err ) {
 				if ( docs.user_id === user_id ||  user_role === 'admin') {
-					res.render('board/modify', {
+					res.render(language+'/'+'board/modify', {
 						title: '게시물 수정'
 						, docs: docs
 						, session: req.session.user, cookie_id: req.cookies.id
@@ -167,7 +167,7 @@ var self = module.exports = {
 				}//end of if
 				else {
 					var alert_script = alert.makeAlert('권한이 없습니다.');
-						res.render('alert', {
+						res.render(language+'/'+'alert', {
 						title : 'Error'
 						,alert : alert_script
 					});//end of alert
@@ -218,14 +218,14 @@ var self = module.exports = {
 					model.update(condition, update, null, function(err){
 						if ( !err ) {
 							var alert_script = alert.AlertRedirect('수정되었습니다.', '/board/'+board_id);
-							res.render('alert', {
+							res.render(language+'/'+'alert', {
 								title : 'Success'
 								,alert : alert_script
 							});//end
 						}//end of if
 						else {
 							var alert_script = alert.makeAlert('오류가 발생했습니다.');
-								res.render('alert', {
+								res.render(language+'/'+'alert', {
 								title : 'Error'
 								,alert : alert_script
 							});//end of alert
@@ -234,7 +234,7 @@ var self = module.exports = {
 				}//end of if
 				else {
 					var alert_script = alert.makeAlert('권한이 없습니다.');
-						res.render('alert', {
+						res.render(language+'/'+'alert', {
 						title : 'Error'
 						,alert : alert_script
 					});//end of alert
@@ -333,7 +333,7 @@ var self = module.exports = {
 								if(j >= 3){
 									//render	
 									var json_comments = JSON.stringify(comments);
-									res.render('board/show', {
+									res.render(language+'/'+'board/show', {
 										title : '게시판',
 										board : docs[dir],
 										docs: docs_arr,
@@ -426,7 +426,7 @@ var self = module.exports = {
 			}//end of if
 			else {
 				if(title=="faq"){
-					res.render('sub02/sub02', {
+					res.render(language+'/'+'sub02/sub02', {
 						board_id: board_id,
 						title: "자주 묻는 질문",
 						headerTitle: headerTitle,
@@ -445,7 +445,7 @@ var self = module.exports = {
 				}
 				
 				else if(title=="freeboard"){
-					res.render('sub03/sub01', {
+					res.render(language+'/'+'sub03/sub01', {
 						board_id: board_id,
 						title: "자유 게시판",
 						headerTitle: headerTitle,
@@ -464,7 +464,7 @@ var self = module.exports = {
 				}
 				
 				else if(title=="qna"){
-					res.render('sub03/sub02', {
+					res.render(language+'/'+'sub03/sub02', {
 						board_id: board_id,
 						title: "질문 게시판",
 						headerTitle: headerTitle,
@@ -483,7 +483,7 @@ var self = module.exports = {
 				}
 				
 				else if(title=="tip"){
-					res.render('sub03/sub03', {
+					res.render(language+'/'+'sub03/sub03', {
 						board_id: board_id,
 						title: "팁/노하우",
 						headerTitle: headerTitle,
@@ -502,7 +502,7 @@ var self = module.exports = {
 				}
 				
 				else if(title=="notice"){
-					res.render('sub03/sub04', {
+					res.render(language+'/'+'sub03/sub04', {
 						board_id: board_id,
 						title: "공지사항",
 						headerTitle: headerTitle,
@@ -521,7 +521,7 @@ var self = module.exports = {
 				}
 				
 				else if(title=="news"){
-					res.render('sub03/sub05', {
+					res.render(language+'/'+'sub03/sub05', {
 						board_id: board_id,
 						title: "보도자료",
 						headerTitle: headerTitle,
@@ -556,7 +556,7 @@ var self = module.exports = {
 		console.log("in board.js display : " + docs.length);
 		
 		if(title=="source"){
-			res.render('sub05/sub01', {
+			res.render(language+'/'+'sub05/sub01', {
 				board_id: board_id,
 				title: "소스코드",
 				docs: docs,
@@ -570,7 +570,7 @@ var self = module.exports = {
 			});//end of render
 		}
 		else if(title=="plugin"){
-			res.render('sub05/sub02', {
+			res.render(language+'/'+'sub05/sub02', {
 				board_id: board_id,
 				title: "플러그인",
 				docs: docs,
@@ -585,7 +585,7 @@ var self = module.exports = {
 		}
 		
 		else if(title=="skin"){
-			res.render('sub05/sub03', {
+			res.render(language+'/'+'sub05/sub03', {
 				board_id: board_id,
 				title: "스킨",
 				docs: docs,
@@ -648,7 +648,7 @@ var self = module.exports = {
 		console.log("in board.js display : " + docs.length);
 		console.log("in board.js display : " + docs1.length);
 		
-			res.render('sub04/sub02', {
+			res.render(language+'/'+'sub04/sub02', {
 				board_id: board_id,
 				title: title,
 				docs: docs,
@@ -849,7 +849,7 @@ var self = module.exports = {
 		}
 		else {
 			var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error',
 				alert : alert_script
 			}) ;
@@ -940,7 +940,7 @@ var self = module.exports = {
 		}
 		else {
 			var alert_script = alert.makeAlert('비어있는 항목이 있습니다.');
-			res.render('alert', {
+			res.render(language+'/'+'alert', {
 				title : 'Error',
 				alert : alert_script
 			}) ;

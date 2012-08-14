@@ -1,0 +1,179 @@
+html
+	head
+		title
+			프로젝트 구름 :: 커뮤니티 > 보도기사
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/board.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/sub03/sub05.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		
+		include ../common/header
+		include ../common/mainMenu
+		include ../common/subMenu/subMenu03.jade
+		
+		script
+			function submit_enter_search(field,e){
+				var keycode;
+				if(window.event){
+					keycode = window.event.keyCode;
+				}
+				else if(e){
+					keycode = e.which;
+				}
+				else{
+					return true;
+				}
+				
+				if(keycode == 13){					
+					search();
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+
+		script(type='text/javascript')
+			var date_array = new Array();
+		
+			function leadingZeros(n, digits) {
+				var zero = '';
+				n = n.toString();
+				if (n.length < digits) {
+					for (i = 0; i < digits - n.length; i++)
+						zero += '0';
+				}
+				return zero + n;
+			}
+		
+			function getTimeStamp(date) {
+				var d = new Date(date);
+				var s = leadingZeros(d.getFullYear(), 4) + '-' + leadingZeros(d.getMonth() + 1, 2) + '-' + leadingZeros(d.getDate(), 2);
+				return s;
+			}
+			
+			$(document).ready(function(){			
+				var data = eval(!{JSON.stringify(docs)});
+				$.each(data, function(index, value){
+					var date = getTimeStamp(value.insert_date);
+					var id = '#time' + index;
+					var content = '<p>' + date + '</p>';
+					$(id).append(content);
+				});
+			});
+		script(type='text/javascript')
+			function search() {
+				location.href="/board/#{board_id}?type="+document.getElementsByName("type")[0].value
+								+"&content="+document.getElementsByName("content")[0].value;
+			}
+			
+		div#detail03
+			div#boardTop
+				div#boardTitle 
+			div#boardMiddle
+				div#boardList
+					table(cellspacing='0')
+						tr
+							th.no 번호
+							th.title 제목
+							th.author 글쓴이
+							th.time 날짜
+							th.readNum 조회수
+							-for(var i=0; i<notice.length; i++)
+								-if(notice[i])
+									tr
+										td.no 공지
+										td.title 
+											a(href='/board/#{board_id}/#{notice[i].index}', style="color:black;") #{notice[i].subject}
+											a.replyNum [#{notice_comment_number[i]}]
+										td.author
+											a #{notice[i].user_name}
+										td.time #{notice[i].insert_date}
+										td.readNum #{notice[i].hit}
+							-for(var i=0; i<paging; i++)
+								-if(docs[i]){
+									tr
+										td.no #{length - ( (current_page-1) * paging ) - i}
+										td.title
+											a(href='/board/#{board_id}/#{docs[i].index}', style="color:black;") #{docs[i].subject}
+											a.replyNum [#{comment_number[i]}]
+											-if(docs[i].file[0])	
+												img(src="/lib/daumeditor-7.3.19/images/icon/editor/p_etc_s.gif", style="margin: 0 5 -4 2;")
+										td.author
+											a #{docs[i].user_name}
+										td.time
+											div('id'='time'+i)
+										td.readNum #{docs[i].hit}
+								-}			
+				div#boardFooter
+					div#pageLine
+						div#list
+							img(src='/images/en/board/button_list.png', id='listButton', onClick="location.href='/board/#{board_id}'", class='clickable')
+						div#write
+							img(src='/images/en/board/button_write.png', id='writeButton', onClick="location.href='/write/#{board_id}'", class='clickable')	
+						div#pagination
+							-current_page = parseInt(current_page);
+							-var last = Math.ceil(length/paging);
+							-if(last>0)
+								a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=1')	
+									img(src='/images/en/board/button_forward.png')
+									span 처음 페이지 |
+							-for(var j= (current_page-2) ; j <= (current_page+2) ; j++) {
+								-if(j>0 && j<= last)
+									-if( j == current_page && j != last)
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}', class='select')
+											b #{j}
+										
+									-else if( j == current_page && j == last )
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}', class='select')
+											b #{j}
+									-else if( j != last )
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') | #{j}
+										
+									-else
+										a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{j}') | #{j}
+							-}
+							-if(last>0)
+								a(href='/board/#{board_id}?type=#{type}&content=#{content}&page=#{last}')
+									span | 마지막 페이지
+									img(src='/images/en/board/button_backward.png')
+								
+					div#search
+						-if(type == 'name')
+							select(id='type', name='type')
+								option(value='docs') 제목+내용
+								option(value='subject') 제목
+								option(value='content') 내용
+								option(value='name', selected) 이름
+						-else if(type == 'memo')
+							select(id='type', name='type')
+								option(value='docs') 제목+내용
+								option(value='subject') 제목
+								option(value='content', selected) 내용
+								option(value='name') 이름
+						-else if(type == 'subject')
+							select(id='type', name='type')
+								option(value='docs') 제목+내용
+								option(value='subject', selected) 제목
+								option(value='content') 내용
+								option(value='name') 이름
+						-else
+							select(id='type', name='type')
+								option(value='docs', selected) 제목+내용
+								option(value='subject') 제목
+								option(value='content') 내용
+								option(value='name') 이름
+						input#searchInputBox(type='text', name='content', value='#{content}', onKeyPress='return submit_enter_search(this,event);')
+						a(href='javascript:search();')
+							img#searchButton(src='/images/en/board/button_search.png')
+						
+			div#boardBottom
+		include ../common/footer
+		script(src='/javascript/cloud.js', type='text/javascript', charset='utf-8')

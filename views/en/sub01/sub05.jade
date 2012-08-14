@@ -1,0 +1,30 @@
+html
+	head
+		title
+			!{title}
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		link(rel='stylesheet', type='text/css', href='/css/en/common.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/ready.css')
+		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
+		link(rel='shortcut icon', href='/images/en/favicon.gif')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
+		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb', rel='stylesheet', type='text/css')
+	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
+		#viewport
+			#world
+		include ../common/header.jade
+		include ../common/mainMenu.jade
+		include ../common/subMenu/subMenu01.jade
+		script(type="text/javascript")
+			$("document").ready(function() {
+				$("#menu1_5").attr("style", "opacity:1");
+			});
+		#detail03
+			#boardTop
+			#boardMiddle
+				#content
+					준비 중입니다.
+			#boardBottom
+
+		script(src='../javascript/cloud.js', type='text/javascript', charset='utf-8')
+		include ../common/footer.jade
