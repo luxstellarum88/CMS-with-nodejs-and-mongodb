@@ -16,7 +16,7 @@ var alert = require('./modules/alert/alert');
 // localization
 var localization = require('./modules/localization/localization');
 
-localization.SetLanguage("en");
+localization.SetLanguage("ko");
 
 
 // Configuration

@@ -1,7 +1,7 @@
 	// animation settings
-	var goorm_count = 5;		//default = 5
-	var goorm_speed = .1;		//default = .1
-	var goorm_sensitivity = 1;	//default = 1
+	var goorm_count = 6;		//default = 5, 구름 갯수
+	var goorm_speed = .1;		//default = .1, 구름 회전 속도
+	var goorm_sensitivity = .3;	//default = 1
 	
 	
 	(function() {
@@ -47,13 +47,16 @@
 	generate();
 	
 	function createCloud() {
-	
+		clientWidth = document.width;
+		clientHeight = document.height;
+		console.log(Math.round(Math.random()));
 		var div = document.createElement( 'div'  );
 		div.className = 'cloudBase';
-		var x = 256 - ( Math.random() * 512 );
-		var y = 256 - ( Math.random() * 512 );
-		var z = 256 - ( Math.random() * 512 );
+		var x = clientWidth/5 - ( Math.random() * clientWidth/2 );
+		var y = clientHeight/5 - ( Math.random() * clientHeight/2 );
+		var z = 128 - ( Math.random() * 128 );
 		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
+		var d = Math.round(Math.random());
 		div.style.webkitTransform = t;
 		div.style.MozTransform = t;
 		div.style.oTransform = t;
@@ -82,6 +85,7 @@
 				z: z,
 				a: a,
 				s: s,
+				d: d,
 				speed: goorm_speed * Math.random()
 			};
 			var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px ) rotateZ( ' + a + 'deg ) scale( ' + s + ' )';
@@ -139,6 +143,19 @@
 		for( var j = 0; j < layers.length; j++ ) {
 			var layer = layers[ j ];
 			layer.data.a += layer.data.speed;
+
+			if(layer.data.d==1){
+				layer.data.x += layer.data.speed*3;
+				if(layer.data.x>document.width/2)
+					layer.data.d = 0;
+
+			}
+			else{
+				layer.data.x -= layer.data.speed*3;
+				if(layer.data.x<-document.width/2)
+					layer.data.d = 1;
+			}
+
 			var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
 			layer.style.webkitTransform = t;
 			layer.style.MozTransform = t;
