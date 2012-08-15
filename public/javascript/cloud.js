@@ -1,7 +1,7 @@
 	// animation settings
-	var goorm_count = 6;		//default = 5, 구름 갯수
+	var goorm_count = 5;		//default = 5, 구름 갯수
 	var goorm_speed = .1;		//default = .1, 구름 회전 속도
-	var goorm_sensitivity = .3;	//default = 1
+	var goorm_sensitivity = .2;	//default = 1
 	
 	
 	(function() {
@@ -52,9 +52,9 @@
 		console.log(Math.round(Math.random()));
 		var div = document.createElement( 'div'  );
 		div.className = 'cloudBase';
-		var x = clientWidth/5 - ( Math.random() * clientWidth/2 );
-		var y = clientHeight/5 - ( Math.random() * clientHeight/2 );
-		var z = 128 - ( Math.random() * 128 );
+		var x = clientWidth/4 - ( Math.random() * clientWidth/2 );
+		var y = clientHeight/4 - ( Math.random() * clientHeight/2 );
+		var z = 128 - ( Math.random() * 256 );
 		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
 		var d = Math.round(Math.random());
 		div.style.webkitTransform = t;
@@ -145,13 +145,13 @@
 			layer.data.a += layer.data.speed;
 
 			if(layer.data.d==1){
-				layer.data.x += layer.data.speed*3;
+				layer.data.x += layer.data.speed*2;
 				if(layer.data.x>document.width/2)
 					layer.data.d = 0;
 
 			}
 			else{
-				layer.data.x -= layer.data.speed*3;
+				layer.data.x -= layer.data.speed*2;
 				if(layer.data.x<-document.width/2)
 					layer.data.d = 1;
 			}
@@ -171,10 +171,3 @@
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-625393-26']);
 	_gaq.push(['_trackPageview']);
-
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-
