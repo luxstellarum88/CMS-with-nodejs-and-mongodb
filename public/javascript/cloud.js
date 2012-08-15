@@ -49,14 +49,18 @@
 	function createCloud() {
 		clientWidth = document.width;
 		clientHeight = document.height;
-		console.log(Math.round(Math.random()));
+
 		var div = document.createElement( 'div'  );
 		div.className = 'cloudBase';
+		
 		var x = clientWidth/4 - ( Math.random() * clientWidth/2 );
-		var y = clientHeight/4 - ( Math.random() * clientHeight/2 );
+/* 		var y = 0~clientHeight/2; */
+		var y = Math.random() * clientHeight/2;
+
 		var z = 128 - ( Math.random() * 256 );
 		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
 		var d = Math.round(Math.random());
+
 		div.style.webkitTransform = t;
 		div.style.MozTransform = t;
 		div.style.oTransform = t;

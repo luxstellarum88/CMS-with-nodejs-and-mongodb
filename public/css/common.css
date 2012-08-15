@@ -213,6 +213,7 @@ li.mainmenu {
 
 #subMenu1, #subMenu2, #subMenu3, #subMenu4, #subMenu5 {
 	position : relative;
+	left:50%;
 	float:left;
 	z-index: 100;
 	margin-top : 5px;
@@ -236,19 +237,19 @@ li.mainmenu {
 	border-radius:15px; 
 }
 #subMenu1{
-	margin-left: 427px;
+	margin-left: -533px;
 }
 #subMenu2{
-	margin-left: 556px;
+	margin-left: -404px;
 }
 #subMenu3{
-	margin-left: 504px;
+	margin-left: -456px;
 }
 #subMenu4{
-	margin-left: 759px;
+	margin-left: -202px;
 }
 #subMenu5{
-	margin-left: 804px;
+	margin-left: -156px;
 }
 .submenu a {
 	display : block;
