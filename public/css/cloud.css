@@ -46,10 +46,10 @@ body {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	margin-left: -256px;
-	margin-top: -256px;
-	height: 512px;
-	width: 512px;
+	margin-left: -512px;
+	margin-top: -512px;
+	height: 1024px;
+	width: 1024px;
 /* 	background-color: rgba( 255, 0, 0, .2 ); */
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
