@@ -8,8 +8,10 @@ html
 		link(rel='stylesheet', type='text/css', href='/css/en/cloud.css')
 		link(rel='shortcut icon', href='/images/en/favicon.gif')
 		link(href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumPenWeb', rel='stylesheet', type='text/css')
-		script(src='javascript/index.js')
-		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")	
+		script(src="http://code.jquery.com/jquery-1.7.2.min.js", type="text/javascript")
+		script(src='/javascript/common.js', type='text/javascript', charset='utf-8')
+		script(src='/javascript/submit_enter.js', type='text/javascript', charset='utf-8')	
+		script(src='/javascript/index.js')			
 		script(type='text/javascript')
 			$(document).ready(function(){
 				$('#idInputBox').focus();
@@ -22,7 +24,14 @@ html
 			});
 	body(oncontextmenu="return false",onselectstart="return false",ondragstart="return false")
 		#viewport
-			#world
+			#backgrounds
+				img(src='/images/cloud/cloud_01.png', style='width: 630px; opacity:0.3; position:absolute; top:230; left:50%; margin-left:-730px;')
+				img(src='/images/cloud/cloud_02.png', style='width: 630px; opacity:0.4; position:absolute; top:30; left:50%; margin-left:220px;')
+				img(src='/images/cloud/cloud_03.png', style='width: 740px; opacity:0.2; position:absolute; top:730; left:50%; margin-left:-820px;')
+				img(src='/images/cloud/cloud_03.png', style='width: 630px; opacity:0.5; position:absolute; top:930; left:50%; margin-left:220px;')
+				img(src='/images/cloud/cloud_04.png', style='width: 630px; opacity:0.5; position:absolute; top:430; left:50%; margin-left:500px;')
+
+			#world(style='opacity:0.7')
 		
 		include common/header
 		include common/mainMenu	

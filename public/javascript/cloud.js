@@ -57,7 +57,7 @@
 /* 		var y = 0~clientHeight/2; */
 
 		var y = clientHeight/2*(1-Math.random());
-		console.log(y);
+
 		var z = 128 - ( Math.random() * 256 );
 		var t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px )';
 		var d = Math.round(Math.random());

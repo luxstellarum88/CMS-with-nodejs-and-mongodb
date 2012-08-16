@@ -1,3 +1,14 @@
+$(document).ready(function() { 
+	if (navigator.appVersion.indexOf("Win")!=-1) 
+		$("body").css("font-family","굴림 gulim");
+	if (navigator.appVersion.indexOf("Mac")!=-1) 
+		$("body").css("font-family","AppleGothic");
+	if (navigator.appVersion.indexOf("X11")!=-1) 
+		$("body").css("font-family","굴림 gulim");
+	if (navigator.appVersion.indexOf("Linux")!=-1) 
+		$("body").css("font-family","굴림 gulim");
+
+});
 
 function call_confirm_post(context, form_name) {
 	if(confirm(context)) {
